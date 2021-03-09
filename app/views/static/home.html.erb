@@ -3,7 +3,7 @@
   "@context": "http://schema.org",
   "@type": "WebSite",
   "name": "TeSS",
-  "alternateName": "The ELIXIR Life Science Training Portal",
+  "alternateName": "The ExPaNDS Training Portal",
   "url": "<%= root_url%>",
   "potentialAction": {
     "@type": "SearchAction",
@@ -17,18 +17,19 @@
   "@context": "http://schema.org",
   "@type": "Organization",
   "url": "<%= root_url%>",
-  "logo": "<%= image_url "ELIXIR_TeSS_logo_normal.png" %>"
+  "logo": "<%= image_url "expands.png" %>"
 }
 </script>
 
 <%# Welcome text %>
 <div class="welcome-text">
-  <h2 class="module-heading" style="margin-top: 5px;">Welcome to TeSS: ELIXIR's Training Portal</h2>
+  <h2 class="module-heading" style="margin-top: 5px;">Welcome to the ExPaNDS/PaNOSC Training Catalogue</h2>
   <p>
-    Browsing, discovering and organising life sciences training
-    resources, aggregated from ELIXIR nodes and 3<sup>rd</sup>-party providers.
+    Browsing, discovering and organising PaN sciences training events and resources
+    resources, aggregated from ExPaNDS and PaNOSC partners and 3<sup>rd</sup>-party providers.
   </p>
 </div>
+
 
 <%# Big search box %>
 <div class="searchbox">
@@ -49,7 +50,7 @@
         <h2><i class="<%= icon_class_for_model('events') %>"></i> Events</h2>
         <%= image_tag("events.jpg", width: "100%", alt: "Events") %>
     <% end %>
-    <p>Discover the latest training events and news from ELIXIR nodes and 3<sup>rd</sup>-party providers.</p>
+    <p>Discover the latest training events and news from ExPaNDS/PaNOSC and 3<sup>rd</sup>-party providers.</p>
   </li>
 
   <li>
@@ -57,7 +58,7 @@
         <h2><i class="<%= icon_class_for_model('materials') %>"></i> Materials</h2>
         <%= image_tag("materials.jpg", width: "100%", alt: "Materials") %>
     <% end %>
-    <p>Browse the catalogue of training materials offered by ELIXIR nodes and 3<sup>rd</sup>-party providers.</p>
+    <p>Browse the catalogue of training materials offered by ExPaNDS/PaNOSC and 3<sup>rd</sup>-party providers.</p>
   </li>
 
   <li>
@@ -79,15 +80,15 @@
 
 <% if @resources.length > 0 -%>
   <div id="materials-title">
-    <h3>Latest Content in TeSS</h3>
+    <h3>Latest Content ExPaNDS/PaNOSC  Training Catalogue</h3>
   </div>
   <% @resources.each do |resource| %>
     <%= render layout: 'common/mixed_resources', locals: {resource: resource} do %>
       <% days = ((Time.now - resource.created_at) / 1.day).to_i %>
       <% if days == 0 %>
-          <div class="days_ago_text">Added to TeSS today </div>
+          <div class="days_ago_text">Added to the catalogue today </div>
       <% else %>
-          <div class="days_ago_text">Added to TeSS <%= pluralize(days, "day") %> ago</div>
+          <div class="days_ago_text">Added to the catalogue <%= pluralize(days, "day") %> ago</div>
       <% end %>
     <% end -%>
   <% end -%>
