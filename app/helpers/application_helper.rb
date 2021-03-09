@@ -166,7 +166,7 @@ module ApplicationHelper
   DEFAULT_IMAGE_FOR_MODEL = {
       'ContentProvider' => 'placeholder-organization.png',
       'Package' => 'placeholder-group.png',
-      'Node' => 'elixir_logo_orange.png'
+      'Node' => 'expands.png'
   }.freeze
 
   def get_image_url_for(resource)
@@ -381,7 +381,7 @@ module ApplicationHelper
       "#{controller_name.humanize} - "
     else
       ''
-    end + "TeSS (Training eSupport System)"
+    end + "PaN Training Catalogue (ExPaNDS/PaNOSC)"
   end
 
   # Renders a title on the page (by default in an H2 tag, pass a "tag" option with a symbol to change) as well as
