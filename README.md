@@ -122,8 +122,14 @@ $ bundle exec rake db:setup
 The dev server can evaluated with
 
 ```
+bundle exec sidekiq
+```
+
+and
+
+```
 bundle exec rails server
-``` 
+```
 
 and accessed via: http://localhost:3000
 
