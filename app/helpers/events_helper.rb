@@ -1,10 +1,10 @@
 module EventsHelper
 
-  EVENTS_INFO = "An event in TeSS is a link to a single training event sourced by a provider along with description and other meta information (e.g. date, location, audience, ontological categorization, keywords, etc.).\n\n"+
+  EVENTS_INFO = "An event in the ExPaNDS/PaNOSC Training Catalogue is a link to a single training event sourced by a provider along with description and other meta information (e.g. date, location, audience, ontological categorization, keywords, etc.).\n\n"+
 
-      "TeSS harvests training events automatically, including descriptions and other relevant meta-data made available by providers.\n\n"+
+      "The ExPaNDS/PaNOSC Training Catalogue harvests training events automatically from our E-learning platform and the PaNOSC events calendar, including descriptions and other relevant meta-data made available by providers.\n\n"+
 
-      "If your website contains training events that you wish to include in TeSS, please contact the TeSS team (<a href='mailto:#{TeSS::Config.contact_email}'>#{TeSS::Config.contact_email}</a>) for further details."
+      "If your website contains training events that you wish to include in ExPaNDS/PaNOSC Training Catalogue, please contact the ExPaNDS team (<a href='mailto:#{TeSS::Config.contact_email}'>#{TeSS::Config.contact_email}</a>) for further details."
 
 
 
