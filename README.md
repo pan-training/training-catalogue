@@ -151,6 +151,10 @@ Find the user and assign them the administrative role. This can be completed by 
 
 After setting up TeSS, the configuration of an application server (**Phusion Passenger** is an application server and it is often used to power Ruby sites) is required as described [here](https://www.digitalocean.com/community/tutorials/how-to-setup-a-rails-4-app-with-apache-and-passenger-on-centos-6) in a more general way.
 
+Or my prefered setup with Nginx:
+
+https://www.phusionpassenger.com/library/config/nginx/intro.html
+
 We need additinal packages:
 
 ```
