@@ -217,10 +217,15 @@ bundle exec rake db:reset RAILS_ENV=production
 and reindex Solr:
 
 ```
+bundle exec rake sunspot:solr:start RAILS_ENV=production
 bundle exec rake sunspot:solr:reindex RAILS_ENV=production
 ```
 
-Create an admin user and assign it appropriate 'admin' role bu looking up that role in console in model Role (default roles should be created automatically).
+Create an admin user and assign it appropriate 'admin' role bu looking up that role in console in model Role (default roles should be created automatically):
+
+```
+bundle exec rails c -e production
+```
 
 The first time and each time a css or js file is updated:
 
