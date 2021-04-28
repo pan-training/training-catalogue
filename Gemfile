@@ -128,6 +128,9 @@ gem 'private_address_check'
 # For the link monitor rake taks
 gem 'time_diff'
 
+#passenger
+gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 7.0.1'
   gem 'rails-assets-moment', '~> 2.15.0'
@@ -160,5 +163,7 @@ group :development do
 end
 
 group :production do
-  gem 'passenger', '~> 5.1.11'
+  #gem 'passenger', '~> 5.0.25'
 end
+
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'

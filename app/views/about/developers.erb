@@ -13,23 +13,26 @@
         <div class="odd-about-block">
           <div id='code_and_data' class="h3">For Developers</div>
 
-          TeSS is committed to the FAIR principles: making data findable, accessible, interoperable and re-usable.
-          As such, all content in TeSS is available under the CC BY 4.0 licence, and can be accessed through our API
-          and widgets. The TeSS codebase is also available to re-use under the BSD Licence, and can be found on GitHub.
+          The ExPaNDS training catalogue is committed to the FAIR principles: making data findable, accessible, interoperable and re-usable.
+          As such, all content in our catalogue is available under the CC BY 4.0 licence, and can be accessed through our API
+          and widgets. The codebase is also available to re-use under the BSD Licence, and can be found on GitHub. 
+          
+          The original codebase was 
+          developed for TeSS in the ELIXIR Project (European Commission, Horizon 2020 Research Infrastructures programme (ELIXIR-EXCELERATE, grant agreement number 676559)). 
 
           <div class="row">
             <div class="col-lg-5 5 open-access-box">
               <div class="h2 licence-title">Software</div>
               <div class="open-access-location">
-                <%= link_to 'https://github.com/ElixirTeSS/TeSS', target: '_blank' do %>
+                <%= link_to 'https://github.com/pan-training', target: '_blank' do %>
                     <div class="register-condition-graphic">
                       <%= image_tag 'about/GitHub-Mark-64px.png', class: "" %>
                     </div>
-                    <div class="register-condition">The source code for TeSS is available on GitHub</div>
+                    <div class="register-condition">The source code for the ExPaNDS/PaNOSC Training Catalogue is available on GitHub</div>
                 <% end %>
               </div>
               <div class="open-access-licence">
-                <%= link_to 'https://github.com/ElixirTeSS/TeSS/blob/master/LICENSE', target: '_blank' do %>
+                <%= link_to 'https://github.com/pan-training/training-catalogue/blob/master/LICENSE', target: '_blank' do %>
                     <div class="register-condition-graphic"><i class="fa fa-code licence-logo"></i></div>
                     <div class="register-condition">It is available under the BSD-3 licence</div>
                 <% end %>
@@ -40,7 +43,7 @@
                   <%= link_to developers_path(:anchor => 'api') do %>
                     <div class="open-access-location">
                       <div class="register-condition-graphic"><i class="fa fa-plug licence-logo"></i></div>
-                      <div class="register-condition">Data in TeSS can be accessed via our API</div>
+                      <div class="register-condition">Data in the ExPaNDS/PaNOSC Training Catalogue can be accessed via our API</div>
                     </div>
                   <% end %>
                 <div class="open-access-licence">
@@ -65,48 +68,6 @@
                 <p><%= link_to 'https://elixirtess.github.io/TeSS_widgets/', class: 'btn btn-primary', target: '_blank' do %>
                   View Our Available Widgets
                   <% end %></p>
-              <p>
-                Below is a live example of the TeSS Maps widget.
-              </p>
-
-        <hr/>
-
-<link rel="stylesheet" property="stylesheet" href="https://elixirtess.github.io/TeSS_widgets/css/tess-widget.css"/>
-  <div id="tess-widget-google-map" class="tess-widget tess-widget-google-map"></div>
-  <script>
-  function initTeSSWidgets() {
-      TessWidget.Events(document.getElementById('tess-widget-google-map'),
-          'GoogleMap',
-          {
-              opts: {
-                  apiKey: 'AIzaSyAtxeshmu-95V4KZWyDklhhO-UNqNQQJKo' // Get your own API key!
-              },
-              params: {
-                  country: [
-                      'United Kingdom', 'Spain', 'Portugal', 'France', 'Belgium', 'Ireland', 'Estonia', 'Finland',
-                      'Germany', 'Austria', 'Italy', 'Hungary', 'Czech Republic', 'Estonia', 'Denmark',
-                       'Greece','Luxembourg', 'The Netherlands', 'Switzerland', 'Norway', 'Sweden', 'Slovenia'
-                  ],
-                  pageSize: 500
-              }
-          });
-  }
-  </script>
-  <script async="" defer="" src="https://elixirtess.github.io/TeSS_widgets/js/tess-widget-standalone.js" onload="initTeSSWidgets()"></script>
-
-
-
-
-
-
-        <hr>
-        <p>
-        If you do decide to include our widgets on your website, we have a mailing list you can join to keep
-        informed about any service disruptions, required updates, or new features
-        </p>
-          <p><%= link_to 'https://groups.google.com/forum/#!forum/tess-widgets-user-group', class: 'btn btn-primary', target: '_blank' do %>
-                <i class="fa fa-envelope"></i> Join the widgets mailing list
-          <% end %></p>
 
         </div>
       </div>
@@ -118,7 +79,7 @@
           <span style="float:right">
                       </span>
           <span>
-            <p>TeSS has a fully functioning <a href="http://jsonapi.org/" target="_blank">JSON API</a>. You can
+            <p>The catalogue has a fully functioning <a href="http://jsonapi.org/" target="_blank">JSON API</a>. You can
               explore our JSON-API by appending .json_api to the end of the URL of most pages (excluding parameters).
               For example:</p>
             <p><code>

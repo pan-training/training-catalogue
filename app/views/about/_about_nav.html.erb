@@ -1,10 +1,10 @@
   
     <!-- SIDEBAR -->
 <nav class="about-page-menu">
-    <!-- WHAT IS TESS -->
+    <!-- WHAT IS the ExPaNDS Catalogue -->
         <ul class="nav nav-stacked">
               <% if show == 'home' %><li class="active"><% else %><li><% end %>
-              <%= link_to 'What is TeSS', about_path%></li>
+              <%= link_to 'What is the ExPaNDS Catalogue', about_path%></li>
               <ul class="nav nav-stacked">
               <!--
                   <li><%= link_to 'Events', about_path(:anchor => 'events') %></li>
@@ -23,7 +23,7 @@
   <!-- REGISTERING YOUR RESOURCES -->
   <ul class="nav nav-stacked">
       <% if show == 'registering' %><li class="active"><% else %><li><% end %>
-    <%= link_to 'Registering Content in TeSS', registering_resources_path %></li>
+    <%= link_to 'Registering Content in our Catalogue', registering_resources_path %></li>
       <ul class="nav nav-stacked">
         <li><%= link_to 'Automatic Registration', registering_resources_path(:anchor => 'automatic') %></li>
         <!--
@@ -57,7 +57,6 @@
       <% if show == 'us' %><li class="active"><% else %><li><% end %>
       <%= link_to 'About Us', us_path%></li>
       <ul class="nav nav-stacked">
-        <li><%= link_to 'TeSS Club', us_path(:anchor => 'tess-club') %></li>
         <li><%= link_to 'Contact', us_path(:anchor => 'contact') %></li>
         <li><%= link_to 'The Team', us_path(:anchor => 'team') %></li>
         <li><%= link_to 'Funding', us_path(:anchor => 'funding') %></li>
