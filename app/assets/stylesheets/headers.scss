@@ -28,7 +28,7 @@
       padding-top: 10px;
       padding-bottom: 10px;
       margin-right: 3px;
-      color: rgb(17, 16, 16);
+      color: #dddddd;
       @media (min-width: $screen-md) {
         border-radius: $nav-pills-border-radius;
       }
@@ -49,10 +49,10 @@
   input { width: 100% }
 
   @media (min-width: $screen-md) and (max-width: $screen-md-max) {
-    input { width: 160px; }
+    input { width: 140px; }
   }
   @media (min-width: $screen-lg) {
-    input { width: 280px; }
+    input { width: 200px; }
   }
   /* The following is needed to make the search bar 100% wide between 'sm' and 'md' screen sizes */
   /* See: http://stackoverflow.com/a/24985419 */

@@ -1,5 +1,5 @@
-/* Elixir brand colours */
-$elixir-orange: #d3d3d3;
+/* ExPaNDS brand colours */
+$elixir-orange: #1F214B;
 $elixir-grey: #484848;
 $elixir-blue: #005472;
 $elixir-green: #bebf32;
@@ -7,13 +7,13 @@ $elixir-green: #bebf32;
 /* TeSS colours */
 $bgDefault: $elixir-orange;
 $bgHighlight: darken($bgDefault, 10%);
-$colDefault: #d3d3d3;
-$colHover: #333333;
+$colDefault: #eeeeee;
+$colHover: #eeeeee;
 $colHover2: #eeeeee;
 
 $grey-blue: #8CA0A6;
 
-$blue: #206B82;
+$blue: #eeeeee; // Link colour in footer(?)
 $blue2: #085871; /* unused? */
 $blue3: #064559; /* unused? */
 

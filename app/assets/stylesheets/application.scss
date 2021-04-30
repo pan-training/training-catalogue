@@ -45,7 +45,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #ddd;
+  background-color: #1F214B; //ExPaNDS color
 
   .container {
     padding: 0;
@@ -147,7 +147,7 @@ div.wrapper {
 
   table tr td a:hover {
     background-color: #B0C3C9;
-    color: #ffffff;
+    color: #000000;
     padding: 3px;
     text-decoration: none;
   }
@@ -263,6 +263,7 @@ ul.unstyled {
   width: 100%;
 }
 
+// ExPaNDS Header Button
 .nav-item > a {
   //padding-left: 15px;
   //padding-right: 15px;
