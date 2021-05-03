@@ -7,13 +7,13 @@ $elixir-green: #bebf32;
 /* TeSS colours */
 $bgDefault: $elixir-orange;
 $bgHighlight: darken($bgDefault, 10%);
-$colDefault: #eeeeee;
-$colHover: #eeeeee;
+$colDefault: #333;
+$colHover: rgb(0, 0, 0);
 $colHover2: #eeeeee;
 
 $grey-blue: #8CA0A6;
 
-$blue: #eeeeee; // Link colour in footer(?)
+$blue: #333; // Global Link colour (TODO)
 $blue2: #085871; /* unused? */
 $blue3: #064559; /* unused? */
 
