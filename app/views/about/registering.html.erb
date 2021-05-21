@@ -17,7 +17,7 @@
 
           <div class="row">
             <div class="col-md-3 motivation_box">
-              <div class="include-where">...In TeSS
+              <div class="include-where">...In our Catalogue
               </div>
               <div class="include-where-graphic">
                 <%= image_tag 'about/events_listing.png', size: "200x200"%>
@@ -44,7 +44,7 @@
               </div>
             </div>
           </div>
-          <p>There are two ways to register training materials or events for display in TeSS:
+          <p>There are two ways to register training materials or events for display in our Catalogue:
             <ol>
               <li>Arrange for an <a href="#automatic">automatic registration</a> solution;</li>
               <li>Use our form to register them <a href="#manual">manually</a>.</li>
@@ -57,9 +57,9 @@
         <div class="odd-about-block">
           <div id='automatic' class="h4">Automatic Registration</div>
           <p>
-            The TeSS team can write scripts ('scrapers') to automatically register resources from target websites.
-            The scrapers run each night, adding any new resources to TeSS or updating any that have changed. We
-            can write a scraper to include your resources in TeSS, if your site:
+            The ExPaNDS training catalogue team uses scripts to automatically register resources from target websites (e.g. pan-learning.org).
+            The scripts run each night, adding any new resources to our catalogue or updating any that have changed. We
+            can write a scripts to include your resources in our catalogue, if your site:
           </p>
           <div class="row">
             <div class="col-md-3 motivation_box">
@@ -72,7 +72,7 @@
             </div>
             <div class="col-md-3 motivation_box">
               <div class="register-condition-graphic"><i class="fa fa-flask about-icons"></i></div>
-              <div class="register-condition">Is relevant to life scientists</div>
+              <div class="register-condition">Is relevant to our PaN community</div>
             </div>
           </div>
 
@@ -80,7 +80,7 @@
           <!-- STRUCTURED DATA-->
           <div class="h5">Structured Data Types</div>
           <p>
-            To register resources in TeSS automatically, our scrapers need to be able to extract data from target
+            To register resources in our training catalogue automatically, our scripts need to be able to extract data from target
             websites reliably. To this end, it is helpful if these websites include some structured data.
           </p>
           <p>
@@ -88,12 +88,12 @@
             contains one or more of these, and satisfies the criteria above, contact us and we will create a scraper.
           </p>
           <p>
-            If your website includes no structured data, and you’d like your resources added to TeSS, we
-            recommend using <a href="http://bioschemas.org" target="_blank">Bioschemas</a> to structure your site.
+            If your website includes no structured data, and you’d like your resources added to our catalogue, we
+            recommend using an established metadata scheme to structure your site.
           </p>
           <!-- BIOSCHEMAS -->
           <div class="sub-about-block">
-            <div id='bioschemas' class="h6">Schema.org / Bioschemas</div>
+            <div id='bioschemas' class="h6">Schema.org</div>
             <div class="row">
               <div class="col-lg-9">
                 <p><%= link_to 'schema.org', 'http://schema.org', target: '_blank'%> is a project run by a consortium
@@ -113,20 +113,11 @@
                 </p>
                 <p>The Bioschemas group is producing tools, documents and training to facilitate adoption of standard
                   metadata mark-up.</p>
-                  <p>
-                  <%= link_to 'View Events Biochema', 'http://bioschemas.org/specifications/Event/specification/', class: 'btn btn-primary', target: '_blank' %>
-                  <%= link_to 'View Materials Bioschema', 'http://bioschemas.org/specifications/TrainingMaterial/specification/', class: 'btn btn-primary', target: '_blank' %>
+                  
 
                 </p>
-                <hr>
-                <b>Examples of sites using Bioschemas parsed by TeSS</b>
-                  <div class="data-type-examples">
-                    <%= link_to 'French Institute of Bioinformatics', 'https://search.google.com/structured-data/testing-tool#url=https%3A%2F%2Fwww.france-bioinformatique.fr%2Fen%2Fevenements_upcoming', class: 'btn btn-success', target: '_blank' %>
-                    <%= link_to 'Swiss Institute Bioinformatics', 'https://search.google.com/structured-data/testing-tool#url=https%3A%2F%2Fwww.sib.swiss%2Ftraining%2Fupcoming-training-events', class: 'btn btn-success', target: '_blank' %>
-                  </div>
               </div>
               <div class="col-lg-3">
-                <%= image_tag 'about/bioschemas.png', class: "struct_data_type_logo"%>
                 <%= image_tag 'about/schema-org-logo.png', class: "struct_data_type_logo"%>
 
               </div>
@@ -142,13 +133,7 @@
                 </p>
                 <p>
                   If your website has an API that programmatically displays data for your training or event content,
-                  the TeSS team can write an API client to interface with it. </p>
-                <hr>
-                <b>Examples of sites with APIs included in TeSS</b>
-                <div class="data-type-examples">
-                  <%= link_to 'University of Cambridge', 'https://www.training.cam.ac.uk/api/v1/provider/BIOINFO/programmes?fetch=events.sessions,events.topics&format=json', class: 'btn btn-success', target: '_blank' %>
-                  <%= link_to 'Dutch Techcentre for Lifesciences', 'https://www.dtls.nl/courses/feed/?filter_course=active', class: 'btn btn-success', target: '_blank' %>
-                </div>
+                  the ExPaNDS team can write an API client to interface with it. </p>
               </div>
               <div class="col-lg-3">
                 <i class="fa fa-plug about-icons struct_data_type_logo"></i>
@@ -168,15 +153,9 @@
                   typically in the .ics format.
                 </p>
                 <p>
-                  If your website has a calendar application, the TeSS team can write a scraper to extract from it the
-                  date, location and event descriptions, and upload the data to TeSS.
+                  If your website has a calendar application, the ExPaNDS team can write a script to extract from it the
+                  date, location and event descriptions, and upload the data to our Catalogue.
                 </p>
-                <hr>
-                <b>Examples of calendar files parsed by TeSS</b>
-                <div class="data-type-examples">
-                  <%= link_to 'NBIS', 'https://nbis.se/training/events.html', class: 'btn btn-success', target: '_blank'%>
-                  <%= link_to 'Software Carpentry', 'https://software-carpentry.org/workshops/', class: 'btn btn-success', target: '_blank'%>
-                </div>
 
               </div>
               <div class="col-lg-3">
@@ -210,7 +189,7 @@
             <%#= render :partial => "common/contact_form"%>
             If your website contains any of the above, or you'd like advice about annotating with Bioschemas,
             you can contact us <!--using the form below or --> via e-mail at
-            <a href="mailto:support@tess.elixir-europe.org">support@tess.elixir-europe.org</a>
+            <a href="mailto:o.knodel@hzdr.de">o.knodel@hzdr.de</a>
           </div>
         </div>
     </div>
@@ -219,9 +198,9 @@
       <div class="row">
         <div class="even-about-block">
           <div id='manual' class="h4">Manual Registration</div>
-          <p>Resources may be added manually to TeSS.</p>
-          <p>To do so, first register for a free account. Members of ELIXIR can use
-            ELIXIR AAI to register and login.
+          <p>Resources may be added manually to our Catalogue.</p>
+          <p>To do so, first register for a free account. Members of our communoty can use
+            Umbrella AAI to register and login in the future.
           </p>
           <p>
             Once registered and logged in, the 'register event' and 'register material' buttons will become

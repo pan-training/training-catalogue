@@ -53,7 +53,7 @@
             <p></p>
                <p>
                   <%= link_to 'https://cordis.europa.eu/project/id/857641', target: '_blank' do %>
-                      <%= image_tag('eu_flag_inverted.png', {class: "funding-logo"}) %>
+                      <%= image_tag('eu_flag.svg', {class: "funding-logo"}) %>
                   <% end %>
                  <%= link_to 'https://expands.eu/', target: '_blank' do %>
                      <%= image_tag('expands.png', {class: "funding-logo"}) %>
@@ -77,9 +77,10 @@
         <div class="odd-about-block">
           <div id='acknowledgments' class="h3">Acknowledgements</div>
 
-          <p>The ExPaNDS team would like to acknowledge the provision of the initial TeSS code from ELIXIR, and thank them
-            for such a beautiful and useable project.</p>
-          
+          <p>The ExPaNDS team would like to acknowledge the provision of the initial <a style="color:black", href="https://tess.elixir-europe.org" target="_blank", class="expands-footer-link">TeSS</a> code from <a style="color:black", href="https://elixir-europe.org" target="_blank", class="expands-footer-link">ELIXIR</a>, and thank them for such a beautiful and useable project.</p>
+
+          <%= image_tag 'ELIXIR_TeSS_logo_normal.png', width: "120", height: "110", class: "widgets_guide"%>
+
         </div>
       </div>
       </section>
