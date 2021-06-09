@@ -14,7 +14,7 @@
           <div id='contact' class="h3">Contact</div>
           <div class="sub-about-block">
             <%#= render :partial => "common/contact_form"%>
-            For enquiries, information, or assistance; contact our support desk at <br> <a href="mailto:o.knodel@hzdr.de.com">o.knodel@hzdr.de</a>
+            For enquiries, information, or assistance; contact our support desk at <br> <a href="mailto:pan-training@hzdr.de">pan-training@hzdr.de</a>
           </div>
         </div>
       </div>
@@ -26,19 +26,21 @@
           <div id='team' class="h3">The Team</div>
           <div class="h4">Leadership ExPaNDS Workpackage 5</div>
           <ul>
-            <li>Ana</li>
-            <li>Uwe</li>
+            <li>Ana Valcarcel-Orti (Soleil)</li>
+            <li>Uwe Konrad (HZDR)</li>
 
           </ul>
 
           <div class="h4">Project Management for the ExPaNDS Catalogue</div>
           <ul>
-            <li>Oliver</li>
+            <li>Oliver Knodel (HZDR)</li>
+            <li>Thibaud Cayla (Soleil)</li>
           </ul>
 
           <div class="h4">Software Engineering</div>
           <ul>
-            <li>Oliver</li>
+            <li>Oliver Knodel (HZDR)</li>
+            <li>... (Soleil)</li>
           </ul>
       </div>
       </section>
@@ -49,7 +51,7 @@
         <div class="row">
           <div class="even-about-block">
             <div id='funding' class="h3">Funding</div>
-            <p>The ExPaNDS training catalogue is supported through the <a href="https://ec.europa.eu/programmes/horizon2020/en" target="_blank">European Union's Horizon 2020 research and innovation programme</a>, under grant agreement <a href="https://cordis.europa.eu/project/id/857641" target="_blank">857641</a>.</p>
+            <p>The ExPaNDS training catalogue is supported through the <a href="https://ec.europa.eu/programmes/horizon2020/en" target="_blank">European Union's Horizon 2020 research and innovation programme</a>, under grant agreement <a href="https://cordis.europa.eu/project/id/857641" target="_blank">857641</a> and <a href="https://cordis.europa.eu/project/id/823852" target="_blank">823852</a>.</p>
             <p></p>
                <p>
                   <%= link_to 'https://cordis.europa.eu/project/id/857641', target: '_blank' do %>
@@ -57,6 +59,9 @@
                   <% end %>
                  <%= link_to 'https://expands.eu/', target: '_blank' do %>
                      <%= image_tag('expands.png', {class: "funding-logo"}) %>
+                 <% end %>
+                 <%= link_to 'https://panosc.eu/', target: '_blank' do %>
+                     <%= image_tag('PaNOSC_logo.jpg', {class: "funding-logo"}) %>
                  <% end %>
                  <%= link_to 'http://www.hzdr.de', class: 'footer-logo', target: '_blank' do %>
                       <%= image_tag 'HZDR-LOGO.png', style: 'height:30pt;width:auto;' %>
@@ -77,9 +82,9 @@
         <div class="odd-about-block">
           <div id='acknowledgments' class="h3">Acknowledgements</div>
 
-          <p>The ExPaNDS team would like to acknowledge the provision of the initial <a style="color:black", href="https://tess.elixir-europe.org" target="_blank", class="expands-footer-link">TeSS</a> code from <a style="color:black", href="https://elixir-europe.org" target="_blank", class="expands-footer-link">ELIXIR</a>, and thank them for such a beautiful and useable project.</p>
+          <p>The ExPaNDS team would like to acknowledge the provision of the initial <a style="color:black", href="https://tess.elixir-europe.org" target="_blank", class="expands-footer-link">TeSS</a> code from <a style="color:black", href="https://elixir-europe.org" target="_blank", class="expands-footer-link">ELIXIR</a>, and thank them for such a beautiful and reuseable project.</p>
 
-          <%= image_tag 'ELIXIR_TeSS_logo_normal.png', width: "120", height: "110", class: "widgets_guide"%>
+          <%= image_tag('ELIXIR_TeSS_logo_normal.png', :size => '50%xauto')%>
 
         </div>
       </div>
