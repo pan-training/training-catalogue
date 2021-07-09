@@ -1,12 +1,21 @@
 notspecified:
   title: Not specified
   description: Difficulty level not specified
-beginner:
-  title: Beginner
+very-easy:
+  title: Very Easy
   description: The owest level of difficulty; this content is suitable for beginners on the topic.
-intermediate:
-  title: Intermediate
+easy:
+  title: Easy
+  description: The owest level of difficulty; this content also suitable for beginners on the topic with rudementary knowledge.
+medium:
+  title: Medium
   description: Intermediate level of difficulty; suitable for people who already have some knowledge of the topic.
-advanced:
-  title: Advanced
+difficult:
+  title: Difficult
+  description: A higher level of difficulty; this content is suitable for people who have a advandved knowledge of the topic.
+very-difficult:
+  title: Very Difficult
   description: The highest level of difficulty; this content is suitable for people who have a substantial knowledge of the topic.
+knowledge-dependend:
+  title: Knowledge-dependend
+  description: The highest level of difficulty with advanced knowledge in sourrounding fileds; this content is suitable for people who have a substantial overview of the topic and related aspects.
