@@ -255,3 +255,9 @@ bundle exec rake assets:clean RAILS_ENV=production
 
 bundle exec rake assets:precompile RAILS_ENV=production
 ```
+
+and reindexing the matadata:
+
+```
+bundle exec rake sunspot:solr:reindex RAILS_ENV=production
+```
