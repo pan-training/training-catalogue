@@ -167,3 +167,5 @@ group :production do
 end
 
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
+
+#gem 'tess_api_client', '~> 0.3.1', :git => 'git://github.com/ElixirUK/TeSS_api_client.git'
