@@ -35,7 +35,7 @@
 <div class="searchbox">
   <%= form_tag search_path, method: :get, role: 'search' do %>
     <div class="searchbox-wrapper">
-      <input type="text" class="searchbox-field" name="q" placeholder="Search training..." autofocus="autofocus">
+      <input type="text" class="searchbox-field" name="q" placeholder="Search PaN training..." autofocus="autofocus">
       <button type="submit" class="searchbox-btn">
         <i class="fa fa-search"></i>
       </button>
@@ -55,10 +55,18 @@
 
   <li>
     <%= link_to materials_path do %>
-        <h2><i class="<%= icon_class_for_model('materials') %>"></i> Materials</h2>
+        <h2><i class="<%= icon_class_for_model('materials') %>"></i> Training Materials</h2>
         <%= image_tag("materials-3.jpg", width: "100%", alt: "Materials") %>
     <% end %>
     <p>Browse the catalogue of training materials offered by ExPaNDS/PaNOSC and 3<sup>rd</sup>-party providers.</p>
+  </li>
+
+   <li>
+    <%= link_to "https://pan-learning.org" do %>
+        <h2><i class="<%= icon_class_for_model('learning') %>"></i> PaN e-learning </h2>
+        <%= image_tag("elearning.jpg", width: "100%", alt: "e-learning") %>
+    <% end %>
+    <p>PaN-learning is a Photon and Neutron e-learning platform, which aims to bring free education and training to scientists and students.</p>
   </li>
 
   <li>
