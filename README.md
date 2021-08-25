@@ -265,8 +265,11 @@ bundle exec rake sunspot:solr:reindex RAILS_ENV=production
 Status Check and restart:
 
 ```
+bundle exec rake sunspot:solr:start RAILS_ENV=production
 service nginx restart
-service solr restart
+passenger-memory-stats 
 bundle exec sidekiq
 passenger-status
+bundle exec sidekiq
+service solr stop
 ```
