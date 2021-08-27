@@ -224,7 +224,7 @@ server {
 }
 ```
 
-Then we need the production environment:
+Then we initialize the production environment:
 
 ```
 bundle exec rake db:setup RAILS_ENV=production
@@ -260,4 +260,16 @@ and reindexing the matadata:
 
 ```
 bundle exec rake sunspot:solr:reindex RAILS_ENV=production
+```
+
+Status Check and restart:
+
+```
+bundle exec rake sunspot:solr:start RAILS_ENV=production
+service nginx restart
+passenger-memory-stats 
+bundle exec sidekiq
+passenger-status
+bundle exec sidekiq
+service solr stop
 ```
