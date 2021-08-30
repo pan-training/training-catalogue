@@ -1,5 +1,6 @@
-<link href="//vjs.zencdn.net/7.10.2/video-js.min.css" rel="stylesheet">
-<script src="//vjs.zencdn.net/7.10.2/video.min.js"></script>
+<link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
+<script src="./path/to/video.min.js"></script>
+<script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
 
 <div class="wrapper">
 
@@ -18,13 +19,13 @@
 
   <video
     width=800
-    id="my-player"
-    class="video-js"
+    id="video_1"
+    class="video-js vjs-default-skin" 
     controls
     preload="auto"
-    poster="https://pan-training.hzdr.de/assets/demovideo-37123c5fc88cb1192b07a61cee4b6305e1838e6e4e9992564dee6cbf8b658133.png"
+    poster="about/demovideo.png"
     data-setup='{}'>
-    <source src="//pan-training.hzdr.de/Catalogue_Demo_720p.mp4" type="video/mp4"></source>
+    <source src="//pan-training.hzdr.de/Catalogue_Demo_720p.mp4" type="video/mp4" selected="true"></source>
     <p class="vjs-no-js">
       To view this video please enable JavaScript, and consider upgrading to a
     web browser that
