@@ -45,6 +45,11 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  color: #dddddd;
+  a:hover, a:focus {
+     color: #dddddd;
+     text-decoration: underline;
+   }
   background-color: #1F214B; //ExPaNDS color
 
   .container {
