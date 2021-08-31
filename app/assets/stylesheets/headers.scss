@@ -47,6 +47,10 @@
 
 .expands-footer-link {
   color: #dddddd;
+  a:hover, a:focus {
+    color: #dddddd;
+    text-decoration: underline;
+  }  
 }
 
 #search-box {
