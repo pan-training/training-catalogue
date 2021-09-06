@@ -51,6 +51,12 @@ We installed Redis before... but start Sidekiq!
 bundle exec sidekiq
 ```
 
+...or as a daemon in the background for production:
+
+```
+bundle exec sidekiq -d -L log/sidekiq.log -e production
+```
+
 Note that program 'gem' (a package management framework for Ruby called RubyGems) gets installed when you install RVM so you do not have to install it separately.
 
 Once you have Ruby, RVM and bundler installed, from the root folder of the app do:
@@ -235,7 +241,7 @@ or clean init:
 ```
 bundle exec rake db:reset RAILS_ENV=production
 ```
-and reindex Solr:
+...and reindex Solr:
 
 ```
 bundle exec rake sunspot:solr:start RAILS_ENV=production
@@ -268,8 +274,7 @@ Status Check and restart:
 bundle exec rake sunspot:solr:start RAILS_ENV=production
 service nginx restart
 passenger-memory-stats 
-bundle exec sidekiq
 passenger-status
-bundle exec sidekiq
 service solr stop
+bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
 ```
