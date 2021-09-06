@@ -273,8 +273,8 @@ Status Check and restart:
 ```
 bundle exec rake sunspot:solr:start RAILS_ENV=production
 service nginx restart
+bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
+service redis-server restart
 passenger-memory-stats 
 passenger-status
-service solr stop
-bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
 ```
