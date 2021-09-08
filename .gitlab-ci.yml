@@ -1,0 +1,35 @@
+stages:
+  - build
+  - test
+
+.build:
+  image: ruby:2.4.5
+  cache:
+    paths:
+      - apt-cache/
+      - vendor/ruby
+      - node_modules/
+    policy: pull
+  before_script:
+    - gem install bundler --no-document
+    - bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
+
+.db:
+  extends: .build
+  services:
+    - postgres:12.0
+  variables:
+    POSTGRES_USER: hix_postgresql
+    POSTGRES_PASSWORD: hixonrails
+    DB_USERNAME: hix_postgresql
+    DB_PASSWORD: hixonrails
+    DB_HOST: postgres
+    RAILS_ENV: test
+    DISABLE_SPRING: 1
+    BUNDLE_PATH: vendor/bundle
+  before_script:
+    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
+    - apt update -qq && apt -o dir::cache::archives="$APT_CACHE_DIR" install -yqq nodejs
+    - gem install bundler --no-document
+    - bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
+    - bundle exec rails db:create db:schema:load --trace
