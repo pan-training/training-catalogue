@@ -1,4 +1,4 @@
-## Gem integration of the api client
+## Integration of the api client gem
 
  
 ### tess_api_client gem integration
