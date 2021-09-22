@@ -30,7 +30,12 @@ gem list
 
 The tess_api_client gem should be visible.
 
-if it isn't, see where the gem gets installed.
+If it isn't, see where the gem gets installed.
+
+```
+bundle info tess_api_client
+```
+
 Here for example "/var/lib/gems/2.7.0/bundler/gems/"  
 
 Go there and:
@@ -50,7 +55,7 @@ Check with gem list that it is installed.
 ### moodle scraper proof of concept
 
 Created the "moodle_scraper.rb" file
-Need to put in the token that moodle generated for webservices.
+Need to put in the file the token that moodle generated for webservices.
 
 Also:
 
