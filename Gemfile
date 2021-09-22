@@ -3,7 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 
-gem "bootsnap", ">= 1.1.0", require: false # New Rails 5.2 default gem
+#see here https://github.com/rails/rails/issues/36970
+#gem "bootsnap", ">= 1.1.0", require: false # New Rails 5.2 default gem
+gem "bootsnap", ">= 1.4.6"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -170,3 +172,5 @@ gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dab
 
 #gem 'tess_api_client', '~> 0.3.1', :git => 'git://github.com/pan-training/training-catalogue-api-client.git'
 #gem 'tess_api_client', '~> 0.3.1', :git => 'git://gitlab.hzdr.de/expands/catalogue_api_client.git'
+
+gem 'tess_api_client', :git => 'git://github.com/pan-training/training-catalogue-api-client.git'
