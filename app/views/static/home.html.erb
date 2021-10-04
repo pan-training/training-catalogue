@@ -3,7 +3,7 @@
   "@context": "http://schema.org",
   "@type": "WebSite",
   "name": "TeSS",
-  "alternateName": "The ExPaNDS Training Portal",
+  "alternateName": "The training portal for the photon & neutron community",
   "url": "<%= root_url%>",
   "potentialAction": {
     "@type": "SearchAction",
@@ -23,7 +23,7 @@
 
 <%# Welcome text %>
 <div class="welcome-text">
-  <h2 class="module-heading" style="margin-top: 5px;">Welcome to the PaN Training Catalogue</h2>
+  <h2 class="module-heading" style="margin-top: 5px;">Welcome to the training portal for the photon & neutron community</h2>
   <p>
     Browsing, discovering and organising PaN sciences training events and resources
     resources, aggregated from ExPaNDS and PaNOSC partners and 3<sup>rd</sup>-party providers.
@@ -55,10 +55,10 @@
 
   <li>
     <%= link_to materials_path do %>
-        <h2><i class="<%= icon_class_for_model('materials') %>"></i> Training Materials</h2>
+        <h2><i class="<%= icon_class_for_model('materials') %>"></i> Training Catalogue</h2>
         <%= image_tag("materials-3.jpg", width: "100%", alt: "Materials") %>
     <% end %>
-    <p>Browse the catalogue of training materials offered by ExPaNDS/PaNOSC and 3<sup>rd</sup>-party providers.</p>
+    <p>Browse the catalogue of training materials for the photon & neutron community offered by ExPaNDS/PaNOSC and 3<sup>rd</sup>-party providers.</p>
   </li>
 
    <li>
@@ -66,7 +66,7 @@
         <h2><i class="<%= icon_class_for_model('learning') %>"></i> PaN e-learning </h2>
         <%= image_tag("elearning-2.jpg", width: "100%", alt: "e-learning") %>
     <% end %>
-    <p>PaN-learning is a Photon and Neutron e-learning platform, which aims to bring free education and training to scientists and students.</p>
+    <p>PaN-learning is a Photon and Neutron e-learning platform, which aims to bring free education and training with integrated simulations and Jupyter notebooks to scientists and students.</p>
   </li>
 
   <li>
@@ -74,7 +74,7 @@
         <h2><i class="<%= icon_class_for_model('workflows') %>"></i> Workflows</h2>
         <%= image_tag("workflow-2.jpg", width: "100%", alt: "Workflows") %>
     <% end %>
-    <p>Create training workflows to visualise learning steps and link to resources specific to your training needs.</p>
+    <p>Create simple training workflows directly in our catalogue to visualise learning steps and link resources specific to your training needs.</p>
   </li>
 
   <li>
