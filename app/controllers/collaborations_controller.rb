@@ -7,7 +7,7 @@ class CollaborationsController < ApplicationController
 
   def create
     @collaboration = @resource.collaborations.create(collaboration_params)
-
+    
     respond_with(@collaboration)
   end
 

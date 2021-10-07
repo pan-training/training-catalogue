@@ -41,7 +41,13 @@ Rails.application.routes.draw do
 
   patch 'users/:id/change_token' => 'users#change_token', as: 'change_token'
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  #mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  authenticate :user, lambda { |u| u.is_admin? } do
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
+  
+
 
   root 'static#home'
 

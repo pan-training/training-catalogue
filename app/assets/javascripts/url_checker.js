@@ -23,7 +23,7 @@ var UrlChecker = {
                     }));
 
                     input.removeClass('loading');
-                } else {
+                } else {                 
                     UrlChecker.validUrl(input, url);
                 }
             },
@@ -38,7 +38,7 @@ var UrlChecker = {
             url: '/test_url',
             data: { url: url },
             success: function (data) {
-                if (data.code === 200) {
+                if (data.code === 200) {                                   
                     input.parents('.form-group').removeClass('has-warning has-error').addClass('has-success');
                     input.siblings('.help-block').html('');
                 } else {

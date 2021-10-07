@@ -40,8 +40,9 @@ class User < ApplicationRecord
            as: :owner
 
   before_create :set_default_role, :set_default_profile
-  before_create :skip_email_confirmation_for_non_production
-  before_update :skip_email_reconfirmation_for_non_production
+  #commented these two lines out to test email sending with development environment  
+  #before_create :skip_email_confirmation_for_non_production
+  #before_update :skip_email_reconfirmation_for_non_production
   before_destroy :reassign_owner
   after_update :react_to_role_change
 
@@ -55,8 +56,12 @@ class User < ApplicationRecord
             :presence => true,
             :case_sensitive => false,
             :uniqueness => true
-
+  
   validate :consents_to_processing, on: :create, unless: ->(user) { user.using_omniauth? || User.current_user.try(:is_admin?) }
+
+  validate :email_RI, on: :create
+  
+  
 
   accepts_nested_attributes_for :profile
 
@@ -275,4 +280,21 @@ class User < ApplicationRecord
       false
     end
   end
+  
+  EMAIL_DOMAINS_RI = %w{egi.eu synchrotron-soleil.fr diamond.ac.uk ceric-eric.eu desy.de hzdr.de tessdefaultuser.com}
+  
+  #thanks to https://stackoverflow.com/a/40437005
+  def email_RI
+    vvar=false
+    EMAIL_DOMAINS_RI.each do |domain|
+      if email.end_with?('@' + domain)
+        vvar=true
+      end
+    end
+    if !vvar 
+      errors.add(:email, 'not in the list of the authorized Research Infrastructure emails.')
+    end
+    return vvar
+  end  
+  
 end

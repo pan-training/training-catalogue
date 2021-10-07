@@ -8,6 +8,11 @@ class WorkflowPolicy < ResourcePolicy
     @record.public? || manage?
   end
 
+  #Originally an owner of a workflow can add himself as a collaborator so it shouldn't lead to any problems that a curator can do that too.
+  def manage?
+    super || (@user && @user.is_curator?)
+  end
+
   class Scope < Scope
     def resolve
       Workflow.visible_by(@user)
