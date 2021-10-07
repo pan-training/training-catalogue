@@ -1,4 +1,4 @@
-## Email whitelist for the registration and curators being able to curate workflows
+## Email whitelist for the registration and workflow curation
 
  
 ### Email whitelist
