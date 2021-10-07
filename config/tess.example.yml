@@ -1,6 +1,6 @@
 default: &default
   base_url: http://localhost:3000
-  contact_email: contact@example.com
+  contact_email: contact@tessdefaultuser.com
   sender_email: no-reply@localhost
   solr_enabled: true
   announcement_message:
