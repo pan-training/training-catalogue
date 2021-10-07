@@ -40,9 +40,8 @@ class User < ApplicationRecord
            as: :owner
 
   before_create :set_default_role, :set_default_profile
-  #commented these two lines out to test email sending with development environment  
-  #before_create :skip_email_confirmation_for_non_production
-  #before_update :skip_email_reconfirmation_for_non_production
+  before_create :skip_email_confirmation_for_non_production
+  before_update :skip_email_reconfirmation_for_non_production
   before_destroy :reassign_owner
   after_update :react_to_role_change
 
