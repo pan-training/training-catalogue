@@ -40,3 +40,7 @@ and comment out:
   config.action_mailer.perform_caching = false
   config.action_mailer.default_options = {from: 'admin@pan-training.hzdr.de'}
 ```
+
+### Registration checkbox bug fixed
+
+When the data consent checkbox was not checked a user could still create an account. It is no longer the case, the user has to check the checkbox.
