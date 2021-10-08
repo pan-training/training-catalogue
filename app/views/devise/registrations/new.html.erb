@@ -26,7 +26,7 @@
             <% end -%>
 
             <%= f.input :processing_consent, as: :boolean, input_html: { autocomplete: 'off' },
-                        label: "I have read and understood the #{link_to('privacy policy', privacy_path, target: :_blank)} and consent to the ExPaNDS/PaNOSC Training Catalogue processing my data.".html_safe %>
+                        label: "I have read and understood the #{link_to('privacy policy', privacy_path, target: :_blank)} and consent to the training portal for the photon & neutron community processing my data.".html_safe %>
 
             <div class="actions">
               <%= f.submit "Register", :class => 'btn btn-primary' %>
@@ -36,7 +36,7 @@
         <%= render "devise/shared/links" %>
       </div>
       <div class="col-md-6" id="why-register">
-        <h4>Registering on the ExPaNDS/PaNOSC Training Catalogue allows you to...</h4>
+        <h4>Registering on our training portal for the photon & neutron community allows you to...</h4>
         <ul>
           <li>Subscribe to updates of upcoming events and new training materials in your fields of interest.</li>
           <li>Register your organization's training materials and events and increase their discoverability.</li>

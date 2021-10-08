@@ -276,7 +276,7 @@ class User < ApplicationRecord
     #rails turns processing_consent into a string not a boolean
     #unless processing_consent
     if processing_consent=="0"
-      errors.add(:base, 'You must consent to TeSS processing your data in order to register')
+      errors.add(:base, 'You must consent to our catalogue processing your data in order to register')
 
       false
     end
