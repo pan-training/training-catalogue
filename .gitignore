@@ -25,6 +25,7 @@ lib/assets/
 public/assets/*
 public/sitemaps/*
 public/system
+vendor/cache
 .idea/*
 coverage
 *.mp4
