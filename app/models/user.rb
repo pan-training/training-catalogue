@@ -65,6 +65,10 @@ class User < ApplicationRecord
   
   
 
+  validate :email_RI, on: :create
+  
+  
+
   accepts_nested_attributes_for :profile
 
   attr_accessor :publicize_email
