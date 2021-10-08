@@ -55,8 +55,12 @@ class User < ApplicationRecord
             :presence => true,
             :case_sensitive => false,
             :uniqueness => true
-
+  
   validate :consents_to_processing, on: :create, unless: ->(user) { user.using_omniauth? || User.current_user.try(:is_admin?) }
+
+  validate :email_RI, on: :create
+  
+  
 
   accepts_nested_attributes_for :profile
 
@@ -269,10 +273,29 @@ class User < ApplicationRecord
   end
 
   def consents_to_processing
-    unless processing_consent
+    #rails turns processing_consent into a string not a boolean
+    #unless processing_consent
+    if processing_consent=="0"
       errors.add(:base, 'You must consent to TeSS processing your data in order to register')
 
       false
     end
   end
+  
+  EMAIL_DOMAINS_RI = %w{egi.eu synchrotron-soleil.fr diamond.ac.uk ceric-eric.eu desy.de hzdr.de tessdefaultuser.com}
+  
+  #thanks to https://stackoverflow.com/a/40437005
+  def email_RI
+    vvar=false
+    EMAIL_DOMAINS_RI.each do |domain|
+      if email.end_with?('@' + domain)
+        vvar=true
+      end
+    end
+    if !vvar 
+      errors.add(:email, 'not in the list of the authorized Research Infrastructure emails.')
+    end
+    return vvar
+  end  
+  
 end
