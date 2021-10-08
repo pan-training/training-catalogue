@@ -282,7 +282,7 @@ class User < ApplicationRecord
     end
   end
   
-  EMAIL_DOMAINS_RI = %w{egi.eu synchrotron-soleil.fr diamond.ac.uk ceric-eric.eu desy.de hzdr.de tessdefaultuser.com}
+  EMAIL_DOMAINS_RI = %w{egi.eu synchrotron-soleil.fr diamond.ac.uk ceric-eric.eu desy.de hzdr.de ceric-eric.eu xfel.eu psi.ch tessdefaultuser.com stfc.ac.uk maxiv.lu.se cells.es ess.eu ill.fr elettra.eu esrf.eu esss.se helmholtz-berlin.de desy.de eli-alps.hu ill.eu}
   
   #thanks to https://stackoverflow.com/a/40437005
   def email_RI
