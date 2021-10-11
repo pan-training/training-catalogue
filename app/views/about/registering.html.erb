@@ -9,7 +9,7 @@
       <%= render :partial => 'links', :locals => {'show': 'registering'} %>
         <!-- REGISTERING CONTENT IN TESS -->
       <div class="row">
-        <div id='how' class="h3">Registering Resources in the ExPaNDS/PaNOSC training catalogue</div>
+        <div id='how' class="h3">Registering Resources in the <%= TeSS::Config.generic_name%></div>
           <p>Training resources (events and materials) may be added to our Training catalogue to reach bigger audiences, increase
             impact and bolster event attendance. Registering events and training materials makes them more
             findable in a variety ways to various user bases.
@@ -22,7 +22,7 @@
               <div class="include-where-graphic">
                 <%= image_tag 'about/events_listing.png', size: "200x200"%>
               </div>
-              <div class="include-where-text">Be seen by thousands of visitors to our ExPaNDS/PaNOSC training catalogue
+              <div class="include-where-text">Be seen by thousands of visitors to our <%= TeSS::Config.generic_name%>
               </div>
             </div>
             <div class="col-md-3 motivation_box">
