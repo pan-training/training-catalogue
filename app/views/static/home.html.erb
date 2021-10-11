@@ -3,7 +3,7 @@
   "@context": "http://schema.org",
   "@type": "WebSite",
   "name": "TeSS",
-  "alternateName": "The training portal for the photon & neutron community",
+  "alternateName": "The <%= TeSS::Config.generic_name%>",
   "url": "<%= root_url%>",
   "potentialAction": {
     "@type": "SearchAction",
@@ -23,7 +23,7 @@
 
 <%# Welcome text %>
 <div class="welcome-text">
-  <h2 class="module-heading" style="margin-top: 5px;">Welcome to the training portal for the photon & neutron community</h2>
+  <h2 class="module-heading" style="margin-top: 5px;">Welcome to the <%= TeSS::Config.generic_name%></h2>
   <p>
     Browsing, discovering and organising PaN sciences training events and resources
     resources, aggregated from ExPaNDS and PaNOSC partners and 3<sup>rd</sup>-party providers.
@@ -50,7 +50,7 @@
         <h2><i class="<%= icon_class_for_model('events') %>"></i> Events</h2>
         <%= image_tag("events-3.jpg", width: "100%", alt: "Events") %>
     <% end %>
-    <p>Discover the latest training events and news from ExPaNDS/PaNOSC and 3<sup>rd</sup>-party providers.</p>
+    <p>Discover the latest training events and news from ExPaNDS, PaNOSC and 3<sup>rd</sup>-party providers.</p>
   </li>
 
   <li>
@@ -58,7 +58,7 @@
         <h2><i class="<%= icon_class_for_model('materials') %>"></i> Training Catalogue</h2>
         <%= image_tag("materials-3.jpg", width: "100%", alt: "Materials") %>
     <% end %>
-    <p>Browse the catalogue of training materials for the photon & neutron community offered by ExPaNDS/PaNOSC and 3<sup>rd</sup>-party providers.</p>
+    <p>Browse the catalogue of training materials for the photon & neutron community offered by ExPaNDS, PaNOSC and 3<sup>rd</sup>-party providers.</p>
   </li>
 
    <li>
@@ -88,7 +88,7 @@
 
 <% if @resources.length > 0 -%>
   <div id="materials-title">
-    <h3>Latest Content ExPaNDS/PaNOSC  Training Catalogue</h3>
+    <h3>Latest Content in our <%= TeSS::Config.generic_name%></h3>
   </div>
   <% @resources.each do |resource| %>
     <%= render layout: 'common/mixed_resources', locals: {resource: resource} do %>
