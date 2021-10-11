@@ -2,7 +2,7 @@ default: &default
   base_url: http://localhost:3000
   contact_email: contact@tessdefaultuser.com
   sender_email: no-reply@localhost
-  generic_name: 'training portal for the photon & neutron community' 
+  generic_name: 'example title' 
   solr_enabled: true
   announcement_message:
   prevent_robot_indexing: false
