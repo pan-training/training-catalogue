@@ -9,7 +9,7 @@ module HasExternalResources
 
     if TeSS::Config.solr_enabled
       # :nocov:
-      searchable do
+      searchable do      
         string :tools, multiple: true do
           self.external_resources.select(&:is_tool?).collect(&:title)
         end
@@ -19,6 +19,11 @@ module HasExternalResources
         string :related_resources, multiple: true do
           self.external_resources.select(&:is_generic_external_resource?).collect(&:title)
         end
+ 
+        text :related_resources do
+          self.external_resources.select(&:is_generic_external_resource?).collect(&:title)
+        end        
+        
       end
       # :nocov:
     end

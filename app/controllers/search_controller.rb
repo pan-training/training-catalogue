@@ -3,7 +3,6 @@ class SearchController < ApplicationController
   before_action :set_breadcrumbs
 
   SEARCH_MODELS = %w(Material User Event Package ContentProvider Workflow).freeze
-
   # GET /searches
   # GET /searches.json
   def index
@@ -38,6 +37,7 @@ class SearchController < ApplicationController
           end
         end
       end
+      
     end
 
     @results.reject! { |_, result| result.total < 1 }

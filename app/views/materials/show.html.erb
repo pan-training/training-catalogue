@@ -60,6 +60,7 @@
             <div class="dont-break-out">
               <%= render partial: 'common/extra_metadata', locals: { resource: @material } %>
 
+
               <% if policy(@material).update? && @material.edit_suggestion %>
                 <%= render partial: 'common/approve_term_suggestions', locals: { suggestion: @material.edit_suggestion } %>
               <% end %>
@@ -78,6 +79,23 @@
                   </div>
               <% end %>
 
+              
+              <div>
+                <% if @material.bauthors.any? %>
+                    <b>Authors: </b>
+                    <%= render partial: 'common/bauthor', locals: { bauthors: @material.bauthors} %>
+                <% end %>
+                         
+              </div>
+
+              <div>
+                <% if @material.bcontributors.any? %>
+                    <b>Contributors: </b>
+                    <%= render partial: 'common/bcontributor', locals: { bcontributors: @material.bcontributors} %>
+                <% end %>
+                         
+              </div>              
+              
               <div>
                 <% if @material.external_resources.any? %>
                     <b>External resources: </b>

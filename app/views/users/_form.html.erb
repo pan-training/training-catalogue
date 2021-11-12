@@ -12,6 +12,8 @@
             <%= f.input :email, as: :string, label: 'Public email address' %>
 
             <%= f.input :website , as: :string %>
+            
+            <%= f.input :orcid , as: :string, placeholder: 'xxxx-xxxx-xxxx-xxxx' %>
         <% end %>
 
         <% if policy(@user).change_role? %>
@@ -26,3 +28,15 @@
     <% end -%>
   </div>
 </div>
+
+<script type="text/javascript">
+document.addEventListener("turbolinks:load", function() {
+    console.log("orcid form");
+    const str1 = '#user_profile_attributes_orcid';
+
+    new Cleave(str1, {
+        delimiter: '-',
+        blocks: [4, 4, 4, 4]
+    });
+});
+</script>

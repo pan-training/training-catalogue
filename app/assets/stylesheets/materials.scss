@@ -38,6 +38,49 @@
   }
 }
 
+
+
+
+.bauthor-form {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+  &.deleted {
+    color: $brand-danger;
+    text-decoration: line-through;
+  }
+}
+
+.delete-bauthor-btn {
+  @include delete-cross;
+  cursor: pointer;
+
+  input[type=checkbox] {
+    display: none;
+  }
+}
+
+
+.bcontributor-form {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+  &.deleted {
+    color: $brand-danger;
+    text-decoration: line-through;
+  }
+}
+
+.delete-bcontributor-btn {
+  @include delete-cross;
+  cursor: pointer;
+
+  input[type=checkbox] {
+    display: none;
+  }
+}
+
+
 .associate-tool{
   cursor: pointer;
 }

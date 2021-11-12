@@ -11,6 +11,9 @@ class EdamController < ApplicationController
   end
 
   def topics
+    #puts "edam controller"
+    #EDAM::Ontology.instance.lookup("http://edamontology.org/topic_3371").label
+    #EDAM::Ontology.instance.find_by(OBO.inSubset, OBO_BLOB.topics)
     list(EDAM::Ontology.instance.all_topics)
   end
 

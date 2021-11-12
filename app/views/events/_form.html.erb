@@ -61,11 +61,9 @@
 
     <%= f.dropdown :event_types, options: EventTypeDictionary.instance.options_for_select, label: 'Event type' %>
 
-    <%= f.autocompleter :scientific_topics, url: edam_topics_path, template: 'autocompleter/term',
+    <%= f.autocompleter :scientific_topics, url: blob_topics_path, template: 'autocompleter/term',
                         id_field: :uri, label_field: :preferred_label %>
 
-    <%= f.autocompleter :operations, url: edam_operations_path, template: 'autocompleter/term',
-                        id_field: :uri, label_field: :preferred_label %>
 
     <%= f.multi_input :keywords %>
 
@@ -106,13 +104,6 @@
         <% end %>
       </div>
 
-      <div class="row">
-        <%= render :partial => 'common/fairsharing_suggestions', :locals => {:title_element => 'material_title'} %>
-      </div>
-
-      <div class="row">
-        <%= render partial: 'common/biotools_suggestions', locals: { title_element: 'event_title' } %>
-      </div>
 
       <a href="#" id="add-external-resource-btn" class="btn btn-info">
         <i class="fa fa-plus"></i> Add external resource

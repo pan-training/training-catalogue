@@ -33,6 +33,7 @@ en:
       material:
         doi: 'DOI'
         url: 'URL'
+        external_resources: 'External resources (links)'
       profile:
         firstname: 'First name'
         surname: 'Last name'

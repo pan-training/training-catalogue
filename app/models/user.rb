@@ -38,7 +38,9 @@ class User < ApplicationRecord
   has_many :activities_as_owner,
            class_name: '::PublicActivity::Activity',
            as: :owner
-
+  #ahoy
+  has_many :visits, class_name: "Ahoy::Visit"
+  
   before_create :set_default_role, :set_default_profile
   before_create :skip_email_confirmation_for_non_production
   before_update :skip_email_reconfirmation_for_non_production
@@ -57,8 +59,9 @@ class User < ApplicationRecord
             :uniqueness => true
   
   validate :consents_to_processing, on: :create, unless: ->(user) { user.using_omniauth? || User.current_user.try(:is_admin?) }
-
-  validate :email_RI, on: :create
+  
+  #uncomment later on
+  #validate :email_RI, on: :create
   
   
 

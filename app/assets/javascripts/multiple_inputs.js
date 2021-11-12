@@ -11,6 +11,16 @@
  * Creates a new input box for free text fields as a child of the field_name div
  */
 
+//$(document).ready(function(){ 
+//  $('form').find("input[type=textarea], input[type=password], textarea").each(function(ev)
+//  {
+//      if(!$(this).val()) { 
+//     $(this).attr("placeholder", "Type your answer here");
+//  }
+//  });
+//});
+
+
 document.addEventListener("turbolinks:load", function() {
     // Multi-inputs ("app/views/common/multiple_inputs.html.erb")
     $('[data-role="multi-input"]').each(function () {
@@ -25,6 +35,7 @@ document.addEventListener("turbolinks:load", function() {
             return false;
         };
 
+        
         $(this).on('keydown.autocomplete', '.multiple-list-item input', function() {
             $(this).autocomplete({
                 orientation: 'top',
@@ -35,6 +46,22 @@ document.addEventListener("turbolinks:load", function() {
                 }
             });
         });
+
+//        console.log("uyaaaaaaaaaaa")
+//        $(this).find("input[type=text]").each(function(ev){
+//        if(!$(this).val()) { 
+//         $(this).attr("placeholder", "Type your answer here");
+//        }
+//        });
+
+        //console.log("uyaaaaaaaaaaa")
+        //$(this).querySelector('[data-prefix="material[target_audience]"]').each(function(ev){
+        //if(!$(this).val()) { 
+        // $(this).attr("placeholder", "Type your answer here");
+        //}
+        //});
+
+//document.querySelector('[data-prefix="material[target_audience]"]');
 
         $(this).on('click', '[data-role="multi-input-add"]', function (e) {
             e.preventDefault();
@@ -60,7 +87,29 @@ document.addEventListener("turbolinks:load", function() {
             }
         }
     });
-
+    
+    
+    //Placeholder for authors and contributors, only appears in the first input and not the ones added subsequently
+    //Maybe the placeholder should be written for all subsequent inputs too
+    $('[data-prefix="material[authors]').each(function () {
+        $(this).find("input[type=text]").each(function(ev){
+        if(!$(this).val()) { 
+         $(this).attr("placeholder", "Firstname Lastname");
+        }
+        });    
+    });
+    
+    $('[data-prefix="material[contributors]').each(function () {
+        $(this).find("input[type=text]").each(function(ev){
+        if(!$(this).val()) { 
+         $(this).attr("placeholder", "Firstname Lastname");
+        }
+        });    
+    
+    
+    });    
+    
+    
     /* User deletes a free text field such as keyword, author or contributor */
     $(document.body).on('click', '.multiple-input-delete', function (e) {
         $(this).parents('.multiple-list-item').remove();

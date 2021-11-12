@@ -48,7 +48,6 @@ class WorkflowsController < ApplicationController
     authorize Workflow
     @workflow = Workflow.new(workflow_params)
     @workflow.user = current_user
-
     respond_to do |format|
       if @workflow.save
         @workflow.create_activity :create, owner: current_user
@@ -77,7 +76,7 @@ class WorkflowsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /workflows/1
   # DELETE /workflows/1.json
   def destroy

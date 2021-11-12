@@ -4,25 +4,6 @@
   <%= content_tag :span, material_url(material), {itemprop: 'sameAs', content: material_url(material), class: 'schemaorg-element' } %>
   <%= content_tag :span, material.short_description, {itemprop: 'description', content: material.short_description, class: 'schemaorg-element'} if material.short_description and not material.short_description.empty? %>
 
-  <%  if material.authors and not material.authors.empty? %>
-      <% material.authors.each do |author| %>
-        <span itemscope itemprop='author' itemtype="http://schema.org/Person">
-            <%= content_tag 'span', author, {itemprop: 'name', content: author, class: 'schemaorg-element'} %>
-        </span>
-      <% end %>
-  <% end %>
-
-  <%  if material.contributors and not material.contributors.empty? %>
-      <% material.contributors.each do |contributor| %>
-        <span itemscope itemprop='contributor' itemtype="http://schema.org/Person">
-            <%= content_tag 'span', contributor,
-                            {itemprop: 'name',
-                             content: contributor,
-                             class: 'schemaorg-element'
-                            } %>
-        </span>
-      <% end %>
-  <% end %>
 
   <%  if material.scientific_topics and not material.scientific_topics.empty? %>
       <% material.scientific_topics.each do |scientific_topic| %>

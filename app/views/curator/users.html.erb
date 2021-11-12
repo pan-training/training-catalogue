@@ -79,6 +79,14 @@
           <% else %>
             <%= link_to user.profile.website, user.profile.website, rel: 'nofollow' %>
           <% end %><br/>
+          
+          <strong>Orcid:</strong>
+          <% if user.profile.orcid.blank? %>
+            <span class="empty">None specified</span>
+          <% else %>
+            <%= link_to(image_tag('Orcid_logo.svg', style: 'height:20px;width:20px;'), "https://orcid.org/#{user.profile.orcid}",:class =>'h5', :target => "_blank") %>
+          <% end %><br/>          
+          
 
           <% [:events, :materials, :workflows, :content_providers].each do |type| %>
             <% count = user.send(type).count %>

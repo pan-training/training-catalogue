@@ -5,6 +5,18 @@ class ExternalResource < ApplicationRecord
   validates :title, :url, presence: true
   validates :url, url: true
 
+
+
+   if TeSS::Config.solr_enabled
+    # :nocov:
+    searchable do
+      string :title
+      text :title
+    end
+    # :nocov:
+  end
+
+
   BIOTOOLS_BASE = 'https://bio.tools'
   FAIRSHARING_BASE = 'https://fairsharing.org'
 

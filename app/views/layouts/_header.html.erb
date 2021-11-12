@@ -59,8 +59,10 @@
           <%= image_tag "ExPaNDS_PaNOSC.png", :alt => "Training eSupport System", :style => 'height: 50px;' %>
         </a>
       </div>
-
-      <div class="collapse navbar-collapse" id="orange-navbar-collapse">
+  
+  
+     <div class="collapse navbar-collapse" id="orange-navbar-collapse">
+     
         <% unless @hide_search_box %>
             <%= form_tag search_path, id: 'search-box', method: :get, class: "navbar-form navbar-right", role: "search" do %>
                 <div class="input-group">
@@ -70,16 +72,45 @@
                   </div>
                 </div>
             <% end %>
-        <% end %>
-        <%= menu_group do %>
-          <%= menu_item "Events", events_path %>
-          <%= menu_item "Materials", materials_path %>
-          <%= menu_item "PaN Learning", "https://pan-learning.org" %>
-          <%= menu_item "Workflows", workflows_path %>
-          <%= menu_item "Providers", content_providers_path %>
-          <%= menu_item "About", about_path %>
-        <% end %>
+        <% end %>       
+     
+     <ul class="nav navbar-nav">
+        
+        
+        
+        
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Catalogue <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><%= link_to "Materials", materials_path %></li>
+			   <li><%= link_to "Workflows", workflows_path %></li>
+			   <li><%= link_to "Providers", content_providers_path %></li>			  
+            </ul>
+          </li>
+          
+          <li><%= link_to "E-learning", "https://pan-learning.org" %></li>
+          <li><%= link_to "Events", events_path %></li>
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              About <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><%= link_to "Pan-Training", about_path %></li>
+			   <li><%= link_to "E-learning", "https://pan-learning.org/moodle/customfiles/about" %></li>
+			   <li><%= link_to "PaNOSC", "https://www.panosc.eu/" %></li>	
+			   <li><%= link_to "ExPaNDS", "https://expands.eu/" %></li>		  
+            </ul>
+          </li>          
+          
+      </ul>
       </div>
+      
+
+      
+      
     </div>
   </nav>
 </header>

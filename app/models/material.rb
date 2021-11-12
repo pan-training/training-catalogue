@@ -5,6 +5,8 @@ class Material < ApplicationRecord
   include LogParameterChanges
   include HasAssociatedNodes
   include HasExternalResources
+  include HasBauthors
+  include HasBcontributors
   include HasContentProvider
   include HasLicence
   include LockableFields
@@ -25,15 +27,11 @@ class Material < ApplicationRecord
       end
       text :long_description
       text :short_description
-      text :doi
-      string :authors, :multiple => true
-      text :authors
+      text :doi   
       string :scientific_topics, :multiple => true do
         self.scientific_topic_names
       end
-      string :operations, :multiple => true do
-        self.operation_names
-      end
+
       string :target_audience, :multiple => true
       text :target_audience
       string :keywords, :multiple => true
@@ -44,8 +42,6 @@ class Material < ApplicationRecord
         DifficultyDictionary.instance.lookup_value(self.difficulty_level, 'title')
       end
       text :difficulty_level
-      string :contributors, :multiple => true
-      text :contributors
       string :content_provider do
         self.content_provider.try(:title)
       end
@@ -77,9 +73,11 @@ class Material < ApplicationRecord
   has_many :event_materials, dependent: :destroy
   has_many :events, through: :event_materials
 
-  has_ontology_terms(:scientific_topics, branch: OBO_EDAM.topics)
-  has_ontology_terms(:operations, branch: OBO_EDAM.operations)
-
+  #has_ontology_terms(:scientific_topics, branch: OBO_EDAM.topics)
+  #has_ontology_terms(:operations, branch: OBO_EDAM.operations)
+  has_ontology_terms(:scientific_topics, branch: OBO_BLOB.topics)
+  #has_ontology_terms(:operations, branch: OBO_BLOB.operations)
+  
   # Remove trailing and squeezes (:squish option) white spaces inside the string (before_validation):
   # e.g. "James     Bond  " => "James Bond"
   auto_strip_attributes :title, :short_description, :long_description, :url, :squish => false
@@ -90,9 +88,9 @@ class Material < ApplicationRecord
 
   validates :difficulty_level, controlled_vocabulary: { dictionary: DifficultyDictionary.instance }
 
-  clean_array_fields(:keywords, :contributors, :authors, :target_audience, :resource_type)
+  clean_array_fields(:keywords,  :target_audience, :resource_type)
 
-  update_suggestions(:keywords, :contributors, :authors, :target_audience, :resource_type)
+  update_suggestions(:keywords, :target_audience, :resource_type)
 
   def short_description= desc
     super(Rails::Html::FullSanitizer.new.sanitize(desc))
@@ -103,8 +101,8 @@ class Material < ApplicationRecord
   end
 
   def self.facet_fields
-    %w( scientific_topics operations tools standard_database_or_policy target_audience keywords difficulty_level
-        authors related_resources contributors licence node content_provider user resource_type)
+    %w( scientific_topics tools standard_database_or_policy target_audience keywords difficulty_level
+        author contributor related_resources licence node content_provider user resource_type)
   end
 
   def self.check_exists(material_params)

@@ -174,3 +174,8 @@ gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dab
 #gem 'tess_api_client', '~> 0.3.1', :git => 'git://gitlab.hzdr.de/expands/catalogue_api_client.git'
 
 gem 'tess_api_client', :git => 'git://github.com/pan-training/training-catalogue-api-client.git'
+
+#analytics (gdpr compliant)
+gem 'ahoy_matey'
+gem 'blazer'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'

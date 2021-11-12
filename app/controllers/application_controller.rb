@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
 
   # Should prevent forgery errors for JSON posts.
   skip_before_action :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
+  
+  # ahoy
+  after_action :track_action
 
   # Do some access control - see policies folder for individual policies on models
   include Pundit
@@ -103,5 +106,10 @@ class ApplicationController < ActionController::Base
     if suggestible.scientific_topic_names.length == 0 and suggestible.edit_suggestion.nil?
       EditSuggestionWorker.perform_in(1.second,[suggestible.id,suggestible.class.name])
     end
+  end
+ 
+  #ahoy
+  def track_action
+    ahoy.track "Ran action", request.path_parameters
   end
 end

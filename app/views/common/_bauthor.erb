@@ -1,0 +1,11 @@
+  <% bauthorslength = bauthors.length() %>
+  <% compteur = 1 %>
+  <% bauthors.each do |bauthor| %>
+  <% if compteur!=bauthorslength %>
+    <%= bauthor.firstname+' '+bauthor.lastname+',' -%>
+  <% else %>  
+  <%= bauthor.firstname+' '+bauthor.lastname -%>
+  <% end %>
+  <% compteur = compteur + 1 %>
+  <% end %>
+

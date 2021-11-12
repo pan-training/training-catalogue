@@ -1,0 +1,18 @@
+#examples of blazer queries that create visualisations automatically from https://github.com/ankane/blazer
+https://github.com/ankane/blazer#queries
+
+#signups per week
+SELECT date_trunc('week', created_at)::date AS week, COUNT(*) AS signups FROM users GROUP BY week ORDER BY week
+
+#resource type materials (bar chart)
+SELECT resource_type, COUNT(*) FROM materials GROUP BY 1
+
+#user_id and count of materials created (scatter chart) 
+SELECT user_id, COUNT(*) FROM materials GROUP BY 1
+
+#resource type of materials (pie chart)
+SELECT resource_type, COUNT(*) AS pie FROM materials GROUP BY 1
+
+#events (map) 
+#map form in events should be fixed to work so the latitude and longitude get inputted automatically
+SELECT title, latitude, longitude FROM events

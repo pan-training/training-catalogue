@@ -141,10 +141,10 @@ class MaterialsController < ApplicationController
                                      :remote_created_date,  :remote_updated_date, {:package_ids => []},
                                      :content_provider_id, {:keywords => []}, {:resource_type => []},
                                      {:scientific_topic_names => []}, {:scientific_topic_uris => []},
-                                     {:operation_names => []}, {:operation_uris => []},
-                                     :licence, :difficulty_level, {:contributors => []},
-                                     {:authors => []}, {:target_audience => []}, {:node_ids => []}, {:node_names => []},
-                                     external_resources_attributes: [:id, :url, :title, :_destroy], event_ids: [],
+                                     :licence, :difficulty_level, 
+                                      {:target_audience => []}, {:node_ids => []}, {:node_names => []},
+                                     external_resources_attributes: [:id, :url, :title, :_destroy], bauthors_attributes: [:id, :firstname, :lastname, :orcid, :_destroy],
+                                     bcontributors_attributes: [:id, :firstname, :lastname, :orcid, :_destroy], event_ids: [],
                                      locked_fields: [])
   end
 

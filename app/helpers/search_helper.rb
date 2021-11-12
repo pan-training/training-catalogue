@@ -6,7 +6,13 @@ module SearchHelper
 
   def filter_link name, value, count, title = nil, html_options={}, &block
     parameters = search_and_facet_params
-    title ||= (title || truncate(value.to_s, length: 30))
+    #title ||= (title || truncate(value.to_s, length: 30))
+
+    if name!="author" && name!="contributor"
+      title ||= (title || truncate(value.to_s, length: 30))
+    else
+      title ||= (title || JSON.parse(value).join(" "))
+    end
 
     #if there's already a filter of the same facet type, create/add to an array
     if parameters.include?(name)
@@ -16,21 +22,36 @@ module SearchHelper
     end
 
     parameters.delete('page') #remove the page option if it exists
-    html_options.reverse_merge!(title: value.to_s)
+    
+    #html_options.reverse_merge!(title: value.to_s)
+
+    if name!="author" && name!="contributor"
+      html_options.reverse_merge!(title: value.to_s)
+    else
+      html_options.reverse_merge!(title: JSON.parse(value).join(" "))
+    end
+
 
     link_to parameters, html_options do
       if block_given?
         yield
       else
-        title + content_tag(:span, "#{count}", class: 'facet-count')
+        #title + content_tag(:span, "#{count}", class: 'facet-count')
+        "#{title}&nbsp;<span class='facet-count'>#{count}</span>".html_safe
       end
     end
   end
 
   def remove_filter_link name, value, html_options={}, title=nil, &block
     parameters = search_and_facet_params
-    title ||= (title || truncate(value.to_s, length: 30))
-
+    #title ||= (title || truncate(value.to_s, length: 30))
+    
+    if name!="author" && name!="contributor"
+      title ||= (title || truncate(value.to_s, length: 30))
+    else
+    title ||= (title || JSON.parse(value).join(" "))  
+    end
+    
     #delete a filter from an array or delete the whole facet if it is the only one
     if parameters.include?(name)
       if parameters[name].is_a?(Array)
@@ -43,7 +64,14 @@ module SearchHelper
     end
 
     parameters.delete('page') #remove the page option if it exists
-    html_options.reverse_merge!(title: value.to_s)
+    #html_options.reverse_merge!(title: value.to_s)
+
+    if name!="author" && name!="contributor"
+      html_options.reverse_merge!(title: value.to_s)
+    else
+      html_options.reverse_merge!(title: JSON.parse(value).join(" "))
+    end
+
 
     link_to parameters, html_options do
       if block_given?

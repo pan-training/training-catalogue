@@ -34,6 +34,7 @@
 //= require_tree .
 //= require_self
 //= require turbolinks
+//= require ahoy
 
 function updateURLParameter(url, param, paramVal){
     var newAdditionalURL = "";

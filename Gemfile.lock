@@ -16,6 +16,14 @@ GIT
       activesupport
 
 GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: d369a567f96f164cc3664263a3b9673696a3469d
+  branch: master
+  specs:
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
+
+GIT
   remote: https://github.com/lassebunk/dynamic_sitemaps.git
   revision: 37beeba143e8202218ee814056231b0e6974bafb
   branch: master
@@ -100,6 +108,10 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     aes_key_wrap (1.0.1)
+    ahoy_matey (4.0.1)
+      activesupport (>= 5.2)
+      device_detector
+      safely_block (>= 0.2.1)
     arel (9.0.0)
     ast (2.4.0)
     attr_required (1.0.1)
@@ -112,6 +124,11 @@ GEM
     bcrypt (3.1.13)
     bindata (2.4.4)
     bindex (0.5.0)
+    blazer (2.4.7)
+      activerecord (>= 5)
+      chartkick (>= 3.2)
+      railties (>= 5)
+      safely_block (>= 0.1.1)
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     bootstrap-datepicker-rails (1.6.4.1)
@@ -123,6 +140,7 @@ GEM
     byebug (9.0.6)
     case_transform (0.2)
       activesupport
+    chartkick (4.0.5)
     chronic (0.10.2)
     climate_control (0.2.0)
     cocaine (0.5.8)
@@ -141,6 +159,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
+    device_detector (1.0.5)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -155,6 +174,7 @@ GEM
       sxp (~> 1.0)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
+    errbase (0.2.1)
     erubi (1.9.0)
     execjs (2.7.0)
     fakeredis (0.6.0)
@@ -488,6 +508,8 @@ GEM
     ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
+    safely_block (0.3.0)
+      errbase (>= 0.1.1)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -619,7 +641,9 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activerecord-session_store
+  ahoy_matey
   auto_strip_attributes (~> 2.0)
+  blazer
   bootsnap (>= 1.4.6)
   bootstrap-datepicker-rails (~> 1.6.4.1)
   bootstrap-sass (>= 3.4.1)
@@ -628,6 +652,7 @@ DEPENDENCIES
   codacy-coverage
   devise
   dynamic_sitemaps!
+  faker!
   fakeredis
   font-awesome-sass (~> 4.7.0)
   friendly_id (~> 5.2.4)

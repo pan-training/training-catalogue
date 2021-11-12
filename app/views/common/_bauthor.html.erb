@@ -1,0 +1,31 @@
+  <% bauthorslength = bauthors.length() %>
+  <% compteur = 1 %>
+  <% bauthors.each do |bauthor| %>
+  <% if compteur!=bauthorslength %>
+      
+   <% if !bauthor.orcid.blank? %>
+   <%= bauthor.firstname+' '+bauthor.lastname+' ' -%>
+   <%= link_to(image_tag('Orcid_logo.svg', style: 'height:20px;width:20px;'), "https://orcid.org/#{bauthor.orcid}",:class =>'h5', :target => "_blank") %>
+   <%= ',' -%>
+   <% else %>
+   <%= bauthor.firstname+' '+bauthor.lastname+',' -%>
+   <% end %>
+
+    
+  <% else %>        
+   <% if !bauthor.orcid.blank? %>
+   <%= bauthor.firstname+' '+bauthor.lastname+' ' -%>
+   <%= link_to(image_tag('Orcid_logo.svg', style: 'height:20px;width:20px;'), "https://orcid.org/#{bauthor.orcid}",:class =>'h5', :target => "_blank") %>
+   <% else %>
+   <%= bauthor.firstname+' '+bauthor.lastname -%>
+   <% end %>  
+  
+  <% end %>
+  <% compteur = compteur + 1 %>
+  <% end %>
+
+
+
+
+
+

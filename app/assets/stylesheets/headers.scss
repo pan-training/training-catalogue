@@ -45,6 +45,21 @@
 
 }
 
+.navbar-nav .dropdown-menu {
+background-color: black;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a
+{
+color: white;
+}
+
+/* does not work but the above does
+.dropdown-menu > li > a {
+color: white;
+}
+*/
+
 .expands-footer-link {
   color: #dddddd;
   a:hover, a:focus {

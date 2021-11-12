@@ -7,6 +7,14 @@ module EDAM
     end
 
     def all_topics
+      puts "laaaaaaaaaaaaaaaaaaaaaaaaaal"
+      puts(OBO.inSubset)
+      puts ("laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeel")
+      puts(OBO_EDAM.topics)
+      puts("ehhhhhhhhhhhhhhhhhhhhhhhhhh")
+      
+      
+      
       find_by(OBO.inSubset, OBO_EDAM.topics)
     end
 
@@ -19,6 +27,7 @@ module EDAM
     end
 
     def scoped_lookup_by_name(name, subset = :_)
+      puts("yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaay")
       query = RDF::Query.new do
         pattern [:u, RDF::RDFS.label, name]
         pattern [:u, OBO.inSubset, subset]

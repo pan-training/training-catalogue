@@ -19,7 +19,6 @@ module SearchableIndex
     if TeSS::Config.solr_enabled
       page = page_param.blank? ? 1 : page_param.to_i
       per_page = per_page_param.blank? ? 30 : per_page_param.to_i
-
       @search_results = @model.search_and_filter(current_user, @search_params, @facet_params,
                                     page: page, per_page: per_page, sort_by: @sort_by)
       @index_resources = @search_results.results
@@ -40,6 +39,7 @@ module SearchableIndex
     end
 
     @facet_params = params.permit(*@model.facet_keys_with_multiple).to_h
+
     # Add any preexisting filters from the model
     if defined? controller_name.classify.constantize.filter
       @facet_params = @facet_params.merge(controller_name.classify.constantize.filter)

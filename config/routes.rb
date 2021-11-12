@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'edam/terms' => 'edam#terms'
   get 'edam/topics' => 'edam#topics'
   get 'edam/operations' => 'edam#operations'
-
+  
+  get 'blob/terms' => 'blob#terms'
+  get 'blob/topics' => 'blob#topics'
+  get 'blob/operations' => 'blob#operations'
   resources :workflows
 
   #get 'static/home'
@@ -47,7 +50,10 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
   
-
+  
+  authenticate :user, lambda { |u| u.is_admin? } do
+    mount Blazer::Engine, at: "blazer"    
+  end
 
   root 'static#home'
 
@@ -140,6 +146,7 @@ Rails.application.routes.draw do
   end
 
   get 'resolve/:prefix:type:id' => 'resolution#resolve', constraints: { prefix: /(.+\:)?/, type: /[a-zA-Z]/, id: /\d+/ }
+
 
 =begin
   authenticate :user do

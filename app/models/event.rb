@@ -62,9 +62,7 @@ class Event < ApplicationRecord
       string :scientific_topics, :multiple => true do
         self.scientific_topic_names
       end
-      string :operations, :multiple => true do
-        self.operation_names
-      end
+
       string :target_audience, multiple: true
       boolean :online
       text :host_institutions
@@ -96,8 +94,8 @@ class Event < ApplicationRecord
   has_many :materials, through: :event_materials
   has_many :widget_logs, as: :resource
 
-  has_ontology_terms(:scientific_topics, branch: OBO_EDAM.topics)
-  has_ontology_terms(:operations, branch: OBO_EDAM.operations)
+  has_ontology_terms(:scientific_topics, branch: OBO_BLOB.topics)
+  #has_ontology_terms(:operations, branch: OBO_EDAM.operations)
 
   validates :title, :url, presence: true
   validates :capacity, numericality: true, allow_blank: true
@@ -178,7 +176,7 @@ class Event < ApplicationRecord
   end
 
   def self.facet_fields
-    %w( scientific_topics operations event_types online country tools organizer city sponsors target_audience keywords
+    %w( scientific_topics event_types online country tools organizer city sponsors target_audience keywords
         venue node content_provider user )
   end
 

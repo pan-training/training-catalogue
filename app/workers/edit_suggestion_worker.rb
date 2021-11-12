@@ -46,7 +46,6 @@ class EditSuggestionWorker
 
     api_key = Rails.application.secrets.bioportal_api_key
     url = "http://data.bioontology.org/annotator?include=prefLabel&text=#{clean_desc}&ontologies=EDAM&longest_only=false&exclude_numbers=false&whole_word_only=true&exclude_synonyms=false&apikey=#{api_key}"
-
     suggestion = nil
     topic_uris = []
     operation_uris = []
@@ -80,7 +79,6 @@ class EditSuggestionWorker
     [[topic_uris, 'scientific_topic'], [operation_uris, 'operation']].each do |ids, type|
       if ids.any?
         terms = ids.map { |id| EDAM::Ontology.instance.lookup(id) }.compact
-
         if terms.any?
           suggestion = suggestible.build_edit_suggestion
           terms.each do |term|

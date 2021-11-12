@@ -50,6 +50,17 @@
                   <%= link_to @user.profile.website, @user.profile.website, rel: 'nofollow' %>
               <% end %>
             </p>
+            
+            
+            <p>
+              <strong>Orcid</strong><br/>
+            <% if @user.profile.orcid.blank? %>
+                <span class="empty">None specified</span>
+            <% else %>
+                <%= link_to(image_tag('Orcid_logo.svg', style: 'height:20px;width:20px;'), "https://orcid.org/#{@user.profile.orcid}",:class =>'h5', :target => "_blank") %>
+            <% end %>
+            </p>            
+            
 
             <% if !current_user.nil? and current_user == @user %>
                 <div class="row">

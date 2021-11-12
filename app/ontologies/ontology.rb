@@ -13,7 +13,10 @@ class Ontology
   # Collection
   def find_by(predicate, object)
     @query_cache[predicate] ||= {}
-
+    #puts(predicate)
+    #puts("predicate")
+    #puts(object)
+    #puts("object")
     if @query_cache[predicate].key?(object)
       @query_cache[predicate][object]
     else
@@ -40,6 +43,7 @@ class Ontology
   end
 
   def query(q)
+    #puts("query ontology")
     results = graph.query(q)
 
     if results.any?

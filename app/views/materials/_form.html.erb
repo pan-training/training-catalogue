@@ -14,32 +14,65 @@
     <%= f.input :long_description, as: :markdown_area, input_html: { rows: '10' }, field_lock: true %>
 
     <%= f.input :doi, field_lock: true %>
+    
 
     <%= f.input :content_provider_id, collection: ContentProvider.all, label_method: :title, value_method: :id,
                 include_blank: true, field_lock: true %>
 
     <%= f.dropdown :node_ids, options: format_for_dropdown(Node.order(:name).all), label: 'Nodes' %>
 
-    <%= f.autocompleter :scientific_topics, url: edam_topics_path, template: 'autocompleter/term',
+    <%= f.autocompleter :scientific_topics, url: blob_topics_path, template: 'autocompleter/term',
                         id_field: :uri, label_field: :preferred_label %>
 
-    <%= f.autocompleter :operations, url: edam_operations_path, template: 'autocompleter/term',
-                        id_field: :uri, label_field: :preferred_label %>
-    <%= f.multi_input :keywords %>
+    <%= f.multi_input :keywords , :placeholder => 'big city'%>
 
-    <%= f.multi_input :target_audience %>
+    <%= f.multi_input :target_audience , :placeholder => 'big city'%>
 
-    <%= f.multi_input :resource_type %>
+    <%= f.multi_input :resource_type , :placeholder => 'big city'%>
 
     <%= f.input :difficulty_level, collection: difficulty_options_for_select, selected: @material.difficulty_level.blank? ? "notspecified" : @material.difficulty_level, field_lock: true %>
 
     <%= f.input :licence, collection: licence_options_for_select, selected: @material.licence.blank? ? "notspecified" : @material.licence, field_lock: true %>
 
-    <%= f.multi_input :authors, suggestions: people_suggestions %>
 
-    <%= f.multi_input :contributors, suggestions: people_suggestions %>
+    <div class="form-group" id="bauthors">
+      <%= f.label :authors %>
+      <%= f.field_lock :authors %>
+
+      <div id="bauthors-list">
+        <% @material.bauthors.each_with_index do |bauthor, index| %>
+            <%= render partial: 'common/bauthor_form',
+                       locals: { form_name: 'material', index: index, bauthor: bauthor } %>
+        <% end %>
+      </div>
+
+
+      <a href="#" id="add-bauthor-btn" class="btn btn-info">
+        <i class="fa fa-plus"></i> Add author
+      </a>
+    </div>
+
+    <div class="form-group" id="bcontributors">
+      <%= f.label :contributors %>
+      <%= f.field_lock :contributors %>
+
+      <div id="bcontributors-list">
+        <% @material.bcontributors.each_with_index do |bcontributor, index| %>
+            <%= render partial: 'common/bcontributor_form',
+                       locals: { form_name: 'material', index: index, bcontributor: bcontributor } %>
+        <% end %>
+      </div>
+
+
+      <a href="#" id="add-bcontributor-btn" class="btn btn-info">
+        <i class="fa fa-plus"></i> Add contributor
+      </a>
+    </div>
+
 
     <%= f.autocompleter :events %>
+
+
 
     <div class="form-group" id="external-resources">
       <%= f.label :external_resources %>
@@ -52,13 +85,6 @@
         <% end %>
       </div>
 
-      <div class="row">
-        <%= render :partial => 'common/fairsharing_suggestions', :locals => {:title_element => 'material_title'} %>
-      </div>
-
-      <div class="row">
-        <%= render :partial => 'common/biotools_suggestions', :locals => {:title_element => 'material_title'} %>
-      </div>
 
       <a href="#" id="add-external-resource-btn" class="btn btn-info">
         <i class="fa fa-plus"></i> Add external resource
@@ -79,6 +105,16 @@
 </div>
 
 
+<div id="bauthor-template" style="display: none">
+  <%= render partial: 'common/bauthor_form',
+             locals: { form_name: 'material', bauthor: Bauthor.new } %>
+</div>
+
+<div id="bcontributor-template" style="display: none">
+  <%= render partial: 'common/bcontributor_form',
+             locals: { form_name: 'material', bcontributor: Bcontributor.new } %>
+</div>
+
 <script type="text/javascript">
 function removeSuggestion(suggestion) {
     s = suggestion.replace(/[^a-zA-Z]/g, '');
@@ -93,3 +129,115 @@ function removeSuggestion(suggestion) {
     }
 }
 </script>
+<script type="text/javascript">
+document.addEventListener("turbolinks:load", function() {
+    console.log("load");
+    const str1 = '#material_bauthors_attributes_';
+    const str2 = '_orcid';
+    var str3 = '';
+    var str4 = '';
+    var compteur = 0;
+    $('.bauthor-form').toArray().forEach(function(field){
+        //console.log(field);
+        //console.log(field["attributes"]["data-index"]["nodeValue"]);
+        if (field["attributes"]["data-index"]["nodeValue"]=="replace-me-bauthor") {
+            console.log("nothing to do");
+        } else {
+            // index here starts from 0 instead of 1. This is for the edit page where all authors are loaded at once so we need to loop 
+            // through them to cleave them individually
+            str3 = str1.concat('', compteur);
+            str4 = str3.concat('', str2);
+            
+            //console.log(str4, compteur);    
+            new Cleave(str4, {
+                delimiter: '-',
+                blocks: [4, 4, 4, 4]
+            });  
+
+            compteur = compteur + 1;
+
+        }
+    });
+    
+    
+    
+    
+    
+    console.log("load contributor");
+    const str5 = '#material_bcontributors_attributes_';
+    const str6 = '_orcid';
+    var str7 = '';
+    var str8 = '';
+    var compteur = 0;
+    $('.bcontributor-form').toArray().forEach(function(field){
+        //console.log(field);
+        //console.log(field["attributes"]["data-index"]["nodeValue"]);
+        if (field["attributes"]["data-index"]["nodeValue"]=="replace-me-bcontributor") {
+            console.log("nothing to do");
+        } else {
+            // index here starts from 0 instead of 1. This is for the edit page where all authors are loaded at once so we need to loop 
+            // through them to cleave them individually
+            str7 = str5.concat('', compteur);
+            str8 = str7.concat('', str6);
+            
+            //console.log(str8, compteur);    
+            new Cleave(str8, {
+                delimiter: '-',
+                blocks: [4, 4, 4, 4]
+            });  
+
+            compteur = compteur + 1;
+
+        }
+    });    
+    
+});
+
+
+
+$(document).on('logged', function(e){
+    // e.target is the element added
+    //console.log("event received");
+    //console.log(e.orcidindex)
+    const str1 = '#material_bauthors_attributes_';
+    const str2 = '_orcid';
+    //console.log(str1.concat('', e.orcidindex));
+    const str3 = str1.concat('', e.orcidindex);
+    //console.log(str3.concat('', str2));    
+    const str4 = str3.concat('', str2);
+    //console.log(str4);
+
+    new Cleave(str4, {
+        delimiter: '-',
+        blocks: [4, 4, 4, 4],
+        uppercase: true
+    });
+});
+
+
+
+
+
+
+$(document).on('logged_contributor', function(e){
+    // e.target is the element added
+    //console.log("event received");
+    //console.log(e.orcidindex)
+    const str1 = '#material_bcontributors_attributes_';
+    const str2 = '_orcid';
+    //console.log(str1.concat('', e.orcidindex));
+    const str3 = str1.concat('', e.orcidindex);
+    //console.log(str3.concat('', str2));    
+    const str4 = str3.concat('', str2);
+    //console.log(str4);
+
+    new Cleave(str4, {
+        delimiter: '-',
+        blocks: [4, 4, 4, 4],
+        uppercase: true
+    });
+});
+
+</script>
+
+

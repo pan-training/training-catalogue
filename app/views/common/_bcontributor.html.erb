@@ -1,0 +1,32 @@
+  <% bcontributorslength = bcontributors.length() %>
+  <% compteur_bcontributor = 1 %>
+  <% bcontributors.each do |bcontributor| %>
+  <% if compteur_bcontributor!=bcontributorslength %>
+      
+   <% if !bcontributor.orcid.blank? %>
+   <%= bcontributor.firstname+' '+bcontributor.lastname+' ' -%>
+   <%= link_to(image_tag('Orcid_logo.svg', style: 'height:20px;width:20px;'), "https://orcid.org/#{bcontributor.orcid}",:class =>'h5', :target => "_blank") %>
+   <%= ',' -%>
+   <% else %>
+   <%= bcontributor.firstname+' '+bcontributor.lastname+',' -%>
+   <% end %>
+
+    
+  <% else %>  
+     
+   <% if !bcontributor.orcid.blank? %>
+   <%= bcontributor.firstname+' '+bcontributor.lastname+' ' -%>
+   <%= link_to(image_tag('Orcid_logo.svg', style: 'height:20px;width:20px;'), "https://orcid.org/#{bcontributor.orcid}",:class =>'h5', :target => "_blank") %>
+   <% else %>
+   <%= bcontributor.firstname+' '+bcontributor.lastname -%>
+   <% end %>  
+  
+  <% end %>
+  <% compteur_bcontributor = compteur_bcontributor + 1 %>
+  <% end %>
+
+
+
+
+
+

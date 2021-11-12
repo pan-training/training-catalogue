@@ -6,6 +6,8 @@ class OntologyTermLink < ApplicationRecord
   end
 
   def ontology
-    EDAM::Ontology.instance
+    #EDAM::Ontology.instance
+    #puts "ontology term link"
+    BLOB::Ontology.instance
   end
 end
