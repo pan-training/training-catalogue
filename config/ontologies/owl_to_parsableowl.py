@@ -1,5 +1,3 @@
-print("lol")
-
 owlfile = open("blob.owl")
 
 

@@ -24,11 +24,11 @@
     <%= f.autocompleter :scientific_topics, url: blob_topics_path, template: 'autocompleter/term',
                         id_field: :uri, label_field: :preferred_label %>
 
-    <%= f.multi_input :keywords , :placeholder => 'big city'%>
+    <%= f.multi_input :keywords %>
 
-    <%= f.multi_input :target_audience , :placeholder => 'big city'%>
+    <%= f.multi_input :target_audience %>
 
-    <%= f.multi_input :resource_type , :placeholder => 'big city'%>
+    <%= f.multi_input :resource_type %>
 
     <%= f.input :difficulty_level, collection: difficulty_options_for_select, selected: @material.difficulty_level.blank? ? "notspecified" : @material.difficulty_level, field_lock: true %>
 
