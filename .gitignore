@@ -30,3 +30,4 @@ public/system
 coverage
 *.mp4
 *.code-workspace
+my_upload_script.rb

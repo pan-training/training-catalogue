@@ -37,6 +37,10 @@ Rails.application.routes.draw do
         :omniauth_callbacks => 'callbacks'
     }
   end
+
+  devise_scope :user do
+    post 'users/auth/:provider', :to => 'callback#umbrella_aai'
+  end
   #Redirect to users index page after devise user account update
   # as :user do
   #   get 'users', :to => 'users#index', :as => :user_root

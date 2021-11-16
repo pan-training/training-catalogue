@@ -28,7 +28,7 @@ gem 'haml', '~> 5.0.4' # Rails admin needs this, but doesn't fix the version to 
 
 # Authentication
 gem 'devise'
-gem 'omniauth_openid_connect'
+gem 'omniauth_openid_connect', '~> 0.3.5'
 
 # Activity logging
 gem 'public_activity', '~> 1.6.1'
@@ -70,7 +70,8 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
+#gem 'json', '>= 2.3.0'
 
 # Gem for creating before_validation callbacks for stripping whitespace
 gem 'auto_strip_attributes', '~> 2.0'
@@ -94,7 +95,7 @@ gem 'pundit', '~> 1.1.0'
 gem 'jquery-simplecolorpicker-rails'
 
 # For getting date of materials for the home page
-gem 'by_star', '~> 2.2.1', git: 'git://github.com/radar/by_star'
+gem 'by_star', '~> 2.2.1'#, git: 'git://github.com/radar/by_star'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
