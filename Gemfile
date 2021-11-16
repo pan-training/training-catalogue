@@ -28,7 +28,7 @@ gem 'haml', '~> 5.0.4' # Rails admin needs this, but doesn't fix the version to 
 
 # Authentication
 gem 'devise'
-gem 'omniauth_openid_connect'
+gem 'omniauth_openid_connect', '~> 0.3.5'
 
 # Activity logging
 gem 'public_activity', '~> 1.6.1'
@@ -70,7 +70,8 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
+#gem 'json', '>= 2.3.0'
 
 # Gem for creating before_validation callbacks for stripping whitespace
 gem 'auto_strip_attributes', '~> 2.0'

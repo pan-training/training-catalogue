@@ -31,3 +31,4 @@ vendor/cache
 coverage
 *.mp4
 *.code-workspace
+my_upload_script.rb
