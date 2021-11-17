@@ -63,7 +63,7 @@ rails db:migrate
 
 #### Important
 
-Need to create a rake task that migrates old data with old models (on the production site now) to the new models.
+Need to create a rake task that migrates old data with old models (on the production site now) to the new models. (DONE)
 
 Add the content provider's logo on the workflow's page if it has a content provider.
 
