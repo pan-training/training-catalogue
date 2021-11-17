@@ -18,13 +18,6 @@ Ahoy is for tracking the users and blazer is a visualisation tool.
 Go to /blazer to create queries (authorized for admins only). 
 GDPR compliant.
 
-This is needed (even though we don't use it) for rails admin to work:
-
-```
-rails generate blazer:uploads
-rails db:migrate
-```
-
 The mapbox token needs to be inputed in the blazer.yml config file if maps are to be used.
 
 Blazer query examples can be found in the blazer_queries.txt file. 
@@ -44,6 +37,27 @@ The json api (materials.json etc) only showed the last external resource, they a
 Dropdown menu for the header to resemble pan-learning's header.
 
 (links) text added next to external resources to make it clearer that they are outgoing links.
+
+
+### Migrations
+
+run: 
+```
+rails db:migrate
+```
+To run the migrations. 
+
+Then run: 
+```
+bundle exec rake dice:authorscontributors
+```
+to migrate old data (author and contributo fields of a material) to the new models (the author and contributor tables).
+
+Then finally run:
+```
+rails g migration RemoveAuthorsandContributorsFromMaterials authors:string contributors:string
+rails db:migrate
+```
 
 ### TODO
 
