@@ -2,7 +2,7 @@
 
 data_sources:
   main:
-    url: <%= ENV["BLAZER_DATABASE_URL"] %>
+    url: <%= Rails.application.secrets[:blazer][:url] %>
 
     # statement timeout, in seconds
     # none by default
@@ -71,13 +71,8 @@ check_schedules:
 
 # enable map
 # mapbox_access_token: <%= ENV["MAPBOX_ACCESS_TOKEN"] %>
-mapbox_access_token: "input_mapbox_token"
+
 # enable uploads
-#seems like this needs to exist for rails_admin, so the two lines underneath are run.
-#we need to uncomment and create schema (see blazer doc) if we want to use this but we don't so only creating the table is enough
-#https://github.com/ankane/blazer#uploads
-#rails generate blazer:uploads
-#rails db:migrate
 # uploads:
 #   url: <%= ENV["BLAZER_UPLOADS_URL"] %>
 #   schema: uploads
