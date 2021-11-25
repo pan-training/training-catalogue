@@ -10,8 +10,8 @@ namespace :dice do
                   paranthesispresent=1
               end
           end 
-          puts woo
-          puts paranthesispresent
+          #puts woo
+          #puts paranthesispresent
           
           if paranthesispresent==0
 
@@ -33,6 +33,9 @@ namespace :dice do
           puts firstname
           puts "lastname"
           puts lastname
+          if firstname==""
+              firstname=lastname         
+          end           
           mat.update_attributes(bauthors_attributes: [{firstname:firstname,lastname:lastname}])
          else
      
@@ -55,6 +58,9 @@ namespace :dice do
           puts firstname
           puts "lastname"
           puts lastname
+          if firstname==""
+              firstname=lastname         
+          end           
           mat.update_attributes(bauthors_attributes: [{firstname:firstname,lastname:lastname}])
                    
          end
@@ -68,8 +74,8 @@ namespace :dice do
                   paranthesispresent=1
               end
           end 
-          puts woo
-          puts paranthesispresent
+          #puts woo
+          #puts paranthesispresent
           
           if paranthesispresent==0
 
@@ -91,6 +97,9 @@ namespace :dice do
           puts firstname
           puts "lastname"
           puts lastname
+          if firstname==""
+              firstname=lastname         
+          end 
           mat.update_attributes(bcontributors_attributes: [{firstname:firstname,lastname:lastname}])
          else
      
@@ -113,13 +122,16 @@ namespace :dice do
           puts firstname
           puts "lastname"
           puts lastname
+          if firstname==""
+              firstname=lastname
+          end
           mat.update_attributes(bcontributors_attributes: [{firstname:firstname,lastname:lastname}])
                    
          end
       end      
       
       
-      
+   mat.save!  
     end
   end
 end
