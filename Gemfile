@@ -94,7 +94,7 @@ gem 'pundit', '~> 1.1.0'
 gem 'jquery-simplecolorpicker-rails'
 
 # For getting date of materials for the home page
-gem 'by_star', '~> 2.2.1', git: 'git://github.com/radar/by_star'
+gem 'by_star', git: 'git://github.com/radar/by_star'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
