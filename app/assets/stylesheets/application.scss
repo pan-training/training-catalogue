@@ -50,7 +50,7 @@ body {
      color: #dddddd;
      text-decoration: underline;
    }
-  background-color: #1F214B; //ExPaNDS color
+  background-color: $expands-main; //ExPaNDS color
 
   .container {
     padding: 0;
@@ -290,12 +290,12 @@ ul.unstyled {
 .nav-item.active > a {
   position: relative;
   color: #ffffff;
-  background-color: $grey-blue;
+  background-color: lightgrey;
 }
 
 .nav-item.active > a:hover {
   color: #ffffff;
-  background-color: $blue;
+  background-color: lightgrey;
 }
 
 // End CKAN's sidebar facets
@@ -315,10 +315,10 @@ ul.unstyled {
 
 .filter-button {
   color: #ffffff;
-  background-color: $grey-blue;
+  background-color: lightgrey;
 
   &:hover {
-    background-color: $blue !important;
+    background-color: lightgrey;
   }
 }
 
@@ -435,7 +435,7 @@ abbr, accronym {
   cursor: pointer;
 
   &:hover {
-    background: $dropdown-link-hover-bg;
+    background: lightgrey;
   }
 }
 
@@ -665,7 +665,7 @@ sup {
   font-size: 120%;
 
   &:hover {
-    color: darken($brand-danger, 20%);
+    color: lightgrey;
   }
 }
 
