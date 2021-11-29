@@ -1,6 +1,6 @@
 class CallbacksController < Devise::OmniauthCallbacksController
 
-  def elixir_aai
+  def umbrella_aai
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.new_record?
