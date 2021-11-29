@@ -3,11 +3,12 @@ $elixir-orange: #1F214B;
 $elixir-grey: #484848;
 $elixir-blue: #005472;
 $elixir-green: #bebf32;
+$expands-main: #1F214B;
 
-/* TeSS colours */
-$bgDefault: $elixir-orange;
-$bgHighlight: darken($bgDefault, 10%);
-$colDefault: #333;
+/* ExPaNDS colours */
+$bgDefault: $expands-main;
+$bgHighlight: lightgrey;//darken($bgDefault, 10%);
+$colDefault: lightgrey;//$expands-main;
 $colHover: rgb(0, 0, 0);
 $colHover2: #eeeeee;
 
@@ -34,13 +35,13 @@ $pagination-active-bg: $blue;
 $pagination-active-border: $blue;
 
 $navbar-height: 60px;
-$navbar-default-bg: $bgDefault;
+$navbar-default-bg: $bgDefault; //Header Background 
 $navbar-default-border: transparent;
-$navbar-default-link-active-bg: $bgHighlight;
+$navbar-default-link-active-bg: $expands-main;
 $navbar-default-link-hover-bg: $bgHighlight;
 $navbar-default-link-color: $colDefault;
-$navbar-default-link-active-color: lighten($navbar-default-link-color, 30%);
-$navbar-default-link-hover-color: lighten($navbar-default-link-color, 40%);
+$navbar-default-link-active-color: $colDefault;
+$navbar-default-link-hover-color: $expands-main; /* headerlink text hover colours*/
 
 $navbar-default-toggle-hover-bg: $bgHighlight;
 $navbar-default-toggle-icon-bar-bg: $colHover2;

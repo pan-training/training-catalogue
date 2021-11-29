@@ -1,8 +1,8 @@
 .elixir-black-header {
   height: 35px;
   line-height: 35px;
-  background-color: #333333;
-  border-bottom: 1px solid #eeeeee;
+  background-color: $expands-main;
+  border-bottom: 0px solid #eeeeee;
 
   .user-options {
     float: right;
@@ -12,7 +12,7 @@
       padding: 0 10px;
       color: #dddddd;
       &:hover {
-        color: rgb(219, 208, 208);
+        color: black;
         background: #eee;
       }
     }
