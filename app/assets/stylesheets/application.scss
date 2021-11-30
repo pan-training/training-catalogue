@@ -42,16 +42,13 @@ body {
 
 
 .footer {
-  // PaN Line ontop of footer
-  //border-top: 3px solid green;
-
-  //linear-gradient(to right, #bb284d, #f08222)
   padding: 0;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   color: #dddddd;
+
   a:hover, a:focus {
      color: #dddddd;
      text-decoration: underline;
@@ -79,6 +76,16 @@ body {
     }
   }
 }
+
+.pan-line {
+  content:'';
+  position:0px;
+  left: 0px;
+  width:100%;
+  height:3px;
+  background-color: #bb284d;
+  background-image: linear-gradient(to right, #bb284d, #f08222);
+ }
 
 div.wrapper {
   *zoom: 1;
@@ -996,21 +1003,3 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
   width: 120px;
 }
 
-.panborder {
-    height:3px;
-    width:100%;
-    left: 0px;
-    border-top: 3px solid #bb284d;
-    position:relative;
-    background: #000;
-    
-}
-.panborder:first-child:before {
-    //content:'';
-    position:-3px;
-    left: 0px;
-    width:100%;
-    height:3px;
-    border-style: solid;
-    background: linear-gradient(to left, #bb284d, #f08222);
-}
