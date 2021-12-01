@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+
+
+<style>
+:root {
+  --purple: #1f214b; 
+  --purple-light: #343a84;
+  --plum: #8e2651; 
+  --pink: #bb284d;
+  --pink-light: #ef2b5c;
+  --gray-lightest:  #f2f2f2;
+  --blue-light: #75abec;
+}
+
+body {
+  margin: 0; 
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif; 
+  height: 100%;
+}
+
+body a{
+  margin: 0; 
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif; 
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 3.5em;
+  margin: 15px 0px;
+  font-weight: 200;
+  font-family: 'Muli Light';
+} 
+
+h2 {
+  font-size: 1.4em;
+  font-weight: 300;
+  margin: 15px;
+  font-family: 'Muli';
+  font-style: italic;
+} 
+h4 {
+  font-size: 1.1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+} 
+p  {
+  color: white;
+  margin: 5px;
+}
+
+
+it {
+  font-style: italic;
+  color: lightgray;
+}
+
+section {
+}
+
+accent {
+    position: relative;
+}
+.accent-line::after {
+    background: linear-gradient(to right, var(--pink), var(--pink-light));
+    content: '';
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+}
+
+
+.wrapper-wide {
+    max-width: calc(2000px - 8rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+.wrapper {
+    max-width: calc(2000px - 8rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+
+
+.logo {
+    height: 30px;   
+    margin: -5px 10px;
+}
+
+.navbar {
+  height: 50px;
+  //background-image: linear-gradient(var(--purple-light), var(--purple));
+  background-position: left center;
+  background: transparent;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.navbar a {
+  font-size: 1.1em;
+  font-weight: 200;
+  color: white;
+  text-align: center;
+  padding: 16px 10px;
+  text-decoration: none;
+  float: left;
+}
+
+.mininav {
+  height: 20px;
+  background-image: linear-gradient(to left, var(--pink), var(--pink-light));
+}
+
+.mininav t {
+  color: var(--purple);
+  padding: 1px 7px;
+  float: right;  
+  position: relative;
+  font-weight: 200;
+}
+
+.mininav a {
+  color: var(--purple);
+  padding: 1px 5px;
+  float: right;  
+  position: relative;
+  font-weight: 200;
+}
+
+.mininav a:hover {
+  font-weight: bold;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 1.1em;
+  font-weight: 200;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 16px 10px;
+  background-color: inherit;
+  font-family: inherit;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  color: var(--purple);
+  background-color: var(--gray-lightest);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--gray-lightest);
+  min-width: 160px;
+  box-shadow: 8px 8px 10px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin: -3px 0
+}
+
+.dropdown-content a {
+  font-size: 1em;
+  font-weight: 200;
+  color: var(--purple);
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  color: var(--pink);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+
+.divone {
+  padding: 0px 40px 40px 40px;
+  text-align: center;
+  color: white;
+  background-image: linear-gradient( var(--purple), var(--purple-light));
+}
+.divone-half-left {
+  width: 650px;
+  display: inline-block;
+  text-align: left;
+  margin: 32px;
+  color: white;
+  vertical-align: middle;
+
+}
+.divone-half-center {
+  width: 650px;
+  display: inline-block;
+  text-align: center;
+  margin: 32px;
+  color: white;
+  vertical-align: middle;
+
+}
+.divone input[type=text] {
+  padding: 16px;
+  font-size: 25px;
+  font-style: italic;
+  border-style: solid;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: #0f2f5f;
+  width: 600px;
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.2);
+  //margin: 15px;
+}
+.browse{
+  padding: 15px;
+  height: 160px;
+  width: 150px;
+  margin: 30px 10px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: left;
+ }  
+ .browse-icon a{
+    font-size: 60px;
+    height: 65px;
+    width: 65px;
+    color: white;
+    text-align: center;
+}
+.browse-icon a:hover{
+    font-size: 60px;
+    height: 65px;
+    width: 65px; 
+    background:-moz-linear-gradient(225deg, var(--pink-light), var(--plum)); 
+    background: -webkit-linear-gradient(225deg, var(--pink-light), var(--plum)); 
+    background: linear-gradient(225deg, var(--pink-light), var(--plum));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color:transparent;
+    text-align: center;
+}
+
+
+.divtwo-background {
+    text-align: left;
+}
+@media (min-width: 1700px) {
+  .divtwo-background {
+    background-image: url(https://pan-learning.org/moodle/customfiles/images/testwallpaper9.png), linear-gradient(105deg, white, var(--purple-light), var(--pink-light));
+    background-size: cover, cover;
+    background-position: 100% 50%, 100% 100%;
+  }
+}
+.divtwo {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: var(--purple); 
+}
+.divtwo-half-left {
+  width: 200px;
+  padding: 20px;
+  margin: 0px 15px;
+  background-image: linear-gradient(to bottom, var(--pink-light), var(--plum));
+  box-shadow: inset 0px 0px 30px 0px rgba(0,0,0,0.2);
+}
+.divtwo-half-next {
+  width: 600px;
+  text-align: left;
+  margin: 32px 80px;
+}
+.elearning{
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 200px;
+  margin: 10px 10px;
+  color: white;
+ }  
+.elearning-icon a {
+    font-size: 45px;
+    width: 60px;
+    color: white;
+    margin: 0px 10px 0px 0px;
+    text-align: center;
+    border-radius: 100px;
+    padding: 18px 10px;
+ }
+ .elearning-icon a:hover{
+    background:-moz-linear-gradient(225deg, var(--purple), var(--purple-light)); 
+    background: -webkit-linear-gradient(225deg, var(--purple), var(--purple-light)); 
+    background: linear-gradient(225deg, var(--purple), var(--purple-light));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color:transparent;
+ }
+ .divtwo h2{
+   margin: 15px 0px;
+}
+ 
+ .divthree {
+  padding: 40px;
+  text-align: center;
+  color: white;
+  background-image: linear-gradient( var(--purple), var(--purple-light));
+}
+.divthree-half-left {
+  width: 65%;
+  display: inline-block;
+  text-align: center;
+  margin: 15px;
+  color: white;
+  vertical-align: middle;
+  border: 3px solid;
+  border-color: white;
+  border-radius: 3px;
+  height: 300px;
+  font-size: 0.8em;
+}
+.events{
+  border: 3px solid;
+  border-color: white;
+  border-radius: 3px;
+  padding: 2px;
+  height: 300px;
+  width: 30%;
+  margin: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.8em;
+}  
+
+.footer-background {
+  height: 200px;
+  width: 100%;
+  background-image: linear-gradient(var(--purple-light), var(--purple));
+} 
+.footer {
+  overflow: auto;
+  left: 0;
+  bottom: 0;
+  color: white;
+  font-size: 1em;
+  display: inline-flex;
+  flex-direction: row;
+} 
+.footer a{
+  color: white;
+  font-weight: normal;
+} 
+.footer a:hover{
+  color: var(--pink-light);
+} 
+.footer-left{
+  text-align: left;
+  width: fit-content;
+}
+.footer-next{
+  text-align: center;
+  width: 1000px
+}
+  
+</style>
+</head>
+<body>
+
+
+<!--<div class="mininav" >
+  <div class="wrapper-wide">
+    <a href="https://pan-training.hzdr.de/users/sign_in">Register</a>
+    <a href="https://pan-training.hzdr.de/users/sign_in">Log In</a>
+    <t> Upload to the catalogue:</t>
+  </div>
+</div>-->
+
+<section>
+  <div class="divone">
+    <nav class="navbar">
+      <div class="wrapper-wide" >
+        <a href="https://pan-learning.org/moodle/">
+          <img class="logo" src="https://pan-learning.org/moodle/customfiles/images/PaN-training-small_color.png">
+        </a>    
+        <a href="https://pan-training.hzdr.de/">PaN-Training</a>
+        <div class="dropdown">
+          <button class="dropbtn">Catalogue
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="https://pan-training.hzdr.de/materials">Search Catalogue</a>
+            <a href="https://pan-training.hzdr.de/workflows">Browse Workflows</a>
+            <a href="https://pan-training.hzdr.de/providers">Browse Providers</a>
+          </div>
+        </div> 
+      </div> 
+      <a href="https://pan-learning.org/">E-Learning</a>
+      <a href="https://pan-training.hzdr.de/events">Events</a>
+      <div class="dropdown">
+        <button class="dropbtn">About
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="https://pan-training.hzdr.de/about">PaN-Training</a>
+          <a href="https://pan-learning.org/moodle/customfiles/about">E-Learning</a>
+          <a href="https://www.panosc.eu/">PaNOSC</a>
+          <a href="https://expands.eu/">ExPANDS</a>
+        </div>
+      </div> 
+    </nav>
+    <div class="wrapper" >
+      <div class="divone-half-left">
+        <img src="https://pan-learning.org/moodle/customfiles/images/PaN-training_color_white.png">
+        <h2> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe. </h2>
+      </div>
+      <div class="divone-half-center">
+        <input type="text" placeholder="Search the Catalogue.."><br>
+        <div class="browse">
+          <div class="browse-icon">
+            <a href="https://pan-training.hzdr.de/materials"> <i class="fa fa-book"></i></a>
+          </div>
+          <h4> Material</h4>
+          <it> Find documents, videos and git repos </it>
+        </div>
+        <div class="browse">
+          <div class="browse-icon">
+            <a href="https://pan-training.hzdr.de/workflows"> <i class="fa fa-sitemap"></i></a>
+          </div>
+          <h4> Workflows</h4>
+          <it> Guided processes for specific scientific management </it>
+        </div>
+        <div class="browse">
+          <div class="browse-icon">
+            <a href="https://pan-training.hzdr.de/content_providers"> <i class="fa fa-university"></i></a>
+          </div>
+          <h4> Providers</h4>
+          <it> Browse by the institue providing content </it>
+        </div>
+    </div>
+  </div>
+</section> 
+
+
+
+<div class="divtwo-background">
+  <div class="wrapper">
+    <div class="divtwo">
+      <div class="divtwo-half-left">
+        <div class="elearning">
+          <div class="elearning-icon">
+            <a href="https://pan-learning.org/" class="fas fa-laptop"></a>
+          </div>
+          <h4> Access Courses </h4>
+        </div>
+        <div class="elearning">
+          <div class="elearning-icon">
+            <a href="https://pan-learning.org/wiki/index.php/Main_Page" class="fab fa-wikipedia-w" ></a>
+          </div>
+          <h4> PaN-wiki </h4>
+        </div>
+        <div class="elearning">
+          <div class="elearning-icon">
+            <a href="https://pan-learning.org/moodle/login/index.php" class="fas fa-sign-in-alt" ></a>
+          </div>
+          <h4> Log on </h4>
+        </div>
+      </div>
+      <div class="divtwo-half-next">
+        <h1> E-Learning Courses </h1>
+        <h2> Online interactive courses on the thoery of PaN science along with experimental data reducation and analysis. </h2>
+        <h2> <i class="fab fa-python"></i> Practice data reduction and analysis. </h2>
+        <h2>  <i class="fab fa-docker"></i> Run Jupyter notebooks remotely. </h2> 
+      </div>
+    </div>  
+  </div>  
+</div>
+
+
+
+
+<div class="divthree">
+  <div class="wrapper">
+  <h1>The Latest</h1>
+    <div class="divthree-half-left">
+      <h1>Content</h1>
+    </div> 
+    <div class="events">
+      <h1>Events</h1>
+    </div> 
+  </div>
+</div>
+
+  
+
+<div class="footer-background">
+  <div class="wrapper">
+    <div class="footer">
+      <div class="footer-left">
+        <p><a href="mailto:pan-training@hzdr.de"> Contact us </a></p>
+        <p><a href="https://pan-training.hzdr.de/about/registering"> Add your training resources </a></p>
+        <p><a href="https://github.com/pan-training/training-catalogue"> Source code </a></p>
+        <p><a href="https://github.com/ElixirTeSS/TeSS"> Orginal version developed by Elixir</a></p>
+        <p><a href="https://pan-learning.org/moodle/admin/settings.php?section=themesettingboost#theme_boost_advanced"> Funding & Acknowledgements </a></p>
+        <p><a href="https://www.panosc.eu/"> Privacy </a></p>
+      </div>
+      <div class="footer-next">
+       <p><em>PaNOSC and ExPaNDS projects have received funding from the European Union's Horizon 2020 research and innovation program under grant agreements <a href="https://www.panosc.eu/" target="_blank">No. 823852</a> and <a href="https://expands.eu/" target="_blank">No. 857641</a>, respectively.</em></p>
+        <p><img src="https://pan-training.hzdr.de/assets/eu_flag-bdba45254594ba28a49bdb43f5234ce04e3a9f956367111fc858fd315c2fba7f.svg" width="75" height="50">&nbsp;&nbsp;&nbsp; <img src="https://pan-learning.org/moodle/customfiles/images/PaNOSC_ExPaNDS_gray8.png" height="55"></p>
+      </div>   
+    </div>
+  </div
+</div>
+
+</body>
+</html>
