@@ -80,25 +80,13 @@ Rails.application.configure do
       protocol: URI.parse(TeSS::Config.base_url).scheme
   }
   #config.action_mailer.asset_host = TeSS::Config.base_url
-  #config.action_mailer.smtp_settings = Rails.application.secrets[:smtp] if Rails.application.secrets.key?(:smtp)
+  config.action_mailer.smtp_settings = Rails.application.secrets[:smtp] if Rails.application.secrets.key?(:smtp)
   
   # ---- sendmail -----
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
   config.action_mailer.default_options = {from: 'admin@pan-training.hzdr.de'}
-
-  # ---- SMTP -----
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address:              'cg.hzdr.de',
-  #   port:                 465,
-  #   domain:               'hzdr.de',
-  #   user_name:            '',
-  #   password:             '',
-  #   authentication:       'login',
-  #   tls:                  true,
-  #   enable_starttls_auto: true }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
