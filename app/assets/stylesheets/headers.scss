@@ -43,7 +43,7 @@
   }
 
   .navbar {
-    background-color: $expands-main; //ExPaNDS color
+    background-color: #dddddd; //ExPaNDS color
     background-image: linear-gradient(to right, #1f214b, #113e69);
     margin-bottom: 0px;
   }
@@ -51,13 +51,22 @@
 }
 
 .navbar-nav .dropdown-menu {
-background-color: black;
+  background-color: #dddddd;
+  
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu > li > a
 {
-color: white;
+  color: $expands-main;
 }
+
+.navbar-default .navbar-nav>.open>a:focus
+{
+  color: $expands-main;
+  border-radius: $nav-pills-border-radius;
+  background-color: #dddddd;
+}
+
 
 /* does not work but the above does
 .dropdown-menu > li > a {
