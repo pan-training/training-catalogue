@@ -1,8 +1,14 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
+
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "WebSite",
-  "name": "TeSS",
+  "name": "Training Catalogue",
   "alternateName": "The <%= TeSS::Config.generic_name%>",
   "url": "<%= root_url%>",
   "potentialAction": {
@@ -21,70 +27,91 @@
 }
 </script>
 
-<%# Welcome text %>
-<div class="welcome-text">
-  <h2 class="module-heading" style="margin-top: 5px;">Welcome to the <%= TeSS::Config.generic_name%></h2>
-  <p>
-    Browsing, discovering and organising PaN sciences training events and resources
-    resources, aggregated from ExPaNDS and PaNOSC partners and 3<sup>rd</sup>-party providers.
-  </p>
+<div id="landing-container", class="container-fluid">
+  <div class="divone">
+      <div class="divone-half-left">
+        <img src="https://pan-learning.org/moodle/customfiles/images/PaN-training_color_white.png">
+        <h2> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe. </h2>
+      </div>
+      <div class="divone-half-center">
+        <div class="searchbox">
+            <%= form_tag search_path, method: :get, role: 'search' do %>
+              <div class="searchbox-wrapper">
+                <input type="text" class="searchbox-field" name="q" placeholder="Search PaN training..." autofocus="autofocus">
+                <button type="submit" class="searchbox-btn">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            <% end %>
+          </div>
+        <div class="browse">
+          <%= link_to materials_path do %>
+            <i class="fa fa-book"></i>
+            <h4> Material</h4>
+            <it> Find documents, videos and git repos </it>
+          <% end %>
+        </div>
+        <div class="browse">
+          <div class="browse-icon">
+            <a href="https://pan-training.hzdr.de/events"> <i class="fa fa-calendar"></i></a>
+          </div>
+          <h4> Events</h4>
+          <it> Browse events providing by our community </it>
+        </div>
+        <div class="browse">
+          <div class="browse-icon">
+            <a href="https://pan-training.hzdr.de/workflows"> <i class="fa fa-sitemap"></i></a>
+          </div>
+          <h4> Workflows</h4>
+          <it> Guided processes for specific scientific management </it>
+        </div>
+        <div class="browse">
+          <div class="browse-icon">
+            <a href="https://pan-training.hzdr.de/content_providers"> <i class="fa fa-university"></i></a>
+          </div>
+          <h4> Providers</h4>
+          <it> Browse by the institue providing content </it>
+        </div>
+      </div>
+  </div>
+
+  <div class="divtwo-background">
+    <div class="wrapper">
+      <div class="divtwo">
+        <div class="divtwo-half-left">
+          <div class="elearning">
+            <div class="elearning-icon">
+              <a href="https://pan-learning.org/" class="fas fa-laptop"></a>
+            </div>
+            <h4> Access Courses </h4>
+          </div>
+          <div class="elearning">
+            <div class="elearning-icon">
+              <a href="https://pan-learning.org/wiki/index.php/Main_Page" class="fab fa-wikipedia-w" ></a>
+            </div>
+            <h4> PaN-wiki </h4>
+          </div>
+          <div class="elearning">
+            <div class="elearning-icon">
+              <a href="https://pan-learning.org/moodle/login/index.php" class="fas fa-sign-in-alt" ></a>
+            </div>
+            <h4> Log on </h4>
+          </div>
+        </div>
+        <div class="divtwo-half-next">
+          <h1> E-Learning Courses </h1>
+          <h2> Online interactive courses on the thoery of PaN science along with experimental data reducation and analysis. </h2>
+          <h2> <i class="fab fa-python"></i> Practice data reduction and analysis. </h2>
+          <h2>  <i class="fab fa-docker"></i> Run Jupyter notebooks remotely. </h2> 
+        </div>
+      </div>  
+    </div>  
+  </div>
+
+
 </div>
 
 
-<%# Big search box %>
-<div class="searchbox">
-  <%= form_tag search_path, method: :get, role: 'search' do %>
-    <div class="searchbox-wrapper">
-      <input type="text" class="searchbox-field" name="q" placeholder="Search PaN training..." autofocus="autofocus">
-      <button type="submit" class="searchbox-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </div>
-  <% end %>
-</div>
-
-<%# Feature buttons %>
-<ul class="featureblocks">
-  <li>
-    <%= link_to events_path do %>
-        <h2><i class="<%= icon_class_for_model('events') %>"></i> Events</h2>
-        <%= image_tag("events-3.jpg", width: "100%", alt: "Events") %>
-    <% end %>
-    <p>Discover the latest training events and news from ExPaNDS, PaNOSC and 3<sup>rd</sup>-party providers.</p>
-  </li>
-
-  <li>
-    <%= link_to materials_path do %>
-        <h2><i class="<%= icon_class_for_model('materials') %>"></i> Training Catalogue</h2>
-        <%= image_tag("materials-3.jpg", width: "100%", alt: "Materials") %>
-    <% end %>
-    <p>Browse the catalogue of training materials for the photon & neutron community offered by ExPaNDS, PaNOSC and 3<sup>rd</sup>-party providers.</p>
-  </li>
-
-   <li>
-    <%= link_to "https://pan-learning.org" do %>
-        <h2><i class="<%= icon_class_for_model('learning') %>"></i> PaN e-learning </h2>
-        <%= image_tag("elearning-2.jpg", width: "100%", alt: "e-learning") %>
-    <% end %>
-    <p>PaN-learning is a Photon and Neutron e-learning platform, which aims to bring free education and training with integrated simulations and Jupyter notebooks to scientists and students.</p>
-  </li>
-
-  <li>
-    <%= link_to workflows_path do %>
-        <h2><i class="<%= icon_class_for_model('workflows') %>"></i> Workflows</h2>
-        <%= image_tag("workflow-2.jpg", width: "100%", alt: "Workflows") %>
-    <% end %>
-    <p>Create simple training workflows directly in our catalogue to visualise learning steps and link resources specific to your training needs.</p>
-  </li>
-
-  <li>
-    <%= link_to content_providers_path do %>
-        <h2><i class="<%= icon_class_for_model('content_providers') %>"></i> Providers</h2>
-        <%= image_tag("providers-hzdr.jpg", width: "100%", alt: "Providers") %>
-    <% end %>
-    <p>Browse training providers to discover training resources they offer and follow links to their materials and courses.</p>
-  </li>
-</ul>
 
 <% if @resources.length > 0 -%>
   <div id="materials-title">
@@ -101,3 +128,4 @@
     <% end -%>
   <% end -%>
 <% end -%>
+  
