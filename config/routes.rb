@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   end
   
   
-  authenticate :user, lambda { |u| u.is_admin? } do
-    mount Blazer::Engine, at: "blazer"    
+  authenticate :user, lambda { |u| u.is_admin? || u.is_curator?  } do
+    mount Blazer::Engine, at: "blazer"   
   end
 
   root 'static#home'
