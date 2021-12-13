@@ -1010,9 +1010,6 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
 }
 
 
-
-
-
 :root {
   --purple: #1f214b; 
   --purple-light: #343a84;
@@ -1056,7 +1053,7 @@ h4 {
   margin-bottom: 10px;
 } 
 p  {
-  color: white;
+  color: black;
   margin: 5px;
 }
 
@@ -1064,9 +1061,6 @@ p  {
 it {
   font-style: italic;
   color: lightgray;
-}
-
-section {
 }
 
 accent {
@@ -1106,7 +1100,6 @@ accent {
 
 .navbar {
   height: 50px;
-  //background-image: linear-gradient(var(--purple-light), var(--purple));
   background-position: left center;
   background: transparent;
   overflow: hidden;
@@ -1281,7 +1274,7 @@ accent {
 }
 @media (min-width: 1700px) {
   .divtwo-background {
-    background-image: url(https://pan-learning.org/moodle/customfiles/images/testwallpaper9.png), linear-gradient(105deg, white, var(--purple-light), var(--pink-light));
+    background-image: asset_url('wallpaper9.png'), linear-gradient(105deg, white, var(--purple-light), var(--pink-light));
     background-size: cover, cover;
     background-position: 100% 50%, 100% 100%;
   }

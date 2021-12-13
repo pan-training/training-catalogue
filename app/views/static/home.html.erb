@@ -30,7 +30,7 @@
 <div id="landing-container", class="container-fluid">
   <div class="divone">
       <div class="divone-half-left">
-        <img src="https://pan-learning.org/moodle/customfiles/images/PaN-training_color_white.png">
+        <%= image_tag("PaN-training_color_white_large.png", width: "100%", alt: "e-learning") %>
         <h2> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe. </h2>
       </div>
       <div class="divone-half-center">
@@ -45,11 +45,11 @@
             <% end %>
           </div>
         <div class="browse">
-          <%= link_to materials_path do %>
-            <i class="fa fa-book"></i>
+          <!-- <%= link_to materials_path do %> -->
+            <a href="https://pan-training.hzdr.de/materials"> <i class="fa fa-book"></i></a>
             <h4> Material</h4>
             <it> Find documents, videos and git repos </it>
-          <% end %>
+          <!-- <% end %> -->
         </div>
         <div class="browse">
           <div class="browse-icon">
