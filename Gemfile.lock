@@ -695,7 +695,7 @@ DEPENDENCIES
   rails-assets-devbridge-autocomplete (~> 1.4.9)!
   rails-assets-eonasdan-bootstrap-datetimepicker (~> 4.17.42)!
   rails-assets-markdown-it (~> 7.0.1)!
-  rails-assets-moment (~> 2.15.0)!
+  rails-assets-moment (~> 2.29.1)!
   rails-controller-testing
   rails_admin
   recaptcha

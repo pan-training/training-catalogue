@@ -135,7 +135,7 @@ gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 7.0.1'
-  gem 'rails-assets-moment', '~> 2.15.0'
+  gem 'rails-assets-moment', '~> 2.29.1'
   gem 'rails-assets-eonasdan-bootstrap-datetimepicker', '~> 4.17.42'
   gem 'rails-assets-devbridge-autocomplete', '~> 1.4.9'
   gem 'rails-assets-clipboard', '~> 1.5.12'
