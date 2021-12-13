@@ -494,7 +494,7 @@ GEM
     recaptcha (4.9.0)
       json
     redcarpet (3.4.0)
-    redis (3.3.3)
+    redis (3.3.5)
     ref (2.0.0)
     remotipart (1.4.2)
     responders (3.0.0)
