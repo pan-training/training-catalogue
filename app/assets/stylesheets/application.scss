@@ -43,7 +43,7 @@ body {
 
 .footer {
   padding: 0;
-  position: absolute;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
@@ -54,7 +54,7 @@ body {
      text-decoration: underline;
   }
   background-color: $expands-main; //ExPaNDS color
-  background-image: linear-gradient(to right, #1f214b, #113e69);
+  background-image: linear-gradient(225deg, var(--purple), var(--purple-light)); //linear-gradient(to right, #1f214b, #113e69);
    
   .container {
     padding: 0;
@@ -89,7 +89,7 @@ body {
 
 div.wrapper {
   *zoom: 1;
-  background-color: #FFF;
+  //background-color: #FFF;
   border: 1px solid #cccccc;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1274,6 +1274,7 @@ accent {
 }
 @media (min-width: 1700px) {
   .divtwo-background {
+    background-color: transparent;
     background-image: asset_url('wallpaper9.png'), linear-gradient(105deg, white, var(--purple-light), var(--pink-light));
     background-size: cover, cover;
     background-position: 100% 50%, 100% 100%;

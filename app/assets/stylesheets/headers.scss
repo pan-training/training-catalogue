@@ -2,7 +2,7 @@
   height: 35px;
   line-height: 35px;
   background-color: $expands-main; //ExPaNDS color
-  background-image: linear-gradient(to right, #1f214b, #113e69);
+  background-image: linear-gradient(to right, 225deg, var(--purple), var(--purple-light));//linear-gradient(to right, #1f214b, #113e69);
   border-bottom: 0px solid #eeeeee;
 
   .user-options {
@@ -23,7 +23,7 @@
 /* Main header colours for background and Text */
 .elixir-orange-header {
   background-color: $expands-main; //ExPaNDS color
-  background-image: linear-gradient(to right, #1f214b, #113e69);
+  background-image: linear-gradient(to right, 225deg, var(--purple), var(--purple-light));//linear-gradient(to right, #1f214b, #113e69);
   
   ul.navbar-nav {
     margin-top: 10px;
@@ -43,8 +43,8 @@
   }
 
   .navbar {
-    background-color: #dddddd; //ExPaNDS color
-    background-image: linear-gradient(to right, #1f214b, #113e69);
+    background-color: var(--purple);//#dddddd; //ExPaNDS color
+    background-image: linear-gradient(to right, 225deg, var(--purple), var(--purple-light));//linear-gradient(to right, #1f214b, #113e69);
     margin-bottom: 0px;
   }
 

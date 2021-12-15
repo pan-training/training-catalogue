@@ -45,32 +45,40 @@
             <% end %>
           </div>
         <div class="browse">
-          <!-- <%= link_to materials_path do %> -->
-            <a href="https://pan-training.hzdr.de/materials"> <i class="fa fa-book"></i></a>
-            <h4> Material</h4>
-            <it> Find documents, videos and git repos </it>
-          <!-- <% end %> -->
+        <%= link_to materials_path do %>
+          <div class="browse-icon">
+            <i class="fa fa-book"></i></a>
+          </div>
+          <h4> Material</h4>
+          <it> Find documents, videos and git repos </it>
+          <% end %>
         </div>
         <div class="browse">
+        <%= link_to events_path do %>
           <div class="browse-icon">
-            <a href="https://pan-training.hzdr.de/events"> <i class="fa fa-calendar"></i></a>
+            <i class="fa fa-calendar"></i></a>
           </div>
           <h4> Events</h4>
           <it> Browse events providing by our community </it>
+        <% end %>  
         </div>
         <div class="browse">
+         <%= link_to workflows_path do %>
           <div class="browse-icon">
-            <a href="https://pan-training.hzdr.de/workflows"> <i class="fa fa-sitemap"></i></a>
+            <i class="fa fa-sitemap"></i></a>
           </div>
           <h4> Workflows</h4>
           <it> Guided processes for specific scientific management </it>
+          <% end %>
         </div>
         <div class="browse">
+        <%= link_to content_providers_path do %>
           <div class="browse-icon">
-            <a href="https://pan-training.hzdr.de/content_providers"> <i class="fa fa-university"></i></a>
+            <i class="fa fa-university"></i></a>
           </div>
           <h4> Providers</h4>
           <it> Browse by the institue providing content </it>
+          <% end %>
         </div>
       </div>
   </div>
