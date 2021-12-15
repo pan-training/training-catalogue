@@ -579,14 +579,16 @@ ul.featureblocks {
       border: none;
       background: transparent;
       padding: 15px 15px 15px 25px;
+      color: #444;
       flex: 1;
-      min-width: 220px;
+      min-width: 180px;
     }
 
     .searchbox-btn {
       border: none;
       background: transparent;
       padding: 5px 15px;
+      color: #444;
       flex-shrink: 0;
     }
   }
@@ -1157,11 +1159,6 @@ accent {
   font-family: inherit;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  color: var(--purple);
-  background-color: var(--gray-lightest);
-}
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -1171,36 +1168,6 @@ accent {
   z-index: 1;
   margin: -3px 0
 }
-
-.dropdown-content a {
-  font-size: 1em;
-  font-weight: 200;
-  color: var(--purple);
-  float: none;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  color: var(--pink);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
- 
- 
- 
- 
- 
- 
- 
- 
- 
-  
-
 
 .divone {
   padding: 0px 40px 40px 40px;
@@ -1347,45 +1314,4 @@ accent {
   height: 300px;
   font-size: 0.8em;
 }
-.events{
-  border: 3px solid;
-  border-color: white;
-  border-radius: 3px;
-  padding: 2px;
-  height: 300px;
-  width: 30%;
-  margin: 15px;
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 0.8em;
-}  
 
-.footer-background {
-  height: 200px;
-  width: 100%;
-  background-image: linear-gradient(var(--purple-light), var(--purple));
-} 
-.footer {
-  overflow: auto;
-  left: 0;
-  bottom: 0;
-  color: white;
-  font-size: 1em;
-  display: inline-flex;
-  flex-direction: row;
-} 
-.footer a{
-  color: white;
-  font-weight: normal;
-} 
-.footer a:hover{
-  color: var(--pink-light);
-} 
-.footer-left{
-  text-align: left;
-  width: fit-content;
-}
-.footer-next{
-  text-align: center;
-  width: 1000px
-}
