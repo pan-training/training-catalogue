@@ -1,6 +1,7 @@
 .elixir-black-header {
   height: 35px;
   line-height: 35px;
+
   background-color: $expands-main; //ExPaNDS color
   background-image: linear-gradient(to right, 225deg, var(--purple), var(--purple-light));//linear-gradient(to right, #1f214b, #113e69);
   border-bottom: 0px solid #eeeeee;
@@ -52,17 +53,22 @@
 
 .navbar-nav .dropdown-menu {
   background-color: #dddddd;
-  
+  z-index: 10000;
+  overflow: auto;
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu > li > a
 {
   color: $expands-main;
+  z-index: 10000;
+  overflow: auto;
 }
 
 .navbar-default .navbar-nav>.open>a:focus
 {
   color: $expands-main;
+  z-index: 10000;
+  overflow: auto;
   border-radius: $nav-pills-border-radius;
   background-color: #dddddd;
 }

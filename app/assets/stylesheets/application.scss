@@ -121,8 +121,10 @@ div.wrapper {
 
 #landing-container {
   width: 100vw;
+  min-width: 100vw;
   margin-left: calc(-100vw / 2 + 1100px / 2) !important;
   margin-right: calc(-100vw / 2 + 1100px / 2) !important;
+  padding-right: 0vw
 }
 
 #content {
@@ -995,6 +997,7 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
   position: relative;
   display: block;
   padding: 10px 15px;
+  
 
   .list-card-heading {
     display: block;
@@ -1144,40 +1147,14 @@ accent {
   font-weight: bold;
 }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 1.1em;
-  font-weight: 200;
-  color: white;
-  border: none;
-  outline: none;
-  padding: 16px 10px;
-  background-color: inherit;
-  font-family: inherit;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--gray-lightest);
-  min-width: 160px;
-  box-shadow: 8px 8px 10px rgba(0,0,0,0.2);
-  z-index: 1;
-  margin: -3px 0
-}
-
 .divone {
-  padding: 0px 40px 40px 40px;
+  padding: 0px 20px 20px 20px;
   text-align: center;
   color: white;
   background-image: linear-gradient( var(--purple), var(--teal));
 }
 .divone-half-left {
-  width: 650px;
+  width: 450px;
   display: inline-block;
   text-align: left;
   margin: 32px;
@@ -1236,7 +1213,6 @@ accent {
     text-align: center;
 }
 
-
 .divtwo-background {
     text-align: left;
 }
@@ -1255,9 +1231,10 @@ accent {
     color: var(--purple); 
 }
 .divtwo-half-left {
-  width: 200px;
+  width: 240px;
   padding: 20px;
   margin: 0px 15px;
+  margin-left: 50px;
   background-image: linear-gradient(to bottom, var(--pink-light), var(--plum));
   box-shadow: inset 0px 0px 30px 0px rgba(0,0,0,0.2);
 }
