@@ -48,6 +48,7 @@ body {
   bottom: 0;
   left: 0;
   color: #dddddd;
+  z-index: -1;
 
   a:hover, a:focus {
      color: #dddddd;
@@ -82,9 +83,13 @@ body {
   position:0px;
   left: 0px;
   width:100%;
-  height:4px;
+  height:3px;
   background-color: #bb284d;
   background-image: linear-gradient(to right, #bb284d, #f08222);
+  overflow-x: hidden;
+  margin: 0 -9999rem;
+  padding: 0.25rem 9999rem;
+  position:0px;
  }
 
 div.wrapper {
@@ -1153,6 +1158,10 @@ accent {
   text-align: center;
   color: white;
   background-image: linear-gradient( var(--purple), var(--teal));
+  overflow-x: hidden;
+  margin: 0 -9999rem;
+  padding: 0.25rem 9999rem;
+  position:0px;
 }
 .divone-half-left {
   width: 450px;
