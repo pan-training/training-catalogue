@@ -43,7 +43,7 @@ body {
 
 .footer {
   padding: 0;
-  position: relative;
+  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
@@ -1026,42 +1026,16 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
   --blue-light: #75abec;
 }
 
-body {
-  margin: 0; 
-  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif; 
-  height: 100%;
-}
 
-body a{
-  margin: 0; 
-  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif; 
-  font-weight: bold;
-  text-decoration: none;
-}
 
-h1 {
-  font-size: 3.5em;
-  margin: 15px 0px;
-  font-weight: 200;
-  font-family: 'Muli Light';
-} 
-
-h2 {
+h5 {
   font-size: 1.4em;
   font-weight: 300;
   margin: 15px;
   font-family: 'Muli';
   font-style: italic;
 } 
-h4 {
-  font-size: 1.1em;
-  margin-top: 10px;
-  margin-bottom: 10px;
-} 
-p  {
-  color: black;
-  margin: 5px;
-}
+
 
 
 it {
@@ -1103,49 +1077,6 @@ accent {
 .logo {
     height: 30px;   
     margin: -5px 10px;
-}
-
-.navbar {
-  height: 50px;
-  background-position: left center;
-  background: transparent;
-  overflow: hidden;
-  padding-bottom: 40px;
-}
-
-.navbar a {
-  font-size: 1.1em;
-  font-weight: 200;
-  color: white;
-  text-align: center;
-  padding: 16px 10px;
-  text-decoration: none;
-  float: left;
-}
-
-.mininav {
-  height: 20px;
-  background-image: linear-gradient(to left, var(--pink), var(--pink-light));
-}
-
-.mininav t {
-  color: var(--purple);
-  padding: 1px 7px;
-  float: right;  
-  position: relative;
-  font-weight: 200;
-}
-
-.mininav a {
-  color: var(--purple);
-  padding: 1px 5px;
-  float: right;  
-  position: relative;
-  font-weight: 200;
-}
-
-.mininav a:hover {
-  font-weight: bold;
 }
 
 .divone {
