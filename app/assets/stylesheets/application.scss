@@ -82,9 +82,13 @@ body {
   position:0px;
   left: 0px;
   width:100%;
-  height:4px;
+  height:3px;
   background-color: #bb284d;
   background-image: linear-gradient(to right, #bb284d, #f08222);
+  overflow-x: hidden;
+  margin: 0 -9999rem;
+  padding: 0rem 9999rem;
+  position:0px;
  }
 
 div.wrapper {
@@ -565,13 +569,14 @@ ul.featureblocks {
 
   form {
     padding-right: 10px;
-    background-color: #fff;
+    //background-color: #fff;
     text-align: center;
     line-height: 2;
     font-size: large;
     margin: auto;
-    max-width: 800px;
-    border: 1px solid #ccc;
+    max-width: 700px;
+    max-height: 25px;
+    //border: 1px solid #ccc;
 
     .searchbox-wrapper {
       display: flex;
@@ -579,7 +584,7 @@ ul.featureblocks {
 
     .searchbox-field {
       border: none;
-      background: transparent;
+      background-color: #fff;
       padding: 15px 15px 15px 25px;
       color: #444;
       flex: 1;
@@ -590,7 +595,7 @@ ul.featureblocks {
       border: none;
       background: transparent;
       padding: 5px 15px;
-      color: #444;
+      color: #fff;
       flex-shrink: 0;
     }
   }
@@ -1084,6 +1089,10 @@ accent {
   text-align: center;
   color: white;
   background-image: linear-gradient( var(--purple), var(--teal));
+  overflow-x: hidden;
+  margin: 0 -9999rem;
+  padding: 0.25rem 9999rem;
+  position:0px;
 }
 .divone-half-left {
   width: 450px;
@@ -1105,7 +1114,7 @@ accent {
 }
 .divone input[type=text] {
   padding: 16px;
-  font-size: 25px;
+  font-size: 20px;
   font-style: italic;
   border-style: solid;
   border-radius: 15px;
