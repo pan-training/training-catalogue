@@ -30,7 +30,9 @@
 <div id="landing-container", class="container-fluid">
   <div class="divone">
       <div class="divone-half-left">
+        <center>
         <%= image_tag("PaN-training_color_white_large.png", width: "70%", alt: "e-learning") %>
+        </center>
         <h5> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe. </h5>
       </div>
       <div class="divone-half-center">
@@ -45,6 +47,7 @@
             <% end %>
           </div>
         <div class="browse">
+        <center>
         <%= link_to materials_path do %>
           <div class="browse-icon">
             <i class="fa fa-book"></i></a>
@@ -52,17 +55,21 @@
           <h4> Materials</h4>
           <it> Find documents, videos and git repos </it>
           <% end %>
+          </center>
         </div>
         <div class="browse">
+        <center>
         <%= link_to events_path do %>
           <div class="browse-icon">
             <i class="fa fa-calendar"></i></a>
           </div>
           <h4> Events</h4>
           <it> Browse events providing by our community </it>
-        <% end %>  
+        <% end %>
+        </center>  
         </div>
         <div class="browse">
+        <center>
          <%= link_to workflows_path do %>
           <div class="browse-icon">
             <i class="fa fa-sitemap"></i></a>
@@ -70,8 +77,10 @@
           <h4> Workflows</h4>
           <it> Guided processes for specific scientific management </it>
           <% end %>
+          </center>
         </div>
         <div class="browse">
+        <center>
         <%= link_to content_providers_path do %>
           <div class="browse-icon">
             <i class="fa fa-university"></i></a>
@@ -79,32 +88,32 @@
           <h4> Providers</h4>
           <it> Browse by the institue providing content </it>
           <% end %>
+          </center>
         </div>
       </div>
   </div>
 
   <div class="divtwo-background">
    <div class="pan-line"></div> 
-    <div class="wrapper">
       <div class="divtwo">
         <div class="divtwo-half-left">
           <div class="elearning">
             <div class="elearning-icon">
               <a href="https://pan-learning.org/" class="fas fa-laptop"></a>
             </div>
-            <h5> Access Courses </h5>
+            <h4> Access Courses </h4>
           </div>
           <div class="elearning">
             <div class="elearning-icon">
               <a href="https://pan-learning.org/wiki/index.php/Main_Page" class="fab fa-wikipedia-w" ></a>
             </div>
-            <h5> PaN-wiki </h5>
+            <h4> PaN-wiki </h4>
           </div>
           <div class="elearning">
             <div class="elearning-icon">
               <a href="https://pan-learning.org/moodle/login/index.php" class="fas fa-sign-in-alt" ></a>
             </div>
-            <h5> Log on </h5>
+            <h4> Log on </h4>
           </div>
         </div>
         <div class="divtwo-half-next">
@@ -113,7 +122,6 @@
           <h5> <i class="fab fa-python"></i> Practice data reduction and analysis. </h5>
           <h5>  <i class="fab fa-docker"></i> Run Jupyter notebooks remotely. </h5> 
         </div>
-      </div>  
     </div>
     <div class="pan-line"></div> 
   </div>
