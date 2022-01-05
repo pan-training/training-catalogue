@@ -9,7 +9,7 @@ class StaticController < ApplicationController
     @resources = []
     if TeSS::Config.solr_enabled
       [Event, Material].each do |resource|
-        @resources += resource.search_and_filter(nil, '', { 'max_age' => '12 month' }, sort_by: 'new', per_page: 5).results
+        @resources += resource.search_and_filter(nil, '', sort_by: 'new', per_page: 2).results
       end
     end
 
