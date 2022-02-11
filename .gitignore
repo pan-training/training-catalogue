@@ -30,3 +30,4 @@ coverage
 *.mp4
 *.code-workspace
 my_upload_script.rb
+scripts/db_bac
