@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2'
 gem "bootsnap", ">= 1.4.6"
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.19.0'
 
 # For installing PG on macs:
 gem 'lunchy'
@@ -117,11 +117,11 @@ gem 'rack-cors', require: 'rack/cors'
 
 gem 'recaptcha', require: 'recaptcha/rails'
 
-gem 'linkeddata'
+gem 'linkeddata', '~> 3.0.1'
 
 # Used for lat/lon rake task
 gem 'geocoder'
-gem 'redis'
+gem 'redis', '~> 3.3.3'
 
 gem 'active_model_serializers'
 
@@ -135,9 +135,9 @@ gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 7.0.1'
-  gem 'rails-assets-moment', '~> 2.15.0'
+  gem 'rails-assets-moment', '~> 2.15.2'
   gem 'rails-assets-eonasdan-bootstrap-datetimepicker', '~> 4.17.42'
-  gem 'rails-assets-devbridge-autocomplete', '~> 1.2.26'
+  gem 'rails-assets-devbridge-autocomplete', '~> 1.2.27'
   gem 'rails-assets-clipboard', '~> 1.5.12'
 end
 

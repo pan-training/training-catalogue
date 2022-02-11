@@ -27,10 +27,17 @@ module HasBcontributors
         
 
         text :contributor do
-          self.bcontributors.pluck(:firstname,:lastname)
+          #self.bcontributors.pluck(:firstname,:lastname)
+          self.bcontributors.pluck(:firstname,:lastname).to_s
         end          
         string :contributor, multiple: true do
-          self.bcontributors.pluck(:firstname,:lastname)
+          #self.bcontributors.pluck(:firstname,:lastname)
+          arrayy = []
+          bcontribs = self.bcontributors.pluck(:firstname,:lastname)
+          bcontribs.each do |item|
+          arrayy << item.to_s
+          end          
+          arrayy         
         end                
         
       end
