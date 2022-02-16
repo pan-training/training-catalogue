@@ -31,7 +31,7 @@ gem 'devise'
 gem 'omniauth_openid_connect'
 
 # Activity logging
-gem 'public_activity', '~> 1.6.1'
+gem 'public_activity', '~> 1.6.4'
 
 gem 'simple_token_authentication', '~> 1.0'
 
