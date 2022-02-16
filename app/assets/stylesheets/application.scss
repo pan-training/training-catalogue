@@ -54,7 +54,7 @@ body {
      text-decoration: underline;
   }
   background-color: $expands-main; //ExPaNDS color
-  background-image: linear-gradient(to right, #1f214b, #113e69);
+  background-image: linear-gradient(225deg, var(--purple), var(--teal)); //linear-gradient(to right, #1f214b, #113e69);
    
   .container {
     padding: 0;
@@ -85,11 +85,28 @@ body {
   height:3px;
   background-color: #bb284d;
   background-image: linear-gradient(to right, #bb284d, #f08222);
+  overflow-x: hidden;
+  margin: 0 -9999rem;
+  padding: 0rem 9999rem;
+  position:0px;
+ }
+
+ .seperator-block{
+  content:'';
+  position:0px;
+  left: 0px;
+  width:100%;
+  height:30px;
+  background-color: $expands-main; //ExPaNDS color
+  background-image: linear-gradient(to right, var(--teal), var(--teal));
+  margin: 0 -9999rem;
+  padding: 0rem 9999rem;
+  position:0px;
  }
 
 div.wrapper {
   *zoom: 1;
-  background-color: #FFF;
+  //background-color: #FFF;
   border: 1px solid #cccccc;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -97,7 +114,7 @@ div.wrapper {
   -webkit-box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   display: flex;
 
   &.collapsing-wrapper {
@@ -117,6 +134,14 @@ div.wrapper {
 
 #main-container, #header-container {
   max-width: 1200px;
+}
+
+#landing-container {
+  width: 100vw;
+  min-width: 100vw;
+  margin-left: calc(-100vw / 2 + 1100px / 2) !important;
+  margin-right: calc(-100vw / 2 + 1100px / 2) !important;
+  padding-right: 0vw
 }
 
 #content {
@@ -557,13 +582,14 @@ ul.featureblocks {
 
   form {
     padding-right: 10px;
-    background-color: #fff;
+    //background-color: #fff;
     text-align: center;
     line-height: 2;
     font-size: large;
     margin: auto;
-    max-width: 800px;
-    border: 1px solid #ccc;
+    max-width: 700px;
+    max-height: 25px;
+    //border: 1px solid #ccc;
 
     .searchbox-wrapper {
       display: flex;
@@ -571,16 +597,18 @@ ul.featureblocks {
 
     .searchbox-field {
       border: none;
-      background: transparent;
+      background-color: #fff;
       padding: 15px 15px 15px 25px;
+      color: #444;
       flex: 1;
-      min-width: 220px;
+      min-width: 180px;
     }
 
     .searchbox-btn {
       border: none;
       background: transparent;
       padding: 5px 15px;
+      color: #fff;
       flex-shrink: 0;
     }
   }
@@ -987,6 +1015,7 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
   position: relative;
   display: block;
   padding: 10px 15px;
+  
 
   .list-card-heading {
     display: block;
@@ -1001,5 +1030,192 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
 
 .aai-login{
   width: 120px;
+}
+
+:root {
+  --purple: #1f214b;
+  --teal: #113e69;
+  --plum: #8e2651; 
+  --pink: #bb284d;
+  --pink-light: #ef2b5c;
+  --orange: #f08222;
+  --gray-lightest:  #f2f2f2;
+  --blue-light: #75abec;
+}
+
+h5 {
+  font-size: 1.2em;
+  font-weight: 300;
+  margin: 15px;
+  font-family: 'Muli';
+  font-style: italic;
+} 
+
+it {
+  font-style: italic;
+  color: lightgray;
+}
+
+
+.wrapper-wide {
+    max-width: calc(2000px - 8rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+.wrapper {
+    max-width: calc(2000px - 8rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-bottom: 0rem;
+}
+
+
+
+.logo {
+    height: 30px;   
+    margin: -5px 10px;
+}
+
+.divone {
+  padding: 0px 20px 20px 20px;
+  text-align: center;
+  color: white;
+  background-image: linear-gradient( var(--purple), var(--teal));
+  overflow-x: hidden;
+  margin: 0 -9999rem;
+  padding: 0.25rem 9999rem;
+  position:0px;
+}
+.divone-half-left {
+  width: 450px;
+  display: inline-block;
+  text-align: left;
+  margin: 32px;
+  color: white;
+  vertical-align: middle;
+
+}
+.divone-half-center {
+  width: 750px;
+  display: inline-block;
+  text-align: center;
+  margin: 32px;
+  color: white;
+  vertical-align: middle;
+
+}
+.divone input[type=text] {
+  padding: 16px;
+  font-size: 20px;
+  font-style: italic;
+  border-style: solid;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: #0f2f5f;
+  width: 600px;
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.2);
+  //margin: 15px;
+}
+.browse{
+  padding: 15px;
+  height: 160px;
+  width: 150px;
+  margin: 30px 10px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: left;
+ }  
+ .browse-icon a{
+    font-size: 60px;
+    height: 65px;
+    width: 65px;
+    color: white;
+    text-align: center;
+}
+
+.divtwo-background {
+    text-align: left;
+}
+@media (min-width: 1400px) {
+  .divtwo-background {
+    background-color: transparent;
+    margin-bottom: 0px;
+    background-image: asset_url('wallpaper9.png'), linear-gradient(105deg, white, var(--pink), var(--orange));
+    background-size: cover, cover;
+    background-position: 100% 50%, 100% 100%;
+  }
+}
+.divtwo {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: var(--purple);
+    max-height: 280px;
+}
+.divtwo-half-left {
+  width: 240px;
+  padding: 20px;
+  margin: 0px 15px;
+  margin-left: 80px;
+  background-image: linear-gradient(to bottom, var(--pink-light), var(--plum));
+  box-shadow: inset 0px 0px 30px 0px rgba(0,0,0,0.2);
+}
+.divtwo-half-next {
+  width: 600px;
+  text-align: left;
+  margin: 32px 80px;
+}
+.elearning{
+  display: flex;
+  align-items: center;
+  height: 60px;
+  width: 180px;
+  margin: 10px 10px;
+  color: white;
+ }  
+.elearning-icon a {
+    font-size: 45px;
+    width: 60px;
+    color: white;
+    margin: 0px 10px 0px 0px;
+    text-align: center;
+    border-radius: 100px;
+    padding: 5px 5px;
+ }
+ .elearning-icon a:hover{
+    background:-moz-linear-gradient(225deg, var(--purple), var(--teal)); 
+    background: -webkit-linear-gradient(225deg, var(--purple), var(--teal)); 
+    background: linear-gradient(225deg, var(--purple), var(--teal));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color:transparent;
+ }
+ .divtwo h2{
+   margin: 15px 0px;
+}
+ 
+ .divthree {
+  padding: 40px;
+  text-align: center;
+  color: white;
+  background-image: linear-gradient( var(--purple), var(--teal));
+}
+.divthree-half-left {
+  width: 65%;
+  display: inline-block;
+  text-align: center;
+  margin: 15px;
+  color: white;
+  vertical-align: middle;
+  border: 3px solid;
+  border-color: white;
+  border-radius: 3px;
+  height: 300px;
+  font-size: 0.8em;
 }
 
