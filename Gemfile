@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2'
 gem "bootsnap", ">= 1.4.6"
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.19.0'
+gem 'pg', '~> 1.3.2'
 
 # For installing PG on macs:
 gem 'lunchy'
