@@ -33,7 +33,9 @@
         <center>
         <%= image_tag("PaN-training_color_white_large.png", width: "70%", alt: "e-learning") %>
         </center>
-        <h5> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe. </h5>
+        <h5> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe.
+             <br> We have <%= Material.count() %> materials, <%= Event.count() %> events and <%= Workflow.count() %> workflows. 
+        </h5>
       </div>
       <div class="divone-half-center">
         <div class="searchbox is--transparent">

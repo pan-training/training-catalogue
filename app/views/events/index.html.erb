@@ -32,35 +32,9 @@ var getTab =function(){
 
 addTabToFilters(getTab());
 
-
 var loadedMapScript = false;
-console.log('loadedMapScript put to false here, should only be once a page load i think nn?');
-
-
-
-
-
-
-
-/*
-if(map !== undefined){
-
-map.setTarget(null)
-
-} */
-
-
-/*
-if (!loadedMapScript){
-    console.log("fire",loadedMapScript);
-    loadedMapScript = initializeMap();
-}*/
-
-
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-  console.log("we switching");
-  
   /*Load map script only once when event tab is selected
   *
   * if (e.target.id == 'caltab'){
@@ -69,15 +43,8 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       }
    }
    */
-   console.log("before fire",loadedMapScript);
   if (e.target.href.endsWith('#mapped')) {
-  
     if (!loadedMapScript){
-        console.log("fire",loadedMapScript);
-        
-        
-
-        
         loadedMapScript = initializeMap();
     }
     addTabToFilters('mapped');
@@ -164,10 +131,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
           <div id="mapped" class="tab-pane fade">
             <div id="map-count" class="search-results-count"></div>
             <div id="map-content">              
-              <%= render partial: 'events/partials/events_map' %>
-<script type="text/javascript" data-turbolinks-eval=false>
-  console.log("I'm only run once on the initial page load enjoyed my stayyyyyyyyyyyyyyyyyyyyyyyy");
-</script>              
+              <%= render partial: 'events/partials/events_map' %>             
               <p id="map-notice" class="help-block">
                 Note, this map only displays events that have geolocation information in TeSS.<br>
                   For the complete list of events in TeSS, click the grid tab.

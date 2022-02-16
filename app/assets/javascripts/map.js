@@ -4,9 +4,6 @@ var map;
 var count;
 
 function plotEvents(events){
-console.log("heat of the momentttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",events);
-
-
 
 markersPI = []; // Liste des marqueurs
 popupsPI = [];
@@ -19,88 +16,13 @@ var map = $('#map').data('map');
 
 events.forEach(function(event) {
 
-
-
 if (event.latitude !== null && event.longitude !== null) {
 
-console.log(event,"take cover");
-
-
-//event.latitude
-//event.longitude
-
+//latitude
+//longitude
 //title
 //organizer
 //url
-
-
-/*
-entered_js=0;
-text_js = "";
-
-
-if(event.venue!==""){
-
-    text_js = event.venue;
-    entered_js=1;
-
-}
-
-if(event.city!==""){
-    if(entered_js==1){
-        text_js += ', ' + event.city;
-    }
-    else{
-        text_js +=  event.city;
-        entered_js=1;
-    }
-}
-
- 
-
-if(event.county!==""){
-    if(entered_js==1){
-        text_js += ', ' + event.county;
-    }
-    else{
-        text_js +=  event.county;
-        entered_js=1;
-    }
-}
-
-
-if(event.country!==""){
-    if(entered_js==1){
-        text_js += ', ' + event.country;
-    }
-    else{
-        text_js +=  event.country;
-        entered_js=1;
-    }
-}
-
-if(event.postcode!==""){
-    if(entered_js==1){
-        text_js += ', ' + event.postcode;
-    }
-    else{
-        text_js +=  event.postcode;
-    }
-}
-
-//not sure this will work
-//var texttt = <%= escape_javascript(text_js) %>;
-
-console.log(text_js);
-
-
-
-*/
-
-
-
-
-console.log("aishiteru", document.getElementById('marker').cloneNode());
 
 markersPI.push(document.getElementById('marker').cloneNode());
 markersPI[nbPI].id = nbPI;
@@ -109,9 +31,11 @@ position: ol.proj.fromLonLat([event.longitude,event.latitude]),
 positioning: 'center-center',
 element: markersPI[nbPI]
 }));
-// Une popup est créée pour chaque point d’intéret
+// popup created for each location
 popupsPI.push(document.getElementById('popup').cloneNode());
-popupsPI[nbPI].innerHTML = ""+event.title;
+//popupsPI[nbPI].innerHTML = ""+event.title; 
+//popupsPI[nbPI].innerHTML = '<span class="gcd-road">' + event.title + '</span>';
+popupsPI[nbPI].innerHTML = '<span class="gcd-road"><a href="'+event.url+'">'+event.title+'</a></span>';
 popupsPI[nbPI].id = "popup"+nbPI;
 popupsPI[nbPI].style.color = "black";
 map.addOverlay(new ol.Overlay({
@@ -120,99 +44,20 @@ offset : [0, -15],
 position: ol.proj.fromLonLat([event.longitude,event.latitude]),
 element: popupsPI[nbPI]
 }));
-// On associe à chaque marqueur un gestionnaire d’événements :
-// quand l’utilisateur clique sur le marqueur soit la popup est affichée, soit elle est désaffichée
+// each marker has an event handlet
+// when the user clicks, it appears/disappears
 markersPI[nbPI].addEventListener('click', function(evt) {
 let popup = document.getElementById("popup"+evt.target.id);
 (popup.style.display == "none" ? popup.style.display = "block" :
 popup.style.display = "none")
 });
 nbPI++;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
+});
+}
 
 /*
-
-
-//2lignes dessous commente osef i think
-//let html = "<li>"+liste[0]+" ("+liste[1]+":"+liste[2]+")</li>";
-//$("#pis").append(html); // syntaxe JQuery pour sélectionner la liste pis
-// et y intégrer les informations concernant le point d’intéret
-// Un marqueur est créé pour chaque point d’intéret
-
-
-markersPI.push(document.getElementById('marker').cloneNode());
-markersPI[nbPI].id = nbPI;
-map.addOverlay(new ol.Overlay({
-position: ol.proj.fromLonLat([liste[2],liste[1]]),
-positioning: 'center-center',
-element: markersPI[nbPI]
-}));
-// Une popup est créée pour chaque point d’intéret
-popupsPI.push(document.getElementById('popup').cloneNode());
-popupsPI[nbPI].innerHTML = ""+liste[0];
-popupsPI[nbPI].id = "popup"+nbPI;
-popupsPI[nbPI].style.color = "black";
-map.addOverlay(new ol.Overlay({
-positioning: 'center-center',
-offset : [20, -25],
-position: ol.proj.fromLonLat([liste[2],liste[1]]),
-element: popupsPI[nbPI]
-}));
-// On associe à chaque marqueur un gestionnaire d’événements :
-// quand l’utilisateur clique sur le marqueur soit la popup est affichée, soit elle est désaffichée
-markersPI[nbPI].addEventListener('click', function(evt) {
-let popup = document.getElementById("popup"+evt.target.id);
-(popup.style.display == "none" ? popup.style.display = "block" :
-popup.style.display = "none")
-});
-nbPI++;
-
-
-*/
-
-
-
-
-
-
-}
-
-});
-
-
-
-
-
-}
-
-
-function plotEventss(events){
+function plotEvents(events){
     var infowindow = new google.maps.InfoWindow({content: content});
     var markers = {};
     count = 0;
@@ -228,7 +73,8 @@ function plotEventss(events){
                 markers[key] = {
                     position: {lat: Number(event.attributes.latitude), lng: Number(event.attributes.longitude)},
                     content: event_display,
-                    title: '"' + event.attributes.title + '"' /* set to location? */
+                    title: '"' + event.attributes.title + '"' 
+                    // set to location? 
                 }
             }
         }
@@ -260,7 +106,7 @@ function plotEventss(events){
         $('#map-count').text('No geolocation information provided for the selected events.');
     }
 }
-
+*/
 
 /*
 <script>

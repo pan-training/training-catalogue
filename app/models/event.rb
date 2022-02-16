@@ -329,7 +329,8 @@ class Event < ApplicationRecord
   def geocoding_cache_lookup
     location = self.address
     puts self.address
-    puts "pina coladaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas"
+    puts "Problem related to redis might appear here, need to do more testing"
+    puts "sidekiq running, reindex solr, then run server (fixed it on my end), maybe the redis version/Gemfile has an impact too"
     begin
       redis = Redis.new
       #this was not finding a location but returning 0
@@ -337,7 +338,7 @@ class Event < ApplicationRecord
       #weird
       if redis.exists(location)!=0
         puts(redis.get(location))
-        puts "shadowwwwwwwwwwwwww"
+        puts "Seems like it can be Nil, should maybe put a condition to check if it's nil here"
         self.latitude, self.longitude = JSON.parse(redis.get(location))
         Rails.logger.info("Re-using: #{location}")
       end
