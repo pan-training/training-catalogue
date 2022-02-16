@@ -1,58 +1,91 @@
 <script>
-  document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbolinks:load", function() {
 
-    /* Set all filter links to include the anchor */
-    var addTabToFilters = function(tab){
-      if (tab){
-          $(function () {
-              $('.active-filters a').attr('href', function(_, oldHref){
-                  oldHref = oldHref.replace(/\#(.*)/g, "#" + tab);
-                  if (oldHref.indexOf('#') == -1)
-                      oldHref += "#" + tab;
-                  return oldHref;
-              })
-              $('.nav-item a').attr('href', function (_, oldHref) {
-                  oldHref = oldHref.replace(/\#(.*)/g, "#" + tab);
-                  if (oldHref.indexOf('#') == -1)
-                      oldHref += "#" + tab;
-                  return oldHref;
-              });
+/* Set all filter links to include the anchor */
+var addTabToFilters = function(tab){
+  if (tab){
+      $(function () {
+          $('.active-filters a').attr('href', function(_, oldHref){
+              oldHref = oldHref.replace(/\#(.*)/g, "#" + tab);
+              if (oldHref.indexOf('#') == -1)
+                  oldHref += "#" + tab;
+              return oldHref;
+          })
+          $('.nav-item a').attr('href', function (_, oldHref) {
+              oldHref = oldHref.replace(/\#(.*)/g, "#" + tab);
+              if (oldHref.indexOf('#') == -1)
+                  oldHref += "#" + tab;
+              return oldHref;
           });
+      });
+  }
+};
+
+var getTab =function(){
+    var tab = window.location.hash;
+    if (tab){
+        return tab.substring(1) /* stip hash */
+    } else {
+        return ''
+    }
+};
+
+addTabToFilters(getTab());
+
+
+var loadedMapScript = false;
+console.log('loadedMapScript put to false here, should only be once a page load i think nn?');
+
+
+
+
+
+
+
+/*
+if(map !== undefined){
+
+map.setTarget(null)
+
+} */
+
+
+/*
+if (!loadedMapScript){
+    console.log("fire",loadedMapScript);
+    loadedMapScript = initializeMap();
+}*/
+
+
+
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  console.log("we switching");
+  
+  /*Load map script only once when event tab is selected
+  *
+  * if (e.target.id == 'caltab'){
+      if (!loadedCalendarScript){
+        $.getScript('https://www.gstatic.com/charts/loader.js', function(){drawChart()});
       }
-    };
+   }
+   */
+   console.log("before fire",loadedMapScript);
+  if (e.target.href.endsWith('#mapped')) {
+  
+    if (!loadedMapScript){
+        console.log("fire",loadedMapScript);
+        
+        
 
-    var getTab =function(){
-        var tab = window.location.hash;
-        if (tab){
-            return tab.substring(1) /* stip hash */
-        } else {
-            return ''
-        }
-    };
-
-    addTabToFilters(getTab());
-
-
-    var loadedMapScript = false;
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      /*Load map script only once when event tab is selected
-      *
-      * if (e.target.id == 'caltab'){
-          if (!loadedCalendarScript){
-            $.getScript('https://www.gstatic.com/charts/loader.js', function(){drawChart()});
-          }
-       }
-       */
-      if (e.target.href.endsWith('#map')) {
-        if (!loadedMapScript){
-            initializeMap();
-        }
-        addTabToFilters('map');
-      } else {
-        addTabToFilters('grid');
-      }
-    })
-  })
+        
+        loadedMapScript = initializeMap();
+    }
+    addTabToFilters('mapped');
+  } else {
+    addTabToFilters('grid');
+  }
+})
+})  
 </script>
 
 <div class="wrapper">
@@ -103,7 +136,7 @@
     <% unless @events.blank? %>
         <ul class="nav nav-tabs">
           <%= tab('Grid', 'fa fa-table', 'home', active: true) %>
-          <%= tab('Map', 'fa fa-globe', 'map',
+          <%= tab('Map', 'fa fa-globe', 'mapped',
                   disabled: { check: (search_and_facet_params[:online] == 'true'),
                               message: 'Only showing online events.' }) %>
         </ul>
@@ -128,10 +161,13 @@
 
             <%= render partial: "search/common/pagination_bar", locals: { resources: @events } %>
           </div>
-          <div id="map" class="tab-pane fade">
+          <div id="mapped" class="tab-pane fade">
             <div id="map-count" class="search-results-count"></div>
-            <div id="map-content">
+            <div id="map-content">              
               <%= render partial: 'events/partials/events_map' %>
+<script type="text/javascript" data-turbolinks-eval=false>
+  console.log("I'm only run once on the initial page load enjoyed my stayyyyyyyyyyyyyyyyyyyyyyyy");
+</script>              
               <p id="map-notice" class="help-block">
                 Note, this map only displays events that have geolocation information in TeSS.<br>
                   For the complete list of events in TeSS, click the grid tab.

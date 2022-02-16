@@ -94,7 +94,8 @@ gem 'pundit', '~> 1.1.0'
 gem 'jquery-simplecolorpicker-rails'
 
 # For getting date of materials for the home page
-gem 'by_star', '~> 2.2.1', git: 'git://github.com/radar/by_star'
+#gem 'by_star', '~> 2.2.1', git: 'git://github.com/radar/by_star'
+gem 'by_star', '~> 4.0.0', git: 'git://github.com/radar/by_star'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -179,3 +180,8 @@ gem 'tess_api_client', :git => 'git://github.com/pan-training/training-catalogue
 gem 'ahoy_matey'
 gem 'blazer'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
+gem 'rake_text'
+
+gem 'language_list', '~> 1.1'
+

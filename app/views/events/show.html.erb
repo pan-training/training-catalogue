@@ -75,38 +75,120 @@
             </div>
 
             <div class="dont-break-out">
+
               <% if @event.show_map? %>
-                  <div id="map" class="google-map"></div>
-                  <script type="text/javascript">
-                    var actualLocation = { lat: <%= @event.latitude || 'null' %>, lng: <%= @event.longitude || 'null' %> };
-                    var suggestedLocation = { lat: <%= @event.suggested_latitude || 'null' %>, lng: <%= @event.suggested_longitude || 'null' %> };
+                  <div id="map" class="map">
+                  
+                      
+                  </div>
 
-                    // Create a map object and specify the DOM element for display.
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                      center: suggestedLocation.lat ? suggestedLocation : actualLocation,
-                      scrollwheel: true,
-                      zoom: 13,
-                      maxZoom: 15,
-                    });
+                 
+<img id="marker" src="https://raw.githubusercontent.com/jonataswalker/map-utils/master/images/marker.png" width="50" height="50" />
+           
+          <div id="popup" class="ol-popup">
+      <div id="popup-content" class="ol-popup-content"></div>
+    </div>            
+                  
+                                   
+<script type="text/javascript">
+((win, doc) => {
 
-                    if (actualLocation.lat) {
-                      new google.maps.Marker({
-                        map: map,
-                        position: actualLocation,
-                        title: '<%= @event.title %>'
-                      });
-                    }
+var actualLocation = { lat: <%= @event.latitude || 'null' %>, lng: <%= @event.longitude || 'null' %> };
+var suggestedLocation = { lat: <%= @event.suggested_latitude || 'null' %>, lng: <%= @event.suggested_longitude || 'null' %> };
 
-                    if (suggestedLocation.lat) {
-                      new google.maps.Marker({
-                        map: map,
-                        position: suggestedLocation,
-                        title: 'Suggested Location',
-                        icon: '<%= image_url('suggestion.png') -%>'
-                      });
-                    }
-                  </script>
-              <% end %>
+console.log ("all surpriseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed",actualLocation,suggestedLocation );  
+
+<%
+entered=0
+text = ""
+if @event.venue?
+text = @event.venue
+entered=1
+end 
+
+if @event.city?
+    if entered==1
+        text += ', ' + @event.city
+    else
+        text +=  @event.city
+        entered=1
+    end
+end 
+
+if @event.county?
+    if entered==1
+        text += ', ' + @event.county
+    else
+        text +=  @event.county
+        entered=1
+    end
+end 
+
+if @event.country?
+    if entered==1
+        text += ', ' + @event.country
+    else
+        text +=  @event.country
+        entered=1
+    end
+end 
+
+if @event.postcode?
+    if entered==1
+        text += ', ' + @event.postcode
+    else
+        text +=  @event.postcode
+    end
+end 
+
+%>
+var texttt = "<%= escape_javascript(text) %>";
+
+                  
+const content = document.getElementById('popup-content');
+content.innerHTML = '<span class="gcd-road">' + texttt + '</span>';
+
+
+var latlat = <%= @event.latitude %>;
+
+var lonlon = <%= @event.longitude %>;
+console.log(latlat,lonlon);
+
+
+var map = new ol.Map({
+target: doc.querySelector('#map'),
+layers: [new ol.layer.Tile({source: new ol.source.OSM()})],
+view: new ol.View({
+center: ol.proj.fromLonLat([lonlon,latlat]),
+zoom: 14
+})
+});
+// Création d’un marqueur qui s’affiche via l’image créée dans la page HTML
+let marker = document.getElementById('marker');
+map.addOverlay(new ol.Overlay({
+position: ol.proj.fromLonLat([lonlon,latlat]),
+positioning: 'center-center',
+element: marker
+}));
+// Création d’un message (cela pourrait etre une popup) quand le marqueur est sélectionné
+let popup = document.getElementById('popup');
+map.addOverlay(new ol.Overlay({
+positioning: 'center-center',
+offset : [0, -15],
+position: ol.proj.fromLonLat([lonlon,latlat]),
+element: popup
+}));
+popup.style.display = "block";
+// Affichage / désaffichage du message
+marker.addEventListener('click', function(evt) {
+(popup.style.display == "none" ? popup.style.display = "block" :
+popup.style.display = "none")
+});  
+  
+})(window, document);
+
+</script>                                               
+<% end %>
 
               <% if @event.organizer and !@event.organizer.blank? %>
                   <p><strong>Organizer:</strong>

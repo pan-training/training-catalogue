@@ -1,31 +1,96 @@
-<div style="width: 100%; height: 750px; margin-top: 10px; display: none" id="map-canvas"></div>
-<div id='map-loading-screen'>
-  <%= image_tag('ajax-loader2.gif') %>
-</div>
+<div id="map" class="map"></div>
+<img id="marker" src="https://raw.githubusercontent.com/jonataswalker/map-utils/master/images/marker.png" width="50" height="50" />
 
+<div id="popup" class="ol-popup">
+<div id="popup-content" class="ol-popup-content"></div>
+</div>  
+    
+
+    
 <script>
 function initializeMap() {
-    $('#map-canvas').hide();
+    /*$('#map-canvas').hide();
     $('#map-notice').hide();
     $('#map-loading-screen').fadeIn();
+*/
 
+
+
+    
     $.ajax({
         type: 'GET',
-        url: '<%= events_url(search_and_facet_params.merge(format: :json_api, per_page: 5000)).html_safe -%>',
+        url: '<%= events_url({ format: :json }.merge(search_and_facet_params)).html_safe -%>',
         dataType: 'json',
     }).done(function (res) {
-        plotEvents(res.data)
+        console.log("ussssssssssssssssssssse your love",res,res.data);
+        //plotEvents(res.data)
+        plotEvents(res)
     }).fail(function (error) {
         console.log("Error: " + error);
     });
+    
 
+
+
+
+   console.log('<%= events_url(search_and_facet_params.merge(format: :json_api, per_page: 5000)).html_safe -%>');
+   console.log('<%= events_url({ format: :json }.merge(search_and_facet_params)).html_safe -%>');
+/*
     var mapOptions = {
         maxZoom: 15,
         center: new google.maps.LatLng(0, 0)
     };
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+*/
+    console.log("initalize only once nn?");
+    console.log("loadedMapScript value",loadedMapScript);
+    
+    
 
-    loadedMapScript = true;
+
+    
+ ((win, doc) => {  
+ 
+doc.getElementById("map").innerHTML = "";
+  
+  var olview = new ol.View({  
+center: ol.proj.fromLonLat([-2.233948899999973,53.4674583]),
+zoom: 3,  
+  });
+ console.log("whocanitbe");
+
+  var baseLayer = new ol.layer.Tile({
+    source: new ol.source.OSM(),
+  });
+  
+  
+  var map = new ol.Map({
+    target: doc.querySelector('#map'),
+    view: olview,
+    layers: [baseLayer],
+  });    
+  
+  $('#map').data('map', map);   
+  
+  
+})(window, document);   
+
+
+//loadedMapScript = true;
+ return true;
+ 
 }
+
+
 </script>
+
+
+
+
+
+
+
+
+
+

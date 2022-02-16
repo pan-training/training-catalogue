@@ -2,5 +2,5 @@
 host = localhost
 protocol = http
 port = 3000
-user_token = user_token_catalogue 
-user_email = user_email_catalogue
+user_token = 
+user_email =  

@@ -21,6 +21,14 @@ Accepting will add a topic to the resource and rejecting will remove the suggest
     LicenceDictionary.instance.lookup_value(licence, 'title')
   end
 
+  def language_options_for_select
+    LanguageDictionary.instance.options_for_select
+  end
+
+  def language_name_for_abbreviation(language)
+    LanguageDictionary.instance.lookup_value(language, 'title')
+  end
+  
   def difficulty_options_for_select
     DifficultyDictionary.instance.options_for_select
   end

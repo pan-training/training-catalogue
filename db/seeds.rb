@@ -22,7 +22,7 @@ if Rails.env.development?
 
   user=User.new(
     username: "sockse",
-    email: "meadress@mail.com",
+    email: "meadress@synchrotron-soleil.fr",
     password: "Reeeeeeeeeeeeeeeeeeeee3",
     processing_consent:'1'
   )

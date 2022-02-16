@@ -1,0 +1,216 @@
+Afrikaans:
+  title: Afrikaans
+  code: af
+Albanian:
+  title: Albanian
+  code: sq
+Arabic:
+  title: Arabic
+  code: ar
+Armenian:
+  title: Armenian
+  code: hy
+Basque:
+  title: Basque
+  code: eu
+Bengali:
+  title: Bengali
+  code: bn
+Bulgarian:
+  title: Bulgarian
+  code: bg
+Catalan:
+  title: Catalan
+  code: ca
+Cambodian:
+  title: Cambodian
+  code: km
+Chinese (Mandarin):
+  title: Chinese (Mandarin)
+  code: zh
+Croatian:
+  title: Croatian
+  code: hr
+Czech:
+  title: Czech
+  code: cs
+Danish:
+  title: Danish
+  code: da
+Dutch:
+  title: Dutch
+  code: nl
+English:
+  title: English
+  code: en
+Estonian:
+  title: Estonian
+  code: et
+Fijian:
+  title: Fijian
+  code: fj
+Finnish:
+  title: Finnish
+  code: fi
+French:
+  title: French
+  code: fr
+Georgian:
+  title: Georgian
+  code: ka
+German:
+  title: German
+  code: de
+Greek:
+  title: Greek
+  code: el
+Gujarati:
+  title: Gujarati
+  code: gu
+Hebrew:
+  title: Hebrew
+  code: he
+Hindi:
+  title: Hindi
+  code: hi
+Hungarian:
+  title: Hungarian
+  code: hu
+Icelandic:
+  title: Icelandic
+  code: is
+Indonesian:
+  title: Indonesian
+  code: id
+Irish:
+  title: Irish
+  code: ga
+Italian:
+  title: Italian
+  code: it
+Japanese:
+  title: Japanese
+  code: ja
+Javanese:
+  title: Javanese
+  code: jw
+Korean:
+  title: Korean
+  code: ko
+Latin:
+  title: Latin
+  code: la
+Latvian:
+  title: Latvian
+  code: lv
+Lithuanian:
+  title: Lithuanian
+  code: lt
+Macedonian:
+  title: Macedonian
+  code: mk
+Malay:
+  title: Malay
+  code: ms
+Malayalam:
+  title: Malayalam
+  code: ml
+Maltese:
+  title: Maltese
+  code: mt
+Maori:
+  title: Maori
+  code: mi
+Marathi:
+  title: Marathi
+  code: mr
+Mongolian:
+  title: Mongolian
+  code: mn
+Nepali:
+  title: Nepali
+  code: ne
+Norwegian:
+  title: Norwegian
+  code: no
+Persian:
+  title: Persian
+  code: fa
+Polish:
+  title: Polish
+  code: pl
+Portuguese:
+  title: Portuguese
+  code: pt
+Punjabi:
+  title: Punjabi
+  code: pa
+Quechua:
+  title: Quechua
+  code: qu
+Romanian:
+  title: Romanian
+  code: ro
+Russian:
+  title: Russian
+  code: ru
+Samoan:
+  title: Samoan
+  code: sm
+Serbian:
+  title: Serbian
+  code: sr
+Slovak:
+  title: Slovak
+  code: sk
+Slovenian:
+  title: Slovenian
+  code: sl
+Spanish:
+  title: Spanish
+  code: es
+Swahili:
+  title: Swahili
+  code: sw
+Swedish :
+  title: Swedish 
+  code: sv
+Tamil:
+  title: Tamil
+  code: ta
+Tatar:
+  title: Tatar
+  code: tt
+Telugu:
+  title: Telugu
+  code: te
+Thai:
+  title: Thai
+  code: th
+Tibetan:
+  title: Tibetan
+  code: bo
+Tongan:
+  title: Tongan
+  code: to
+Turkish:
+  title: Turkish
+  code: tr
+Ukrainian:
+  title: Ukrainian
+  code: uk
+Urdu:
+  title: Urdu
+  code: ur
+Uzbek:
+  title: Uzbek
+  code: uz
+Vietnamese:
+  title: Vietnamese
+  code: vi
+Welsh:
+  title: Welsh
+  code: cy
+Xhosa:
+  title: Xhosa
+  code: xh

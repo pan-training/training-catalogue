@@ -34,6 +34,8 @@
 
     <%= f.input :licence, collection: licence_options_for_select, selected: @material.licence.blank? ? "notspecified" : @material.licence, field_lock: true %>
 
+    <%= f.input :language, collection: language_options_for_select, selected: @material.language.blank? ? "English" : @material.language, field_lock: true %>
+    
 
     <div class="form-group" id="bauthors">
       <%= f.label :authors %>

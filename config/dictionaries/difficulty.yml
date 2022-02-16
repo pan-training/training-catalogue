@@ -16,6 +16,6 @@ difficult:
 very-difficult:
   title: Very Difficult
   description: The highest level of difficulty; this content is suitable for people who have a substantial knowledge of the topic.
-knowledge-dependend:
-  title: Knowledge-dependend
+knowledge-dependent:
+  title: Knowledge-dependent
   description: The highest level of difficulty with advanced knowledge in sourrounding fileds; this content is suitable for people who have a substantial overview of the topic and related aspects.

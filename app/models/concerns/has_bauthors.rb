@@ -27,15 +27,25 @@ module HasBauthors
         
 
         text :author do
-          self.bauthors.pluck(:firstname,:lastname)
+          #self.bauthors.pluck(:firstname,:lastname)
           #self.bauthors.select_all(:lastname,:firstname) 
           #self.bauthors.collect(:firstname).collect(:name)
           #.join (", ") makes it so that we see firstnam, lastname, and thats nice but it does it to a material that has multiple authors so its useless
+          self.bauthors.pluck(:firstname,:lastname).to_s
         end          
         string :author, multiple: true do
           #self.bauthors.select_all(:lastname,:firstname)
-          self.bauthors.pluck(:firstname,:lastname)
+          #self.bauthors.pluck(:firstname,:lastname)
           #self.bauthors.collect(:firstname).collect(:name)
+          
+          
+          arrayy = []
+          bauth = self.bauthors.pluck(:firstname,:lastname)
+          bauth.each do |item|
+          arrayy << item.to_s
+          end
+          arrayy                   
+          
         end                
         
       end
@@ -51,3 +61,4 @@ module HasBauthors
     (resources - resources.uniq { |r| [r.firstname] }).each(&:mark_for_destruction)
   end
 end
+
