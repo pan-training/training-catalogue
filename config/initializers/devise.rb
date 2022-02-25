@@ -265,7 +265,7 @@ Devise.setup do |config|
         name: :umbrella_aai,
         scope: [:openid, :email, :profile],
         response_type: 'code',
-        issuer: 'https://umbrellaid.org/oidc/', #TODO: correct issuer url
+        issuer: 'https://proxy.umbrellaid.org/',
         discovery: false,
         send_nonce: true,
         client_signing_alg: :RS256,
@@ -273,15 +273,14 @@ Devise.setup do |config|
         client_options: {
             identifier: Rails.application.secrets.umbrella_aai[:client_id],
             secret: Rails.application.secrets.umbrella_aai[:secret],
-            # Wish I could use the url helper for this! (user_elixir_aai_omniauth_callback_url)
             redirect_uri: "#{TeSS::Config.base_url.chomp('/')}/users/auth/umbrella_aai/callback",
             scheme: 'https',
-            host: 'umbrellaid.org', #TODO: correct host url
+            host: 'proxy.umbrellaid.org', 
             port: 443,
-            authorization_endpoint: '/oidc/authorize',
-            token_endpoint: '/oidc/token',
-            userinfo_endpoint: '/oidc/userinfo',
-            jwks_uri: '/oidc/jwk',
+            authorization_endpoint: '/saml2sp/OIDC/authorization',
+            token_endpoint: '/OIDC/token',
+            userinfo_endpoint: '/OIDC/userinfo',
+            jwks_uri: '/OIDC/jwk',
         }
     }
   end
