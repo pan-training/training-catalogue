@@ -36,4 +36,3 @@
 
 - If two (or more) events are located at the same place the popup text needs to show information for both (or more) of these events.
 Will directly update the master branch when this improvement is done.
-
