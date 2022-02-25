@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#ruby "2.4.5"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 
@@ -136,9 +138,9 @@ gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 7.0.1'
-  gem 'rails-assets-moment', '~> 2.29.1'
+  gem 'rails-assets-moment', '~> 2.15.0'
   gem 'rails-assets-eonasdan-bootstrap-datetimepicker', '~> 4.17.42'
-  gem 'rails-assets-devbridge-autocomplete', '~> 1.4.9'
+  gem 'rails-assets-devbridge-autocomplete', '~> 1.2.26'
   gem 'rails-assets-clipboard', '~> 1.5.12'
 end
 
@@ -182,6 +184,4 @@ gem 'blazer'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 gem 'rake_text'
-
 gem 'language_list', '~> 1.1'
-

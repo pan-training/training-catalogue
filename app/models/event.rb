@@ -336,9 +336,9 @@ class Event < ApplicationRecord
       #this was not finding a location but returning 0
       #so the condition was satistifed and it executed the code
       #weird
-      if redis.exists(location)!=0
+      if redis.exists(location)!=0 && !redis.get(location).nil?
         puts(redis.get(location))
-        puts "Seems like it can be Nil, should maybe put a condition to check if it's nil here"
+        puts "Seems like it can be Nil, should maybe put a condition to check if it's nil here (added)"
         self.latitude, self.longitude = JSON.parse(redis.get(location))
         Rails.logger.info("Re-using: #{location}")
       end

@@ -1,4 +1,8 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
 <script>
+
 document.addEventListener("turbolinks:load", function() {
 
 /* Set all filter links to include the anchor */
@@ -45,7 +49,8 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
    */
   if (e.target.href.endsWith('#mapped')) {
     if (!loadedMapScript){
-        loadedMapScript = initializeMap();
+        //loadedMapScript = initializeMap();
+        initializeMap();
     }
     addTabToFilters('mapped');
   } else {

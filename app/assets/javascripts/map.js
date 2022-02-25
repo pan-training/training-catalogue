@@ -1,7 +1,7 @@
 
-var loadedMapScript = false;
-var map;
-var count;
+//var loadedMapScript = false;
+//var map;
+//var count;
 
 function plotEvents(events){
 
@@ -35,7 +35,14 @@ element: markersPI[nbPI]
 popupsPI.push(document.getElementById('popup').cloneNode());
 //popupsPI[nbPI].innerHTML = ""+event.title; 
 //popupsPI[nbPI].innerHTML = '<span class="gcd-road">' + event.title + '</span>';
-popupsPI[nbPI].innerHTML = '<span class="gcd-road"><a href="'+event.url+'">'+event.title+'</a></span>';
+console.log(event, event.start, event.end, "llll");
+
+//console.log(moment.utc('2019-11-03T05:00:00.000Z').format('MM/DD/YYYY hh:mm:ss'));
+console.log(moment.utc(event.start).format('MM/DD/YYYY hh:mm:ss'));
+
+//popupsPI[nbPI].innerHTML = '<span class="gcd-road"><a href="'+event.url+'">'+event.title+'</a></br><b>Date: </b>'+moment.utc(event.start).format('MM/DD/YYYY hh:mm:ss')+'-'+moment.utc(event.end).format('MM/DD/YYYY hh:mm:ss')+'</span>';
+popupsPI[nbPI].innerHTML = '<div class="mepopup"><a href="'+event.url+'" target="_blank">'+event.title+'</a></br><b>Date: </b>'+moment.utc(event.start).format('DD/MM/YYYY hh:mm')+' - '+moment.utc(event.end).format('DD/MM/YYYY hh:mm')+'</div>';
+
 popupsPI[nbPI].id = "popup"+nbPI;
 popupsPI[nbPI].style.color = "black";
 map.addOverlay(new ol.Overlay({
@@ -54,6 +61,9 @@ popup.style.display = "none")
 nbPI++;
 }
 });
+
+//hide the initial marker on the page that we cloned earlier
+$('#marker').hide();
 }
 
 /*

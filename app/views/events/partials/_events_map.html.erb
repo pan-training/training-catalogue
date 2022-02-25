@@ -7,6 +7,9 @@
  
 <script>
 function initializeMap() {    
+
+    //$('#map').hide();
+
     $.ajax({
         type: 'GET',
         url: '<%= events_url({ format: :json }.merge(search_and_facet_params)).html_safe -%>',
@@ -17,9 +20,9 @@ function initializeMap() {
         console.log("Error: " + error);
     });
         
-((win, doc) => {  
- 
-  doc.getElementById("map").innerHTML = "";
+//((win, doc) => {  
+  //better solution might be to use data-attribute and see if it already exists
+  document.getElementById("map").innerHTML = "";
   
   var olview = new ol.View({  
     center: ol.proj.fromLonLat([-2.233948899999973,53.4674583]),
@@ -31,7 +34,7 @@ function initializeMap() {
   });
   
   var map = new ol.Map({
-    target: doc.querySelector('#map'),
+    target: document.querySelector('#map'),
     view: olview,
     layers: [baseLayer],
   });    
@@ -39,9 +42,9 @@ function initializeMap() {
   $('#map').data('map', map);   
   
   
-})(window, document);
- return true;
- 
+//})(window, document);
+ //return true;
+ loadedMapScript = true;
 }
 </script>
 

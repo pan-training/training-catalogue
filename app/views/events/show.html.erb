@@ -1,3 +1,6 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
 <div class="wrapper collapsing-wrapper">
   <%# SIDEBAR %>
   <div class="collapsing-sidebar" id="sidebar">
@@ -85,7 +88,8 @@
                     </div>            
                                    
                     <script type="text/javascript">
-                        ((win, doc) => {
+                        //((win, doc) => {
+                            
                             var actualLocation = { lat: <%= @event.latitude || 'null' %>, lng: <%= @event.longitude || 'null' %> };
                             var suggestedLocation = { lat: <%= @event.suggested_latitude || 'null' %>, lng: <%= @event.suggested_longitude || 'null' %> };
                             //dig deeper in the suggestedLocation logic, I haven't used any of this logic but it could be worth it
@@ -134,13 +138,13 @@
 
                             %>
                             var texttt = "<%= escape_javascript(text) %>";                                              
-                            const content = document.getElementById('popup-content');
+                            var content = document.getElementById('popup-content');
                             content.innerHTML = '<span class="gcd-road">' + texttt + '</span>';
 
                             var latlat = <%= @event.latitude %>;
                             var lonlon = <%= @event.longitude %>;
                             var map = new ol.Map({
-                                target: doc.querySelector('#map'),
+                                target: document.querySelector('#map'),
                                 layers: [new ol.layer.Tile({source: new ol.source.OSM()})],
                                 view: new ol.View({
                                 center: ol.proj.fromLonLat([lonlon,latlat]),
@@ -148,14 +152,14 @@
                                 })
                             });
                             // marker creation with the img 
-                            let marker = document.getElementById('marker');
+                            var marker = document.getElementById('marker');
                             map.addOverlay(new ol.Overlay({
                                 position: ol.proj.fromLonLat([lonlon,latlat]),
                                 positioning: 'center-center',
                                 element: marker
                             }));
                             // msg creation 
-                            let popup = document.getElementById('popup');
+                            var popup = document.getElementById('popup');
                             map.addOverlay(new ol.Overlay({
                                 positioning: 'center-center',
                                 offset : [0, -15],
@@ -168,7 +172,7 @@
                             (popup.style.display == "none" ? popup.style.display = "block" :
                             popup.style.display = "none")
                             });                          
-                        })(window, document);
+                        //})(window, document);
                     </script>                                               
               <% end %>
 

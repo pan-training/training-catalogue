@@ -1,3 +1,6 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
 <div class="form-group">
   <div id="map" class="map"></div>
   <!-- no need to put the popup html code here, it will automati(gi)cally be added by our js file-->                
@@ -18,27 +21,27 @@
 
 
 <script type="text/javascript">
-((win, doc) => {
+//((win, doc) => {
 
-  const olview = new ol.View({  
+  var olview = new ol.View({  
     center: ol.proj.fromLonLat([-2.233948899999973,53.4674583]),
     zoom: 3,  
   });
 
-  const baseLayer = new ol.layer.Tile({
+  var baseLayer = new ol.layer.Tile({
     source: new ol.source.OSM(),
   });
     
-  const map = new ol.Map({
-    target: doc.querySelector('#map'),
+  var map = new ol.Map({
+    target: document.querySelector('#map'),
     view: olview,
     layers: [baseLayer],
   });
   
-  const popup = new ol.Overlay.Popup();
+  var popup = new ol.Overlay.Popup();
 
   // Instantiate with some options and add the Control
-  const geocoder = new Geocoder('nominatim', {
+  var geocoder = new Geocoder('nominatim', {
     provider: 'osm',
     targetType: 'text-input',
     lang: 'en',
@@ -209,7 +212,7 @@ closer[0].onclick = function () {
     geocoder.getSource().clear(); 
 };
   
-})(window, document);
+//})(window, document);
 
 </script>
 
