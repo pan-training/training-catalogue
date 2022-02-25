@@ -26,4 +26,3 @@
 - Finding materials through the event creation page has stopped working, need to fix this.
 
 - Nicer css for the marker popup. Example: on the index map, the popup has a link to the url of the event but the css needs to make it clear it's a link.
-
