@@ -5,10 +5,10 @@
 
 function plotEvents(events){
 
-markersPI = []; // Liste des marqueurs
+markersPI = []; // markers list
 popupsPI = [];
-// Liste des popups
-nbPI = 0; // nombre de points d’intéret pris en charge
+// popups list
+nbPI = 0; // index number of marker
 //$.each(data, function(indice, liste) {
 
 
@@ -35,11 +35,6 @@ element: markersPI[nbPI]
 popupsPI.push(document.getElementById('popup').cloneNode());
 //popupsPI[nbPI].innerHTML = ""+event.title; 
 //popupsPI[nbPI].innerHTML = '<span class="gcd-road">' + event.title + '</span>';
-console.log(event, event.start, event.end, "llll");
-
-//console.log(moment.utc('2019-11-03T05:00:00.000Z').format('MM/DD/YYYY hh:mm:ss'));
-console.log(moment.utc(event.start).format('MM/DD/YYYY hh:mm:ss'));
-
 //popupsPI[nbPI].innerHTML = '<span class="gcd-road"><a href="'+event.url+'">'+event.title+'</a></br><b>Date: </b>'+moment.utc(event.start).format('MM/DD/YYYY hh:mm:ss')+'-'+moment.utc(event.end).format('MM/DD/YYYY hh:mm:ss')+'</span>';
 popupsPI[nbPI].innerHTML = '<div class="mepopup"><a href="'+event.url+'" target="_blank">'+event.title+'</a></br><b>Date: </b>'+moment.utc(event.start).format('DD/MM/YYYY hh:mm')+' - '+moment.utc(event.end).format('DD/MM/YYYY hh:mm')+'</div>';
 
