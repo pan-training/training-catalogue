@@ -16,3 +16,5 @@ Ahoy.geocode = false
 #GDPR compliancy, authenticate function above too
 Ahoy.mask_ips = true
 Ahoy.cookies = false
+
+

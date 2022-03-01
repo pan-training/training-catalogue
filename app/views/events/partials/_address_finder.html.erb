@@ -1,7 +1,11 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
 <div class="form-group">
-  <label>Address</label>
-  <input id="map-search" class="map-control form-control" type="text" placeholder="Start typing an address...">
-  <div id="google-map-form">Loading map...</div>
+  <div id="map" class="map"></div>
+  <!-- no need to put the popup html code here, it will automati(gi)cally be added by our js file-->                
+  <label>Address</label>                
+  <input id="map-search" class="map-control form-control" type="text" placeholder="Type address in search box above...">                
 </div>
 
 <div class="manual-address-fields">
@@ -10,119 +14,206 @@
   <%= f.input :county, field_lock: true %>
   <%= f.input :country, as: :string, field_lock: true %>
   <%= f.input :postcode, field_lock: true %>
-
   <%= f.hidden_field :latitude %>
   <%= f.hidden_field :longitude %>
 </div>
 
-<script>
-  var MapSearch = {
-    map: null,
-    marker: null,
-    infowindow: null,
 
-    init: function () {
-      MapSearch.map = new google.maps.Map(document.getElementById('google-map-form'), {
-        center: {
-          lat: <%= f.object.latitude || 53.4674583 %>,
-          lng: <%= f.object.longitude ||-2.233948899999973 %>
-        }, // Center on existing event, or Kilburn building
-        zoom: <%= f.object.latitude.blank? || f.object.longitude.blank? ? 3 : 13 %>
-      });
-      var input = document.getElementById('map-search');
 
-      var autocomplete = new google.maps.places.Autocomplete(input);
-      autocomplete.bindTo('bounds', MapSearch.map);
+<script type="text/javascript">
+//((win, doc) => {
 
-      MapSearch.infowindow = new google.maps.InfoWindow();
-      MapSearch.marker = new google.maps.Marker({
-        map: MapSearch.map,
-        anchorPoint: new google.maps.Point(0, -29)
-      });
+  var olview = new ol.View({  
+    center: ol.proj.fromLonLat([-2.233948899999973,53.4674583]),
+    zoom: 3,  
+  });
 
-      autocomplete.addListener('place_changed', function () {
-        MapSearch.hideMarker();
+  var baseLayer = new ol.layer.Tile({
+    source: new ol.source.OSM(),
+  });
+    
+  var map = new ol.Map({
+    target: document.querySelector('#map'),
+    view: olview,
+    layers: [baseLayer],
+  });
+  
+  var popup = new ol.Overlay.Popup();
 
-        var place = autocomplete.getPlace();
-        if (!place.geometry) {
-          window.alert("Couldn't find that location on the map");
-          return;
-        }
+  // Instantiate with some options and add the Control
+  var geocoder = new Geocoder('nominatim', {
+    provider: 'osm',
+    targetType: 'text-input',
+    lang: 'en',
+    autoComplete: true,
+    placeholder: 'Search for ...',
+    limit: 5,
+    keepOpen: false,
+  });
 
-        // If the place has a geometry, then present it on a map.
-        if (place.geometry.viewport) {
-          MapSearch.map.fitBounds(place.geometry.viewport);
-        } else {
-          MapSearch.map.setCenter(place.geometry.location);
-          MapSearch.map.setZoom(17);  // Why 17? Because it looks good.
-        }
+  map.addControl(geocoder);
+  map.addOverlay(popup);
 
-        // Populate address fields
-        var venue = place.name;
+  var cooord = [0,0];
+  var adressformated = "";
 
-        for (var i = 0; i < place.address_components.length; i++) {
-          var addressType = place.address_components[i].types[0];
-          switch (addressType) {
-            case 'street_number':
-              venue = venue + ', ' + place.address_components[i].short_name;
-              break;
-            case 'route':
-              venue = venue + ', ' + place.address_components[i].long_name;
-              break;
-            case 'locality':
-              $('#event_city').val(place.address_components[i].long_name);
-              break;
-            case 'administrative_area_level_2':
-              $('#event_county').val(place.address_components[i].long_name);
-              break;
-            case 'country':
-              $('#event_country').val(place.address_components[i].long_name);
-              break;
-            case 'postal_code':
-              $('#event_postal_code').val(place.address_components[i].short_name);
-              break;
-          }
-        }
+  var venue;
+  geocoder.on('addresschosen', function(evt){
+    venue = "";
+    $('#event_postcode').val("");
+    $('#event_country').val("");
+    $('#event_city').val("");
+    $('#event_county').val("");
+    $('#event_venue').val("");    
+    $('#event_latitude').val("");
+    $('#event_longitude').val("");
 
-        $('#event_venue').val(venue);
+  var feature = evt.feature,
+      coord = evt.coordinate,
+      address = evt.address;
+  geocoder.getSource().clear();
+  geocoder.getSource().addFeature(feature);
+   
+  //thanks to https://stackoverflow.com/questions/26967638/convert-point-to-lat-lon
+  //openlayers uses by default the Web Mercator projection (EPSG:3857) see the faq https://openlayers.org/en/latest/doc/faq.html
+  var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+  var lon = lonlat[0];
+  var lat = lonlat[1];
+  
+  // some popup solution
+  popup.show(evt.coordinate, evt.address.formatted);
+  cooord = evt.coordinate;
+  adressformated = evt.address.formatted;
+  
+  for (var key in address.details){
+    var value = address.details[key];
+      //console.log("key",key, "value", value);
+    
+      var state;
+      var city;
+      //google maps can get place.name, the name of a place (business name for example if it's a business)
+      //here, venue will simply be houseNumber + road, I do not know how we could have the name of a place the same way google map has access to that
+      var road;
+      var houseNumber;
+      
+      switch (key) {
+        case 'houseNumber':
+          //console.log('houseNumber',value);
+          houseNumber = value;
+          break;
+        case 'road':
+          //console.log('road',value); 
+          road = value;          
+          break;
+        case 'city':
+          //console.log('city',value);
+          city = value;
+          break;
+        case 'state':
+          //console.log('state',value);
+          state = value;
+          break;
+        case 'country':
+          //console.log('country',value);
+          $('#event_country').val(value);
+          break;
+        case 'postcode':
+          //console.log('postcode',value);
+          $('#event_postcode').val(value);
+          break;
+      }    
+       
+  }  
+     
+  var village;
+  var county;
+    
+  for (var key in address.original.details){
+    var value = address.original.details[key];
+      switch (key) {
+        case 'village':
+          //console.log('village',value);
+          village = value;
+          break;
+        case 'county':
+          //console.log('county',value);
+          county = value;
+          break;
+      }    
+  }    
+  
+    
+  if (city !== undefined) {
+      $('#event_city').val(city);
+  }
+  else if (village !== undefined) {
+      $('#event_city').val(village);
+  }
+  
+      
+  if (county !== undefined) {
+      $('#event_county').val(county);     
+  }
+  else if (state !== undefined) {
+      $('#event_county').val(state);
+  }  
+    
 
-        $('#event_latitude').val(place.geometry.location.lat());
-        $('#event_longitude').val(place.geometry.location.lng());
+  if ((houseNumber !== undefined && houseNumber !== "") && (road !== undefined && road !== "")) {
+      venue = houseNumber + ', ' + road;
+  }
+  else if (road !== undefined && road !== ""){
+      venue =  road;
+  }
+    
+    $('#event_venue').val(venue);    
+    $('#event_latitude').val(lat);
+    $('#event_longitude').val(lon);  
+  
+  $('#map-search').val(address.details.name);
+});
 
-        MapSearch.placeMarker();
-      });
 
-      <% unless f.object.new_record? || f.object.online? || f.object.latitude.blank? || f.object.longitude.blank? %>
-      MapSearch.placeMarker();
-      <% end %>
-    },
+var indecision = 0;
 
-    placeMarker: function () {
-      var venue = $('#event_venue').val();
-      var city = $('#event_city').val();
-      var country = $('#event_country').val();
-      var lat = $('#event_latitude').val();
-      var lon = $('#event_longitude').val();
-
-      MapSearch.marker.setIcon(/** @type {google.maps.Icon} */({
-        url: 'https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png',
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(35, 35)
-      }));
-      MapSearch.marker.setPosition(new google.maps.LatLng(lat, lon));
-      MapSearch.marker.setVisible(true);
-
-      MapSearch.infowindow.setContent('<div><strong>' + venue + '</strong><br>' + city + ', ' + country);
-      MapSearch.infowindow.open(MapSearch.map, MapSearch.marker);
-    },
-
-    hideMarker: function () {
-      MapSearch.infowindow.close();
-      MapSearch.marker.setVisible(false);
+// display popup on click
+map.on('click', function (evt) {
+  const feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+    return feature;
+  });
+  if (feature) {  
+    if(indecision==0){
+    indecision=1;
+    popup.hide();
     }
-  };
+    else{
+    indecision=0;
+    popup.show(cooord, adressformated);
+    }
 
-  MapSearch.init();
+  }
+
+});
+
+
+
+var closer = document.getElementsByClassName("ol-popup-closer");
+//only one popup possible so no problem here normally
+closer[0].onclick = function () {
+    venue = "";
+    $('#event_postcode').val("");
+    $('#event_country').val("");
+    $('#event_city').val("");
+    $('#event_county').val("");
+    $('#event_venue').val("");    
+    $('#event_latitude').val("");
+    $('#event_longitude').val("");
+    $('#map-search').val("");
+    geocoder.getSource().clear(); 
+};
+  
+//})(window, document);
+
 </script>
+
+

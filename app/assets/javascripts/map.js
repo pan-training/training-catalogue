@@ -1,9 +1,67 @@
 
-var loadedMapScript = false;
-var map;
-var count;
+//var loadedMapScript = false;
+//var map;
+//var count;
+
+function plotEvents(events){
+
+markersPI = []; // markers list
+popupsPI = [];
+// popups list
+nbPI = 0; // index number of marker
+//$.each(data, function(indice, liste) {
 
 
+var map = $('#map').data('map');
+
+events.forEach(function(event) {
+
+if (event.latitude !== null && event.longitude !== null) {
+
+//latitude
+//longitude
+//title
+//organizer
+//url
+
+markersPI.push(document.getElementById('marker').cloneNode());
+markersPI[nbPI].id = nbPI;
+map.addOverlay(new ol.Overlay({
+position: ol.proj.fromLonLat([event.longitude,event.latitude]),
+positioning: 'center-center',
+element: markersPI[nbPI]
+}));
+// popup created for each location
+popupsPI.push(document.getElementById('popup').cloneNode());
+//popupsPI[nbPI].innerHTML = ""+event.title; 
+//popupsPI[nbPI].innerHTML = '<span class="gcd-road">' + event.title + '</span>';
+//popupsPI[nbPI].innerHTML = '<span class="gcd-road"><a href="'+event.url+'">'+event.title+'</a></br><b>Date: </b>'+moment.utc(event.start).format('MM/DD/YYYY hh:mm:ss')+'-'+moment.utc(event.end).format('MM/DD/YYYY hh:mm:ss')+'</span>';
+popupsPI[nbPI].innerHTML = '<span class="gcd-road"><a class="mepopuplink" href="'+event.url+'" target="_blank">'+event.title+'</a></br><b>Date: </b>'+moment.utc(event.start).format('DD/MM/YYYY hh:mm')+' - '+moment.utc(event.end).format('DD/MM/YYYY hh:mm')+'</span>';
+
+popupsPI[nbPI].id = "popup"+nbPI;
+popupsPI[nbPI].style.color = "black";
+map.addOverlay(new ol.Overlay({
+positioning: 'center-center',
+offset : [0, -15],
+position: ol.proj.fromLonLat([event.longitude,event.latitude]),
+element: popupsPI[nbPI]
+}));
+// each marker has an event handlet
+// when the user clicks, it appears/disappears
+markersPI[nbPI].addEventListener('click', function(evt) {
+let popup = document.getElementById("popup"+evt.target.id);
+(popup.style.display == "none" ? popup.style.display = "block" :
+popup.style.display = "none")
+});
+nbPI++;
+}
+});
+
+//hide the initial marker on the page that we cloned earlier
+$('#marker').hide();
+}
+
+/*
 function plotEvents(events){
     var infowindow = new google.maps.InfoWindow({content: content});
     var markers = {};
@@ -20,7 +78,8 @@ function plotEvents(events){
                 markers[key] = {
                     position: {lat: Number(event.attributes.latitude), lng: Number(event.attributes.longitude)},
                     content: event_display,
-                    title: '"' + event.attributes.title + '"' /* set to location? */
+                    title: '"' + event.attributes.title + '"' 
+                    // set to location? 
                 }
             }
         }
@@ -52,7 +111,7 @@ function plotEvents(events){
         $('#map-count').text('No geolocation information provided for the selected events.');
     }
 }
-
+*/
 
 /*
 <script>

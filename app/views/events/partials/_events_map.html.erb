@@ -1,31 +1,50 @@
-<div style="width: 100%; height: 750px; margin-top: 10px; display: none" id="map-canvas"></div>
-<div id='map-loading-screen'>
-  <%= image_tag('ajax-loader2.gif') %>
-</div>
-
+<div id="map" class="map"></div>
+<img id="marker" src="https://raw.githubusercontent.com/jonataswalker/map-utils/master/images/marker.png" width="50" height="50" />
+<div id="popup" class="ol-popup">
+<div id="popup-content" class="ol-popup-content"></div>
+</div>  
+    
+ 
 <script>
-function initializeMap() {
-    $('#map-canvas').hide();
-    $('#map-notice').hide();
-    $('#map-loading-screen').fadeIn();
+function initializeMap() {    
+
+    //$('#map').hide();
 
     $.ajax({
         type: 'GET',
-        url: '<%= events_url(search_and_facet_params.merge(format: :json_api, per_page: 5000)).html_safe -%>',
+        url: '<%= events_url({ format: :json }.merge(search_and_facet_params)).html_safe -%>',
         dataType: 'json',
     }).done(function (res) {
-        plotEvents(res.data)
+        plotEvents(res)
     }).fail(function (error) {
         console.log("Error: " + error);
     });
+        
+//((win, doc) => {  
+  //better solution might be to use data-attribute and see if it already exists
+  document.getElementById("map").innerHTML = "";
+  
+  var olview = new ol.View({  
+    center: ol.proj.fromLonLat([-2.233948899999973,53.4674583]),
+    zoom: 3,  
+  });
 
-    var mapOptions = {
-        maxZoom: 15,
-        center: new google.maps.LatLng(0, 0)
-    };
-
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-    loadedMapScript = true;
+  var baseLayer = new ol.layer.Tile({
+    source: new ol.source.OSM(),
+  });
+  
+  var map = new ol.Map({
+    target: document.querySelector('#map'),
+    view: olview,
+    layers: [baseLayer],
+  });    
+  
+  $('#map').data('map', map);   
+  
+  
+//})(window, document);
+ //return true;
+ loadedMapScript = true;
 }
 </script>
+
