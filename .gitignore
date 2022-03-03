@@ -23,6 +23,7 @@ solr/development
 solr/default
 lib/assets/
 public/assets/*
+public/dev-assets/*
 public/sitemaps/*
 public/system
 .idea/*
