@@ -49,7 +49,7 @@ element: popupsPI[nbPI]
 // each marker has an event handlet
 // when the user clicks, it appears/disappears
 markersPI[nbPI].addEventListener('click', function(evt) {
-let popup = document.getElementById("popup"+evt.target.id);
+var popup = document.getElementById("popup"+evt.target.id);
 (popup.style.display == "none" ? popup.style.display = "block" :
 popup.style.display = "none")
 });
