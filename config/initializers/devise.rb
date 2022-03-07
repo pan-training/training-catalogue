@@ -287,9 +287,9 @@ Devise.setup do |config|
   #  }
   #end
   
-  unless Rails.application.secrets.elixir_aai[:client_id].blank?
+  unless Rails.application.secrets.umbrella_aai[:client_id].blank?
     config.omniauth :openid_connect, {
-        name: :elixir_aai,
+        name: :umbrella_aai,
         scope: [:openid, :email, :profile],
         response_type: 'code',
         issuer: 'https://proxy.umbrellaid.org/',

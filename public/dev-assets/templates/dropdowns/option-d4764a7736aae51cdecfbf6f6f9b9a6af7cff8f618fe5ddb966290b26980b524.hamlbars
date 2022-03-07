@@ -1,3 +1,0 @@
-<li class="dropdown-option" id="{{ field_name }}-id-{{ value }}" data-value="{{ value }}">
-    <a>{{ name }}</a>
-</li>
