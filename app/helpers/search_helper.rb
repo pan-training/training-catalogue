@@ -14,6 +14,7 @@ module SearchHelper
       title ||= (title || JSON.parse(value).join(" "))
     end
 
+
     #if there's already a filter of the same facet type, create/add to an array
     if parameters.include?(name)
       parameters[name] = Array.wrap(parameters[name]) | [value]
@@ -49,7 +50,7 @@ module SearchHelper
     if name!="author" && name!="contributor"
       title ||= (title || truncate(value.to_s, length: 30))
     else
-    title ||= (title || JSON.parse(value).join(" "))  
+    title ||= (title || JSON.parse(value).join(" "))
     end
     
     #delete a filter from an array or delete the whole facet if it is the only one

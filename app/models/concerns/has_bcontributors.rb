@@ -53,3 +53,4 @@ module HasBcontributors
     #(resources - resources.uniq { |r| [r.firstname] }).each(&:mark_for_destruction)
   #end
 end
+

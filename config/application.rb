@@ -26,7 +26,11 @@ module TeSS
     end
 
     config.tess = config_for(:tess)
+    
+  
   end
 
   Config = OpenStruct.new(Rails.configuration.tess)
+  
+  
 end

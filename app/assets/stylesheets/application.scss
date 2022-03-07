@@ -1136,6 +1136,9 @@ it {
     color: white;
     text-align: center;
 }
+.browse-icon a:hover{
+    color: #EF2B4C;
+ }
 
 .divtwo-background {
     text-align: left;
@@ -1219,3 +1222,6 @@ it {
   font-size: 0.8em;
 }
 
+.basic_stats {
+  color: #EF2B4C;
+}

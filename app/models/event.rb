@@ -328,14 +328,21 @@ class Event < ApplicationRecord
   # Check the Redis cache for coordinates
   def geocoding_cache_lookup
     location = self.address
-
+    puts self.address
+    puts "Problem related to redis might appear here, need to do more testing"
+    puts "sidekiq running, reindex solr, then run server (fixed it on my end), maybe the redis version/Gemfile has an impact too"
     begin
       redis = Redis.new
-      if redis.exists(location)
+      #this was not finding a location but returning 0
+      #so the condition was satistifed and it executed the code
+      #weird
+      if redis.exists(location)!=0 && !redis.get(location).nil?
+        puts(redis.get(location))
+        puts "Seems like it can be Nil, should maybe put a condition to check if it's nil here (added)"
         self.latitude, self.longitude = JSON.parse(redis.get(location))
         Rails.logger.info("Re-using: #{location}")
       end
-    rescue Redis::RuntimeError => e
+    rescue StandardError => e
       raise e unless Rails.env.production?
       puts "Redis error: #{e.message}"
     end

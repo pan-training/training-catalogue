@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#ruby "2.4.5"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 
@@ -8,7 +10,7 @@ gem 'rails', '~> 5.2'
 gem "bootsnap", ">= 1.4.6"
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.19.0'
+gem 'pg'
 
 # For installing PG on macs:
 gem 'lunchy'
@@ -94,7 +96,8 @@ gem 'pundit', '~> 1.1.0'
 gem 'jquery-simplecolorpicker-rails'
 
 # For getting date of materials for the home page
-gem 'by_star', '~> 2.2.1', git: 'git://github.com/radar/by_star'
+#gem 'by_star', '~> 2.2.1', git: 'git://github.com/radar/by_star'
+gem 'by_star', '~> 4.0.0', git: 'git://github.com/radar/by_star'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -117,11 +120,11 @@ gem 'rack-cors', require: 'rack/cors'
 
 gem 'recaptcha', require: 'recaptcha/rails'
 
-gem 'linkeddata', '~> 3.0.1'
+gem 'linkeddata'
 
 # Used for lat/lon rake task
 gem 'geocoder'
-gem 'redis', '~> 3.3.3'
+gem 'redis'
 
 gem 'active_model_serializers'
 
@@ -135,9 +138,9 @@ gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 7.0.1'
-  gem 'rails-assets-moment', '~> 2.15.2'
+  gem 'rails-assets-moment', '~> 2.15.0'
   gem 'rails-assets-eonasdan-bootstrap-datetimepicker', '~> 4.17.42'
-  gem 'rails-assets-devbridge-autocomplete', '~> 1.2.27'
+  gem 'rails-assets-devbridge-autocomplete', '~> 1.2.26'
   gem 'rails-assets-clipboard', '~> 1.5.12'
 end
 
@@ -179,3 +182,6 @@ gem 'tess_api_client', :git => 'git://github.com/pan-training/training-catalogue
 gem 'ahoy_matey'
 gem 'blazer'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
+gem 'rake_text'
+gem 'language_list', '~> 1.1'

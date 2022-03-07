@@ -60,12 +60,12 @@ class User < ApplicationRecord
   
   validate :consents_to_processing, on: :create, unless: ->(user) { user.using_omniauth? || User.current_user.try(:is_admin?) }
   
-  #uncomment later on
-  #validate :email_RI, on: :create
+  #comment when seeding when on development mode
+  validate :email_RI, on: :create
   
   
 
-  validate :email_RI, on: :create
+
   
   
 

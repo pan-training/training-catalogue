@@ -294,4 +294,3 @@ Logfiles:
 /var/log/catalogue/production.log
 /var/log/catalogue/sunspot-solr-production.log
 ```
-

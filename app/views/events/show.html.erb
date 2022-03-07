@@ -1,3 +1,6 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
 <div class="wrapper collapsing-wrapper">
   <%# SIDEBAR %>
   <div class="collapsing-sidebar" id="sidebar">
@@ -75,37 +78,102 @@
             </div>
 
             <div class="dont-break-out">
+
               <% if @event.show_map? %>
-                  <div id="map" class="google-map"></div>
-                  <script type="text/javascript">
-                    var actualLocation = { lat: <%= @event.latitude || 'null' %>, lng: <%= @event.longitude || 'null' %> };
-                    var suggestedLocation = { lat: <%= @event.suggested_latitude || 'null' %>, lng: <%= @event.suggested_longitude || 'null' %> };
+                    <div id="map" class="map">                      
+                    </div>                 
+                    <img id="marker" src="https://raw.githubusercontent.com/jonataswalker/map-utils/master/images/marker.png" width="50" height="50" />
+                    <div id="popup" class="ol-popup">
+                    <div id="popup-content" class="ol-popup-content"></div>
+                    </div>            
+                                   
+                    <script type="text/javascript">
+                        //((win, doc) => {
+                            
+                            var actualLocation = { lat: <%= @event.latitude || 'null' %>, lng: <%= @event.longitude || 'null' %> };
+                            var suggestedLocation = { lat: <%= @event.suggested_latitude || 'null' %>, lng: <%= @event.suggested_longitude || 'null' %> };
+                            //dig deeper in the suggestedLocation logic, I haven't used any of this logic but it could be worth it
+                            <%
+                            entered=0
+                            text = ""
+                            if @event.venue?
+                                text = @event.venue
+                                entered=1
+                            end 
 
-                    // Create a map object and specify the DOM element for display.
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                      center: suggestedLocation.lat ? suggestedLocation : actualLocation,
-                      scrollwheel: true,
-                      zoom: 13,
-                      maxZoom: 15,
-                    });
+                            if @event.city?
+                                if entered==1
+                                    text += ', ' + @event.city
+                                else
+                                    text +=  @event.city
+                                    entered=1
+                                end
+                            end 
 
-                    if (actualLocation.lat) {
-                      new google.maps.Marker({
-                        map: map,
-                        position: actualLocation,
-                        title: '<%= @event.title %>'
-                      });
-                    }
+                            if @event.county?
+                                if entered==1
+                                    text += ', ' + @event.county
+                                else
+                                    text +=  @event.county
+                                    entered=1
+                                end
+                            end 
 
-                    if (suggestedLocation.lat) {
-                      new google.maps.Marker({
-                        map: map,
-                        position: suggestedLocation,
-                        title: 'Suggested Location',
-                        icon: '<%= image_url('suggestion.png') -%>'
-                      });
-                    }
-                  </script>
+                            if @event.country?
+                                if entered==1
+                                    text += ', ' + @event.country
+                                else
+                                    text +=  @event.country
+                                    entered=1
+                                end
+                            end 
+
+                            if @event.postcode?
+                                if entered==1
+                                    text += ', ' + @event.postcode
+                                else
+                                    text +=  @event.postcode
+                                end
+                            end 
+
+                            %>
+                            var texttt = "<%= escape_javascript(text) %>";                                              
+                            var content = document.getElementById('popup-content');
+                            content.innerHTML = '<span class="gcd-road">' + texttt + '</span>';
+
+                            var latlat = <%= @event.latitude %>;
+                            var lonlon = <%= @event.longitude %>;
+                            var map = new ol.Map({
+                                target: document.querySelector('#map'),
+                                layers: [new ol.layer.Tile({source: new ol.source.OSM()})],
+                                view: new ol.View({
+                                center: ol.proj.fromLonLat([lonlon,latlat]),
+                                zoom: 14
+                                })
+                            });
+                            // marker creation with the img 
+                            var marker = document.getElementById('marker');
+                            map.addOverlay(new ol.Overlay({
+                                position: ol.proj.fromLonLat([lonlon,latlat]),
+                                positioning: 'center-center',
+                                element: marker
+                            }));
+                            // msg creation 
+                            var popup = document.getElementById('popup');
+                            map.addOverlay(new ol.Overlay({
+                                positioning: 'center-center',
+                                offset : [0, -15],
+                                position: ol.proj.fromLonLat([lonlon,latlat]),
+                                element: popup
+                            }));
+                            popup.style.display = "block";
+                            // msg appears/disappears
+                            marker.addEventListener('click', function(evt) {
+                            (popup.style.display == "none" ? popup.style.display = "block" :
+                            popup.style.display = "none")
+                            });                          
+                        //})(window, document);
+                    </script>                                               
               <% end %>
 
               <% if @event.organizer and !@event.organizer.blank? %>

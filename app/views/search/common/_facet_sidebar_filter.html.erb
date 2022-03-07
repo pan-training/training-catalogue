@@ -6,7 +6,6 @@
 <% facet_field = facet.field_name.to_s %>
 <% facet_rows = facet.rows.reject { |f| f.value.to_s.blank? || f.count < 1 } %>
 
-
 <% if facet_rows.any? %>
     <%# Title %>
     <li>
@@ -25,6 +24,7 @@
         <% else %>
             <li class="nav-item <% if index >= 9 -%><%= facet_field -%>-expanding<% end -%>"
                 <% if index >= 9 -%>style="display: none;"<% end -%>>
+                
               <%= filter_link(facet_field, facet.value.to_s, facet.count) %>
             </li>
         <% end %>
