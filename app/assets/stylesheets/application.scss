@@ -136,14 +136,17 @@ div.wrapper {
   max-width: 1200px;
 }
 
-#landing-container {
-  width: 100vw;
-  min-width: 100vw;
-  margin-left: calc(-100vw / 2 + 1100px / 2) !important;
-  margin-right: calc(-100vw / 2 + 1100px / 2) !important;
-  padding-right: 0vw
+@media screen and (max-width: 600px) {
+  
+  landing-container {
+    display: none;
+    width: 100vw;
+    min-width: 100vw;
+    margin-left: calc(-100vw / 2 + 1100px / 2) !important;
+    margin-right: calc(-100vw / 2 + 1100px / 2) !important;
+    padding-right: 0vw
+  }
 }
-
 #content {
   padding: 15px;
   flex-grow: 1;
