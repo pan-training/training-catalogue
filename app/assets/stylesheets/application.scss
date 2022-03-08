@@ -1115,8 +1115,19 @@ it {
   margin: 32px;
   color: white;
   vertical-align: middle;
-
 }
+@media (max-width: 942px) {
+  .divone-half-center {
+    width: 400px;
+    display: inline-block;
+    text-align: center;
+    margin: 32px;
+    color: white;
+    vertical-align: middle;
+  }
+}
+
+
 .divone input[type=text] {
   padding: 16px;
   font-size: 20px;
