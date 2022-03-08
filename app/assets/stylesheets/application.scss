@@ -143,6 +143,15 @@ div.wrapper {
   margin-right: calc(-100vw / 2 + 1100px / 2) !important;
   padding-right: 0vw
 }
+@media (max-width: 942px) {
+  #landing-container {
+    width: 100vw;
+    min-width: 100vw;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    padding-right: 0vw
+  }
+}
 
 #content {
   padding: 15px;
