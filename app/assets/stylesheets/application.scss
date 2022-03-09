@@ -136,17 +136,23 @@ div.wrapper {
   max-width: 1200px;
 }
 
-@media screen and (max-width: 600px) {
-  
-  landing-container {
-    display: none;
+#landing-container {
+  width: 100vw;
+  min-width: 100vw;
+  margin-left: calc(-100vw / 2 + 1100px / 2) !important;
+  margin-right: calc(-100vw / 2 + 1100px / 2) !important;
+  padding-right: 0vw
+}
+@media (max-width: 942px) {
+  #landing-container {
     width: 100vw;
     min-width: 100vw;
-    margin-left: calc(-100vw / 2 + 1100px / 2) !important;
-    margin-right: calc(-100vw / 2 + 1100px / 2) !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
     padding-right: 0vw
   }
 }
+
 #content {
   padding: 15px;
   flex-grow: 1;
@@ -1109,8 +1115,19 @@ it {
   margin: 32px;
   color: white;
   vertical-align: middle;
-
 }
+@media (max-width: 942px) {
+  .divone-half-center {
+    width: 400px;
+    display: inline-block;
+    text-align: center;
+    margin: 32px;
+    color: white;
+    vertical-align: middle;
+  }
+}
+
+
 .divone input[type=text] {
   padding: 16px;
   font-size: 20px;
@@ -1155,6 +1172,17 @@ it {
     background-position: 100% 50%, 100% 100%;
   }
 }
+@media (max-width: 942px) {
+  .divtwo-background {
+    background-color: transparent;
+    width: 100%;
+    margin-bottom: 0px;
+    background-image: asset_url('wallpaper9.png'), linear-gradient(105deg, white, var(--pink), var(--orange));
+    background-size: cover, cover;
+    background-position: 100% 50%, 100% 100%;
+  }
+}
+
 .divtwo {
     display: inline-flex;
     flex-direction: row;
@@ -1174,6 +1202,11 @@ it {
   width: 600px;
   text-align: left;
   margin: 32px 80px;
+}
+@media (max-width: 942px) {
+  .divtwo-half-next {
+    display: none;
+  }
 }
 .elearning{
   display: flex;
