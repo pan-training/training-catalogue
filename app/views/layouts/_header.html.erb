@@ -37,7 +37,7 @@
             <%= link_to "Log out", destroy_user_session_path, :method => :delete, :data => {:confirm => 'Are you sure you want to log out?'} %>
         <% else %>
             <%= link_to "Catalogue Log in", new_user_session_path %>
-            <%= link_to "Catalogue Registration", new_user_registration_path %>
+            <%# <%= link_to "Catalogue Registration", new_user_registration_path %>  %>
         <% end %>
       </div>
     </div>
@@ -90,7 +90,7 @@
             </ul>
           </li>
           
-          <li><%= link_to "E-learning", "https://pan-learning.org" %></li>
+          <li><%= link_to "E-learning", "https://e-learning.pan-training.eu" %></li>
           <li><%= link_to "Events", events_path %></li>
           
           <li class="dropdown">
@@ -99,7 +99,7 @@
             </a>
             <ul class="dropdown-menu">
                <li><%= link_to "Pan-Training", about_path %></li>
-			   <li><%= link_to "E-learning", "https://pan-learning.org/moodle/customfiles/about" %></li>
+			   <li><%= link_to "E-learning", "https://e-learning.pan-training.eu/moodle/customfiles/about" %></li>
 			   <li><%= link_to "PaNOSC", "https://www.panosc.eu/" %></li>	
 			   <li><%= link_to "ExPaNDS", "https://expands.eu/" %></li>		  
             </ul>
