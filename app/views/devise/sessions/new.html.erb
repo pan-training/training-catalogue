@@ -7,6 +7,11 @@
       <div class="col-md-6">
         <h4>UmbrellaID Log in</h4>
         <%= render "devise/shared/links" %>
+        <% resource_class.omniauth_providers.each do |provider| %>
+          <% if provider.to_s.downcase == 'umbrella_aai' -%>
+            <%= link_to image_tag("umbrella-logo.png", class: 'aai-login'), omniauth_authorize_path(resource_name, provider), method: :post -%>
+          <% end -%>
+        <% end -%>
         </br>
         <hr/>
         <% resource_class.omniauth_providers.each do |provider| %>

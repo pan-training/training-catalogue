@@ -4,8 +4,7 @@
     <% end %>
     <% resource_class.omniauth_providers.each do |provider| %>
         <% if provider.to_s.downcase == 'umbrella_aai' -%>
-            <%= link_to image_tag("umbrella-logo.png", class: 'aai-login'), omniauth_authorize_path(resource_name, provider),
-                        method: :post -%>
+            
         <% else -%>
             <%= link_to "Log in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider),
                         method: :post, class: 'btn btn-info' %>
@@ -13,8 +12,10 @@
     <% end -%>
 <% end %>
 
-  <%- if controller_name != 'sessions' %>
-      <li><%= link_to "log in", new_session_path(resource_name) %></li>
-  <% end -%>
+
+
+
+
+
 
 </ul>
