@@ -1042,6 +1042,13 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
   padding-top: 15px;
   padding-bottom: 26px;
 }
+@media (max-width: 500px) {
+  .aai-login{
+    width: 250px;
+    padding-top: 15px;
+    padding-bottom: 26px;
+  }
+}
 .overlay {
   position: absolute;
   top: 0;
