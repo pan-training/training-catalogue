@@ -1,12 +1,10 @@
 <% if devise_mapping.omniauthable? %>
     <% if resource_class.omniauth_providers.any? %>
-        <hr/>
 
-        <h3>Alternatively...</h3>
     <% end %>
     <% resource_class.omniauth_providers.each do |provider| %>
         <% if provider.to_s.downcase == 'umbrella_aai' -%>
-            <%= link_to image_tag("umbrella-logo-head.jpg", class: 'aai-login'), omniauth_authorize_path(resource_name, provider),
+            <%= link_to image_tag("umbrella-logo.png", class: 'aai-login'), omniauth_authorize_path(resource_name, provider),
                         method: :post -%>
         <% else -%>
             <%= link_to "Log in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider),
@@ -15,26 +13,8 @@
     <% end -%>
 <% end %>
 
-<hr/>
-
-<ul>
   <%- if controller_name != 'sessions' %>
-      <li><%= link_to "Log in", new_session_path(resource_name) %></li>
+      <li><%= link_to "log in", new_session_path(resource_name) %></li>
   <% end -%>
 
-  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <li><%= link_to "Register", new_registration_path(resource_name) %></li>
-  <% end -%>
-
-  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-      <li><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
-  <% end -%>
-
-  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-      <li><%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %></li>
-  <% end -%>
-
-  <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-      <li><%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %></li>
-  <% end -%>
 </ul>

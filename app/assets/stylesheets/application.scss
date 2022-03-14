@@ -610,7 +610,7 @@ ul.featureblocks {
       padding: 15px 15px 15px 25px;
       color: #444;
       flex: 1;
-      min-width: 180px;
+      min-width: 60px;
     }
 
     .searchbox-btn {
@@ -1038,7 +1038,37 @@ input[type=checkbox].field-lock + label:before, .field-lock-example-open {
 }
 
 .aai-login{
-  width: 120px;
+  width: 500px;
+  padding-top: 15px;
+  padding-bottom: 26px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 :root {
@@ -1099,6 +1129,19 @@ it {
   padding: 0.25rem 9999rem;
   position:0px;
 }
+@media (max-width: 500px) {
+  .divone {
+    padding: 0px 10px 10px 10px;
+    text-align: center;
+    color: white;
+    background-image: linear-gradient( var(--purple), var(--teal));
+    overflow-x: hidden;
+    margin: 0 -9999rem;
+    padding: 0.25rem 9999rem;
+    position:0px;
+  }
+}
+
 .divone-half-left {
   width: 450px;
   display: inline-block;
@@ -1107,6 +1150,16 @@ it {
   color: white;
   vertical-align: middle;
 
+}
+@media (max-width: 500px) {
+    .divone-half-left {
+    width: 250px;
+    display: inline-block;
+    text-align: left;
+    margin: 32px;
+    color: white;
+    vertical-align: middle;
+  }
 }
 .divone-half-center {
   width: 750px;
@@ -1126,7 +1179,16 @@ it {
     vertical-align: middle;
   }
 }
-
+@media (max-width: 500px) {
+  .divone-half-center {
+    width: 250;
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+    color: white;
+    vertical-align: middle;
+  }
+}
 
 .divone input[type=text] {
   padding: 16px;
@@ -1159,6 +1221,24 @@ it {
 .browse-icon a:hover{
     color: #EF2B4C;
  }
+@media (max-width: 500px) {
+.browse{
+  padding: 15px;
+  height: 100px;
+  width: 90px;
+  margin: 30px 10px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: left;
+ }  
+ .browse-icon a{
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+    color: white;
+    text-align: center;
+  }
+}
 
 .divtwo-background {
     text-align: left;
