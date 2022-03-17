@@ -24,6 +24,8 @@ if (event.latitude !== null && event.longitude !== null) {
 //organizer
 //url
 
+$('#marker').show();
+
 markersPI.push(document.getElementById('marker').cloneNode());
 markersPI[nbPI].id = nbPI;
 map.addOverlay(new ol.Overlay({
