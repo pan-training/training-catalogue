@@ -6,12 +6,11 @@
     <div class="row">
       <div class="col-sm-3 col-xs-8">
        
-        <%= mail_to(TeSS::Config.contact_email, 'Contact us', class: "expands-footer-link") %><br/>
+        <%= link_to 'Contact us', 'https://pan-training.eu/about/us#contact' , target: '_blank', class: "expands-footer-link" %><br/>
         <%= link_to 'Add your training resources', registering_resources_path, target: '_blank', class: "expands-footer-link"  %><br/>
-        <%= link_to 'Source code', 'https://github.com/pan-training/training-catalogue', target: '_blank', class: "expands-footer-link" %><br/>
-        <%= link_to 'Original version developed by Elixir', 'https://github.com/ElixirTeSS/TeSS', target: '_blank', class: "expands-footer-link" %><br/>
+        <%= link_to 'Imprint', 'https://www.hzdr.de/db/Cms?pOid=10115&pNid=0', target: '_blank', class: "expands-footer-link" %><br/>
+        <%= link_to 'Privacy', privacy_path, target: '_blank', class: "expands-footer-link" %><br/>
         <%= link_to 'Funding & acknowledgements', us_path(anchor: 'funding'), target: '_blank', class: "expands-footer-link" %><br/>
-        <%= link_to 'Privacy', privacy_path, target: '_blank', class: "expands-footer-link" %>
       </div>
       <div class="col-sm-9 col-xs-4">
         <div class="col-sm-7">
