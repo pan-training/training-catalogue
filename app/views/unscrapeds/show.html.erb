@@ -1,0 +1,67 @@
+<div class="wrapper collapsing-wrapper">
+  <%# SIDEBAR %>
+  <div id="content">
+    <div class="row">
+
+
+      <div class="content_action">
+        <%= link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-info'  %>
+
+        <%= render partial: 'common/identifiers_dot_org_button', locals: { resource: @unscraped } if TeSS::Config.identifiers_prefix %>
+
+
+        <% if !current_user.nil? and policy(@unscraped).destroy? %>
+            <%= link_to "Delete and therefore rescrape",
+                        unscraped_path(@unscraped),
+                        :method => 'delete',
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-danger' %>
+        <% end %>
+               
+        <a href="<%= @unscraped.url %>" target="_blank" class="btn btn-success"><span class="fa fa-external-link"></span> View unscraped material</a>
+      </div>
+    </div>
+    <div class="row">
+      <ul class="nav nav-tabs">
+        <%= tab('Unscraped material', icon_class_for_model('materials'), 'home', active: true) %>
+
+        <%= tab('Activity log', icon_class_for_model('activity_logs'), 'activity_log',
+                disabled: { check: @unscraped.activities.none?, message: 'No activities recorded' }) %>
+      </ul>
+
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <div class="row">
+            <div class="text-justify">
+              <h2>
+                <%=t '.title', :default => @unscraped.title %>
+
+                <%= missing_icon(@unscraped, 'large') if current_user and current_user.is_admin? %>
+
+              </h2>
+              <p>
+                <div class="url-wrap">
+                  <%= link_to @unscraped.url, @unscraped.url, :class =>'h5', :target => "_blank" %>
+                </div>
+              </p>
+              <% if not @unscraped.short_description.blank? %>
+                  <p><%= render_markdown(@unscraped.short_description)%></p>
+              <% end %>
+            </div>
+            <div class="dont-break-out">
+
+              <%= render :partial => 'unscrapeds/partials/unscraped_schemaorg', :locals => {:unscraped => @unscraped} %>
+
+            </div>
+          </div>
+        </div>
+        
+                    
+        <div id="activity_log" class="tab-pane fade" data-activity-path="<%= unscraped_activities_path(@unscraped) -%>">
+          <%= image_tag('ajax-loader.gif') %>
+        </div>             
+                
+      </div>
+    </div>
+  </div>
+</div>

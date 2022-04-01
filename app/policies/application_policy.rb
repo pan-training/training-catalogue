@@ -50,6 +50,16 @@ class ApplicationPolicy
     manage?
   end
 
+  #we only want admins (maybe curators too?) to be able to delete/unscrape a scraped material
+  def unscrape?
+    @user.is_admin?
+  end
+
+  #we only want admins (maybe curators too?) to be able to delete/unscrape a scraped material
+  def eventunscrape?
+    @user.is_admin?
+  end
+
   # "manage" isn't actually an action, but the "destroy?" and "update?" policies delegate to this method.
   def manage?
     @user && @user.is_admin?
@@ -59,6 +69,8 @@ class ApplicationPolicy
     return false if request.nil?
     return ((request.post? or request.put? or request.patch?) and request.format.json?)
   end
+
+
 
   def scope
     Pundit.policy_scope!(user, record.class)

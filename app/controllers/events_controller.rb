@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :update_packages, :add_term, :reject_term,
-                                   :redirect, :report, :update_report, :add_data, :reject_data]
+                                   :redirect, :report, :update_report, :add_data, :reject_data, :unscrape]
   before_action :set_breadcrumbs
   before_action :disable_pagination, only: :index, if: lambda { |controller| controller.request.format.ics? or controller.request.format.csv? }
 
@@ -159,6 +159,34 @@ class EventsController < ApplicationController
 
     redirect_to @event.url
   end
+
+
+
+  def unscrape
+    #verification here that its a scraped event
+    authorize @event
+    #we do this condition in the view so normally the condition will always be true
+    #if not, there is no redirection to any view but that does not matter much
+    if !@event.last_scraped.nil? && @event.scraper_record                
+        #create the unscraped event 
+        #authorize Unscraped, the authorize will be done in the new of the Eventunscraped controller
+        @eventunscraped = Eventunscraped.new(:title=> @event.title, :url=> @event.url)
+        @eventunscraped.user = current_user
+        
+        if @eventunscraped.save
+        @eventunscraped.create_activity :create, owner: current_user
+        end
+                 
+        #delete the event
+        #authorize @event,already did an authorize at the beginning
+        @event.create_activity :destroy, owner: current_user
+        @event.destroy
+        respond_to do |format|
+          format.html { redirect_to events_url, notice: 'Event was successfully destroyed and will no longer be scraped.' }
+          format.json { head :no_content }
+        end    
+    end  
+  end  
 
   private
 

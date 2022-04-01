@@ -1,0 +1,9 @@
+<div itemscope itemtype="http://schema.org/CreativeWork">
+  <%= content_tag :span, unscraped.title, {itemprop: 'name', content: unscraped.title, class: 'schemaorg-element'} %>
+  <%= content_tag :span, unscraped.url, {itemprop: 'url', content: unscraped.url, class: 'schemaorg-element'} %>
+  <%= content_tag :span, unscraped_url(unscraped), {itemprop: 'sameAs', content: unscraped_url(unscraped), class: 'schemaorg-element' } %>
+  <%= content_tag :span, unscraped.short_description, {itemprop: 'description', content: unscraped.short_description, class: 'schemaorg-element'} if unscraped.short_description and not unscraped.short_description.empty? %>
+
+
+ 
+</div>

@@ -1,0 +1,6 @@
+<div class="list-card">
+  <%= link_to(eventunscraped.title, eventunscraped, class: 'list-card-heading') %>
+
+  <%= render :partial => 'eventunscrapeds/partials/eventunscraped_schemaorg', :locals => {:eventunscraped => eventunscraped} %>
+</div>
+

@@ -25,6 +25,15 @@
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-danger' %>
         <% end %>
+        
+        <% if !current_user.nil? and policy(@material).destroy? and current_user.is_admin? and @material.scraper_record %>
+            <%= link_to "Delete and unscrape",
+                        unscrape_me_path(@material), 
+                        :method => 'post',
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-danger' %>
+        <% end %>        
+        
         <a href="<%= @material.url %>" target="_blank" class="btn btn-success"><span class="fa fa-external-link"></span> View material</a>
       </div>
     </div>

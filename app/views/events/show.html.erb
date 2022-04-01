@@ -45,6 +45,16 @@
                         :data => { :confirm => t('.confirm', :default => t("helpers.l inks.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-danger' %>
         <% end %>
+        
+        
+        <% if !current_user.nil? and policy(@event).destroy? and current_user.is_admin? and @event.scraper_record %>
+            <%= link_to "Delete and unscrape",
+                        eventunscrape_me_path(@event), 
+                        :method => 'post',
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-danger' %>                
+        <% end %> 
+        
         <a href="<%= @event.url %>" target="_blank" class="btn btn-success"><span class="fa fa-external-link"></span> View event</a>
       </div>
     </div>
