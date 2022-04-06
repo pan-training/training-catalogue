@@ -10,6 +10,13 @@
             "affiliation": "Synchrotron SOLEIL"
         }
     ],
+    "contributors": [
+        {
+            "affiliation": "ESS",
+            "name": "d'Ambrumenil, Stella",
+            "type": "Other"
+        }
+    ],
     "title": "PaN Training Catalogue",
     "access_right": "open",
     "upload_type": "software",
@@ -19,9 +26,6 @@
     "communities": [
         {
             "identifier": "rodare"
-        },
-        {
-            "identifier": "fwc"
         }
     ]
 }
