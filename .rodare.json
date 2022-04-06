@@ -1,0 +1,27 @@
+{
+    "creators": [
+        {
+            "name": "Knodel, Oliver",
+            "affiliation": "Helmholtz-Zentrum Dresden-Rossendorf",
+            "orcid": "0000-0001-8174-7795"
+        },
+        {
+            "name": "Padovani, Antoine",
+            "affiliation": "Synchrotron SOLEIL"
+        }
+    ],
+    "title": "PaN Training Catalogue",
+    "access_right": "open",
+    "upload_type": "software",
+    "license": "BSD 3-Clause",
+    "pub_id": "34495",
+    "description": "The source code of the training catalogue for the PaN community developed in the ExPaNDS and PaNOSC projects. The initial code was developed for the training portal TeSS developed in the ELIXIR project.",
+    "communities": [
+        {
+            "identifier": "rodare"
+        },
+        {
+            "identifier": "fwc"
+        }
+    ]
+}
