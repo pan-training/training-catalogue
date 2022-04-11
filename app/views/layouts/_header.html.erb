@@ -92,6 +92,22 @@
           
           <li><%= link_to "E-learning", "https://e-learning.pan-training.eu" %></li>
           <li><%= link_to "Events", events_path %></li>
+
+
+          <% if user_signed_in? %>
+              <% if current_user.is_admin? %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      Unscraped <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                       <li><%= link_to "Unscraped materials", unscrapeds_path %></li>
+			           <li><%= link_to "Unscraped events",  eventunscrapeds_path %></li>
+                    </ul>
+                  </li>
+              <% end %>
+          <% end %>
+  
           
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

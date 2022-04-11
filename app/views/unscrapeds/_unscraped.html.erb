@@ -1,0 +1,10 @@
+<div class="list-card">
+  <%= link_to(unscraped.title, unscraped, class: 'list-card-heading') %>
+  <div class="dont-break-out">
+    <p class>
+      <%= truncate(unscraped.short_description, length: 300, separator: ' ') %>
+    </p>
+  </div>
+  <%= render :partial => 'unscrapeds/partials/unscraped_schemaorg', :locals => {:unscraped => unscraped} %>
+</div>
+

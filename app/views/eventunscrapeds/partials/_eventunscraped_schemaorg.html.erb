@@ -1,0 +1,6 @@
+<div itemscope itemtype="http://schema.org/CreativeWork">
+  <%= content_tag :span, eventunscraped.title, {itemprop: 'name', content: eventunscraped.title, class: 'schemaorg-element'} %>
+  <%= content_tag :span, eventunscraped.url, {itemprop: 'url', content: eventunscraped.url, class: 'schemaorg-element'} %>
+  <%= content_tag :span, eventunscraped_url(eventunscraped), {itemprop: 'sameAs', content: eventunscraped_url(eventunscraped), class: 'schemaorg-element' } %>
+ 
+</div>

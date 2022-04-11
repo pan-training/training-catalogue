@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <% if TeSS::Config.solr_enabled %>
+      <div id="sidebar" class="popout-sidebar">
+        <%= render partial: "search/common/facet_sidebar", locals:  { resources: @unscrapeds_results, resource_type: Unscraped } %>
+      </div>
+  <% end %>
+
+  <div id="content">
+
+    <% if TeSS::Config.solr_enabled %>
+        <div class="row">
+          <%= render partial: "search/common/search_box", locals: { resource_path: unscrapeds_path } %>
+          <button class="btn btn-default" id="sidebar-toggle" type="button" autocomplete="off">
+            <i class="fa fa-filter"></i> Filters
+          </button>
+        </div>
+        <div class="row">
+          <%= render partial: "search/common/sort_by", locals: { resources: @unscrapeds, extras: [['Most recent', 'new']] } %>
+          <%= render partial: "search/common/search_info", locals: { resources: @unscrapeds_results, resource_type: 'unscraped' } %>
+          <%= render partial: "search/common/search_filters", locals: { resources: @unscrapeds_results } %>
+        </div>
+    <% end %>
+
+    <%= render partial: "search/common/pagination_bar", locals: { resources: @unscrapeds } %>
+
+    <hr>
+
+    <%= render @unscrapeds %>
+
+    <%= render partial: "search/common/pagination_bar", locals: { resources: @unscrapeds } %>
+
+  </div>
+</div>

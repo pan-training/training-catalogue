@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   post 'materials/check_exists' => 'materials#check_exists'
   post 'events/check_exists' => 'events#check_exists'
   post 'content_providers/check_exists' => 'content_providers#check_exists'
-
+  post 'unscrapeds/check_exists' => 'unscrapeds#check_exists'
+  post 'eventunscrapeds/check_exists' => 'eventunscrapeds#check_exists'
+    
   #devise_for :users
   # Use custom registrations controller that subclasses devise's
   if (ActiveRecord::Base.connection rescue false)
@@ -128,6 +130,11 @@ Rails.application.routes.draw do
   post 'stars' => 'stars#create'
   delete 'stars' => 'stars#destroy'
 
+
+  #patch 'users/:id/change_token' => 'users#change_token', as: 'change_token'
+  post 'materials/:id/unscrape' => 'materials#unscrape', as: 'unscrape_me'
+  post 'events/:id/unscrape' => 'events#unscrape', as: 'eventunscrape_me'
+    
   post 'materials/:id/update_packages' => 'materials#update_packages'
   post 'events/:id/update_packages' => 'events#update_packages'
 
@@ -151,6 +158,18 @@ Rails.application.routes.draw do
   get 'resolve/:prefix:type:id' => 'resolution#resolve', constraints: { prefix: /(.+\:)?/, type: /[a-zA-Z]/, id: /\d+/ }
 
 
+  #maybe add curators too?
+  #with authorize/policies we already block the unsigned user and non admin user from viewing index, show etc but might as well add it here too
+  authenticate :user, lambda { |u| u.is_admin? } do
+      resources :unscrapeds, only: [:show, :index,  :destroy], concerns: :activities do  
+      end
+  end  
+    
+  authenticate :user, lambda { |u| u.is_admin? } do
+      resources :eventunscrapeds, only: [:show, :index,  :destroy], concerns: :activities do
+      end    
+  end
+  
 =begin
   authenticate :user do
     resources :materials, only: [:new, :create, :edit, :update, :destroy]

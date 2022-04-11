@@ -1,5 +1,5 @@
 class MaterialsController < ApplicationController
-  before_action :set_material, only: [:show, :edit, :update, :destroy, :update_packages, :add_term, :reject_term]
+  before_action :set_material, only: [:show, :edit, :update, :destroy, :update_packages, :add_term, :reject_term, :unscrape]
   before_action :set_breadcrumbs
 
   include SearchableIndex
@@ -108,6 +108,34 @@ class MaterialsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  def unscrape
+    #verification here that its a scraped material
+    authorize @material
+    #we do this condition in the view so normally the condition will always be true
+    #if not, there is no redirection to any view but that does not matter much
+    if !@material.last_scraped.nil? && @material.scraper_record                
+        #create the unscraped material 
+        #authorize Unscraped, the authorize will be done in the new of the Unscraped controller
+        @unscraped = Unscraped.new(:title=> @material.title, :url=> @material.url, :short_description=> @material.short_description)
+        @unscraped.user = current_user
+        
+        if @unscraped.save
+        @unscraped.create_activity :create, owner: current_user
+        end       
+         
+        #delete the material
+        #authorize @material, already did an authorize at the beginning
+        @material.create_activity :destroy, owner: current_user
+        @material.destroy
+        respond_to do |format|
+          format.html { redirect_to materials_url, notice: 'Material was successfully destroyed and will no longer be scraped.' }
+          format.json { head :no_content }
+        end    
+    end
+  end  
+  
 
   # POST /materials/1/update_packages
   # POST /materials/1/update_packages.json
@@ -134,7 +162,7 @@ class MaterialsController < ApplicationController
     @material = Material.friendly.find(params[:id])
   end
 
-
+  
   # Never trust parameters from the scary internet, only allow the white list through.
   def material_params
     params.require(:material).permit(:id, :title, :url, :short_description, :long_description, :doi,:last_scraped, :scraper_record,

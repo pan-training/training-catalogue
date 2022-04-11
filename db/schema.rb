@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_27_111818) do
+ActiveRecord::Schema.define(version: 2022_04_01_094040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,6 +273,17 @@ ActiveRecord::Schema.define(version: 2022_01_27_111818) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "eventunscrapeds", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["slug"], name: "index_eventunscrapeds_on_slug", unique: true
+    t.index ["user_id"], name: "index_eventunscrapeds_on_user_id"
+  end
+
   create_table "external_resources", force: :cascade do |t|
     t.integer "source_id"
     t.text "url"
@@ -481,6 +492,18 @@ ActiveRecord::Schema.define(version: 2022_01_27_111818) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
+  create_table "unscrapeds", force: :cascade do |t|
+    t.text "title"
+    t.string "url"
+    t.string "short_description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "slug"
+    t.index ["slug"], name: "index_unscrapeds_on_slug", unique: true
+    t.index ["user_id"], name: "index_unscrapeds_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -562,6 +585,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_111818) do
   add_foreign_key "event_materials", "events"
   add_foreign_key "event_materials", "materials"
   add_foreign_key "events", "users"
+  add_foreign_key "eventunscrapeds", "users"
   add_foreign_key "materials", "content_providers"
   add_foreign_key "materials", "users"
   add_foreign_key "node_links", "nodes"
@@ -570,6 +594,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_111818) do
   add_foreign_key "staff_members", "nodes"
   add_foreign_key "stars", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "unscrapeds", "users"
   add_foreign_key "users", "roles"
   add_foreign_key "workflows", "users"
 end
