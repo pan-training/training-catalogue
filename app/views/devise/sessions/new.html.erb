@@ -16,7 +16,7 @@
         <hr/>
         <% resource_class.omniauth_providers.each do |provider| %>
           <% if provider.to_s.downcase == 'umbrella_aai' -%>
-            <li><%= link_to 'Log in with UmbrellaID', omniauth_authorize_path(resource_name, provider), method: :post -%></li>
+            <li><%= link_to 'Log in with UmbrellaID (use your username not email)', omniauth_authorize_path(resource_name, provider), method: :post -%></li>
           <% end -%>
         <% end -%>
         <li><a href="https://umbrellaid.org/euu/account/create">Create a new UmbrellaID account</a></li>
