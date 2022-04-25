@@ -19,7 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :environment, "production" 
+
 # Generate a new sitemap...
-every 1.day, at: "6am" do
+every 1.day, at: "11am" do
+#every 2.minutes do
   rake "sitemap:generate"
 end

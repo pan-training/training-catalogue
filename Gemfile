@@ -97,7 +97,7 @@ gem 'jquery-simplecolorpicker-rails'
 
 # For getting date of materials for the home page
 #gem 'by_star', '~> 2.2.1', git: 'git://github.com/radar/by_star'
-gem 'by_star', '~> 4.0.0', git: 'git://github.com/radar/by_star'
+gem 'by_star', '~> 4.0.0', git: 'https://github.com/radar/by_star'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -173,10 +173,7 @@ end
 
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 
-#gem 'tess_api_client', '~> 0.3.1', :git => 'git://github.com/pan-training/training-catalogue-api-client.git'
-#gem 'tess_api_client', '~> 0.3.1', :git => 'git://gitlab.hzdr.de/expands/catalogue_api_client.git'
-
-gem 'tess_api_client', :git => 'git://github.com/pan-training/training-catalogue-api-client.git'
+gem 'tess_api_client', :git => 'https://github.com/pan-training/training-catalogue-api-client.git'
 
 #analytics (gdpr compliant)
 gem 'ahoy_matey'
