@@ -29,7 +29,8 @@
         <%= image_tag("PaN-training_color_white_large.png", width: "70%", alt: "e-learning") %>
         </center>
         <h5> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe.
-             </br> </br> <b>We have <span class="basic_stats"><%= Material.count() %></span> materials, <span class="basic_stats"><%= Event.count() %></span> events and <span class="basic_stats"><%= Workflow.count() %></span> workflows</b>. 
+             </br> </br>
+             <b>We have <%= link_to materials_path do %><span class="basic_stats"><%= Material.count() %></span><% end %> materials, <%= link_to events_path do %><span class="basic_stats"><%= Event.count() %></span><% end %> events and <%= link_to workflows_path do %><span class="basic_stats"><%= Workflow.count() %></span><% end %> workflows</b>. 
         </h5>
       </div>
       <div class="divone-half-center">
