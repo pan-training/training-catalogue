@@ -381,7 +381,7 @@ module ApplicationHelper
       "#{controller_name.humanize} - "
     else
       ''
-    end + "PaN Training Catalogue (ExPaNDS/PaNOSC)"
+    end + "PaN Training Catalogue"
   end
 
   # Renders a title on the page (by default in an H2 tag, pass a "tag" option with a symbol to change) as well as
