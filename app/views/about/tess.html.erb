@@ -13,54 +13,64 @@
       <%= render :partial => 'links', :locals => {'show': 'tess'} %>
       <div class="row">
 
-        <div id='trainingregistry' class="h3">The <%= TeSS::Config.generic_name%></div>
-<br>
-
-  <video
-    width=800
-    id="video_1"
-    class="video-js vjs-default-skin" 
-    controls
-    preload="auto"
-    data-setup='{}'>
-    <source src="//pan-training.eu/Catalogue_Demo_720p.mp4" type="video/mp4" selected="true"></source>
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a
-    web browser that
-      <a href="https://videojs.com/html5-video-support/" target="_blank">
-        supports HTML5 video
-      </a>
-    </p>
-  </video>
-
+        <div id='trainingregistry' class="h3">Training Catalogue for the Photon & Neutron Community</div>
         <br>
 
         <p>One of the goals of <%= link_to 'ExPaNDS', 'https://expands.eu', target: '_blank' %>
         (European Open Science Cloud (EOSC) Photon and Neutron Data Service) is to train research scientists to 
         better use available computational RI infrastructures to address critical research questions. 
         This requires access both to face-to-face training opportunities and to disparate training materials 
-        and resources, currently dispersed across Europe.
-        
-         <p> The ambitious ExPaNDS project itself is a collaboration between 10 national Photon and Neutron 
-        Research Infrastructures (PaN RIs) as well as EGI. The project aims to deliver standardised, 
-        interoperable, and integrated data sources and data analysis services for Photon and Neutron 
-        facilities. ExPaNDS collaborates with <%= link_to 'PaNOSC', 'https://www.panosc.eu', target: '_blank' %> 
-        (Photon and Neutron Open Science Cloud). </p>
-        
-         <p> ExPaNDS WP5: Training activities through EOSC platforms will organise workshops and deliver training 
-        materials through the e-learning platforms made available on the EOSC. Training will be organised 
-        in cooperation with EOSC related activities. </p>
+        and resources, currently dispersed across Europe.</p>
 
-        <p>Our training catalogue, providing a one-stop shop for trainersand trainees to discover
+        <center>
+          <%= image_tag('about/PaN-training_color.png', width: "40%")%>
+        </center>
+        </br>
+
+        <p>Our training catalogue <a href="https://pan-training.eu" target="_blank">pan-training.eu</a>, provids a one-stop shop for trainersand trainees to discover
           online information and content, including training materials, events and interactive tutorials.
           the catalogue provides opportunities to promote training events and news, and to contribute
           to a growing catalogue of materials; for trainers, the portal offers an environment for sharing materials
           and event information; for trainees, it offers a convenient gateway via which to identify relevant training
-          events and resources, and to perform specific, guided analysis tasks via customised training workflows to provide FAIR research.</p>
+          events and resources, and to perform specific, guided analysis tasks via customised training workflows to provide FAIR research.</p></br>
+
+        <video
+            width=800
+            id="video_1"
+            class="video-js vjs-default-skin" 
+            controls
+            preload="auto"
+            data-setup='{}'>
+            <source src="//pan-training.eu/Catalogue_Demo_720p.mp4" type="video/mp4" selected="true"></source>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+              <a href="https://videojs.com/html5-video-support/" target="_blank">
+                supports HTML5 video
+              </a>
+            </p>
+          </video>
+        <br>
+        <br>
+        <br>
+       
+
+        <div id='learning' class="h3">The E-Learning Branch</div></br>
+
+         <center>
+          <%= image_tag('about/PaN-elearning.png', width: "40%")%>
+        </center>
+        </br>
+
+        <p>Our associated e-learning platform hosts free education and training for scientists and students with an integration of Jupyter notebooks. The purpose of PaN-training's e-learning platform is to provide open source neutron, photon and muon science training to European scientists and students. The e-learning platform itself started out as e-neutrons.org. It was developed primarily by Copenhagen University as a means to teach their own students about neutrons science. The platform was developed and integrated as our e-Learning branch at <a href="https://e-learning.pan-training.eu" target="_blank">e-learning.pan-training.eu</a> by our sister Project <a href="https://www.panosc.eu/" target="_blank">PaNOSC</a></p>
+
+        <br>  
 
         <center>
           <%= image_tag 'about/PaNOSC_FAIR.png', class: "widgets_guide"%>
         </center>
+
+        <div id='whatcatalogue' class="h3">What we catalogue</div>
 
         <!-- EVENTS-->
         <div class="row odd-about-block">
