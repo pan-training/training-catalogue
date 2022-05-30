@@ -78,12 +78,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'auto_strip_attributes', '~> 2.0'
 
 # Gem for validating URLs
-gem 'validate_url', '~> 1.0.2'
+gem 'validate_url', '~> 1.0.15'
 
 gem 'simple_form'
 
 # Gem for rendering Markdown
-gem 'redcarpet', '~> 3.4.0'
+gem 'redcarpet', '~> 3.5.1'
 
 # Gem for paginating search results
 gem 'will_paginate'
