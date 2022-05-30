@@ -102,7 +102,7 @@ class Material < ApplicationRecord
 
   def self.facet_fields
     %w( scientific_topics tools standard_database_or_policy target_audience keywords difficulty_level
-        author contributor related_resources licence node content_provider user resource_type)
+        author contributor licence node content_provider user resource_type)
   end
 
   def self.check_exists(material_params)
