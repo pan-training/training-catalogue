@@ -130,7 +130,10 @@ Rails.application.routes.draw do
   post 'stars' => 'stars#create'
   delete 'stars' => 'stars#destroy'
 
-
+  get 'likes' => 'likes#index'
+  post 'likes' => 'likes#create'
+  delete 'likes' => 'likes#destroy'
+  
   #patch 'users/:id/change_token' => 'users#change_token', as: 'change_token'
   post 'materials/:id/unscrape' => 'materials#unscrape', as: 'unscrape_me'
   post 'events/:id/unscrape' => 'events#unscrape', as: 'eventunscrape_me'

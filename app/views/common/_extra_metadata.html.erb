@@ -9,7 +9,9 @@
 <%= display_attribute(resource, :target_audience) { |values| values.join(', ')} %>
 <%= display_attribute(resource, :difficulty_level) { |value|  difficulty_name_for_abbreviation(value)} %>
 <%= display_attribute(resource, :licence) { |value|  licence_name_for_abbreviation(value)} %>
+<% if resource.class.name.downcase == 'material' -%>
 <%= display_attribute(resource, :language) { |value|  language_name_for_abbreviation(value)} %>
+<% end -%>
 <%= display_attribute(resource, :doi) %>
 <%= display_attribute(resource, :remote_created_date) %>
 <%= display_attribute(resource, :remote_updated_date) %>

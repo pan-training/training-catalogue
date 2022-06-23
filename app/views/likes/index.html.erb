@@ -1,0 +1,38 @@
+<div class="page-header">
+  <%= page_title 'Liked Resources' %>
+</div>
+
+<% if @likes.any? %>
+    <% grouped_likes = @likes.group_by { |s| s.resource_type.underscore.pluralize.to_sym } %>
+
+    <ul class="nav nav-tabs">
+      <% grouped_likes.each_with_index do |(tab, likes), index| %>
+          <li class="<%= index == 0 ? 'active' : '' %>">
+            <a data-toggle="tab" href="#<%= tab %>"><i class="<%= icon_class_for_model(tab) %>"></i> <%= tab.to_s.humanize.capitalize %>
+              (<%= likes.count %>)</a>
+          </li>
+      <% end %>
+    </ul>
+
+    <div class="tab-content">
+      <% grouped_likes.each_with_index do |(model, likes), index| %>
+          <div class="tab-pane fade in <%= 'active'.html_safe if index == 0 %>" id="<%= model %>">
+            <div class="search-results-count"><%= pluralize(likes.count, model.to_s.singularize.humanize.capitalize) %></div>
+
+            <% if model == :materials %>
+                <% likes.each do |like| %>
+                    <%= render partial: like.resource %>
+                <% end %>
+            <% else %>
+                <ul class="masonry media-grid" style="margin-top: 15px;">
+                  <% likes.each do |like| %>
+                      <%= render partial: like.resource %>
+                  <% end %>
+                </ul>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+<% else %>
+    <p class="empty">You have not liked any resources.</p>
+<% end %>

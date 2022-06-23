@@ -404,4 +404,19 @@ module ApplicationHelper
             data: { role: 'star-button', starred: !star.nil?, resource: { id: resource.id, type: resource.class.name } }
   end
 
+  def like_button(resource)
+    like = current_user.likes.where(resource_id: resource.id, resource_type: resource.class.name).first
+    
+    #this is before we add the like or unlike created from the press of the button in the mix
+    #yet it seems it works as is, no need to add or substract one...
+    likecountnumber = like_count(resource)
+    
+    link_to '', '#', class: 'btn btn-default',
+            data: { role: 'like-button', liked: !like.nil?, resource: { id: resource.id, type: resource.class.name, likecountnumber: likecountnumber } }
+  end
+  
+  def like_count(resource)
+    Like.where(resource_id: resource.id, resource_type: resource.class.name).count
+  end 
+
 end

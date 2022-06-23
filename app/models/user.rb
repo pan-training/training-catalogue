@@ -40,6 +40,8 @@ class User < ApplicationRecord
            as: :owner
   #ahoy
   has_many :visits, class_name: "Ahoy::Visit"
+
+  has_many :likes , dependent: :destroy
   
   before_create :set_default_role, :set_default_profile
   before_create :skip_email_confirmation_for_non_production

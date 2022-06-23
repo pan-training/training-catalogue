@@ -223,6 +223,44 @@ document.addEventListener("turbolinks:load", function() {
         })
     });
 
+
+
+
+     var setLikeButtonState = function (button,likecountnumber) {
+        if (button.data('liked')) {
+            button.html("<i class='fa fa-thumbs-up'> </i> Un-like<sub>"+ likecountnumber +"</sub>");
+        } else {
+            button.html("<i class='fa fa-thumbs-o-up'> </i> Like<sub>"+ likecountnumber +"</sub>");
+        }
+    };   
+    
+    $('[data-role="like-button"]').each(function () {
+        var button = $(this);
+        var resource = button.data('resource');
+
+        setLikeButtonState(button,resource.likecountnumber);
+
+        button.click(function () {
+            var liked = button.data('liked');
+            button.addClass('loading');
+            $.ajax({
+                method: liked ? 'DELETE' : 'POST',
+                dataType: 'json',
+                url: '/likes',
+                data: { like: { resource_id: resource.id, resource_type: resource.type } },
+                success: function () {
+                    button.data('liked', !liked);
+                    setLikeButtonState(button);
+                },
+                complete: function () {
+                    button.removeClass('loading');
+                }
+            });
+        })
+    });
+
+
+
     // TODO: Try to get scrollspy to work. Something is preventing it from triggering
     $('.about-block').scrollspy({
         target: '.about-page-menu',
