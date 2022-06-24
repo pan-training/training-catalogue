@@ -37,7 +37,6 @@
 //= require ahoy
 
 
-
 function updateURLParameter(url, param, paramVal){
     var newAdditionalURL = "";
     var tempArray = url.split("?");

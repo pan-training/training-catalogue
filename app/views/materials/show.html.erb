@@ -115,6 +115,8 @@
 
               <%= render :partial => 'materials/partials/material_schemaorg', :locals => {:material => @material} %>
               <%= render :partial => 'materials/partials/twitter_card', :locals => {:material => @material} %>
+              </br>
+              <%= render :partial => 'common/simple_share', :locals => {:title => @material.title, :url => @material.url} %>               
             </div>
           </div>
         </div>
