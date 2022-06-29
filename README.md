@@ -36,7 +36,8 @@ end
 ```
 
 Solr needs to be reindexed after. Either do it manually or periodically.
-(This is the reason why after running the above rake task the results with broken links still showed up in the search, after reindexing the materials/events with broken links are hidden and do not show up in the search.)
+
+After reindexing the materials/events with broken links are hidden and do not show up in the search anymore.
 
 manually:
 
