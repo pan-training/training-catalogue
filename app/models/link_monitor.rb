@@ -2,7 +2,7 @@ class LinkMonitor < ApplicationRecord
   belongs_to :link_checkable, polymorphic: true, foreign_key: :lcheck_id, foreign_type: :lcheck_type
   before_create :set_initial_date
 
-  FAILURE_THRESHOLD = 4
+  FAILURE_THRESHOLD = 1
 
   def set_initial_date
     self.failed_at ||= Time.now
