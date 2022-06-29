@@ -51,6 +51,10 @@ every 1.day do
 end
 ```
 
+Then to update the cron job:
+
+`bundle exec whenever -w`
+
 The rest will be done progressively and this README will be updated.
 
 Another different branch will be created for the zenodo seamless upload at a later date.
