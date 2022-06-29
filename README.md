@@ -17,6 +17,39 @@ When a user starred a material (or other), and then deleted that material, and w
 The dependent destroy relationship did not work. When one material was deleted, it's likes weren't deleted too. 
 Now it is fixed.
 
+### Url checker
+
+To run the url checker for materials: 
+
+`bundle exec rake tess:check_material_urls`
+
+and for events: 
+
+`bundle exec rake tess:check_event_urls` 
+
+To do it once a day you can add to the /config/schedule.rb file: 
+
+```
+every 1.day, at: "11am" do
+  rake "tess:check_material_urls"
+end
+```
+
+Solr needs to be reindexed after. Either do it manually or periodically.
+(This is the reason why after running the above rake task the results with broken links still showed up in the search, after reindexing the materials/events with broken links are hidden and do not show up in the search.)
+
+manually:
+
+`bundle exec rake sunspot:solr:reindex`
+
+/config/schedule.rb:
+
+```
+every 1.day do
+  rake "sunspot:solr:reindex"
+end
+```
+
 The rest will be done progressively and this README will be updated.
 
 Another different branch will be created for the zenodo seamless upload at a later date.
