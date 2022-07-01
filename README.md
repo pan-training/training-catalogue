@@ -55,8 +55,6 @@ Then to update the cron job:
 
 `bundle exec whenever -w`
 
-Small fix that makes the url checker work for external resources.
-
 ### Miscellaneous
 
 Language field added to the .json pages and to the search facets.
@@ -64,6 +62,8 @@ Language field added to the .json pages and to the search facets.
 Processing content check better fix (thanks to fbacall from tess).
 
 Workflows now use the PaNET ontology too.
+
+Small fix that makes the url checker work for external resources.
 
 
 The rest will be done progressively and this README will be updated.
