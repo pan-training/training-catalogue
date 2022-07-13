@@ -419,4 +419,23 @@ module ApplicationHelper
     Like.where(resource_id: resource.id, resource_type: resource.class.name).count
   end 
 
+  def elearning_moodle_material_count
+    mats = Material.all
+    moodle_material_count = 0
+    total_material_count = 0
+    mats.each do |m|
+        if !m.failing?
+            #https
+            m_truncated = m.url[8..23]
+            #http
+            m_truncated_http = m.url[7..22]
+            if m_truncated=="pan-learning.org" or m_truncated_http=="pan-learning.org"
+                moodle_material_count+=1
+            end
+            total_material_count+=1
+        end
+    end
+    [total_material_count, moodle_material_count]
+  end
+
 end
