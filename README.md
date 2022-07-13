@@ -55,6 +55,14 @@ Then to update the cron job:
 
 `bundle exec whenever -w`
 
+### Deliverable field
+
+Added a deliverable field for materials (do the same for events?).
+
+### Front page counter separating materials
+
+The front page counter now distinguishes between E-learning moodle materials (from pan-learning) and other materials.
+
 ### Miscellaneous
 
 Language field added to the .json pages and to the search facets.
