@@ -15,7 +15,8 @@
 
     <%= f.input :doi, field_lock: true %>
     
-
+    <%= f.input :deliverable, field_lock: true %>
+    
     <%= f.input :content_provider_id, collection: ContentProvider.all, label_method: :title, value_method: :id,
                 include_blank: true, field_lock: true %>
 

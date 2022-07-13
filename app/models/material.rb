@@ -27,7 +27,8 @@ class Material < ApplicationRecord
       end
       text :long_description
       text :short_description
-      text :doi   
+      text :doi  
+      text :deliverable 
       string :scientific_topics, :multiple => true do
         self.scientific_topic_names
       end
