@@ -419,6 +419,16 @@ module ApplicationHelper
     Like.where(resource_id: resource.id, resource_type: resource.class.name).count
   end 
 
+   def like_icon(resource)
+     likecountnumber = like_count(resource)
+     content_tag(:i, class: 'fa fa-thumbs-up fa-lg') do
+       content_tag(:sub) do
+         #use a smaller police perhaps?
+         likecountnumber.to_s
+       end
+     end
+   end
+
   def elearning_moodle_material_count
     mats = Material.all
     moodle_material_count = 0

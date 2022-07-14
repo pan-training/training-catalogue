@@ -224,7 +224,6 @@ document.addEventListener("turbolinks:load", function() {
 
 
 
-
      var setLikeButtonState = function (button,likecountnumber) {
         if (button.data('liked')) {
             button.html("<i class='fa fa-thumbs-up'> </i> Un-like<sub>"+ likecountnumber +"</sub>");
@@ -257,6 +256,7 @@ document.addEventListener("turbolinks:load", function() {
             });
         })
     });
+
 
 
 

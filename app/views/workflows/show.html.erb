@@ -57,7 +57,8 @@
         
         </br>
         <%= render :partial => 'common/simple_share', :locals => {:title => @workflow.title, :url => "#{request.protocol}#{request.host_with_port}#{request.fullpath}"} %>               
-                      
+        </br>
+        <%= like_icon(@workflow) if not user_signed_in? %>                              
       </div>
       <div id="activity_log" class="tab-pane fade" data-activity-path="<%= workflow_activities_path(@workflow) -%>">
         <%= image_tag('ajax-loader.gif') %>

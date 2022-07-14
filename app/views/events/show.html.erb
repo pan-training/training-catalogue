@@ -327,8 +327,9 @@
               <% end %>
 
               </br>
-              <%= render :partial => 'common/simple_share', :locals => {:title => @event.title, :url => @event.url} %>               
-
+              <%= render :partial => 'common/simple_share', :locals => {:title => @event.title, :url => "#{request.protocol}#{request.host_with_port}#{request.fullpath}"} %>               
+              </br>
+              <%= like_icon(@event) if not user_signed_in? %>        
             </div>
           </div>
         </div>
