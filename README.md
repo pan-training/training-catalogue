@@ -1,7 +1,4 @@
-## Changes (ongoing)
-
-Changes are ongoing, mainly: 
-like button, share button, 404 url checker fixed, tess bug where stars dont get deleted if the material gets deleted and misc.
+## Changes
 
 ### Likes
 
@@ -9,7 +6,7 @@ Likes implemented.
 
 ### Share button
 
-Share button implemented. Still needs to be tested on the respective social platforms.
+Share button implemented.
 
 ### Star bug fix
 
@@ -72,7 +69,3 @@ Processing content check better fix (thanks to fbacall from tess).
 Workflows now use the PaNET ontology too.
 
 Small fix that makes the url checker work for external resources.
-
-
-The rest will be done progressively and this README will be updated.
-Another different branch will be created for the zenodo seamless upload at a later date.
