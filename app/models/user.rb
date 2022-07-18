@@ -65,7 +65,7 @@ class User < ApplicationRecord
   #comment when seeding when on development mode
   #validate :email_RI, on: :create
 
-  validates :processing_consent, :presence => true
+  #validates :processing_consent, :presence => true
 
 
   

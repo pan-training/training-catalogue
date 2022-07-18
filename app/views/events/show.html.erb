@@ -300,6 +300,8 @@
                   <p><strong>Keywords:</strong>
                     <%= @event.keywords.join(', ')%></p>
               <% end %>
+              
+              <%= display_attribute(@event, :deliverable) %>
 
               <% if @event.materials.any? %>
                   <div>

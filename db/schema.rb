@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_13_094307) do
+ActiveRecord::Schema.define(version: 2022_07_18_131220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -266,6 +266,7 @@ ActiveRecord::Schema.define(version: 2022_07_13_094307) do
     t.string "feedback"
     t.text "notes"
     t.integer "nominatim_count", default: 0
+    t.string "deliverable"
     t.index ["cost"], name: "index_events_on_cost"
     t.index ["for_profit"], name: "index_events_on_for_profit"
     t.index ["online"], name: "index_events_on_online"

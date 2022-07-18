@@ -41,6 +41,7 @@ class Event < ApplicationRecord
       string :event_types, :multiple => true do
         EventTypeDictionary.instance.values_for_search(self.event_types)
       end
+      text :deliverable
       string :keywords, :multiple => true
       time :start
       time :end
