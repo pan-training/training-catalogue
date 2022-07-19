@@ -214,11 +214,12 @@ document.addEventListener("turbolinks:load", function() {
                 success: function () {
                     button.data('starred', !starred);
                     setStarButtonState(button);
-                    window.location.reload();
+                    //for dev env this forces the page to reload and takes care of the weird star/like behaviour
+                    //window.location.reload();
                 },
                 complete: function () {
                     button.removeClass('loading');
-                    window.location.reload();
+                    //window.location.reload();
                 }
             });
         })
