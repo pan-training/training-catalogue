@@ -65,6 +65,8 @@ module Searchable
             when 'new'
               # Sort by newest
               order_by(:created_at, :desc)
+            when 'lkd'
+              order_by(:likedd, :desc)
             else
               order_by(:sort_title, sort_by.to_sym)
           end

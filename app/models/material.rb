@@ -25,6 +25,11 @@ class Material < ApplicationRecord
       string :sort_title do
         title.downcase.gsub(/^(an?|the) /, '')
       end
+      
+      string :likedd do
+        self.likes.count
+      end      
+      
       text :long_description
       text :short_description
       text :doi  
