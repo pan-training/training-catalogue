@@ -214,12 +214,15 @@ document.addEventListener("turbolinks:load", function() {
                 success: function () {
                     button.data('starred', !starred);
                     setStarButtonState(button);
+                    window.location.reload();
                 },
                 complete: function () {
                     button.removeClass('loading');
+                    window.location.reload();
                 }
             });
         })
+        
     });
 
 
@@ -249,9 +252,12 @@ document.addEventListener("turbolinks:load", function() {
                 success: function () {
                     button.data('liked', !liked);
                     setLikeButtonState(button);
+                    //for dev env this forces the page to reload and takes care of the weird star/like behaviour
+                    //window.location.reload();
                 },
                 complete: function () {
                     button.removeClass('loading');
+                    //window.location.reload();
                 }
             });
         })
@@ -278,6 +284,10 @@ document.addEventListener("turbolinks:load", function() {
     $("a[rel~=popover], .has-popover").popover();
     $("a[rel~=tooltip], .has-tooltip").tooltip();
 });
+
+
+
+
 
 function truncateWithEllipses(text, max)
 {

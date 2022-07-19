@@ -69,3 +69,7 @@ Processing content check better fix (thanks to fbacall from tess).
 Workflows now use the PaNET ontology too.
 
 Small fix that makes the url checker work for external resources.
+
+### TODO
+
+When liking/starring a material and clicking on the browser's back/previous button, we are not taken back to the previous page.
