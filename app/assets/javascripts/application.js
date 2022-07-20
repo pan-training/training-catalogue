@@ -37,7 +37,6 @@
 //= require ahoy
 
 
-
 function updateURLParameter(url, param, paramVal){
     var newAdditionalURL = "";
     var tempArray = url.split("?");
@@ -215,13 +214,58 @@ document.addEventListener("turbolinks:load", function() {
                 success: function () {
                     button.data('starred', !starred);
                     setStarButtonState(button);
+                    //for dev env this forces the page to reload and takes care of the weird star/like behaviour
+                    //window.location.reload();
                 },
                 complete: function () {
                     button.removeClass('loading');
+                    //window.location.reload();
+                }
+            });
+        })
+        
+    });
+
+
+
+     var setLikeButtonState = function (button,likecountnumber) {
+        if (button.data('liked')) {
+            button.html("<i class='fa fa-thumbs-up'> </i> Un-like<sub>"+ likecountnumber +"</sub>");
+        } else {
+            button.html("<i class='fa fa-thumbs-o-up'> </i> Like<sub>"+ likecountnumber +"</sub>");
+        }
+    };   
+    
+    $('[data-role="like-button"]').each(function () {
+        var button = $(this);
+        var resource = button.data('resource');
+
+        setLikeButtonState(button,resource.likecountnumber);
+
+        button.click(function () {
+            var liked = button.data('liked');
+            button.addClass('loading');
+            $.ajax({
+                method: liked ? 'DELETE' : 'POST',
+                dataType: 'json',
+                url: '/likes',
+                data: { like: { resource_id: resource.id, resource_type: resource.type } },
+                success: function () {
+                    button.data('liked', !liked);
+                    setLikeButtonState(button);
+                    //for dev env this forces the page to reload and takes care of the weird star/like behaviour
+                    //window.location.reload();
+                },
+                complete: function () {
+                    button.removeClass('loading');
+                    //window.location.reload();
                 }
             });
         })
     });
+
+
+
 
     // TODO: Try to get scrollspy to work. Something is preventing it from triggering
     $('.about-block').scrollspy({
@@ -241,6 +285,10 @@ document.addEventListener("turbolinks:load", function() {
     $("a[rel~=popover], .has-popover").popover();
     $("a[rel~=tooltip], .has-tooltip").tooltip();
 });
+
+
+
+
 
 function truncateWithEllipses(text, max)
 {

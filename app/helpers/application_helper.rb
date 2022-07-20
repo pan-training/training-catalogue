@@ -404,4 +404,48 @@ module ApplicationHelper
             data: { role: 'star-button', starred: !star.nil?, resource: { id: resource.id, type: resource.class.name } }
   end
 
+  def like_button(resource)
+    like = current_user.likes.where(resource_id: resource.id, resource_type: resource.class.name).first
+    
+    #this is before we add the like or unlike created from the press of the button in the mix
+    #yet it seems it works as is, no need to add or substract one...
+    likecountnumber = like_count(resource)
+    
+    link_to '', '#', class: 'btn btn-default',
+            data: { role: 'like-button', liked: !like.nil?, resource: { id: resource.id, type: resource.class.name, likecountnumber: likecountnumber } }
+  end
+  
+  def like_count(resource)
+    Like.where(resource_id: resource.id, resource_type: resource.class.name).count
+  end 
+
+   def like_icon(resource)
+     likecountnumber = like_count(resource)
+     content_tag(:i, class: 'fa fa-thumbs-up fa-lg') do
+       content_tag(:sub) do
+         #use a smaller police perhaps?
+         likecountnumber.to_s
+       end
+     end
+   end
+
+  def elearning_moodle_material_count
+    mats = Material.all
+    moodle_material_count = 0
+    total_material_count = 0
+    mats.each do |m|
+        if !m.failing?
+            #https
+            m_truncated = m.url[8..23]
+            #http
+            m_truncated_http = m.url[7..22]
+            if m_truncated=="pan-learning.org" or m_truncated_http=="pan-learning.org"
+                moodle_material_count+=1
+            end
+            total_material_count+=1
+        end
+    end
+    [total_material_count, moodle_material_count]
+  end
+
 end

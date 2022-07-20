@@ -58,6 +58,8 @@
 
     <%= f.dropdown :node_ids, options: format_for_dropdown(Node.order(:name).all), label: 'Nodes' %>
 
+    <%= f.input :deliverable, field_lock: true %>
+
     <%= f.input :description, as: :markdown_area, input_html: { rows: '10' }, field_lock: true %>
 
     <%= f.dropdown :event_types, options: EventTypeDictionary.instance.options_for_select, label: 'Event type' %>

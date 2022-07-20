@@ -41,6 +41,7 @@ class Event < ApplicationRecord
       string :event_types, :multiple => true do
         EventTypeDictionary.instance.values_for_search(self.event_types)
       end
+      text :deliverable
       string :keywords, :multiple => true
       time :start
       time :end
@@ -97,6 +98,9 @@ class Event < ApplicationRecord
   has_ontology_terms(:scientific_topics, branch: OBO_BLOB.topics)
   #has_ontology_terms(:operations, branch: OBO_EDAM.operations)
 
+  has_many :likes,  as: :resource, dependent: :destroy
+  has_many :stars,  as: :resource, dependent: :destroy
+  
   validates :title, :url, presence: true
   validates :capacity, numericality: true, allow_blank: true
   validates :event_types, controlled_vocabulary: { dictionary: EventTypeDictionary.instance }

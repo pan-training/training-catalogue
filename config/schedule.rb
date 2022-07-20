@@ -22,7 +22,20 @@
 set :environment, "production" 
 
 # Generate a new sitemap...
-every 1.day, at: "11am" do
+every 1.day, at: "5am" do
 #every 2.minutes do
   rake "sitemap:generate"
+end
+
+every 1.day, at: "6am" do
+  rake "tess:check_material_urls"
+end
+
+every 1.day, at: "7am" do
+  rake "tess:check_event_urls"
+end
+
+every 1.day, at: "8am" do
+  #bundle exec rake sunspot:solr:reindex
+  rake "sunspot:solr:reindex"
 end
