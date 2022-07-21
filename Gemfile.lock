@@ -583,7 +583,7 @@ GEM
       nokogiri
       rails (>= 3)
       sunspot (= 2.2.7)
-    sunspot_solr (2.2.0)
+    sunspot_solr (2.6.0)
     swd (1.1.2)
       activesupport (>= 3)
       attr_required (>= 0.0.5)
@@ -705,7 +705,7 @@ DEPENDENCIES
   simplecov
   slim
   sunspot_rails (~> 2.2.7)
-  sunspot_solr (= 2.2.0)
+  sunspot_solr (= 2.6.0)
   tess_api_client!
   therubyracer
   time_diff
