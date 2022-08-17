@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get 'privacy' => 'static#privacy', as: 'privacy'
 
+  get 'create' => 'static#create', as: 'create'
+
   post 'materials/check_exists' => 'materials#check_exists'
   post 'events/check_exists' => 'events#check_exists'
   post 'content_providers/check_exists' => 'content_providers#check_exists'

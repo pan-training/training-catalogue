@@ -1,0 +1,35 @@
+<div class="legal-block">
+  <h1>Create Content</h1>
+  
+  Is the content available anywhere in the web?
+
+  <div>
+  No:</br>
+  </div>
+
+<%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
+    <i class="fa fa-plus-square"></i> Create new e-learning course
+<% end %></br>
+
+  <div>
+  Yes:</br>
+  </div>
+
+ <%= link_to new_event_path, class: 'btn btn-primary', target: '_blank' do %>
+    <i class="fa fa-plus-square"></i> Register event
+<% end %></br>
+
+<%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
+    <i class="fa fa-plus-square"></i> Register material
+<% end %></br>
+
+  <div>
+  Combine available content and show dependencies:</br>
+  </div>
+
+<%= link_to new_workflow_path, class: 'btn btn-primary', target: '_blank' do %>
+    <i class="fa fa-plus-square"></i> Register workflow
+<% end %>
+
+
+</div>
