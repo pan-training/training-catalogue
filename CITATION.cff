@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Kndel"
+  given-names: "Oliver"
+  orcid: "https://orcid.org/0000-0001-8174-7795"
+- family-names: "Padovani"
+  given-names: "Antoine"
+- family-names: "Schwabe"
+  given-names: "Julia"
+title: "Training-catalogue for the Photon and Neutron Data Services"
+version: 1.0.0
+url: "https://github.com/pan-training/training-catalogue"
