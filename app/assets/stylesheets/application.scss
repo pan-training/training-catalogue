@@ -471,7 +471,7 @@ ul.unstyled {
 
 h3 {
   width: 70%;
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
 }
 
@@ -1324,6 +1324,7 @@ it {
 
 .browse-icon a:hover {
   color: #EF2B4C;
+  border-color: #EF2B4C;
 }
 
 @media (max-width: 500px) {
@@ -1440,6 +1441,25 @@ it {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.new-content-frontpage{
+  text-align: center;
+}
+
+.btn-front-content {
+  color: #262626;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-front-content:hover {
+  color: #fff;
+  background-color: #EF2B4C;
+  border-color: #EF2B4C;
+}
+
+
+
 
 .divtwo h2 {
   margin: 15px 0px;

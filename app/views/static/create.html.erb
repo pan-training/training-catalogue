@@ -1,35 +1,39 @@
 <div class="legal-block">
-  <h1>Create Content</h1>
-  
-  Is the content available anywhere in the web?
+  <div class="col-md-12">
+    <div id='register' class="h3">Register or created content</div>
+    <p>Is the Training resource which should be added to our training catalogue available anywhere in the internet?</p>
+    <div class="row">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="include-where">...Yes</div>
+          <div class="include-where-graphic">
+            <%= image_tag 'PaN-training-website.png', width: "300"%>
+          </div>
+          <%= link_to new_event_path, class: 'btn btn-primary', target: '_blank' do %>
+            <i class="fa fa-plus-square"></i> Register event
+          <% end %></br>
+          <%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
+              <i class="fa fa-plus-square"></i> Register material
+          <% end %></br>
+          <div>
+            Combine available content and show dependencies:</br>
+          </div>
+          <%= link_to new_workflow_path, class: 'btn btn-primary', target: '_blank' do %>
+              <i class="fa fa-plus-square"></i> Register workflow
+          <% end %>
+          </div>
+        </div>
 
-  <div>
-  No:</br>
+        <div class="col-md-6">
+          <div class="include-where">...No
+          </div>
+          <div class="include-where-graphic">
+            <%= image_tag 'PaN-learning-website.png', width: "300"%>
+          </div>
+          <%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
+          <i class="fa fa-plus-square"></i> Create new e-learning course<% end %></br>
+        </div>
+      </div>
+    </div>
   </div>
-
-<%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
-    <i class="fa fa-plus-square"></i> Create new e-learning course
-<% end %></br>
-
-  <div>
-  Yes:</br>
-  </div>
-
- <%= link_to new_event_path, class: 'btn btn-primary', target: '_blank' do %>
-    <i class="fa fa-plus-square"></i> Register event
-<% end %></br>
-
-<%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
-    <i class="fa fa-plus-square"></i> Register material
-<% end %></br>
-
-  <div>
-  Combine available content and show dependencies:</br>
-  </div>
-
-<%= link_to new_workflow_path, class: 'btn btn-primary', target: '_blank' do %>
-    <i class="fa fa-plus-square"></i> Register workflow
-<% end %>
-
-
 </div>
