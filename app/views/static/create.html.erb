@@ -1,37 +1,101 @@
-<div class="legal-block">
+<div class="create-block">
   <div class="col-md-12">
-    <div id='register' class="h3">Register or created content</div>
-    <p>Is the Training resource which should be added to our training catalogue available anywhere in the internet?</p>
-    <div class="row">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="include-where">...Yes</div>
-          <div class="include-where-graphic">
-            <%= image_tag 'PaN-training-website.png', width: "300"%>
+    <div id='register' class="h3">How to register or create training material on PaN-traininig.eu</div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+        <p class="lead text-center bg-info btn text-info center-block">Is the material (website, article, report, project deliverable, video, git repository, e-leraning course, ...) available online?</p>
+            <div class="row">
+              <div class="col-xs-6 text-center">
+                <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
+              </div>
+              <div class="col-xs-6 text-center">
+                <p class="btn">
+                <span class="glyphicon glyphicon-arrow-down"></span></p>
+              </div>
+            </div>
           </div>
-          <%= link_to new_event_path, class: 'btn btn-primary', target: '_blank' do %>
-            <i class="fa fa-plus-square"></i> Register event
-          <% end %></br>
-          <%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
-              <i class="fa fa-plus-square"></i> Register material
-          <% end %></br>
-          <div>
-            Combine available content and show dependencies:</br>
+        </div>
+        <div class="row">
+        
+        <div class="col-xs-6 text-center">
+          <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
+          <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+          <p class="bg-info text-info btn">Is the material or the collection of material available as resource without dependencies?</p>
+          <div class="row">
+            <div class="col-xs-6 text-center">
+              <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
+            </div>
+            <div class="col-xs-6 text-center">
+              <p class="btn">
+              <span class="glyphicon glyphicon-arrow-down"></span></p>
+            </div>
           </div>
-          <%= link_to new_workflow_path, class: 'btn btn-primary', target: '_blank' do %>
-              <i class="fa fa-plus-square"></i> Register workflow
-          <% end %>
+          <div class="row">
+            <div class="col-xs-6">
+            <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
+                  <p class="btn">
+                  <span class="glyphicon glyphicon-arrow-down"></span></p>
+                  <p class="bg-success text-success btn text-wrap">
+                    The resource can registered as material in our catalogue:</br>
+                    <%= link_to new_material_path, class: 'btn btn-primary' do %>
+                      <i class="fa fa-plus-square"></i> Register material
+                    <% end %></br> 
+                    or when it is just an event: </br>
+                    <%= link_to new_event_path, class: 'btn btn-primary' do %>
+                      <i class="fa fa-plus-square"></i> Register event
+                    <% end %></br> 
+                  </p>
+            </div>
+            <div class="col-xs-6 text-center">
+                    <p class="center-block"><span class="btn btn-danger btn-lg">No</span></p>
+              <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+              <p class="btn bg-danger text-danger text-wrap">
+                The resources can described in a workflow to show dependencies between the materials:</br>
+                <%= link_to new_workflow_path, class: 'btn btn-primary' do %>
+                  <i class="fa fa-plus-square"></i> Register workflow
+                <% end %></br>
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="col-md-6">
-          <div class="include-where">...No
+        <div class="col-xs-6 text-center">
+          <p class="center-block"><span class="btn btn-danger btn-lg">No</span></p>
+          <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+          <p class="bg-info text-info btn">You want to create the content, or just upload the resource?</p>
+          <div class="row">
+            <div class="col-xs-6 text-center">
+              <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
+            </div>
+            <div class="col-xs-6 text-center">
+              <p class="btn">
+              <span class="glyphicon glyphicon-arrow-down"></span></p>
+            </div>
           </div>
-          <div class="include-where-graphic">
-            <%= image_tag 'PaN-learning-website.png', width: "300"%>
+          <div class="row">
+            <div class="col-xs-6">
+            <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
+                  <p class="btn">
+                  <span class="glyphicon glyphicon-arrow-down"></span></p>
+              <p class="bg-success text-success btn text-wrap">
+                You can create a new e-learning course in our moodle:</br>
+                <%= link_to 'https://e-learning.pan-training.eu/', class: 'btn btn-primary' do %>
+                  <i class="fa fa-external-link"></i> Create e-learning course
+                <% end %></br>
+              </p>
+            </div>
+            <div class="col-xs-6 text-center">
+                    <p class="center-block"><span class="btn btn-danger btn-lg">No</span></p>
+              <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+              <p class="btn bg-danger text-danger text-wrap">
+                You can register the material at our catalogue and use our Zenodo background-uploader:</br>
+                <%= link_to create_path, class: 'btn btn-primary' do %>
+                  <i class="fa fa-plus-square"></i> Register and upload material
+                <% end %></br>
+              </p>
+            </div>
           </div>
-          <%= link_to new_material_path, class: 'btn btn-primary', target: '_blank' do %>
-          <i class="fa fa-plus-square"></i> Create new e-learning course<% end %></br>
         </div>
       </div>
     </div>

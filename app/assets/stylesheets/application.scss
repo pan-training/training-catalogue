@@ -832,6 +832,11 @@ div.legal-block {
   margin: auto;
 }
 
+div.create-block {
+  max-width: 1024px;
+  margin: auto;
+}
+
 input.loading {
   background: image-url('ajax-loader.gif') no-repeat right center;
 }
@@ -1541,4 +1546,16 @@ it {
 .btn-rd-outline:active {
   color: #ffffff;
   background-color: #ff4500;
+}
+
+.column_create {
+  float: center;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
