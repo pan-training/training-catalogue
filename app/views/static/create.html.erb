@@ -5,20 +5,12 @@
         <div class="row">
           <div class="col-xs-12">
         <p class="lead text-center bg-info btn text-info center-block">Is the material (website, article, report, project deliverable, video, git repository, e-leraning course, ...) available online?</p>
-            <div class="row">
-              <div class="col-xs-6 text-center">
-                <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
-              </div>
-              <div class="col-xs-6 text-center">
-                <p class="btn">
-                <span class="glyphicon glyphicon-arrow-down"></span></p>
-              </div>
-            </div>
           </div>
         </div>
         <div class="row">
         
         <div class="col-xs-6 text-center">
+          <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
           <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
           <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
           <p class="bg-info text-info btn">Is the material or the collection of material available as resource without dependencies?</p>
@@ -48,9 +40,9 @@
                   </p>
             </div>
             <div class="col-xs-6 text-center">
-                    <p class="center-block"><span class="btn btn-danger btn-lg">No</span></p>
+                    <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
               <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
-              <p class="btn bg-danger text-danger text-wrap">
+              <p class="btn bg-warning text-warning text-wrap">
                 The resources can described in a workflow to show dependencies between the materials:</br>
                 <%= link_to new_workflow_path, class: 'btn btn-primary' do %>
                   <i class="fa fa-plus-square"></i> Register workflow
@@ -61,7 +53,8 @@
         </div>
 
         <div class="col-xs-6 text-center">
-          <p class="center-block"><span class="btn btn-danger btn-lg">No</span></p>
+          <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+          <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
           <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
           <p class="bg-info text-info btn">You want to create the content, or just upload the resource?</p>
           <div class="row">
@@ -81,14 +74,14 @@
               <p class="bg-success text-success btn text-wrap">
                 You can create a new e-learning course in our moodle:</br>
                 <%= link_to 'https://e-learning.pan-training.eu/', class: 'btn btn-primary' do %>
-                  <i class="fa fa-external-link"></i> Create e-learning course
+                  <i class="fa fa-external-link"></i> Create e-learning course in pan-learning
                 <% end %></br>
               </p>
             </div>
             <div class="col-xs-6 text-center">
-                    <p class="center-block"><span class="btn btn-danger btn-lg">No</span></p>
+                    <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
               <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
-              <p class="btn bg-danger text-danger text-wrap">
+              <p class="btn bg-warning text-warning text-wrap">
                 You can register the material at our catalogue and use our Zenodo background-uploader:</br>
                 <%= link_to create_path, class: 'btn btn-primary' do %>
                   <i class="fa fa-plus-square"></i> Register and upload material
