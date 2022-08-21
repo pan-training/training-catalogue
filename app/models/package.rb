@@ -6,7 +6,9 @@ class Package < ApplicationRecord
 
   has_many :package_materials
   has_many :package_events
+  has_many :package_zenodomaterials  
   has_many :materials, through: :package_materials
+  has_many :zenodomaterials, through: :package_zenodomaterials
   has_many :events, through: :package_events
 
   #has_one :owner, foreign_key: "id", class_name: "User"
@@ -49,8 +51,9 @@ class Package < ApplicationRecord
 
   #Overwrites a packages materials and events.
   #[] or nil will delete
-  def update_resources_by_id(materials=[], events=[])
+  def update_resources_by_id(materials=[], zenodomaterials=[], events=[])
     self.update_attribute('materials', materials.uniq.collect{|materials| Material.find_by_id(materials)}.compact) if materials
+    self.update_attribute('zenodomaterials', zenodomaterials.uniq.collect{|zenodomaterials| Zenodomaterial.find_by_id(zenodomaterials)}.compact) if zenodomaterials    
     self.update_attribute('events', events.uniq.collect{|events| Event.find_by_id(events)}.compact) if events
   end
 

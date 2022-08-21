@@ -1,5 +1,5 @@
 var Bcontributors = {
-    add: function (firstname, lastname, orcid) {
+    add: function (firstname, lastname, contribtype, orcid) {
         var newForm = $('#bcontributor-template').clone().html();
 
         // Ensure the index of the new form is 1 greater than the current highest index, to prevent collisions
@@ -19,9 +19,10 @@ var Bcontributors = {
         newForm = $(newForm.replace(/replace-me-bcontributor/g, index + 1));
         newForm.appendTo('#bcontributors-list');
 
-        if (typeof firstname !== 'undefined' && typeof lastname !== 'undefined' && typeof orcid !== 'undefined') {
+        if (typeof firstname !== 'undefined' && typeof lastname !== 'undefined' && typeof orcid !== 'undefined' && typeof contribtype !== 'undefined') {
             $('.form-control bcontributor-firstname', newForm).val(firstname);
             $('.form-control bcontributor-lastname', newForm).val(lastname);
+            $('.form-control bcontributor-contribtype', newForm).val(contribtype);            
             $('.form-control bcontributor-orcid', newForm).val(orcid);
         }
 

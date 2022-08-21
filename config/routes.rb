@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'privacy' => 'static#privacy', as: 'privacy'
 
   post 'materials/check_exists' => 'materials#check_exists'
+  post 'zenodomaterials/check_exists' => 'zenodomaterials#check_exists'  
   post 'events/check_exists' => 'events#check_exists'
   post 'content_providers/check_exists' => 'content_providers#check_exists'
   post 'unscrapeds/check_exists' => 'unscrapeds#check_exists'
@@ -108,6 +109,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :zenodomaterials, concerns: :activities do
+    member do
+      post :reject_term
+      post :reject_data
+      post :add_term
+      post :add_data
+    end
+    collection do
+      get 'count'
+    end
+  end
+
   resources :elearning_materials, concerns: :activities do
     member do
       post :reject_term
@@ -130,12 +143,18 @@ Rails.application.routes.draw do
   post 'stars' => 'stars#create'
   delete 'stars' => 'stars#destroy'
 
-
+  #get 'stars' => 'stars#index'
+  post 'likes' => 'likes#create'
+  delete 'likes' => 'likes#destroy'
+  
+  
   #patch 'users/:id/change_token' => 'users#change_token', as: 'change_token'
   post 'materials/:id/unscrape' => 'materials#unscrape', as: 'unscrape_me'
+  post 'zenodomaterials/:id/unscrape' => 'zenodomaterials#unscrape', as: 'zenodounscrape_me'  
   post 'events/:id/unscrape' => 'events#unscrape', as: 'eventunscrape_me'
-    
+      
   post 'materials/:id/update_packages' => 'materials#update_packages'
+  post 'zenodomaterials/:id/update_packages' => 'zenodomaterials#update_packages'  
   post 'events/:id/update_packages' => 'events#update_packages'
 
   get 'search' => 'search#index'

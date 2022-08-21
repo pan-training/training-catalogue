@@ -92,6 +92,10 @@ class Event < ApplicationRecord
   has_many :packages, through: :package_events
   has_many :event_materials, dependent: :destroy
   has_many :materials, through: :event_materials
+
+  has_many :event_zenodomaterials, dependent: :destroy
+  has_many :zenodomaterials, through: :event_zenodomaterials  
+  
   has_many :widget_logs, as: :resource
 
   has_ontology_terms(:scientific_topics, branch: OBO_BLOB.topics)

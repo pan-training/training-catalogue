@@ -1,0 +1,4 @@
+class ZenodomaterialPolicy < ScrapedResourcePolicy
+
+
+end

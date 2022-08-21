@@ -1,0 +1,117 @@
+<div class="wrapper collapsing-wrapper">
+  <%# SIDEBAR %>
+  <div class="collapsing-sidebar" id="sidebar">
+    <%= render :partial => "content_providers/partials/content_provider_info", :locals => {:content_provider => @zenodomaterial.content_provider} %>
+  </div>
+  <div id="content">
+    <div class="row">
+      <%= star_button(@zenodomaterial) if user_signed_in? %>
+
+      <div class="content_action">
+        <%= link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-info'  %>
+
+        <%= render partial: 'common/identifiers_dot_org_button', locals: { resource: @zenodomaterial } if TeSS::Config.identifiers_prefix %>
+
+        <% if !current_user.nil? and policy(@zenodomaterial).update? %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_zenodomaterial_path(@zenodomaterial), :class => 'btn btn-primary' %>
+        <% end %>
+
+        <% if !current_user.nil? and policy(@zenodomaterial).destroy? %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        zenodomaterial_path(@zenodomaterial),
+                        :method => 'delete',
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-danger' %>
+        <% end %>
+        
+        <% if !current_user.nil? and policy(@zenodomaterial).destroy? and current_user.is_admin? and @zenodomaterial.scraper_record %>
+            <%= link_to "Delete and unscrape",
+                        zenodounscrape_me_path(@zenodomaterial), 
+                        :method => 'post',
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-danger' %>
+        <% end %>        
+        
+        <a href="<%= @zenodomaterial.url %>" target="_blank" class="btn btn-success"><span class="fa fa-external-link"></span> View Zenodo material</a>
+      </div>
+    </div>
+    <div class="row">
+      <ul class="nav nav-tabs">
+        <%= tab('Zenodo material', icon_class_for_model('materials'), 'home', active: true) %>
+
+        <%= tab('Activity log', icon_class_for_model('activity_logs'), 'activity_log',
+                disabled: { check: @zenodomaterial.activities.none?, message: 'No activities recorded' }) %>
+      </ul>
+
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <div class="row">
+            <div class="text-justify">
+              <h2>
+                <%=t '.title', :default => @zenodomaterial.title %>
+                <%= scrape_status_icon(@zenodomaterial, 'large') if current_user and current_user.is_admin? %>
+                <%= missing_icon(@zenodomaterial, 'large') if current_user and current_user.is_admin? %>
+                <%= suggestion_icon(@zenodomaterial, 'large') if current_user and current_user.is_admin? -%>
+              </h2>
+              <p>
+                <div class="url-wrap">
+                  <%= link_to @zenodomaterial.url, @zenodomaterial.url, :class =>'h5', :target => "_blank" %>
+                </div>
+              </p>
+              <% if not @zenodomaterial.short_description.blank? %>
+                  <p><%= render_markdown(@zenodomaterial.short_description)%></p>
+              <% end %>
+            </div>
+            <div class="dont-break-out">
+              <%= render partial: 'common/extra_metadata_zenodo', locals: { resource: @zenodomaterial } %>
+
+
+              <% if policy(@zenodomaterial).update? && @zenodomaterial.edit_suggestion %>
+                <%= render partial: 'common/approve_term_suggestions', locals: { suggestion: @zenodomaterial.edit_suggestion } %>
+              <% end %>
+
+              <% if @zenodomaterial.events.any? %>
+                  <div>
+                    <b>Related events: </b>
+                    <ul>
+                      <% @zenodomaterial.events.not_finished.each do |event| %>
+                        <li><%= link_to event.title, event %></li>
+                      <% end %>
+                      <% @zenodomaterial.events.finished.each do |event| %>
+                          <li><%= link_to event.title, event %> (ended)</li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              
+              <div>
+                <% if @zenodomaterial.bauthors.any? %>
+                    <b>Authors: </b>
+                    <%= render partial: 'common/bauthor', locals: { bauthors: @zenodomaterial.bauthors} %>
+                <% end %>
+                         
+              </div>
+
+              <div>
+                <% if @zenodomaterial.bcontributors.any? %>
+                    <b>Contributors: </b>
+                    <%= render partial: 'common/bcontributor', locals: { bcontributors: @zenodomaterial.bcontributors} %>
+                <% end %>
+                         
+              </div>              
+              
+
+              <%= render :partial => 'zenodomaterials/partials/zenodomaterial_schemaorg', :locals => {:zenodomaterial => @zenodomaterial} %>
+              <%= render :partial => 'zenodomaterials/partials/twitter_card', :locals => {:zenodomaterial => @zenodomaterial} %>
+            </div>
+          </div>
+        </div>
+        <div id="activity_log" class="tab-pane fade" data-activity-path="<%= zenodomaterial_activities_path(@zenodomaterial) -%>">
+          <%= image_tag('ajax-loader.gif') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

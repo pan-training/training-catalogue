@@ -1,0 +1,20 @@
+publication:
+  title: Publication
+poster:
+  title: Poster
+presentation:
+  title: Presentation
+dataset:
+  title: Dataset
+image:
+  title: Image
+video:
+  title: Video/Audio
+software:
+  title: Software
+lesson:
+  title: Lesson
+physicalobject:
+  title: Physical object  
+other:
+  title: Other

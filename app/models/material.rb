@@ -73,6 +73,8 @@ class Material < ApplicationRecord
   has_many :event_materials, dependent: :destroy
   has_many :events, through: :event_materials
 
+  has_many :likes,  as: :resource, dependent: :destroy
+
   #has_ontology_terms(:scientific_topics, branch: OBO_EDAM.topics)
   #has_ontology_terms(:operations, branch: OBO_EDAM.operations)
   has_ontology_terms(:scientific_topics, branch: OBO_BLOB.topics)
@@ -102,7 +104,7 @@ class Material < ApplicationRecord
 
   def self.facet_fields
     %w( scientific_topics tools standard_database_or_policy target_audience keywords difficulty_level
-        author contributor related_resources licence node content_provider user resource_type)
+        author contributor licence node content_provider user resource_type)
   end
 
   def self.check_exists(material_params)
@@ -120,4 +122,5 @@ class Material < ApplicationRecord
 
     material
   end
+  
 end

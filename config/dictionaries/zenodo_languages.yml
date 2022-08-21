@@ -1,0 +1,216 @@
+afr:
+  title: "Afrikaans"
+  code: "afr"
+sqi:
+  title: "Albanian"
+  code: "sqi"
+ara:
+  title: "Arabic"
+  code: "ara"
+hye:
+  title: "Armenian"
+  code: "hye"
+eus:
+  title: "Basque"
+  code: "eus"
+ben:
+  title: "Bengali"
+  code: "ben"
+bul:
+  title: "Bulgarian"
+  code: "bul"
+cat:
+  title: "Catalan"
+  code: "cat"
+khm:
+  title: "Cambodian"
+  code: "khm"
+zho:
+  title: "Chinese (Mandarin)"
+  code: "zho"
+hrv:
+  title: "Croatian"
+  code: "hrv"
+ces:
+  title: "Czech"
+  code: "ces"
+dan:
+  title: "Danish"
+  code: "dan"
+nld:
+  title: "Dutch"
+  code: "nld"
+eng:
+  title: "English"
+  code: "eng"
+est:
+  title: "Estonian"
+  code: "est"
+fij:
+  title: "Fijian"
+  code: "fij"
+fin:
+  title: "Finnish"
+  code: "fin"
+fra:
+  title: "French"
+  code: "fra"
+kat:
+  title: "Georgian"
+  code: "kat"
+deu:
+  title: "German"
+  code: "deu"
+ell:
+  title: "Greek"
+  code: "ell"
+guj:
+  title: "Gujarati"
+  code: "guj"
+heb:
+  title: "Hebrew"
+  code: "heb"
+hin:
+  title: "Hindi"
+  code: "hin"
+hun:
+  title: "Hungarian"
+  code: "hun"
+isl:
+  title: "Icelandic"
+  code: "isl"
+ind:
+  title: "Indonesian"
+  code: "ind"
+gle:
+  title: "Irish"
+  code: "gle"
+ita:
+  title: "Italian"
+  code: "ita"
+jpn:
+  title: "Japanese"
+  code: "jpn"
+jav:
+  title: "Javanese"
+  code: "jav"
+kor:
+  title: "Korean"
+  code: "kor"
+lat:
+  title: "Latin"
+  code: "lat"
+lav:
+  title: "Latvian"
+  code: "lav"
+lit:
+  title: "Lithuanian"
+  code: "lit"
+mkd:
+  title: "Macedonian"
+  code: "mkd"
+msa:
+  title: "Malay"
+  code: "msa"
+mal:
+  title: "Malayalam"
+  code: "mal"
+mlt:
+  title: "Maltese"
+  code: "mlt"
+mri:
+  title: "Maori"
+  code: "mri"
+mar:
+  title: "Marathi"
+  code: "mar"
+mon:
+  title: "Mongolian"
+  code: "mon"
+nep:
+  title: "Nepali"
+  code: "nep"
+nor:
+  title: "Norwegian"
+  code: "nor"
+fas:
+  title: "Persian"
+  code: "fas"
+pol:
+  title: "Polish"
+  code: "pol"
+por:
+  title: "Portuguese"
+  code: "por"
+pan:
+  title: "Punjabi"
+  code: "pan"
+que:
+  title: "Quechua"
+  code: "que"
+ron:
+  title: "Romanian"
+  code: "ron"
+rus:
+  title: "Russian"
+  code: "rus"
+smo:
+  title: "Samoan"
+  code: "smo"
+srp:
+  title: "Serbian"
+  code: "srp"
+slk:
+  title: "Slovak"
+  code: "slk"
+slv:
+  title: "Slovenian"
+  code: "slv"
+spa:
+  title: "Spanish"
+  code: "spa"
+swa:
+  title: "Swahili"
+  code: "swa"
+swe:
+  title: "Swedish"
+  code: "swe"
+tam:
+  title: "Tamil"
+  code: "tam"
+tat:
+  title: "Tatar"
+  code: "tat"
+tel:
+  title: "Telugu"
+  code: "tel"
+tha:
+  title: "Thai"
+  code: "tha"
+bod:
+  title: "Tibetan"
+  code: "bod"
+ton:
+  title: "Tongan"
+  code: "ton"
+tur:
+  title: "Turkish"
+  code: "tur"
+ukr:
+  title: "Ukrainian"
+  code: "ukr"
+urd:
+  title: "Urdu"
+  code: "urd"
+uzb:
+  title: "Uzbek"
+  code: "uzb"
+vie:
+  title: "Vietnamese"
+  code: "vie"
+cym:
+  title: "Welsh"
+  code: "cym"
+xho:
+  title: "Xhosa"
+  code: "xho"

@@ -1,0 +1,12 @@
+figure:
+  title: Figure
+plot:
+  title: Plot
+drawing:
+  title: Drawing
+diagram:
+  title: Diagram
+photo:
+  title: Photo
+other:
+  title: Other

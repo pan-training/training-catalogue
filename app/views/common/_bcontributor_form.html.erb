@@ -15,7 +15,12 @@
     <%= text_field_tag "#{field_name_prefix}[lastname]", bcontributor.lastname, :class => 'form-control bcontributor-lastname', :placeholder => 'last name', :title => 'last name' %>
   </div>
   
- 
+
+  <div class="form-group">
+        <%= select_tag "#{field_name_prefix}[contribtype]",  options_for_select(contributortype_options_for_select, bcontributor.contribtype),  :class => 'form-control bcontributor-contribtype'%>        
+  </div> 
+
+   
   <div class="form-group">
     <%= text_field_tag "#{field_name_prefix}[orcid]", bcontributor.orcid, :class => 'form-control bcontributor-orcid', :placeholder => 'ORCID(optional)', :title => 'ORCID(optional)' %>
   </div>  

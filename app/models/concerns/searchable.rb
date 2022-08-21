@@ -1,25 +1,21 @@
 module Searchable
   # Associations that are used on the index pages. Eager load them to prevent N+1 queries.
-  EAGER_LOADABLE = [:content_provider, :ontology_term_links, :edit_suggestion, :materials, :events,
+  EAGER_LOADABLE = [:content_provider, :ontology_term_links, :edit_suggestion, :materials, :zenodomaterials, :events,
                     :training_coordinators].freeze
 
   extend ActiveSupport::Concern
 
   class_methods do
     def facet_keys
-      #puts @facet_keys
       @facet_keys ||= (facet_fields | Facets.special) # Memoize things like this so we don't have to recompute in each request.
     end
 
     # Allows multiple of the same param, i.e. operations=bla foo operations[]=foo&operations[]=bar
     def facet_keys_with_multiple
-      #puts @facet_keys_with_multiple
-      #puts (facet_keys | facet_keys.map { |key| { key => [] } })
       @facet_keys_with_multiple ||= (facet_keys | facet_keys.map { |key| { key => [] } })
     end
 
     def search_and_facet_keys
-      #puts ([:q] | facet_keys_with_multiple)
       @search_and_facet_keys ||= ([:q] | facet_keys_with_multiple)
     end
 
@@ -37,8 +33,6 @@ module Searchable
         any do
           # Set all facets
           normal_facets.each do |facet_title, facet_value|
-            #puts facet_title , facet_value
-            #puts facet_value.join(", ")
             
             any do # Conjunction clause
               # Add to array that get executed lower down
@@ -77,6 +71,8 @@ module Searchable
               order_by(:count, :desc)
             when 'Material'
               order_by(:created_at, :desc)
+            when 'Zenodomaterial'
+              order_by(:created_at, :desc)              
             else
               order_by(:sort_title, :asc)
           end
@@ -129,6 +125,7 @@ module Searchable
 
   def failing?
     if respond_to?(:link_monitor)
+      return false
       return false if link_monitor.nil?
       return link_monitor.failing?
     end

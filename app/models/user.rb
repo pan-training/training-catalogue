@@ -24,8 +24,9 @@ class User < ApplicationRecord
   end
 
   has_one :profile, inverse_of: :user, dependent: :destroy
-  CREATED_RESOURCE_TYPES = [:events, :materials, :workflows, :content_providers]
+  CREATED_RESOURCE_TYPES = [:events, :materials, :zenodomaterials, :workflows, :content_providers]
   has_many :materials
+  has_many :zenodomaterials  
   has_many :packages, dependent: :destroy
   has_many :workflows, dependent: :destroy
   has_many :content_providers
@@ -34,12 +35,15 @@ class User < ApplicationRecord
   belongs_to :role, optional: true
   has_many :subscriptions, dependent: :destroy
   has_many :stars, dependent: :destroy
+    
   has_one :ban, dependent: :destroy, inverse_of: :user
   has_many :activities_as_owner,
            class_name: '::PublicActivity::Activity',
            as: :owner
   #ahoy
   has_many :visits, class_name: "Ahoy::Visit"
+
+  has_many :likes , dependent: :destroy
   
   before_create :set_default_role, :set_default_profile
   before_create :skip_email_confirmation_for_non_production
@@ -63,12 +67,6 @@ class User < ApplicationRecord
   #comment when seeding when on development mode
   #validate :email_RI, on: :create
   
-  
-
-
-  
-  
-
   accepts_nested_attributes_for :profile
 
   attr_accessor :publicize_email
@@ -266,6 +264,7 @@ class User < ApplicationRecord
     # end
     default_user = User.get_default_user
     self.materials.each{|x| x.update_attribute(:user, default_user) } if self.materials.any?
+    self.zenodomaterials.each{|x| x.update_attribute(:user, default_user) } if self.zenodomaterials.any?    
     self.events.each{|x| x.update_attribute(:user, default_user) } if self.events.any?
     self.content_providers.each{|x| x.update_attribute(:user, default_user)} if self.content_providers.any?
     self.nodes.each{|x| x.update_attribute(:user, default_user)} if self.nodes.any?

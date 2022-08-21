@@ -10,6 +10,9 @@
       <%= link_to new_material_path, class: 'btn btn-primary' do %>
         <i class="fa fa-plus-square"></i> Register training material
       <% end %>
+      <%= link_to new_zenodomaterial_path, class: 'btn btn-primary' do %>
+        <i class="fa fa-plus-square"></i> Upload training material to Zenodo
+      <% end %>      
       <%= render partial: 'subscriptions/subscribe_button', locals: { type: 'Material' } %>
       <div class="pull-right">
         <%= info_button('What are materials in this catalogue?') do %>
@@ -32,13 +35,9 @@
         </div>
     <% end %>
 
-    <%= render partial: "search/common/pagination_bar", locals: { resources: @materials } %>
-
     <hr>
 
-    <%= render @materials %>
-
-    <%= render partial: "search/common/pagination_bar", locals: { resources: @materials } %>
-
+    <%= render @results_and_paginated %>
+    <%= render partial: "search/common/pagination_bar", locals: { resources: @results_and_paginated } %>
   </div>
 </div>

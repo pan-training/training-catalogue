@@ -1,0 +1,44 @@
+ContactPerson:
+  title: Contact Person
+DataCollector:
+  title: Data Collector
+DataCurator:
+  title: Data Curator
+DataManager:
+  title: Data Manager
+Distributor:
+  title: Distributor
+Editor:
+  title: Editor
+Funder:
+  title: Funder
+HostingInstitution:
+  title: Hosting Institution
+Producer:
+  title: Producer 
+ProjectLeader:
+  title: Project Leader
+ProjectManager:
+  title: Project Manager
+ProjectMember:
+  title: Project Member
+RegistrationAgency:
+  title: Registration Agency
+RegistrationAuthority:
+  title: Registration Authority 
+RelatedPerson:
+  title: Related Person
+Researcher:
+  title: Researcher
+ResearchGroup:
+  title: Research Group
+RightsHolder:
+  title: Rights Holder
+Supervisor:
+  title: Supervisor 
+Sponsor:
+  title: Sponsor
+WorkPackageLeader:
+  title: Work Package Leader
+Other:
+  title: Other

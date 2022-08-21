@@ -1,5 +1,8 @@
+require 'will_paginate/array' 
+
 class MaterialsController < ApplicationController
   before_action :set_material, only: [:show, :edit, :update, :destroy, :update_packages, :add_term, :reject_term, :unscrape]
+  before_action :set_i, only: [:index]  
   before_action :set_breadcrumbs
 
   include SearchableIndex
@@ -13,11 +16,9 @@ class MaterialsController < ApplicationController
   # GET /materials.json?q=queryparam
 
   def index
-    respond_to do |format|
-      format.json
-      format.json_api { render({ json: @materials }.merge(api_collection_properties)) }
-      format.html
-    end
+    @combined = (Zenodomaterial.all + Material.all ).sort_by {|record| record.created_at}
+    @combined_and_reversed = @combined.reverse
+    @results_and_paginated = @combined_and_reversed.paginate(page: params[:page], per_page: 30)
   end
 
   # GET /materials/1
@@ -147,10 +148,10 @@ class MaterialsController < ApplicationController
     packages = packages.collect{|package| Package.find_by_id(package)}
     packages_to_remove = @material.packages - packages
     packages.each do |package|
-      package.update_resources_by_id((package.materials + [@material.id]).uniq, nil)
+      package.update_resources_by_id((package.materials + [@material.id]).uniq, nil, nil)
     end
     packages_to_remove.each do |package|
-      package.update_resources_by_id((package.materials.collect{|x| x.id} - [@material.id]).uniq, nil)
+      package.update_resources_by_id((package.materials.collect{|x| x.id} - [@material.id]).uniq, nil, nil)
     end
     flash[:notice] = "Material has been included in #{pluralize(packages.count, 'package')}"
     redirect_to @material
@@ -162,11 +163,15 @@ class MaterialsController < ApplicationController
     @material = Material.friendly.find(params[:id])
   end
 
+  def set_i
+    @material = Material.all
+    @zenodomaterials = Zenodomaterial.all
+  end
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def material_params
     params.require(:material).permit(:id, :title, :url, :short_description, :long_description, :doi,:last_scraped, :scraper_record,
-                                     :remote_created_date,  :remote_updated_date, {:package_ids => []},
+                                     :remote_created_date,  :remote_updated_date,  {:package_ids => []},
                                      :content_provider_id, {:keywords => []}, {:resource_type => []},
                                      {:scientific_topic_names => []}, {:scientific_topic_uris => []},
                                      :licence, :difficulty_level, :language,
