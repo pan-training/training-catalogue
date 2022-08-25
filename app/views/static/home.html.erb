@@ -156,7 +156,7 @@
 <br>
 <% if @resources.length > 0 -%>
   <div id="materials-title">
-    <h3>Latest Content in our <%= TeSS::Config.generic_name%></h3>
+    <h3 class="list-header">Latest Content in our <%= TeSS::Config.generic_name%></h3>
   </div>
   <% @resources.each do |resource| %>
     <%= render layout: 'common/mixed_resources', locals: {resource: resource} do %>
