@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7015079.svg)](https://doi.org/10.5281/zenodo.7015079)
+
 # PaN Training Catalogue (based on the TeSS Trainning Catalogue from ELIXIR)
 
 This repository contains the sourcecode of our [PaN Training Catalogue](https://pan-training.hzdr.de). This catalogue is based on the [TeSS Trainning Catalogue](https://github.com/ElixirTeSS/TeSS) from the [ELIXIR](https://elixir-europe.org) project and is used in our Photon and Neutron (PaN) projects [ExPaNDS](https://expands.eu) and [PaNOSC](https://panosc.eu).
