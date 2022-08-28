@@ -11,6 +11,10 @@
       <!-- CONTACT-->
       <div class="row">
         <div class="even-about-block">
+          </br>  
+          <center>
+            <%= image_tag('about/PaN-training_color.png', width: "40%")%>
+          </center>
           <div id='contact' class="h3">Contact</div>
           <div class="sub-about-block">
             <%#= render :partial => "common/contact_form"%>
@@ -23,7 +27,7 @@
       <section id="team">
       <div class="row">
         <div class="odd-about-block">
-          <div id='team' class="h3">The Team</div>
+          <div id='team' class="h3">The Catalogue Team</div>
           <div class="h4">Leadership ExPaNDS Workpackage 5</div>
           <ul>
             <li>Ana Valcarcel-Orti (Soleil)</li>
@@ -88,21 +92,31 @@
           <div id='acknowledgments' class="h3">Acknowledgements</div>
 
           <p>The ExPaNDS team would like to acknowledge the provision of the initial <a style="color:black", href="https://tess.elixir-europe.org" target="_blank", class="expands-footer-link">TeSS</a> code from <a style="color:black", href="https://elixir-europe.org" target="_blank", class="expands-footer-link">ELIXIR</a>, and thank them for such a beautiful and reuseable project.</p>
-
-          <%= image_tag('ELIXIR_TeSS_logo_normal.png', :size => '50%xauto')%>
-
+          <center>
+            <%= image_tag('ELIXIR_TeSS_logo_normal.png', :size => '30%xauto')%>
+          </center>            
         </div>
       </div>
       </section>
 
-      <!-- PUBLICATIONS --><!--
-      <div class="row">
-        <div class="odd-about-block">
-          <div id='publications' class="h3">Publications</div>
-          ...
+      <!-- PUBLICATIONS -->
+      <section id="publications">
+        <div class="row">
+          <div class="even-about-block">
+            <div id='publications' class="h3">Publications</div>
+            </br>
+            <ul>
+              <li>
+                Knodel, Oliver; Konrad, Uwe; Valcarcel-Orti, Ana and Padovani, Antoine. (2022). <i>The Training Catalogue for Photon and Neutron Data Services.</i> LEAPS meets Quantum Technology Conference, La Biodola Bay, Elba Island, Italy. <strong>Poster</strong>. Zenodo. <a href="https://doi.org/10.5281/zenodo.6491948"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6491948.svg" alt="DOI"></a>
+              </li>
+              </br>
+              <li>
+                Knodel, Oliver and Konrad, Uwe. (2021). <i>Demonstrator for using e-learning platforms for PaN (1.0)</i>. <strong>Project Document (D5.4)</strong>. Zenodo. <a href="https://doi.org/10.5281/zenodo.5171766"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5171766.svg" alt="DOI"></a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>-->
-
+      </section>
     </div>
     <%= render :partial => 'links', :locals => {'show': 'about'} %>
   </div>

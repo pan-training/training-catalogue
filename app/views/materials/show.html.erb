@@ -7,8 +7,9 @@
   <div id="content">
     <div class="row">
       <%= star_button(@material) if user_signed_in? %>
-      <%= like_button(@material) if user_signed_in? %>
-       
+
+      <%= like_button(@material) if user_signed_in? %>      
+
       <div class="content_action">
         <%= link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-info'  %>
 
@@ -115,6 +116,10 @@
 
               <%= render :partial => 'materials/partials/material_schemaorg', :locals => {:material => @material} %>
               <%= render :partial => 'materials/partials/twitter_card', :locals => {:material => @material} %>
+              </br>
+              <%= render :partial => 'common/simple_share', :locals => {:title => @material.title, :url => "#{request.protocol}#{request.host_with_port}#{request.fullpath}"} %>       
+              </br>
+              <%= like_icon(@material) if not user_signed_in? %>        
             </div>
           </div>
         </div>

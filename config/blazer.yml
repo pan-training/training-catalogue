@@ -4,7 +4,7 @@ data_sources:
   main:
     url: <%= Rails.application.secrets[:blazer][:url] %>
     #<%= ENV["BLAZER_DATABASE_URL"] %> 
-    
+
     # statement timeout, in seconds Rails.application.secrets[:blazer][:url]
     # none by default
     # timeout: 15

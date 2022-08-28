@@ -66,7 +66,7 @@ class User < ApplicationRecord
   
   #comment when seeding when on development mode
   #validate :email_RI, on: :create
-  
+
   accepts_nested_attributes_for :profile
 
   attr_accessor :publicize_email
@@ -281,7 +281,7 @@ class User < ApplicationRecord
   def consents_to_processing
     #rails turns processing_consent into a string not a boolean
     #unless processing_consent
-    if processing_consent=="0"
+    if processing_consent!="1"
       errors.add(:base, 'You must consent to our catalogue processing your data in order to register')
 
       false

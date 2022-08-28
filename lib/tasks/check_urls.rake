@@ -19,6 +19,7 @@ namespace :tess do
     end
   end
 
+
 end
 
 def process_record(record)
@@ -43,21 +44,20 @@ def process_record(record)
     next unless res.url
 
     puts "Checking (ER): #{res.id}, #{res.url}"
-    code = get_bad_response(record.url)
-
+    code = get_bad_response(res.url)
     if code
       puts "#{code}|#{record.id}|#{record.url}|#{res.id}|#{res.url}"
-      if record.link_monitor
-        record.link_monitor.fail!(code)
+      if res.link_monitor
+        res.link_monitor.fail!(code)
       else
-        record.create_link_monitor(url: record.url, code: code)
+        res.create_link_monitor(url: res.url, code: code)
       end
     else
-      if record.link_monitor
-        record.link_monitor.success!
+      if res.link_monitor
+        res.link_monitor.success!
       end
     end
-    record.save!
+    res.save!
   end
 end
 

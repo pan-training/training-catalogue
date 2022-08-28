@@ -1,9 +1,12 @@
 <div class="row wrapper">
   <div class="col-md-12">
+
     <div class="page-header">
       <%= page_title 'Catalogue Log in' %>
     </div>
+
     <div class="row">
+
       <div class="col-md-6">
         <h4>UmbrellaID Log in</h4>
         <%= render "devise/shared/links" %>
@@ -21,45 +24,49 @@
         <% end -%>
         <li><a href="https://umbrellaid.org/euu/account/create">Create a new UmbrellaID account</a></li>
       </div>
-      <div class="col-md-6">
-        <h4>Direct Catalog Log in</h4>
-        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <%= f.input :login, label: 'Email or username', autofocus: true %>
 
-            <%= f.input :password, input_html: { autocomplete: 'off' } %>
+      <details>
+        <summary>Direct Catalog Log in</summary>
+        <div class="col-md-6">
+          <h4>Direct Catalog Log in</h4>
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <%= f.input :login, label: 'Email or username', autofocus: true %>
 
-            <% if devise_mapping.rememberable? -%>
-                <%= f.input :remember_me, as: :boolean %>
-            <% end -%>
+              <%= f.input :password, input_html: { autocomplete: 'off' } %>
 
-            <div class="actions">
-              <%= f.submit "Log in", :class => 'btn btn-primary'%>
-            </div>
-            <hr/>
+              <% if devise_mapping.rememberable? -%>
+                  <%= f.input :remember_me, as: :boolean %>
+              <% end -%>
 
-            <%- if controller_name != 'sessions' %>
-                <li><%= link_to "log in", new_session_path(resource_name) %></li>
-            <% end -%>
+              <div class="actions">
+                <%= f.submit "Log in", :class => 'btn btn-primary'%>
+              </div>
+              <hr/>
 
-            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-                <li><%= link_to "Register", new_registration_path(resource_name) %></li>
-            <% end -%>
+              <%- if controller_name != 'sessions' %>
+                  <li><%= link_to "log in", new_session_path(resource_name) %></li>
+              <% end -%>
 
-            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                <li><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
-            <% end -%>
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                  <li><%= link_to "Register", new_registration_path(resource_name) %></li>
+              <% end -%>
 
-            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-                <li><%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %></li>
-            <% end -%>
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                  <li><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
+              <% end -%>
 
-            <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-                <li><%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %></li>
-            <% end -%>
-          </ul>
-        <% end %>
-        
-      </div>
+              <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                  <li><%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %></li>
+              <% end -%>
+
+              <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+                  <li><%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %></li>
+              <% end -%>
+            </ul>
+          <% end %>
+        </div>
+      </details>
     </div>
+
   </div>
 </div>

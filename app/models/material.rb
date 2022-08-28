@@ -25,9 +25,15 @@ class Material < ApplicationRecord
       string :sort_title do
         title.downcase.gsub(/^(an?|the) /, '')
       end
+      
+      string :likedd do
+        self.likes.count
+      end      
+      
       text :long_description
       text :short_description
-      text :doi   
+      text :doi  
+      text :deliverable 
       string :scientific_topics, :multiple => true do
         self.scientific_topic_names
       end
@@ -41,7 +47,11 @@ class Material < ApplicationRecord
       string :difficulty_level do
         DifficultyDictionary.instance.lookup_value(self.difficulty_level, 'title')
       end
-      text :difficulty_level
+      text :difficulty_level      
+      string :language do
+        LanguageDictionary.instance.lookup_value(self.language, 'title')
+      end
+      text :language      
       string :content_provider do
         self.content_provider.try(:title)
       end
@@ -75,6 +85,9 @@ class Material < ApplicationRecord
 
   has_many :likes,  as: :resource, dependent: :destroy
 
+  has_many :stars,  as: :resource, dependent: :destroy
+  
+
   #has_ontology_terms(:scientific_topics, branch: OBO_EDAM.topics)
   #has_ontology_terms(:operations, branch: OBO_EDAM.operations)
   has_ontology_terms(:scientific_topics, branch: OBO_BLOB.topics)
@@ -89,6 +102,8 @@ class Material < ApplicationRecord
   validates :url, url: true
 
   validates :difficulty_level, controlled_vocabulary: { dictionary: DifficultyDictionary.instance }
+  
+  validates :language, controlled_vocabulary: { dictionary: LanguageDictionary.instance }
 
   clean_array_fields(:keywords,  :target_audience, :resource_type)
 
@@ -104,7 +119,7 @@ class Material < ApplicationRecord
 
   def self.facet_fields
     %w( scientific_topics tools standard_database_or_policy target_audience keywords difficulty_level
-        author contributor licence node content_provider user resource_type)
+        author contributor licence node content_provider user resource_type language)
   end
 
   def self.check_exists(material_params)

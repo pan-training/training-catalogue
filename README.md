@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7015079.svg)](https://doi.org/10.5281/zenodo.7015079)
+
 # PaN Training Catalogue (based on the TeSS Trainning Catalogue from ELIXIR)
 
 This repository contains the sourcecode of our [PaN Training Catalogue](https://pan-training.hzdr.de). This catalogue is based on the [TeSS Trainning Catalogue](https://github.com/ElixirTeSS/TeSS) from the [ELIXIR](https://elixir-europe.org) project and is used in our Photon and Neutron (PaN) projects [ExPaNDS](https://expands.eu) and [PaNOSC](https://panosc.eu).
@@ -20,11 +22,9 @@ It is typically recommended to install Ruby with RVM. With RVM, you can specify 
 
 ```
 sudo apt-get install software-properties-common
-
 sudo apt-add-repository -y ppa:rael-gc/rvm
 sudo apt-get update
 sudo apt-get install rvm
-
 rvm user gemsets
 ```
 
@@ -93,9 +93,7 @@ From the app's root directory, create several config files by copying the exampl
 
 ```
 cp config/tess.example.yml config/tess.yml
-
 cp config/sunspot.example.yml config/sunspot.yml
-
 cp config/secrets.example.yml config/secrets.yml
 ```
 
@@ -117,7 +115,6 @@ Start Solr:
 
 ```
 bundle exec rake sunspot:solr:start
-
 bundle exec rake sunspot:solr:reindex
 ```
 
@@ -180,11 +177,9 @@ After successfull development deployment add the Passenger Gem with:
 sudo apt-get install -y dirmngr gnupg
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
 sudo apt-get install -y apt-transport-https ca-certificates
-
 # Add our APT repository
 sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main > /etc/apt/sources.list.d/passenger.list'
 sudo apt-get update
-
 # Install Passenger + Nginx module
 sudo apt-get install -y libnginx-mod-http-passenger
 ```
@@ -193,7 +188,6 @@ Check the installation with:
 
 ```
 sudo /usr/bin/passenger-config validate-install
-
 sudo /usr/sbin/passenger-memory-stats
 ```
 
@@ -205,27 +199,21 @@ server {
 	# SSL configuration
 	listen 443;
 	ssl on;
-
 	proxy_set_header X_FORWARDED_PROTO https;
               proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header  Host $http_host;
               proxy_set_header  X-Url-Scheme $scheme;
               proxy_redirect    off;
               proxy_max_temp_file_size 0;
-
 	server_name pan-training.hzdr.de;
-
 	ssl_certificate /etc/ssl/certs/pan.cert;
     ssl_certificate_key /etc/ssl/private/pan.key;
-
 	ssl_session_timeout 1d;
     ssl_session_cache shared:MozSSL:10m;  # about 40000 sessions
     ssl_session_tickets off;
-
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
     ssl_prefer_server_ciphers off;
-
     root /var/www/catalogue/public;
     passenger_enabled on;
 	passenger_ruby /usr/share/rvm/gems/ruby-2.4.5@tess/wrappers/ruby;
@@ -262,7 +250,6 @@ The first time and each time a css or js file is updated:
 
 ```
 bundle exec rake assets:clean RAILS_ENV=production
-
 bundle exec rake assets:precompile RAILS_ENV=production
 ```
 
@@ -288,7 +275,6 @@ Logfiles:
 ```
 /var/log/redis/redis-server.log
 /var/log/nginx/error.log
-
 /var/log/catalogue/passenger.log
 /var/log/catalogue/sidekiq.log
 /var/log/catalogue/production.log

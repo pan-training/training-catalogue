@@ -59,6 +59,8 @@ module Searchable
             when 'new'
               # Sort by newest
               order_by(:created_at, :desc)
+            when 'lkd'
+              order_by(:likedd, :desc)
             else
               order_by(:sort_title, sort_by.to_sym)
           end
@@ -101,6 +103,7 @@ module Searchable
           facet ff, exclude: active_facets[ff]
         end
 
+
         if method_defined?(:user_requires_approval?)
           # Hide shadowbanned users' events, except from other shadowbanned users and administrators
           unless user && (user.shadowbanned? || user.is_admin?)
@@ -112,13 +115,15 @@ module Searchable
             without(:unverified, true)
           end
         end
-
+        
+     
         # Hide records the urls of which are failing
         if method_defined?(:link_monitor)
           unless user && user.is_admin?
             without(:failing, true)
           end
         end
+
       end
     end
   end

@@ -2,6 +2,10 @@ class LikesController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    @likes = current_user.likes.order('created_at DESC')
+  end
+  
   def create
     @like = current_user.likes.where(like_params).first_or_initialize
     @like.assign_attributes(like_params)
@@ -19,7 +23,6 @@ class LikesController < ApplicationController
 
   def destroy
     @like = current_user.likes.where(like_params).first
-
     if @like.destroy
       respond_to do |format|
         format.json { render json: {}, status: :ok }

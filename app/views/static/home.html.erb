@@ -26,10 +26,28 @@
   <div class="divone">
       <div class="divone-half-left">
         <center>
-        <%= image_tag("PaN-training_color_white_large.png", width: "70%", alt: "e-learning") %>
+        <%= image_tag("PaN-training_color_white_large.png", alt: "e-learning") %>
         </center>
-        <h5> The training catalogue for photon & neutron science. <br> Find instructional material from institutes around Europe.
-             </br> </br> <b>We have <span class="basic_stats"><%= Material.count() %></span> materials, <span class="basic_stats"><%= Event.count() %></span> events and <span class="basic_stats"><%= Workflow.count() %></span> workflows</b>. 
+        <h5> Training for photon & neutron science. <br> Find educational material from institutes around Europe.
+          <div style="text-align:left">
+            </br> </br>
+            We have:
+            <ul>
+              <li>
+                <%= link_to materials_path do %><span class="basic_stats"><%= elearning_moodle_material_count[0] %></span><% end %> materials:
+                <ul>
+                  <li><span class="basic_stats"><%= elearning_moodle_material_count[1] %></span> PaN E-learning courses and</li>
+                  <li><span class="basic_stats"><%= elearning_moodle_material_count[0]-elearning_moodle_material_count[1] %></span> other materials</li>
+                </ul>
+              </li>
+              <li>
+                <%= link_to events_path do %><span class="basic_stats"><%= Event.count() %></span><% end %> events and
+              </li>
+              <li>
+                <%= link_to workflows_path do %><span class="basic_stats"><%= Workflow.count() %></span><% end %> workflows
+              </li>
+            </ul>
+          </div>
         </h5>
       </div>
       <div class="divone-half-center">
