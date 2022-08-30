@@ -20,7 +20,7 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 - Indicate which fields zenodo takes into account with colours.
 
-- The second type for image and publication does not work, probably something to do with no default existing.
+- The second type for image and publication does not work if not manually selected, probably something to do with no default existing.
 
 ### Big todos:
 
