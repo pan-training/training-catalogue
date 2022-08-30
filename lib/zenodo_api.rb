@@ -4,8 +4,9 @@ require 'uri'
 
 module ZenodoApi
   class MyZenodoApi    
+    #after testing for stability is done, no need to use the sandbox anymore
     @@root_url = "https://sandbox.zenodo.org/"
-    @@zenodo_token = "input_zenodo_key"    
+    @@zenodo_token = "Wpi9uRjRwoRwLw2DTBo1TXSsG3hh0fVMiOPYbeIygTcuCHSOYYS7J3LjL5Nb"    
     
     def create_empty_material_zenodo
         puts @@root_url
@@ -80,7 +81,7 @@ module ZenodoApi
     end
     
     #dont care about this for now
-    def set_material_info_zenodo(deposition_id,title,short_desc,authors,contributors,zenodotype,doi,keywords,publicationdate,zenodolicense,zenodolanguage)
+    def set_material_info_zenodo(deposition_id,title,short_desc,authors,contributors,zenodotype,doi,keywords,publicationdate,zenodolicense,zenodolanguage,publicationtype,imagetype)
     
         array_authors = []       
         authors.each do |f|
@@ -150,6 +151,14 @@ module ZenodoApi
           puts zenodolicense
           data[0][:metadata][:license] = zenodolicense
         end
+             
+             
+        #publicationtype,imagetype set em      
+        if upload_type=="publication"
+          data[0][:metadata][:publication_type] = publicationtype
+        elsif upload_type=="image"
+          data[0][:metadata][:image_type] = imagetype    
+        end      
              
         #make sure this can never be empty in the model, make it a mandatory field if it isn't already.
         data[0][:metadata][:publication_date] = publicationdate

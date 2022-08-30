@@ -78,18 +78,18 @@ class ZenodomaterialsController < ApplicationController
                                         
         service = ZenodoApi::MyZenodoApi.new         
         array_depid_burl =  service.create_empty_material_zenodo      
-        service.set_material_info_zenodo(array_depid_burl[0], @zenodomaterial.title, @zenodomaterial.short_description,@zenodomaterial.bauthors,@zenodomaterial.bcontributors,@zenodomaterial.zenodotype,@zenodomaterial.doi,@zenodomaterial.keywords,@zenodomaterial.publicationdate,@zenodomaterial.zenodolicense,@zenodomaterial.zenodolanguage)       
+        service.set_material_info_zenodo(array_depid_burl[0], @zenodomaterial.title, @zenodomaterial.short_description,@zenodomaterial.bauthors,@zenodomaterial.bcontributors,@zenodomaterial.zenodotype,@zenodomaterial.doi,@zenodomaterial.keywords,@zenodomaterial.publicationdate,@zenodomaterial.zenodolicense,@zenodomaterial.zenodolanguage,@zenodomaterial.publicationtype,@zenodomaterial.imagetype)       
         bucket_url = array_depid_burl[1]        
         
         #comment this out for testing/debugging purposes
-        service.upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee.tempfile,@zenodomaterial.fileeeee.original_filename) 
+        #service.upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee.tempfile,@zenodomaterial.fileeeee.original_filename) 
         
         #@zenodomaterial.url = "placeholder"      
         
         #comment this out for testing/debugging purposes
-        doi_link =  service.publish_zenodo(array_depid_burl[0])      
-        @zenodomaterial.url = doi_link[1]
-        @zenodomaterial.doi = doi_link[0] #need to take into account the doi the user can input if it already exists
+        #doi_link =  service.publish_zenodo(array_depid_burl[0])      
+        #@zenodomaterial.url = doi_link[1]
+        #@zenodomaterial.doi = doi_link[0] #need to take into account the doi the user can input if it already exists
         #end of the commenting out
         @zenodomaterial.save
         
@@ -190,7 +190,7 @@ class ZenodomaterialsController < ApplicationController
                                      :remote_created_date,  :remote_updated_date, :fileeeee, {:package_ids => []},
                                      :content_provider_id, {:keywords => []}, {:resource_type => []},
                                      {:scientific_topic_names => []}, {:scientific_topic_uris => []},                                     
-                                     :zenodolicense, :zenodolanguage, :zenodotype, :publicationdate,                                   
+                                     :zenodolicense, :zenodolanguage, :zenodotype, :publicationdate, :publicationtype, :imagetype,                                   
                                      bauthors_attributes: [:id, :firstname, :lastname, :orcid, :_destroy],
                                      bcontributors_attributes: [:id, :firstname, :lastname, :contribtype, :orcid, :_destroy], event_ids: [],
                                      locked_fields: [])
