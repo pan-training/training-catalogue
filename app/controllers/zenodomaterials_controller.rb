@@ -82,14 +82,14 @@ class ZenodomaterialsController < ApplicationController
         bucket_url = array_depid_burl[1]        
         
         #comment this out for testing/debugging purposes
-        #service.upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee.tempfile,@zenodomaterial.fileeeee.original_filename) 
+        service.upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee.tempfile,@zenodomaterial.fileeeee.original_filename) 
         
         #@zenodomaterial.url = "placeholder"      
         
         #comment this out for testing/debugging purposes
-        #doi_link =  service.publish_zenodo(array_depid_burl[0])      
-        #@zenodomaterial.url = doi_link[1]
-        #@zenodomaterial.doi = doi_link[0] #need to take into account the doi the user can input if it already exists
+        doi_link =  service.publish_zenodo(array_depid_burl[0])      
+        @zenodomaterial.url = doi_link[1]
+        @zenodomaterial.doi = doi_link[0] #need to take into account the doi the user can input if it already exists
         #end of the commenting out
         @zenodomaterial.save
         

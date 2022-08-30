@@ -6,7 +6,7 @@ module ZenodoApi
   class MyZenodoApi    
     #after testing for stability is done, no need to use the sandbox anymore
     @@root_url = "https://sandbox.zenodo.org/"
-    @@zenodo_token = "Wpi9uRjRwoRwLw2DTBo1TXSsG3hh0fVMiOPYbeIygTcuCHSOYYS7J3LjL5Nb"    
+    @@zenodo_token = "zenodo_api_key, forgot previous key here in last commit but it was immediately revoked"    
     
     def create_empty_material_zenodo
         puts @@root_url
