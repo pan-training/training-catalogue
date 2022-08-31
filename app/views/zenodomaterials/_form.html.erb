@@ -4,12 +4,12 @@
 
     <%# Necessary to allow removal of all field locks %>
     <%= hidden_field_tag 'zenodomaterial[locked_fields][]', '' %>
+    
+    <%= f.input :title, as: :string, field_lock: true , :label_html => { :class => 'zenodo_field' }%>
+    
+    <%= f.input :short_description, as: :markdown_area, input_html: { rows: '5' }, field_lock: true, :label_html => { :class => 'zenodo_field' } %>
 
-    <%= f.input :title, as: :string, field_lock: true %>
-
-    <%= f.input :short_description, as: :markdown_area, input_html: { rows: '5' }, field_lock: true %>
-
-    <%= f.input :doi, field_lock: true %>
+    <%= f.input :doi, field_lock: true , :label_html => { :class => 'zenodo_field' }, hint: "Either add an existing doi or Zenodo will generate one for you." %>
     
     <%= f.input :content_provider_id, collection: ContentProvider.all, label_method: :title, value_method: :id,
                 include_blank: true, field_lock: true %>
@@ -17,31 +17,35 @@
 
     <%= f.autocompleter :scientific_topics, url: blob_topics_path, template: 'autocompleter/term',
                         id_field: :uri, label_field: :preferred_label %>
-
+    
+    <%# idk how to access the css of the label through multi_input so here's a workaround for now%>                            
+    <div class="zenodo_field_two">                        
     <%= f.multi_input :keywords %>
-
+    </div>  
+    
     <%= f.multi_input :resource_type %>
 
-    <%= f.input :publicationdate, as: :date_picker, field_lock: true %>  
+    <%= f.input :publicationdate, as: :date_picker, field_lock: true , :label_html => { :class => 'zenodo_field' }, :required => true, :label=> "Publication date" %>  
     <%# this does not work, why? f.input :publicationdate, as: :date_picker, value: (Date.today if @zenodomaterial.new_record?), field_lock: true %>        
 
-    <%= f.input :zenodolicense, collection: zenodolicense_options_for_select, selected: @zenodomaterial.zenodolicense.blank? ? "CC-BY-4.0" : @zenodomaterial.zenodolicense, field_lock: true %>
+    <%= f.input :zenodolicense, collection: zenodolicense_options_for_select, selected: @zenodomaterial.zenodolicense.blank? ? "CC-BY-4.0" : @zenodomaterial.zenodolicense, field_lock: true , :label_html => { :class => 'zenodo_field' }, :required => true, prompt: '',:label=> "Zenodo license" %>
+   
+    <%= f.input :zenodolanguage, collection: zenodolanguage_options_for_select, selected: @zenodomaterial.zenodolanguage.blank? ? "eng" : @zenodomaterial.zenodolanguage, field_lock: true , :label_html => { :class => 'zenodo_field' },:label=> "Zenodo language"  %> 
 
-    <%= f.input :zenodolanguage, collection: zenodolanguage_options_for_select, selected: @zenodomaterial.zenodolanguage.blank? ? "eng" : @zenodomaterial.zenodolanguage, field_lock: true %>
+    <%= f.input :zenodotype, collection: zenodotype_options_for_select, selected: @zenodomaterial.zenodotype.blank? ? "other" : @zenodomaterial.zenodotype, field_lock: true , :label_html => { :class => 'zenodo_field' },:label=> "Zenodo type"%>    
 
-    <%= f.input :zenodotype, collection: zenodotype_options_for_select, selected: @zenodomaterial.zenodotype.blank? ? "other" : @zenodomaterial.zenodotype, field_lock: true %>    
-
+<%# prompt is there to make the first empty box disappear, this appears because required = true is set. Because i put a default, it should never be blank, i wonder if prompt will bring unwanted behaviour though, see https://github.com/heartcombo/simple_form/issues/1427 %>   
     <div id="publication_hide_unhide" class="hidden" >
-    <%= f.input :publicationtype, collection: publicationtype_options_for_select, selected: @zenodomaterial.publicationtype.blank? ? "other" : @zenodomaterial.publicationtype, field_lock: true  %>    
+    <%= f.input :publicationtype, collection: publicationtype_options_for_select, selected: @zenodomaterial.publicationtype.blank? ? "other" : @zenodomaterial.publicationtype, field_lock: true, :label_html => { :class => 'zenodo_field' }, :required => true, prompt: '',:label=> "Publication type"  %>    
     </div>
 
     <div id="image_hide_unhide" class="hidden">
-    <%= f.input :imagetype, collection: imagetype_options_for_select, selected: @zenodomaterial.imagetype.blank? ? "other" : @zenodomaterial.imagetype, field_lock: true  %>    
+    <%= f.input :imagetype, collection: imagetype_options_for_select, selected: @zenodomaterial.imagetype.blank? ? "other" : @zenodomaterial.imagetype, field_lock: true, :label_html => { :class => 'zenodo_field' }, :required => true, prompt: '',:label=> "Image type" %>    
     </div>
 
 
     <div class="form-group" id="bauthors">
-      <%= f.label :authors %>
+      <%= f.label :authors, :class => 'zenodo_field', :required => true %>
       <%= f.field_lock :authors %>
 
       <div id="bauthors-list">
@@ -58,7 +62,7 @@
     </div>
 
     <div class="form-group" id="bcontributors">
-      <%= f.label :contributors %>
+      <%= f.label :contributors, :class => 'zenodo_field'%>
       <%= f.field_lock :contributors %>
 
       <div id="bcontributors-list">
@@ -75,7 +79,11 @@
     </div>
 
 
-    <%= f.file_field :fileeeee %>
+    <div>
+        <%# idk how to make the required work here, so I use this workaround %>                                
+        <label for="zenodomaterial_fileeeee" class="form-label zenodo_field"><abbr title="required">*</abbr> Upload file</label>
+        <%= f.file_field :fileeeee %>
+    </div>
 
 
     <%= f.autocompleter :events %>

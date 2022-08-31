@@ -6,7 +6,7 @@ module ZenodoApi
   class MyZenodoApi    
     #after testing for stability is done, no need to use the sandbox anymore
     @@root_url = "https://sandbox.zenodo.org/"
-    @@zenodo_token = "zenodo_api_key, forgot previous key here in last commit but it was immediately revoked"    
+    @@zenodo_token = "zenodo_token"    
     
     def create_empty_material_zenodo
         puts @@root_url
@@ -129,7 +129,7 @@ module ZenodoApi
         end
         
         #this probably does not work, need to check
-        if !doi==""
+        if !doi.empty?
           puts "doi"
           data[0][:metadata][:doi] = doi
         end

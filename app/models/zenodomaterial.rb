@@ -6,7 +6,6 @@ class Zenodomaterial < ApplicationRecord
   include HasBauthors
   include HasBcontributors
   include HasContentProvider
-  #include HasLicence, will add all the modules for the new lists coming from zenodo so the validation takes place
   include HasZenodolicense
   include LockableFields
   include Scrapable
@@ -86,7 +85,13 @@ class Zenodomaterial < ApplicationRecord
   #validates_presence_of :, :if => lambda { |o| o.type != 1 }
   validates_presence_of :publicationtype, :if => lambda { |o| o.zenodotype == "publication" }  
   validates_presence_of :imagetype, :if => lambda { |o| o.zenodotype == "image" }  
-      
+
+  validates :zenodolicense, controlled_vocabulary: { dictionary: ZenodolicenseDictionary.instance }
+  validates :zenodolanguage, controlled_vocabulary: { dictionary: ZenodolanguageDictionary.instance }
+  validates :zenodotype, controlled_vocabulary: { dictionary: ZenodotypeDictionary.instance }
+  validates :publicationtype, controlled_vocabulary: { dictionary: PublicationtypeDictionary.instance }
+  validates :imagetype, controlled_vocabulary: { dictionary: ImagetypeDictionary.instance }
+          
   clean_array_fields(:keywords, :resource_type)
 
   update_suggestions(:keywords, :resource_type)
