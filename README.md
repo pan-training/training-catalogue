@@ -10,7 +10,7 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 - Fix a size limit for the file.  
 
-- ~~Make it possible to upload multiple files at the same time, not just a single one. ~~ Make it prettier and more intuitive now.
+- ~~Make it possible to upload multiple files at the same time, not just a single one.~~ Make it prettier and more intuitive now.
 
 - ~~Add a disclaimer explaining that uploading through Zenodo will offer more fields. The Zenodo seamless upload feature is made for quick/fast uploads.~~
 
