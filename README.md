@@ -10,15 +10,17 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 - Fix a size limit for the file.  
 
-- Add a disclaimer explaining that uploading through Zenodo will offer more fields. The Zenodo seamless upload feature is made for quick/fast uploads.
+- Make it possible to upload multiple files at the same time, not just a single one. 
 
-- Indicate which fields are mandatory with an asterisk.
+- ~~Add a disclaimer explaining that uploading through Zenodo will offer more fields. The Zenodo seamless upload feature is made for quick/fast uploads.~~
 
-- Add text explanations for some fields.
+- ~~Indicate which fields are mandatory with an asterisk.~~
 
-- Add concerns checks for the newly created lists (see has_licence as an already existing example).
+- ~~Add text explanations for some fields.~~
 
-- Indicate which fields zenodo takes into account with colours.
+- ~~Add concerns checks for the newly created lists (see has_licence as an already existing example).~~
+
+- ~~Indicate which fields zenodo takes into account with colours.~~
 
 - ~~The second type for image and publication does not work if not manually selected, probably something to do with no default existing.~~
 
