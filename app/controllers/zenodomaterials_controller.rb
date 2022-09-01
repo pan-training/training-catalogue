@@ -82,14 +82,16 @@ class ZenodomaterialsController < ApplicationController
         bucket_url = array_depid_burl[1]        
         
         #comment this out for testing/debugging purposes
-        #service.upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee.tempfile,@zenodomaterial.fileeeee.original_filename) 
+        #service.upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee.tempfile,@zenodomaterial.fileeeee.original_filename) old, new way is underneath, takes into account multiple uploads
         
-        #@zenodomaterial.url = "placeholder"      
+        service.launch_upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee)
+        
+        #@zenodomaterial.url = "placeholder"
         
         #comment this out for testing/debugging purposes
-        #doi_link =  service.publish_zenodo(array_depid_burl[0])      
-        #@zenodomaterial.url = doi_link[1]
-        #@zenodomaterial.doi = doi_link[0] #need to take into account the doi the user can input if it already exists
+        doi_link =  service.publish_zenodo(array_depid_burl[0])      
+        @zenodomaterial.url = doi_link[1]
+        @zenodomaterial.doi = doi_link[0]
         #end of the commenting out
         @zenodomaterial.save
         
@@ -187,7 +189,7 @@ class ZenodomaterialsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def zenodomaterial_params
     params.require(:zenodomaterial).permit(:id, :title, :url, :short_description, :doi,:last_scraped, :scraper_record,
-                                     :remote_created_date,  :remote_updated_date, :fileeeee, {:package_ids => []},
+                                     :remote_created_date,  :remote_updated_date, {:fileeeee => []},  {:package_ids => []},
                                      :content_provider_id, {:keywords => []}, {:resource_type => []},
                                      {:scientific_topic_names => []}, {:scientific_topic_uris => []},                                     
                                      :zenodolicense, :zenodolanguage, :zenodotype, :publicationdate, :publicationtype, :imagetype,                                   

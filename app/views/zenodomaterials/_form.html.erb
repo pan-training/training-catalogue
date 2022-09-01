@@ -82,8 +82,9 @@
     <div>
         <%# idk how to make the required work here, so I use this workaround %>                                
         <label for="zenodomaterial_fileeeee" class="form-label zenodo_field"><abbr title="required">*</abbr> Upload file</label>
-        <%= f.file_field :fileeeee %>
+        <%= f.file_field :fileeeee,  :multiple => true %>
     </div>
+
 
 
     <%= f.autocompleter :events %>

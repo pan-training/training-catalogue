@@ -5,12 +5,13 @@ require 'uri'
 module ZenodoApi
   class MyZenodoApi    
     #after testing for stability is done, no need to use the sandbox anymore
+    #also no need to set_debug_output once the testing is done
     @@root_url = "https://sandbox.zenodo.org/"
-    @@zenodo_token = "zenodo_token"    
+    @@zenodo_token = "input_zenodo_key"    
     
     def create_empty_material_zenodo
-        puts @@root_url
-        puts @@zenodo_token
+        #puts @@root_url
+        #puts @@zenodo_token
             
         uri = URI.parse(@@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
@@ -66,18 +67,27 @@ module ZenodoApi
         response_body = JSON.parse(response.body)
               
         #puts response
+        #puts response_body
         
         doi = response_body['doi']
         puts 'doi', doi
-        zenodo_link = response_body['links']['latest']
+        zenodo_link = response_body['links']['latest_html']
         puts 'zenodo_link', zenodo_link
         
         zenodo_array = [doi,zenodo_link]
     end
 
-    def test(fileeee)
-        puts "file"
-        puts fileeee
+    def launch_upload_file_zenodo(bucket_url,fileeee)  
+          puts "launch_upload_file_zenodo"            
+          fileeee.each do |f|
+             #puts "original filename"
+             #puts f.original_filename
+             original_filename = f.original_filename
+             #puts "tempfile"
+             #puts f.tempfile
+             tempfile = f.tempfile
+             upload_file_zenodo(bucket_url,tempfile,original_filename)
+          end
     end
     
     #dont care about this for now
