@@ -30,7 +30,8 @@
 
     <%= f.input :zenodolicense, collection: zenodolicense_options_for_select, selected: @zenodomaterial.zenodolicense.blank? ? "CC-BY-4.0" : @zenodomaterial.zenodolicense, field_lock: true , :label_html => { :class => 'zenodo_field' }, :required => true, prompt: '',:label=> "Zenodo license" %>
    
-    <%= f.input :zenodolanguage, collection: zenodolanguage_options_for_select, selected: @zenodomaterial.zenodolanguage.blank? ? "eng" : @zenodomaterial.zenodolanguage, field_lock: true , :label_html => { :class => 'zenodo_field' },:label=> "Zenodo language"  %> 
+    <%# english not selected as the default. Why? Needs to be fixed. %>  
+    <%= f.input :zenodolanguage, collection: zenodolanguage_options_for_select, selected: @zenodomaterial.zenodolanguage.blank? ? "eng" : @zenodomaterial.zenodolanguage, field_lock: true, :label_html => { :class => 'zenodo_field' },:label=> "Zenodo language"  %> 
 
     <%= f.input :zenodotype, collection: zenodotype_options_for_select, selected: @zenodomaterial.zenodotype.blank? ? "other" : @zenodomaterial.zenodotype, field_lock: true , :label_html => { :class => 'zenodo_field' },:label=> "Zenodo type"%>    
 
@@ -184,9 +185,30 @@ document.addEventListener("turbolinks:load", function() {
 
         }
     });    
-    
-
+        
     //from https://stackoverflow.com/questions/51072890/open-a-text-box-when-other-is-selected-in-dropdown-list-in-rails
+    var select_val_on_load = $("#zenodomaterial_zenodotype").val();        
+    if (select_val_on_load === 'publication') {
+      // if the 'publication' option is chosen
+      // we remove the 'hidden' class
+      console.log("test 1");
+      $("#image_hide_unhide").addClass("hidden");
+      $("#publication_hide_unhide").removeClass("hidden");          
+    } 
+    else if (select_val_on_load === 'image') {
+      // if the 'image' option is chosen
+      // we remove the 'hidden' class
+      console.log("test 3");
+      $("#publication_hide_unhide").addClass("hidden");
+      $("#image_hide_unhide").removeClass("hidden");
+    } else {
+      // if any other option is chosen
+      // we put back the 'hidden' class
+      console.log("test 2");
+      $("#publication_hide_unhide").addClass("hidden");
+      $("#image_hide_unhide").addClass("hidden");
+    } 
+    
       $("#zenodomaterial_zenodotype").on("change", function() {
         var select_val = $(this).val(); // this gets the value of the dropdown menu
         console.log(select_val); // this just displays the selected value in the browser console (if you have the browser console open)
@@ -272,20 +294,6 @@ $(document).on('logged_contributor', function(e){
         blocks: [4, 4, 4, 4]
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 
