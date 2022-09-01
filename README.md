@@ -10,7 +10,7 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 - Fix a size limit for the file.  
 
-- Make it possible to upload multiple files at the same time, not just a single one. 
+- ~~Make it possible to upload multiple files at the same time, not just a single one.~~ Make it prettier and more intuitive now.
 
 - ~~Add a disclaimer explaining that uploading through Zenodo will offer more fields. The Zenodo seamless upload feature is made for quick/fast uploads.~~
 
@@ -32,4 +32,6 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 - Change the "delete" button to "delete from training catalogue". Explain that it is not possible to delete a published material on Zenodo. 
 
-- Create a slightly different system where the api key used is the user's. This is a more resilient system.
+### In the near(ish) future:
+
+- Create a slightly different system where the API key used is the user's. This is a more resilient system. This system can use most everything done here, but a slight tweak to add the user's api key instead of our own needs to be implemented. Both possible systems could co-exist at the same time and the user could chose which one he/she wants to use. 
