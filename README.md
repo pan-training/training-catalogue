@@ -38,6 +38,8 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 - ~~Add editing~~.
 
+- Take into account the success/failure codes zenodo's api sends back. Properly catch all the possible errors/failures. And in general try to catch other possible errors (when calling split on a potential nil(due to an error of some kind) value for example).
+
 ### In the near(ish) future:
 
 - Create a slightly different system where the API key used is the user's. This is a more resilient system. This system can use most everything done here, but a slight tweak to add the user's api key instead of our own needs to be implemented. Both possible systems could co-exist at the same time and the user could chose which one he/she wants to use. 
@@ -46,5 +48,4 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 - Quite a lot of repetition in the code, make it DRYer.
 
-- Take into account the success/failure codes zenodo's api sends back. Properly catch all the possible errors/failures. And in general try to catch other possible errors (when calling split on a potential nil(due to an error of some kind) value for example).
 
