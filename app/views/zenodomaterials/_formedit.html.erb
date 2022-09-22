@@ -79,15 +79,21 @@
       </a>
     </div>
 
+ 
+    <div class="form-group" id="fileees">
+      <%= f.label :files, :class => 'zenodo_field', :required => true %>
+      <%= f.field_lock :files %>
 
-    <div>
-        <%# idk how to make the required work here, so I use this workaround %>                                
-        <label for="zenodomaterial_fileeeee" class="form-label zenodo_field"><abbr title="required">*</abbr> Upload file</label>
-        <%= f.file_field :fileeeee,  :multiple => true %>
+      <div id="fileees-list">
+
+        <% list_of_files = listfiles %>
+        <% list_of_files.each_with_index do |file, index| %>
+            <%= render partial: 'common/file_form_no_deletion',
+                       locals: { form_name: 'zenodomaterial', index: index, file: file } %>
+        <% end %>
+ 
+      </div>
     </div>
-
-
-
 
 
     <%= f.autocompleter :events %>
@@ -125,7 +131,6 @@ function removeSuggestion(suggestion) {
         return false;
     }
 }
-
 
 
 </script>

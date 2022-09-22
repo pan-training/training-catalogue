@@ -39,6 +39,15 @@ body {
   min-height: 100%;
 }
 
+.newversion{
+  margin-bottom: 10px;
+}
+
+.disabledclone {
+  cursor: not-allowed;
+  opacity: 0.65;
+  box-shadow: none;
+}
 
 
 .footer {

@@ -1,5 +1,5 @@
 class ZenodomaterialsController < ApplicationController
-  before_action :set_zenodomaterial, only: [:show, :edit, :update, :destroy, :update_packages, :add_term, :reject_term, :unscrape]
+  before_action :set_zenodomaterial, only: [:show, :edit, :update, :destroy, :update_packages, :add_term, :reject_term, :unscrape, :newversionedit, :newversionupdate, :listfiles, :deletezenodofile, :newversionzenodo, :aaaaaaaaaaaaaaaaa]
   before_action :set_breadcrumbs
 
   include SearchableIndex
@@ -77,21 +77,36 @@ class ZenodomaterialsController < ApplicationController
         #if we dont get url back, delete material
                                         
         service = ZenodoApi::MyZenodoApi.new         
-        array_depid_burl =  service.create_empty_material_zenodo      
+        array_depid_burl =  service.create_empty_material_zenodo
+        
+        #condition seems to work
+        #puts @zenodomaterial.doi
+        if !@zenodomaterial.doi.empty?
+          #puts "doi is not empty"
+          zenodo_doi_boolean = false
+        else
+          #puts "doi is empty"
+          zenodo_doi_boolean = true
+        end
+        
         service.set_material_info_zenodo(array_depid_burl[0], @zenodomaterial.title, @zenodomaterial.short_description,@zenodomaterial.bauthors,@zenodomaterial.bcontributors,@zenodomaterial.zenodotype,@zenodomaterial.doi,@zenodomaterial.keywords,@zenodomaterial.publicationdate,@zenodomaterial.zenodolicense,@zenodomaterial.zenodolanguage,@zenodomaterial.publicationtype,@zenodomaterial.imagetype)       
         bucket_url = array_depid_burl[1]        
-        
-        #comment this out for testing/debugging purposes
-        #service.upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee.tempfile,@zenodomaterial.fileeeee.original_filename) old, new way is underneath, takes into account multiple uploads
-        
+                
         service.launch_upload_file_zenodo(bucket_url,@zenodomaterial.fileeeee)
-        
-        #@zenodomaterial.url = "placeholder"
-        
+                        
         #comment this out for testing/debugging purposes
-        doi_link =  service.publish_zenodo(array_depid_burl[0])      
+        doi_link =  service.publish_zenodo(array_depid_burl[0])
+
+        @zenodomaterial.zenodoid = array_depid_burl[0]
+        @zenodomaterial.zenodolatestid = array_depid_burl[0]
+              
+        @zenodomaterial.bucketurl = bucket_url
+              
         @zenodomaterial.url = doi_link[1]
         @zenodomaterial.doi = doi_link[0]
+        
+        @zenodomaterial.zenododoibool = zenodo_doi_boolean
+        
         #end of the commenting out
         @zenodomaterial.save
         
@@ -109,8 +124,21 @@ class ZenodomaterialsController < ApplicationController
   def update
     authorize @zenodomaterial
     respond_to do |format|
-      if @zenodomaterial.update(zenodomaterial_params)
+      if @zenodomaterial.update(zenodomaterial_params)                       
         @zenodomaterial.create_activity(:update, owner: current_user) if @zenodomaterial.log_update_activity?
+       
+        service = ZenodoApi::MyZenodoApi.new
+        my_deposition_id = @zenodomaterial.zenodolatestid
+        
+        array_depid_burl =  service.update_empty_material_zenodo(my_deposition_id)   
+        #puts array_depid_burl[0]
+        #puts "this is the id update empty gives us back"     
+        service.update_material_info_zenodo(my_deposition_id, @zenodomaterial.title, @zenodomaterial.short_description,@zenodomaterial.bauthors,@zenodomaterial.bcontributors,@zenodomaterial.zenodotype,@zenodomaterial.keywords,@zenodomaterial.publicationdate,@zenodomaterial.zenodolicense,@zenodomaterial.zenodolanguage,@zenodomaterial.publicationtype,@zenodomaterial.imagetype)       
+        doi_link = service.update_publish_zenodo(my_deposition_id)
+        puts doi_link[0], doi_link[1], "should be the same as creation's doi and link here"
+                
+        @zenodomaterial.save
+               
         format.html { redirect_to @zenodomaterial, notice: 'Zenodo material was successfully updated.' }
         format.json { render :show, status: :ok, location: @zenodomaterial }
       else
@@ -119,7 +147,109 @@ class ZenodomaterialsController < ApplicationController
       end
     end
   end
+  
+  
+  
+  
+  # GET /zenodomaterials/1/newversionedit
+  def newversionedit
+    authorize @zenodomaterial
+  end  
 
+  # PATCH/PUT /zenodomaterials/1/newversionupdate
+  def newversionupdate
+    authorize @zenodomaterial
+    respond_to do |format|
+      if @zenodomaterial.update(zenodomaterial_params)
+        puts "in newversionupdate"       
+        @zenodomaterial.create_activity(:update, owner: current_user) if @zenodomaterial.log_update_activity? #will this work with the new routes?
+
+        service = ZenodoApi::MyZenodoApi.new
+        my_deposition_id = @zenodomaterial.zenodolatestid
+        my_bucket_url = @zenodomaterial.bucketurl
+        
+        service.update_material_info_zenodo(my_deposition_id, @zenodomaterial.title, @zenodomaterial.short_description,@zenodomaterial.bauthors,@zenodomaterial.bcontributors,@zenodomaterial.zenodotype,@zenodomaterial.keywords,@zenodomaterial.publicationdate,@zenodomaterial.zenodolicense,@zenodomaterial.zenodolanguage,@zenodomaterial.publicationtype,@zenodomaterial.imagetype) 
+              
+        service.launch_upload_file_zenodo(my_bucket_url,@zenodomaterial.fileeeee)
+        puts "id and bucket url" 
+        puts my_deposition_id
+        puts my_bucket_url       
+                        
+        #comment this out for testing/debugging purposes
+        doi_link =  service.publish_zenodo(my_deposition_id)
+
+        @zenodomaterial.zenodoid = my_deposition_id
+        #@zenodomaterial.zenodolatestid = my_deposition_id , no need for this now, the above should probably be changed probably also
+              
+        @zenodomaterial.url = doi_link[1]
+        @zenodomaterial.doi = doi_link[0]
+        #end of the commenting out
+
+        @zenodomaterial.save        
+        
+        format.html { redirect_to @zenodomaterial, notice: 'Zenodo material was successfully updated.' }
+        format.json { render :show, status: :ok, location: @zenodomaterial }
+      else
+        format.html { render :newversionedit }
+        format.json { render json: @zenodomaterial.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  #call to zenodo list files
+  #this assumes that the new version has exactly the same files as the older version at first
+  def listfiles
+      puts "listing the files"
+      my_deposition_id = @zenodomaterial.zenodolatestid      
+      service = ZenodoApi::MyZenodoApi.new
+      @id_filename_list = service.list_files(my_deposition_id)
+      puts @id_filename_list
+      
+      @id_filename_list
+  end
+  helper_method :listfiles
+  
+  #call to zenodo delete file
+  def deletezenodofile
+      puts "deleting the file"
+      puts params[:file_id]
+      file_id = params[:file_id]
+      my_deposition_id = @zenodomaterial.zenodolatestid
+      service = ZenodoApi::MyZenodoApi.new
+      service.delete_file(my_deposition_id,file_id)
+  end
+
+  #call to zenodo, create new version
+  #im expecting that if one presses this a second time, either an error or the same exact response comes back, will have to deal with that
+  def newversionzenodo
+      puts "new version zenodo, after button press"
+
+      service = ZenodoApi::MyZenodoApi.new
+      my_deposition_id = @zenodomaterial.zenodolatestid        
+      array_depid_burl = service.new_version(my_deposition_id)
+        
+      @zenodomaterial.zenodolatestid = array_depid_burl[0]
+ 
+      new_version_bucket_url = service.retrieve_deposition(array_depid_burl[0])  
+      puts "the new version id"
+      puts array_depid_burl[0]
+      puts "the new bucket link"
+      puts new_version_bucket_url     
+                                                                              
+      @zenodomaterial.bucketurl = new_version_bucket_url                          
+      @zenodomaterial.save 
+
+  end
+  
+  #might use this by calling it ajaxly instead of calling from the view listfiles directly
+  def aaaaaaaaaaaaaaaaa
+      puts "aaa controller method"      
+      respond_to do |format|
+          format.js
+      end
+  end  
+    
   # DELETE /zenodomaterials/1
   # DELETE /zenodomaterials/1.json
   def destroy
@@ -127,7 +257,7 @@ class ZenodomaterialsController < ApplicationController
     @zenodomaterial.create_activity :destroy, owner: current_user
     @zenodomaterial.destroy
     respond_to do |format|
-      format.html { redirect_to zenodomaterials_url, notice: 'Zenodo material was successfully destroyed.' }
+      format.html { redirect_to zenodomaterials_url, notice: 'Zenodo material was successfully destroyed from the catalogue (not from Zenodo, it can not be).' }
       format.json { head :no_content }
     end
   end

@@ -138,7 +138,16 @@ Rails.application.routes.draw do
       get 'unsubscribe'
     end
   end
-
+  
+  get 'zenodomaterials/:id/newversionedit' => 'zenodomaterials#newversionedit', as: 'newversion'  
+  put 'zenodomaterials/:id/newversionupdate' => 'zenodomaterials#newversionupdate', as: 'newversionupdate'
+  #zenodo shows file lists so showing this should not be an issue
+  get 'zenodomaterials/:id/listfiles' => 'zenodomaterials#listfiles', as: 'list_files'  
+  #zenodo delete file, check this is not a security issue, could very well be
+  post 'zenodomaterials/:id/deletezenodofile' => 'zenodomaterials#deletezenodofile', as: 'deletezenodofile'        
+  post 'zenodomaterials/:id/newversionzenodo' => 'zenodomaterials#newversionzenodo', as: 'newversionzenodo'        
+  get 'zenodomaterials/:id/aaaaaaaaaaaaaaaaa' => 'zenodomaterials#aaaaaaaaaaaaaaaaa', as: 'aaaaaaaaaaaaaaaaa'      #delete at a later date         
+    
   get 'stars' => 'stars#index'
   post 'stars' => 'stars#create'
   delete 'stars' => 'stars#destroy'

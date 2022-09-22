@@ -17,6 +17,11 @@
                         edit_zenodomaterial_path(@zenodomaterial), :class => 'btn btn-primary' %>
         <% end %>
 
+        <% if !current_user.nil? and policy(@zenodomaterial).newversionupdate? and @zenodomaterial.zenododoibool %>
+            <%= link_to t('.newversionedit', :default => t("helpers.links.newversion")),
+                        newversion_path(@zenodomaterial), :class => 'btn btn-primary' %>
+        <% end %>
+
         <% if !current_user.nil? and policy(@zenodomaterial).destroy? %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                         zenodomaterial_path(@zenodomaterial),

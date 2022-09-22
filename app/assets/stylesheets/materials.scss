@@ -81,6 +81,31 @@
 }
 
 
+
+.file-form {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+  &.deleted {
+    color: $brand-danger;
+    text-decoration: line-through;
+  }
+}
+
+.delete-file-btn {
+  @include delete-cross;
+  cursor: pointer;
+
+  input[type=checkbox] {
+    display: none;
+  }
+}
+
+.delete-file-btn a{
+  color: $brand-danger;
+}
+
+
 .associate-tool{
   cursor: pointer;
 }

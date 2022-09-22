@@ -77,7 +77,8 @@ class Zenodomaterial < ApplicationRecord
 
   validates :title, :short_description, :zenodotype, presence: true
 
-  validates :fileeeee, presence: true
+  #uncomment for now, need to make it mandatory for some actions and not others
+  #validates :fileeeee, presence: true
 
   validates :bauthors, presence: true
   

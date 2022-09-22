@@ -1,0 +1,8 @@
+<% list_of_files = listfiles %>
+<% list_of_files.each_with_index do |file, index| %>
+    <%= render partial: 'common/file_form',
+               locals: { form_name: 'zenodomaterial', index: index, file: file } %>
+<% end %>
+        
+        
+        

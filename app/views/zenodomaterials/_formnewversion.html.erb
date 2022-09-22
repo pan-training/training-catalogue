@@ -1,4 +1,4 @@
-<%= simple_form_for @zenodomaterial, :html => {:id => 'zenodomaterial_form'} do |f| %>
+<%= simple_form_for @zenodomaterial, url: newversionupdate_path, method: "put", :html => {:id => 'zenodomaterial_form'} do |f| %>
 
     <%= render partial: 'common/error_summary', locals: { resource: @zenodomaterial } %>
 
@@ -80,21 +80,47 @@
     </div>
 
 
-    <div>
+    <div class="newversion">
+        <%= link_to_if true, "Create a new version", newversionzenodo_path(@zenodomaterial), method: :post, remote: true, :id => 'new_version_button', :class => 'btn btn-primary' %>     
+    </div>   
+
+    <script>
+        $('#new_version_button').bind('ajax:success', function() {
+          console.log("New version pseudo button pressed");
+          //this will wait for a success of the above, i.e. when we click on the new_version_button
+          //then we list the files
+
+          $('#fileees').show();
+          $('#upload_file_div').show();
+            
+          $('#fileees-list').html("<%= j (render partial: 'fileslist') %>")
+            
+          $('.delete_zenodo_file').bind('ajax:success', function() {
+          $(this).parents('.file-form').fadeOut();
+          });                                           
+            
+          $('.newversion').html('<p class="btn btn-primary disabledclone">Create a new version</p>');                    
+          $('#new_version_submit').prop('disabled',false);                    
+                                                            
+        });
+    </script>  
+
+    <div class="form-group" id="fileees" style="display:none">
+      <%= f.label :files, :class => 'zenodo_field', :required => true %>
+      <%= f.field_lock :files %>
+      <div id="fileees-list"></div>
+    </div>
+
+    <div id="upload_file_div" style="display:none">
         <%# idk how to make the required work here, so I use this workaround %>                                
         <label for="zenodomaterial_fileeeee" class="form-label zenodo_field"><abbr title="required">*</abbr> Upload file</label>
         <%= f.file_field :fileeeee,  :multiple => true %>
     </div>
 
-
-
-
-
     <%= f.autocompleter :events %>
 
-
     <div class="form-group">    
-      <%= f.submit (f.object.new_record? ? "Register" : "Update") + " training zenodo material", :class => 'btn btn-primary' %>
+      <%= f.submit (f.object.new_record? ? "Register" : "Update") + " training zenodo material", :class => 'btn btn-primary', :disabled => true, :id => "new_version_submit" %>
       <%= link_to 'Back', :back, :class => "btn btn-info" %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   zenodomaterials_path, :class => 'btn btn-default' %>
@@ -126,7 +152,7 @@ function removeSuggestion(suggestion) {
     }
 }
 
-
+$('#new_version_submit').prop('disabled',true);
 
 </script>
 <script type="text/javascript">
@@ -299,6 +325,28 @@ $(document).on('logged_contributor', function(e){
         blocks: [4, 4, 4, 4]
     });
 });
+
+
+
+
+//no need for this now
+/*
+function initializeFilelist() {
+    $.ajax({
+        type: 'GET',
+        url: '<%= list_files_path(@zenodomaterial) -%>',
+        dataType: 'json',
+    }).done(function (res) {
+        listFiles(res);
+    }).fail(function (error) {
+        console.log("Error: " + error);
+    });
+        
+
+}
+
+initializeFilelist();
+*/
 
 </script>
 

@@ -46,6 +46,14 @@ class ApplicationPolicy
     update?
   end
 
+  def newversionupdate?
+    manage?
+  end
+
+  def newversionedit?
+    newversionupdate?
+  end
+
   def destroy?
     manage?
   end
