@@ -56,7 +56,8 @@ class Zenodomaterial < ApplicationRecord
   end
 
   attr_accessor :fileeeee
-
+  attr_accessor :vfile
+  
   # has_one :owner, foreign_key: "id", class_name: "User"
   belongs_to :user
   has_one :link_monitor, as: :lcheck, dependent: :destroy
@@ -77,8 +78,7 @@ class Zenodomaterial < ApplicationRecord
 
   validates :title, :short_description, :zenodotype, presence: true
 
-  #uncomment for now, need to make it mandatory for some actions and not others
-  #validates :fileeeee, presence: true
+  validates :fileeeee, presence: true, if: :validate_file?
 
   validates :bauthors, presence: true
   
@@ -121,5 +121,11 @@ class Zenodomaterial < ApplicationRecord
 
     zenodomaterial
   end
+  
+  
+  def validate_file?
+    puts vfile
+    vfile == true
+  end  
   
 end

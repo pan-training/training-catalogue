@@ -26,7 +26,7 @@
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                         zenodomaterial_path(@zenodomaterial),
                         :method => 'delete',
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirmdeletezenodomat", :default => 'Are you sure? This will delete the material on the catalogue, not on Zenodo.')) },
                         :class => 'btn btn-danger' %>
         <% end %>
         

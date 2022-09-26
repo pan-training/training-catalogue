@@ -69,6 +69,8 @@ class ZenodomaterialsController < ApplicationController
     @zenodomaterial = Zenodomaterial.new(zenodomaterial_params)
     @zenodomaterial.user = current_user
 
+    @zenodomaterial.vfile = true
+
     respond_to do |format|
       if @zenodomaterial.save
         @zenodomaterial.create_activity :create, owner: current_user
@@ -112,7 +114,7 @@ class ZenodomaterialsController < ApplicationController
         
         format.html { redirect_to @zenodomaterial, notice: 'Zenodomaterial was successfully created.' }
         format.json { render :show, status: :created, location: @zenodomaterial }
-      else
+      else      
         format.html { render :new }
         format.json { render json: @zenodomaterial.errors, status: :unprocessable_entity }
       end
@@ -123,6 +125,7 @@ class ZenodomaterialsController < ApplicationController
   # PATCH/PUT /zenodomaterials/1.json
   def update
     authorize @zenodomaterial
+    @zenodomaterial.vfile = false #file is not a mandatory field here     
     respond_to do |format|
       if @zenodomaterial.update(zenodomaterial_params)                       
         @zenodomaterial.create_activity(:update, owner: current_user) if @zenodomaterial.log_update_activity?
@@ -136,7 +139,7 @@ class ZenodomaterialsController < ApplicationController
         service.update_material_info_zenodo(my_deposition_id, @zenodomaterial.title, @zenodomaterial.short_description,@zenodomaterial.bauthors,@zenodomaterial.bcontributors,@zenodomaterial.zenodotype,@zenodomaterial.keywords,@zenodomaterial.publicationdate,@zenodomaterial.zenodolicense,@zenodomaterial.zenodolanguage,@zenodomaterial.publicationtype,@zenodomaterial.imagetype)       
         doi_link = service.update_publish_zenodo(my_deposition_id)
         puts doi_link[0], doi_link[1], "should be the same as creation's doi and link here"
-                
+                           
         @zenodomaterial.save
                
         format.html { redirect_to @zenodomaterial, notice: 'Zenodo material was successfully updated.' }
@@ -159,6 +162,16 @@ class ZenodomaterialsController < ApplicationController
   # PATCH/PUT /zenodomaterials/1/newversionupdate
   def newversionupdate
     authorize @zenodomaterial
+    
+    #if number of files is 0, file field is mandatory, otherwise it isn't
+    #check if this works
+    listoffiles = listfiles
+    if listoffiles.empty?
+      @zenodomaterial.vfile = true
+    else
+      @zenodomaterial.vfile = false
+    end
+    
     respond_to do |format|
       if @zenodomaterial.update(zenodomaterial_params)
         puts "in newversionupdate"       
@@ -178,13 +191,14 @@ class ZenodomaterialsController < ApplicationController
         #comment this out for testing/debugging purposes
         doi_link =  service.publish_zenodo(my_deposition_id)
 
+        #we come back to the same situation as when we first create the zmaterial
+        #zenodoid and zenodolatestid are equal
         @zenodomaterial.zenodoid = my_deposition_id
-        #@zenodomaterial.zenodolatestid = my_deposition_id , no need for this now, the above should probably be changed probably also
               
         @zenodomaterial.url = doi_link[1]
         @zenodomaterial.doi = doi_link[0]
         #end of the commenting out
-
+        
         @zenodomaterial.save        
         
         format.html { redirect_to @zenodomaterial, notice: 'Zenodo material was successfully updated.' }
@@ -226,19 +240,24 @@ class ZenodomaterialsController < ApplicationController
       puts "new version zenodo, after button press"
 
       service = ZenodoApi::MyZenodoApi.new
-      my_deposition_id = @zenodomaterial.zenodolatestid        
-      array_depid_burl = service.new_version(my_deposition_id)
+      my_deposition_id = @zenodomaterial.zenodolatestid  
+      #if @zmat.zenodolatestid is equal to @zmat.id, then do what is underneath (button has never been pressed)
+      #if it isn't, dont do what is underneath (button has already been pressed), no need to make api calls again. already saved new id and new bucket link.
+      
+      if @zenodomaterial.zenodolatestid == @zenodomaterial.zenodoid
+        array_depid_burl = service.new_version(my_deposition_id)
         
-      @zenodomaterial.zenodolatestid = array_depid_burl[0]
+        @zenodomaterial.zenodolatestid = array_depid_burl[0]
  
-      new_version_bucket_url = service.retrieve_deposition(array_depid_burl[0])  
-      puts "the new version id"
-      puts array_depid_burl[0]
-      puts "the new bucket link"
-      puts new_version_bucket_url     
+        new_version_bucket_url = service.retrieve_deposition(array_depid_burl[0])  
+        puts "the new version id"
+        puts array_depid_burl[0]
+        puts "the new bucket link"
+        puts new_version_bucket_url     
                                                                               
-      @zenodomaterial.bucketurl = new_version_bucket_url                          
-      @zenodomaterial.save 
+        @zenodomaterial.bucketurl = new_version_bucket_url                          
+        @zenodomaterial.save
+      end
 
   end
   
@@ -319,7 +338,7 @@ class ZenodomaterialsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def zenodomaterial_params
     params.require(:zenodomaterial).permit(:id, :title, :url, :short_description, :doi,:last_scraped, :scraper_record,
-                                     :remote_created_date,  :remote_updated_date, {:fileeeee => []},  {:package_ids => []},
+                                     :remote_created_date,  :remote_updated_date,:vfile, {:fileeeee => []},  {:package_ids => []},
                                      :content_provider_id, {:keywords => []}, {:resource_type => []},
                                      {:scientific_topic_names => []}, {:scientific_topic_uris => []},                                     
                                      :zenodolicense, :zenodolanguage, :zenodotype, :publicationdate, :publicationtype, :imagetype,                                   
