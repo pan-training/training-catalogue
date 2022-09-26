@@ -43,3 +43,9 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 ### In the near(ish) future:
 
 - Create a slightly different system where the API key used is the user's. This is a more resilient system. This system can use most everything done here, but a slight tweak to add the user's api key instead of our own needs to be implemented. Both possible systems could co-exist at the same time and the user could chose which one he/she wants to use. 
+
+- Rather than the above, perhaps using oauth authentication for the user could be the way to go.
+
+### Refactorisation to do at a later date:
+
+- Quite a lot of repetition in the code, make it DRYer.
