@@ -1,0 +1,36 @@
+<div class="wrapper">
+
+  <div id="sidebar" class="popout-sidebar">
+    <%= render :partial => 'about_nav', locals: {show: 'requesting'} %>
+  </div>
+
+  <div id="content" class="">
+    <div class="about-block">
+      <%= render :partial => 'links', :locals => {'show': 'requesting'} %>
+      <div class="row">
+        <div id='how' class="h3">Creating a new E-learning course</div>
+
+         <center>
+          <%= image_tag('about/PaN-elearning.png', width: "40%")%>
+        </center>
+        </br>
+        
+        To create an own E-learning couse on <a href="https://e-learning.pan-training.eu" target="_blank">e-learning.pan-training.eu</a> it is neccessary to contact <%= link_to "mailto: admin@pan-learning.org", class: 'btn btn-primary' do %><i class="fa fa-envelope"> admin@pan-learning.org</i><% end %> and provide the following information:
+
+        <ul>
+            <li><i class="fa fa-id-card"></i> Login name on <a href="https://e-learning.pan-training.eu">e-learning.pan-training.eu</a></li>
+            <li><i class="fa fa-heading"></i> Full name of the course</li>
+            <li><i class="fa fa-heading"></i> Short name of the course</li>
+            <li><i class="fa fa-eye-slash"></i> Visibility</li>
+            <li><i class="fa fa-solid fa-gears"></i> Required resources (e.g. Jupyter notebooks)</li>
+        </ul>
+
+        <center>
+            <%= image_tag 'about/create_course.png', class: "widgets_guide"%>
+          </center>
+
+        </div>
+      </div>
+            <%= render :partial => 'links', :locals => {'show': 'requesting'} %>
+    </div>
+  </div>

@@ -25,8 +25,12 @@
         <li><a href="https://umbrellaid.org/euu/account/create">Create a new UmbrellaID account</a></li>
       </div>
 
-      <details>
-        <summary>Direct Catalog Log in</summary>
+<%
+=begin%>
+       <details>
+        <summary>Direct Catalog Log in</summary> 
+<%
+=end%>
         <div class="col-md-6">
           <h4>Direct Catalog Log in</h4>
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -65,7 +69,11 @@
             </ul>
           <% end %>
         </div>
-      </details>
+      <%
+=begin%>
+ </details> 
+<%
+=end%>
     </div>
 
   </div>

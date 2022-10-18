@@ -25,21 +25,14 @@
   <!-- REGISTERING YOUR RESOURCES -->
   <ul class="nav nav-stacked">
       <% if show == 'registering' %><li class="active"><% else %><li><% end %>
-    <%= link_to 'Registering Content', registering_resources_path %></li>
+    <%= link_to 'Adding Content', registering_resources_path %></li>
       <ul class="nav nav-stacked">
+        <li><%= link_to 'Content Decision Tree', create_path %></li>
         <li><%= link_to 'Automatic Registration', registering_resources_path(:anchor => 'automatic') %></li>
-        <!--
-        <ul class="nav nav-stacked">
-          <li><%= link_to '-- Bioschemas', registering_resources_path(:anchor => 'bioschemas') %></li>
-          <li><%= link_to '-- API', registering_resources_path(:anchor => 'api') %></li>
-          <li><%= link_to '-- Calendar', registering_resources_path(:anchor => 'calendar') %></li>
-          <li><%= link_to '-- Other', registering_resources_path(:anchor => 'other') %></li>
-        </ul>
-        -->
         <li><%= link_to 'Manual Registration', registering_resources_path(:anchor => 'manual') %></li>
+        <li><%= link_to 'Create E-learning course', requesting_resources_path %></li>
       </ul>
   </ul>
-
 
   <!-- DEVELOPERS -->
   <ul class="nav nav-stacked">
