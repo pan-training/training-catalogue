@@ -10,4 +10,5 @@ authors:
   given-names: "Julia"
 title: "Training-catalogue for the Photon and Neutron Data Services"
 version: 1.0.0
+doi: 10.5281/zenodo.7015078
 url: "https://github.com/pan-training/training-catalogue"
