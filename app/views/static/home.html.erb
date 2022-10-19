@@ -44,7 +44,7 @@
                 <%= link_to events_path do %><span class="basic_stats"><%= Event.count() %></span><% end %> events and
               </li>
               <li>
-                <%= link_to workflows_path do %><span class="basic_stats"><%= Workflow.count() %></span><% end %> workflows
+                <%= link_to workflows_path do %><span class="basic_stats"><%= Workflow.where(public:true).count() %></span><% end %> workflows
               </li>
             </ul>
           </div>
