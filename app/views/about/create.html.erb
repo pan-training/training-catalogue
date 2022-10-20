@@ -5,14 +5,14 @@
   </div>
 
   <div id="content" class="">
-    <div class="create-block">
+    <div class="about-block">
       <%= render :partial => 'links', :locals => {'show': 'requesting'} %>
       <div class="col-md-12">
         <div id='register' class="h3">How to register or create training material on PaN-traininig.eu</div>
           <div class="container">
             <div class="row">
               <div class="col-xs-12">
-            <p class="lead text-center bg-info btn text-info center-block">Is the material (website, article, report, project deliverable, video, git repository, e-leraning course, ...) available online?</p>
+            <p class="lead text-center bg-info btn text-info center-block">Is the material (website, article, report, project deliverable, video, git repository, e-learning course, ...) available online?</p>
               </div>
             </div>
             <div class="row">
@@ -21,7 +21,7 @@
               <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
               <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
               <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
-              <p class="bg-info text-info btn">Is the material or the collection of material available as single resource without dependencies?</p>
+              <p class="bg-info text-info btn">Is the material or the collection of material available as a single resource without dependencies?</p>
               <div class="row">
                 <div class="col-xs-6 text-center">
                   <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
@@ -37,7 +37,7 @@
                       <p class="btn">
                       <span class="glyphicon glyphicon-arrow-down"></span></p>
                       <p class="bg-success text-success btn text-wrap">
-                        The resource can registered as material in our catalogue:</br>
+                        The resource can be registered as a material in our catalogue:</br>
                         <%= link_to new_material_path, class: 'btn btn-primary' do %>
                           <i class="fa fa-plus-square"></i> Register material
                         <% end %></br> 
@@ -51,7 +51,7 @@
                         <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
                   <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
                   <p class="btn bg-warning text-warning text-wrap">
-                    The resources can described in a workflow to show dependencies between the materials:</br>
+                    The resources can be described in a workflow to show dependencies between the materials:</br>
                     <%= link_to new_workflow_path, class: 'btn btn-primary' do %>
                       <i class="fa fa-plus-square"></i> Register workflow
                     <% end %></br>
