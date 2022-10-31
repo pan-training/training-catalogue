@@ -8,8 +8,7 @@
   <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" /> -->
   <!--  <link href="https://cdn.jsdelivr.net/npm/ol-geocoder@latest/dist/ol-geocoder.min.css" rel="stylesheet"> added the file locally -->
   
-  <%= stylesheet_link_tag 'application', 'ol.css', :media => "all" %>
-  <%= stylesheet_link_tag 'ol.css', :media => "all" %>
+  <%= stylesheet_link_tag 'ol', :media => "all" %>
 
   <!-- moved from home.html.erb, head tag in home.html.erb was not closed -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
@@ -23,8 +22,12 @@
   <%= favicon_link_tag('favicon.png', :type => 'image/png') %>
   <%= javascript_include_tag 'application', integrity: true, 'data-turbolinks-track' => true %>
   <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script> added the file locally -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ol-geocoder@4.1.2/dist/ol-geocoder.js"></script>  
-  <script type="text/javascript" src="https://unpkg.com/ol-popup@4.0.0/dist/ol-popup.js"></script>
+
+  <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ol-geocoder@4.1.2/dist/ol-geocoder.js"></script>  
+  <script type="text/javascript" src="https://unpkg.com/ol-popup@4.0.0/dist/ol-popup.js"></script> -->
+  
+  <%= javascript_include_tag 'ol-popup' %>
+  <%= javascript_include_tag 'ol-geocoder' %> 
   
   <%# signup_js.html_safe -%>
   <%= csrf_meta_tags %>
