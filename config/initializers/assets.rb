@@ -17,3 +17,4 @@ Rails.application.config.assets.precompile += %w( jquery-ui/* )
 Rails.application.config.assets.precompile += %w( rails_admin/rails_admin.css rails_admin/rails_admin.js )
 
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'stylesheets')
