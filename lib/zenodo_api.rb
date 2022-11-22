@@ -3,22 +3,27 @@ require 'net/http'
 require 'uri'
 
 module ZenodoApi
-  class MyZenodoApi    
-    #after testing for stability is done, no need to use the sandbox anymore
-    #also no need to set_debug_output once the testing is done
-    @@root_url = "https://sandbox.zenodo.org/"
-    @@zenodo_token = "input_zenodo_key"    
+  class MyZenodoApi
+    #no need to set_debug_output once the testing is done
+    #might want getter methods
+    #attr_reader :root_url, :zenodo_token
+    
+    #no longer a class variable, rather an instance variable
+    def initialize(zenodo_url, zenodo_token)
+        @root_url = zenodo_url
+        @zenodo_token = zenodo_token
+    end
     
     def create_empty_material_zenodo
-        #puts @@root_url
-        #puts @@zenodo_token
+        #puts @root_url
+        #puts @zenodo_token
             
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Post.new("/api/deposit/depositions?access_token="+@@zenodo_token)
+        request = Net::HTTP::Post.new("/api/deposit/depositions?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         request.body = "{}"
         response = http.request(request)
@@ -29,19 +34,18 @@ module ZenodoApi
         zenodo_array = [deposition_id,bucket_url]
     end
     
-    #dont care about this for now
     def upload_file_zenodo(bucket_url,fileeee,filename2)
         bucket_url_parsed = bucket_url.split('/')
 
         bucket_url_parsed_code = bucket_url_parsed[5]
 
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
 
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Put.new("/api/files/"+bucket_url_parsed_code+"/"+filename2+"?access_token="+@@zenodo_token)
+        request = Net::HTTP::Put.new("/api/files/"+bucket_url_parsed_code+"/"+filename2+"?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/octet-stream')
         request.body =  File.read(fileeee)
         response = http.request(request)
@@ -53,12 +57,12 @@ module ZenodoApi
     end
 
     def publish_zenodo(deposition_id)
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/publish?access_token="+@@zenodo_token)
+        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/publish?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         response = http.request(request)
         
@@ -177,12 +181,12 @@ module ZenodoApi
      
         puts "data", data_json
 
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Put.new("/api/deposit/depositions/"+deposition_id.to_s+"?access_token="+@@zenodo_token)
+        request = Net::HTTP::Put.new("/api/deposit/depositions/"+deposition_id.to_s+"?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         request.body =  data_json
         response = http.request(request)
@@ -197,12 +201,12 @@ module ZenodoApi
 
     def update_empty_material_zenodo(deposition_id)
 
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/edit?access_token="+@@zenodo_token)    
+        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/edit?access_token="+@zenodo_token)    
         request.add_field('Content-Type', 'application/json')
         request.body = "{}"
         response = http.request(request)
@@ -301,12 +305,12 @@ module ZenodoApi
      
         puts "data", data_json
 
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Put.new("/api/deposit/depositions/"+deposition_id.to_s+"?access_token="+@@zenodo_token)
+        request = Net::HTTP::Put.new("/api/deposit/depositions/"+deposition_id.to_s+"?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         request.body =  data_json
         response = http.request(request)
@@ -318,12 +322,12 @@ module ZenodoApi
 
     #only difference here with method publish_zenodo is the request.body = "{}" line which i don't think is necessary
     def update_publish_zenodo(deposition_id)
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/publish?access_token="+@@zenodo_token)
+        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/publish?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         request.body = "{}"
         response = http.request(request)
@@ -344,12 +348,12 @@ module ZenodoApi
     #NEW VERSION
 
     def new_version(deposition_id)
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/newversion?access_token="+@@zenodo_token)
+        request = Net::HTTP::Post.new("/api/deposit/depositions/"+deposition_id.to_s+"/actions/newversion?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         #request.body = "{}"
         response = http.request(request)
@@ -372,12 +376,12 @@ module ZenodoApi
 
     def list_files(deposition_id)
 
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Get.new("/api/deposit/depositions/"+deposition_id.to_s+"/files?access_token="+@@zenodo_token)
+        request = Net::HTTP::Get.new("/api/deposit/depositions/"+deposition_id.to_s+"/files?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         response = http.request(request)
         
@@ -402,12 +406,12 @@ module ZenodoApi
     #retrieve deposition and hopefully get the new bucket link this way (this one should not be blocked)
     def retrieve_deposition(deposition_id)
 
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Get.new("/api/deposit/depositions/"+deposition_id.to_s+"?access_token="+@@zenodo_token)
+        request = Net::HTTP::Get.new("/api/deposit/depositions/"+deposition_id.to_s+"?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         response = http.request(request)
         
@@ -417,12 +421,12 @@ module ZenodoApi
 
     def delete_file(deposition_id,file_id)
 
-        uri = URI.parse(@@root_url)
+        uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Delete.new("/api/deposit/depositions/"+deposition_id.to_s+"/files/"+file_id.to_s+"?access_token="+@@zenodo_token)
+        request = Net::HTTP::Delete.new("/api/deposit/depositions/"+deposition_id.to_s+"/files/"+file_id.to_s+"?access_token="+@zenodo_token)
         request.add_field('Content-Type', 'application/json')
         response = http.request(request)
         puts "file is deleted"

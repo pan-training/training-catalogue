@@ -106,6 +106,8 @@
         <% if !current_user.nil? and policy(@user).update? %>
             <%= link_to t('.edit', :default => 'Edit profile'), edit_user_path(@user), :class => 'btn btn-primary' %>
 
+            <%= link_to t('.edit', :default => 'Change Zenodo choice'), zenodochoiceedit_path(@user), :class => 'btn btn-primary' %>
+
             <% if current_user == @user %>
                 <%= link_to "Manage account", edit_user_registration_path, :class => 'btn btn-default' %>
 

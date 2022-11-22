@@ -54,6 +54,14 @@ class ApplicationPolicy
     newversionupdate?
   end
 
+  def zenodoupdate?
+    manage?
+  end
+
+  def zenodoedit?
+    zenodoupdate?
+  end
+
   def destroy?
     manage?
   end

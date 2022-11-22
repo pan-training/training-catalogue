@@ -168,6 +168,8 @@ Rails.application.routes.draw do
   get 'search' => 'search#index'
   get 'test_url' => 'application#test_url'
 
+  get 'zenodowebhook' => 'zenodowebhook#webhooks'
+  
   # error pages
   %w( 404 422 500 503 ).each do |code|
     get code, :to => "application#handle_error", :status_code => code
@@ -196,6 +198,9 @@ Rails.application.routes.draw do
       resources :eventunscrapeds, only: [:show, :index,  :destroy], concerns: :activities do
       end    
   end
+ 
+  get 'users/:id/zenodoedit' => 'users#zenodoedit' , as: 'zenodochoiceedit'  
+  patch 'users/:id/zenodoupdate' => 'users#zenodoupdate' , as: 'zenodochoiceupdate'
   
 =begin
   authenticate :user do

@@ -28,6 +28,17 @@
         <center>
         <%= image_tag("PaN-training_color_white_large.png", alt: "e-learning") %>
         </center>
+                
+        <% if user_signed_in? %>
+            <% if current_user.profile.zenodotokenchoice.nil? %>
+                <%= link_to zenodochoice_path %>
+            <% else %>
+                <%= link_to new_zenodomaterial_path %>               
+        <% end %>
+        
+        <%# todo/to move this underneath to the profiles my choice edit page %>
+        <%#= link_to image_tag("zenodo-black-200"), "https://sandbox.zenodo.org/oauth/authorize?scope=deposit:write+deposit:actions&state=CHANGEME&redirect_uri=http://localhost:3000/zenodowebhook&response_type=code&client_id=EtYnAQE4b17oc5GdKutYH7dS8T1PJgIyC5A0SBPA" %>
+               
         <h5> Training for photon & neutron science. <br> Find educational material from institutes around Europe.
           <div style="text-align:left">
             </br> </br>

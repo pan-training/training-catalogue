@@ -1,6 +1,9 @@
 class ZenodomaterialsController < ApplicationController
   before_action :set_zenodomaterial, only: [:show, :edit, :update, :destroy, :update_packages, :add_term, :reject_term, :unscrape, :newversionedit, :newversionupdate, :listfiles, :deletezenodofile, :newversionzenodo, :aaaaaaaaaaaaaaaaa]
   before_action :set_breadcrumbs
+  
+  #set class variable that will be used in the zenodo_api constructor
+  @@root_url = Rails.application.secrets[:zenodo][:url]
 
   include SearchableIndex
   include ActionView::Helpers::TextHelper
@@ -78,7 +81,7 @@ class ZenodomaterialsController < ApplicationController
         #we should save material in db, save + publish material on zenodo, if we get url back give it to the material
         #if we dont get url back, delete material
                                         
-        service = ZenodoApi::MyZenodoApi.new         
+        service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
         array_depid_burl =  service.create_empty_material_zenodo
         
         #condition seems to work
@@ -130,7 +133,7 @@ class ZenodomaterialsController < ApplicationController
       if @zenodomaterial.update(zenodomaterial_params)                       
         @zenodomaterial.create_activity(:update, owner: current_user) if @zenodomaterial.log_update_activity?
        
-        service = ZenodoApi::MyZenodoApi.new
+        service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
         my_deposition_id = @zenodomaterial.zenodolatestid
         
         array_depid_burl =  service.update_empty_material_zenodo(my_deposition_id)   
@@ -177,7 +180,7 @@ class ZenodomaterialsController < ApplicationController
         puts "in newversionupdate"       
         @zenodomaterial.create_activity(:update, owner: current_user) if @zenodomaterial.log_update_activity? #will this work with the new routes?
 
-        service = ZenodoApi::MyZenodoApi.new
+        service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
         my_deposition_id = @zenodomaterial.zenodolatestid
         my_bucket_url = @zenodomaterial.bucketurl
         
@@ -216,7 +219,7 @@ class ZenodomaterialsController < ApplicationController
   def listfiles
       puts "listing the files"
       my_deposition_id = @zenodomaterial.zenodolatestid      
-      service = ZenodoApi::MyZenodoApi.new
+      service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
       @id_filename_list = service.list_files(my_deposition_id)
       puts @id_filename_list
       
@@ -230,7 +233,7 @@ class ZenodomaterialsController < ApplicationController
       puts params[:file_id]
       file_id = params[:file_id]
       my_deposition_id = @zenodomaterial.zenodolatestid
-      service = ZenodoApi::MyZenodoApi.new
+      service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
       service.delete_file(my_deposition_id,file_id)
   end
 
@@ -239,7 +242,7 @@ class ZenodomaterialsController < ApplicationController
   def newversionzenodo
       puts "new version zenodo, after button press"
 
-      service = ZenodoApi::MyZenodoApi.new
+      service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
       my_deposition_id = @zenodomaterial.zenodolatestid  
       #if @zmat.zenodolatestid is equal to @zmat.id, then do what is underneath (button has never been pressed)
       #if it isn't, dont do what is underneath (button has already been pressed), no need to make api calls again. already saved new id and new bucket link.
@@ -332,6 +335,11 @@ class ZenodomaterialsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_zenodomaterial
     @zenodomaterial = Zenodomaterial.friendly.find(params[:id])
+  end
+
+  def get_zenodo_token
+      #true, use their zenodo account, false use ours
+      current_user.profile.zenodotokenchoice ? session[:zenodo_access_token] : Rails.application.secrets[:zenodo][:token]
   end
 
   

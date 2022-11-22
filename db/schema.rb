@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_22_093314) do
+ActiveRecord::Schema.define(version: 2022_11_17_160335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -478,6 +478,7 @@ ActiveRecord::Schema.define(version: 2022_09_22_093314) do
     t.integer "user_id"
     t.string "slug"
     t.string "orcid"
+    t.boolean "zenodotokenchoice"
     t.index ["slug"], name: "index_profiles_on_slug", unique: true
   end
 

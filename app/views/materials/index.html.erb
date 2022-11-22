@@ -10,9 +10,17 @@
       <%= link_to new_material_path, class: 'btn btn-primary' do %>
         <i class="fa fa-plus-square"></i> Register training material
       <% end %>
-      <%= link_to new_zenodomaterial_path, class: 'btn btn-primary' do %>
-        <i class="fa fa-plus-square"></i> Upload training material to Zenodo
-      <% end %>      
+     
+      <% if current_user.profile.zenodotokenchoice.nil? %>
+          <%= link_to zenodochoiceedit_path(current_user), class: 'btn btn-primary' do %>
+              <i class="fa fa-plus-square"></i> Upload training material to Zenodo
+          <% end %>          
+      <% else %>
+          <%= link_to new_zenodomaterial_path, class: 'btn btn-primary' do %>
+              <i class="fa fa-plus-square"></i> Upload training material to Zenodo
+          <% end %>           
+      <% end %>
+               
       <%= render partial: 'subscriptions/subscribe_button', locals: { type: 'Material' } %>
       <div class="pull-right">
         <%= info_button('What are materials in this catalogue?') do %>
