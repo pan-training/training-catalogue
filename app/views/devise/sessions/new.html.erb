@@ -12,17 +12,19 @@
         <%= render "devise/shared/links" %>
         <% resource_class.omniauth_providers.each do |provider| %>
           <% if provider.to_s.downcase == 'umbrella_aai' -%>
-            <%= link_to image_tag("umbrella-logo.png", class: 'aai-login'), omniauth_authorize_path(resource_name, provider), method: :post -%>
+            <center>
+              <%= link_to image_tag("umbrella-logo.png", style: 'height:180px;width:340px;', class: 'aai-login'), omniauth_authorize_path(resource_name, provider), method: :post -%></br>
+              <%= link_to 'Log in with UmbrellaID', omniauth_authorize_path(resource_name, provider), method: :post,  :class => 'btn btn-primary'-%>
+              </center>
           <% end -%>
         <% end -%>
-        </br>
         <hr/>
         <% resource_class.omniauth_providers.each do |provider| %>
           <% if provider.to_s.downcase == 'umbrella_aai' -%>
-            <li><%= link_to 'Log in with UmbrellaID (use your username not email)', omniauth_authorize_path(resource_name, provider), method: :post -%></li>
+            <li><a href="https://umbrellaid.org/euu/account/create">Create a new UmbrellaID account</a></li>
           <% end -%>
         <% end -%>
-        <li><a href="https://umbrellaid.org/euu/account/create">Create a new UmbrellaID account</a></li>
+        
       </div>
 
 <%
@@ -43,16 +45,16 @@
               <% end -%>
 
               <div class="actions">
-                <%= f.submit "Log in", :class => 'btn btn-primary'%>
+                <%= f.submit "Log in with PaN training account", :class => 'btn btn-primary'%>
               </div>
               <hr/>
 
               <%- if controller_name != 'sessions' %>
-                  <li><%= link_to "log in", new_session_path(resource_name) %></li>
+                  <li><%= link_to "Log in with PaN training account", new_session_path(resource_name) %></li>
               <% end -%>
 
               <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-                  <li><%= link_to "Register", new_registration_path(resource_name) %></li>
+                  <li><%= link_to "Create PaN training account", new_registration_path(resource_name) %></li>
               <% end -%>
 
               <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
