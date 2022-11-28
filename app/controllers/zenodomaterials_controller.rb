@@ -3,7 +3,7 @@ class ZenodomaterialsController < ApplicationController
   before_action :set_breadcrumbs
   
   #set class variable that will be used in the zenodo_api constructor
-  @@root_url = Rails.application.secrets[:zenodo][:url]
+  @@root_url = Rails.application.config_for(:tess)["zenodo"][:url]
 
   include SearchableIndex
   include ActionView::Helpers::TextHelper
@@ -217,6 +217,7 @@ class ZenodomaterialsController < ApplicationController
   #call to zenodo list files
   #this assumes that the new version has exactly the same files as the older version at first
   def listfiles
+      authorize Zenodomaterial
       puts "listing the files"
       my_deposition_id = @zenodomaterial.zenodolatestid      
       service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
@@ -229,6 +230,7 @@ class ZenodomaterialsController < ApplicationController
   
   #call to zenodo delete file
   def deletezenodofile
+      authorize Zenodomaterial
       puts "deleting the file"
       puts params[:file_id]
       file_id = params[:file_id]
@@ -240,6 +242,7 @@ class ZenodomaterialsController < ApplicationController
   #call to zenodo, create new version
   #im expecting that if one presses this a second time, either an error or the same exact response comes back, will have to deal with that
   def newversionzenodo
+      authorize Zenodomaterial
       puts "new version zenodo, after button press"
 
       service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
@@ -271,6 +274,30 @@ class ZenodomaterialsController < ApplicationController
           format.js
       end
   end  
+
+
+  def zenodoredirect
+    puts "zenodo redirect"
+    
+    if !current_user.nil?
+        if current_user.profile.zenodotokenchoice.nil?
+            redirect_to zenodochoiceedit_path(current_user), alert: "Choose whether you want to use your own or PaN's Zenodo account."
+        else 
+            if current_user.profile.zenodotokenchoice 
+                if session[:zenodo_access_token] 
+                    redirect_to new_zenodomaterial_path, notice: "You are using your own Zenodo account."
+                else              
+                    redirect_to zenodochoiceedit_path(current_user), alert: 'Click on the Zenodo logo, link your account to PaN again.'
+                end         
+            else                
+                redirect_to new_zenodomaterial_path, notice: "You are using PaN's Zenodo account."
+            end
+        end
+    else
+        redirect_to new_user_session_path, alert: 'You need to be signed-in.'
+    end
+   
+  end
     
   # DELETE /zenodomaterials/1
   # DELETE /zenodomaterials/1.json

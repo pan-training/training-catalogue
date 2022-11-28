@@ -85,6 +85,7 @@ module ZenodoApi
              #puts "original filename"
              #puts f.original_filename
              original_filename = f.original_filename
+             original_filename = original_filename.squish.tr(" ","_") #filename can't have empty spaces in it
              #puts "tempfile"
              #puts f.tempfile
              tempfile = f.tempfile

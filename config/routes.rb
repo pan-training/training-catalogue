@@ -169,7 +169,10 @@ Rails.application.routes.draw do
   get 'test_url' => 'application#test_url'
 
   get 'zenodowebhook' => 'zenodowebhook#webhooks'
+  put 'zenodowebhook' => 'zenodowebhook#refresh_token'
   
+  get 'zenodomaterialredirect' => 'zenodomaterials#zenodoredirect'
+    
   # error pages
   %w( 404 422 500 503 ).each do |code|
     get code, :to => "application#handle_error", :status_code => code
