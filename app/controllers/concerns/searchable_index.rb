@@ -18,8 +18,7 @@ module SearchableIndex
   def fetch_resources
     if TeSS::Config.solr_enabled
       page = page_param.blank? ? 1 : page_param.to_i
-      per_page = per_page_param.blank? ? 30 : per_page_param.to_i      
-      previous_facet_params = @facet_params
+      per_page = per_page_param.blank? ? 30 : per_page_param.to_i
 
       if @model==Material
           #should probably make the function callable directly without having to @model.

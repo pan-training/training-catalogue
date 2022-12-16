@@ -211,7 +211,7 @@ module Searchable
 
             Facets.special.each do |facet_title|
               if Facets.applicable?(facet_title, name)
-                facet_value = Facets.process(facet_title, selected_facets[facet_title]) #selected_facets[facet_title]
+                facet_value = Facets.process(facet_title, selected_facets[facet_title])
                 Facets.send(facet_title.to_sym, self, facet_value)
               end
             end
