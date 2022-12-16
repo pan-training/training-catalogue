@@ -21,7 +21,7 @@ Create Zenodo material on the catalogue                 |  Zenodo material creat
 
 ### In the near(ish) future:
 
-- Finish oauth2 implementation (todo: facet search bars including both Zenodo materials and materials results, refresh token logic).
+- Finish oauth2 implementation (todo: refresh token logic).
 
 ### Refactorisation to do at a later date:
 
