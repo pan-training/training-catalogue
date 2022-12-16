@@ -18,17 +18,18 @@ module SearchableIndex
   def fetch_resources
     if TeSS::Config.solr_enabled
       page = page_param.blank? ? 1 : page_param.to_i
-      per_page = per_page_param.blank? ? 30 : per_page_param.to_i
-      
+      per_page = per_page_param.blank? ? 30 : per_page_param.to_i      
+      previous_facet_params = @facet_params
+
       if @model==Material
           #should probably make the function callable directly without having to @model.
           @search_results =  @model.search_and_filter_two_models(current_user, @search_params, @facet_params, @model, Zenodomaterial,
                                     page: page, per_page: per_page, sort_by: @sort_by)
       else
           @search_results =  @model.search_and_filter(current_user, @search_params, @facet_params,
-                                    page: page, per_page: per_page, sort_by: @sort_by)         
+                                    page: page, per_page: per_page, sort_by: @sort_by)
       end
-      
+                        
       @index_resources = @search_results.results
       instance_variable_set("@#{controller_name}_results", @search_results) # e.g. @nodes_results
     else

@@ -28,6 +28,20 @@ module Searchable
         # Disjunction clause
         active_facets = {}
 
+        facets_sci_topics = selected_facets["scientific_topics"]
+        
+        if facets_sci_topics
+            pan_service = PanetApi::MyPanetApi.new()
+
+            if facets_sci_topics.is_a?(String)
+                unq_sci_topics = pan_service.panet_get_children(facets_sci_topics)                
+            else
+                unq_sci_topics = pan_service.panet_get_children_or(facets_sci_topics)                      
+            end
+            
+            selected_facets["scientific_topics"] = unq_sci_topics
+        end
+
         normal_facets = selected_facets.except(*Facets.special)
 
         any do
@@ -134,9 +148,23 @@ module Searchable
             # Set the search parameter
             # Disjunction clause        
             active_facets = {}
+                       
+            facets_sci_topics = selected_facets["scientific_topics"]
+            
+            if facets_sci_topics            
+                pan_service = PanetApi::MyPanetApi.new()
 
-            normal_facets = selected_facets.except(*Facets.special)
+                if facets_sci_topics.is_a?(String)
+                    unq_sci_topics = pan_service.panet_get_children(facets_sci_topics)                
+                else
+                    unq_sci_topics = pan_service.panet_get_children_or(facets_sci_topics)                      
+                end                
 
+                selected_facets["scientific_topics"] = unq_sci_topics                
+            end
+            
+                normal_facets = selected_facets.except(*Facets.special)
+            
             any do
               normal_facets.each do |facet_title, facet_value|
                 any do # Conjunction clause
@@ -183,7 +211,7 @@ module Searchable
 
             Facets.special.each do |facet_title|
               if Facets.applicable?(facet_title, name)
-                facet_value = Facets.process(facet_title, selected_facets[facet_title])
+                facet_value = Facets.process(facet_title, selected_facets[facet_title]) #selected_facets[facet_title]
                 Facets.send(facet_title.to_sym, self, facet_value)
               end
             end
@@ -198,7 +226,7 @@ module Searchable
               end
             end
 
-            #facet_fields.each do |ff|, before was but below seems to work
+            #facet_fields.each do |ff|, was here before but below works
             Material.facet_fields.each do |ff|
               facet ff, exclude: active_facets[ff]
             end                           
@@ -220,7 +248,8 @@ module Searchable
               unless user && user.is_admin?
                 without(:failing, true)
               end
-            end                                
+            end            
+                                           
         end
     end
 

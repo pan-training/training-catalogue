@@ -34,3 +34,8 @@ coverage
 my_upload_script.rb
 scripts/db_bac
 node_modules/*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+# below is encrypted but might as well ignore it too for cleanliness purposes
+/config/credentials.yml.enc
