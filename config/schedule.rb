@@ -39,3 +39,11 @@ every 1.day, at: "8am" do
   #bundle exec rake sunspot:solr:reindex
   rake "sunspot:solr:reindex"
 end
+
+every 1.day, at: "8am" do
+  rake "tess:process_subscriptions"
+end
+
+every 1.day, at: '12:30 pm' do
+  command '/opt/catalogue_scrapers/scraper.job'
+end

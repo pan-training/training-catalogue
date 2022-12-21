@@ -11,7 +11,7 @@ You are receiving this automated email because you subscribed to a <%= @subscrip
 <% end %>
 
 
-There <%= @digest.total_count == 1 ? 'has' : 'have' -%> been <%= pluralize(@digest.total_count, "new #{@subscription.subscribable_type.downcase}") -%> registered in TeSS:
+There <%= @digest.total_count == 1 ? 'has' : 'have' -%> been <%= pluralize(@digest.total_count, "new #{@subscription.subscribable_type.downcase}") -%> registered in PaN-Training:
 <% @digest.each do |result| -%>
  * <%= result.title %> - <%= url_for(result) %>
 <% end -%>
@@ -19,7 +19,7 @@ There <%= @digest.total_count == 1 ? 'has' : 'have' -%> been <%= pluralize(@dige
 ...and <%= pluralize(@digest.total_count - @digest.count, 'other') -%>
 <% end %>
 
-View all results on TeSS:
+View all results on PaN-Training:
 <%= subscription_results_url(@subscription) %>
 
 ---------------------------------------------------------
