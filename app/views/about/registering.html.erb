@@ -195,6 +195,9 @@
           <%= link_to new_material_path, class: 'btn btn-primary' do %>
               <i class="fa fa-plus-square"></i> Register material
           <% end %>
+          <%= link_to zenodomaterialredirect_path(current_user), class: 'btn btn-primary' do %>
+            <i class="fa fa-plus-square"></i> Upload and material to Zenodo and register
+          <% end %>
           <%= link_to new_workflow_path, class: 'btn btn-primary' do %>
               <i class="fa fa-plus-square"></i> Register workflow
           <% end %>
