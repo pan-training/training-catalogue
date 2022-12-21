@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
   before_action :set_resource, only: [:index]
   before_action :set_breadcrumbs
 
-  MODELS = %w[content_provider material package event node workflow unscraped eventunscraped].freeze
+  MODELS = %w[content_provider material zenodomaterial package event node workflow unscraped eventunscraped].freeze
 
   def index
     if request.xhr?

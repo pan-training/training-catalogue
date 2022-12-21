@@ -1,0 +1,31 @@
+<div itemscope itemtype="http://schema.org/CreativeWork">
+  <%= content_tag :span, zenodomaterial.title, {itemprop: 'name', content: zenodomaterial.title, class: 'schemaorg-element'} %>
+  <%= content_tag :span, zenodomaterial.url, {itemprop: 'url', content: zenodomaterial.url, class: 'schemaorg-element'} %>
+  <%= content_tag :span, zenodomaterial_url(zenodomaterial), {itemprop: 'sameAs', content: zenodomaterial_url(zenodomaterial), class: 'schemaorg-element' } %>
+  <%= content_tag :span, zenodomaterial.short_description, {itemprop: 'description', content: zenodomaterial.short_description, class: 'schemaorg-element'} if zenodomaterial.short_description and not zenodomaterial.short_description.empty? %>
+
+  <%  if zenodomaterial.scientific_topics and not zenodomaterial.scientific_topics.empty? %>
+      <% zenodomaterial.scientific_topics.each do |scientific_topic| %>
+        <%= content_tag 'span', scientific_topic.preferred_label,
+                        {itemprop: 'genre',
+                         content: scientific_topic.preferred_label,
+                         class: 'schemaorg-element'
+                        } %>
+      <% end %>
+  <% end %>
+
+
+  <%  if zenodomaterial.keywords and not zenodomaterial.keywords.empty? %>
+      <% keywords = zenodomaterial.keywords.join(', ') %>
+      <%= content_tag 'span', keywords, {itemprop: 'keywords', content: keywords, class: 'schemaorg-element'} %>
+  <% end %>
+
+  <%= content_tag 'span', zenodomaterial.remote_created_date,
+                  {itemprop: 'dateCreated',
+                   content: zenodomaterial.remote_created_date,
+                   class: 'schemaorg-element'} if zenodomaterial.remote_created_date and not zenodomaterial.remote_created_date.to_s.empty? %>
+  <%= content_tag 'span', zenodomaterial.remote_updated_date,
+                  {itemprop: 'dateModified',
+                   content: zenodomaterial.remote_updated_date,
+                   class: 'schemaorg-element'} if zenodomaterial.remote_updated_date and not zenodomaterial.remote_updated_date.to_s.empty? %>
+</div>

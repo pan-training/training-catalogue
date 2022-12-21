@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
 
   post 'materials/check_exists' => 'materials#check_exists'
+  post 'zenodomaterials/check_exists' => 'zenodomaterials#check_exists'  
   post 'events/check_exists' => 'events#check_exists'
   post 'content_providers/check_exists' => 'content_providers#check_exists'
   post 'unscrapeds/check_exists' => 'unscrapeds#check_exists'
@@ -112,6 +113,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :zenodomaterials, concerns: :activities do
+    member do
+      post :reject_term
+      post :reject_data
+      post :add_term
+      post :add_data
+    end
+    collection do
+      get 'count'
+    end
+  end
+
   resources :elearning_materials, concerns: :activities do
     member do
       post :reject_term
@@ -129,7 +142,16 @@ Rails.application.routes.draw do
       get 'unsubscribe'
     end
   end
-
+  
+  get 'zenodomaterials/:id/newversionedit' => 'zenodomaterials#newversionedit', as: 'newversion'  
+  put 'zenodomaterials/:id/newversionupdate' => 'zenodomaterials#newversionupdate', as: 'newversionupdate'
+  #zenodo shows file lists so showing this should not be an issue
+  get 'zenodomaterials/:id/listfiles' => 'zenodomaterials#listfiles', as: 'list_files'  
+  #zenodo delete file, check this is not a security issue, could very well be
+  post 'zenodomaterials/:id/deletezenodofile' => 'zenodomaterials#deletezenodofile', as: 'deletezenodofile'        
+  post 'zenodomaterials/:id/newversionzenodo' => 'zenodomaterials#newversionzenodo', as: 'newversionzenodo'        
+  get 'zenodomaterials/:id/aaaaaaaaaaaaaaaaa' => 'zenodomaterials#aaaaaaaaaaaaaaaaa', as: 'aaaaaaaaaaaaaaaaa'      #delete at a later date         
+    
   get 'stars' => 'stars#index'
   post 'stars' => 'stars#create'
   delete 'stars' => 'stars#destroy'
@@ -140,14 +162,21 @@ Rails.application.routes.draw do
   
   #patch 'users/:id/change_token' => 'users#change_token', as: 'change_token'
   post 'materials/:id/unscrape' => 'materials#unscrape', as: 'unscrape_me'
+  post 'zenodomaterials/:id/unscrape' => 'zenodomaterials#unscrape', as: 'zenodounscrape_me'  
   post 'events/:id/unscrape' => 'events#unscrape', as: 'eventunscrape_me'
-    
+      
   post 'materials/:id/update_packages' => 'materials#update_packages'
+  post 'zenodomaterials/:id/update_packages' => 'zenodomaterials#update_packages'  
   post 'events/:id/update_packages' => 'events#update_packages'
 
   get 'search' => 'search#index'
   get 'test_url' => 'application#test_url'
 
+  get 'zenodowebhook' => 'zenodowebhook#webhooks'
+  put 'zenodowebhook' => 'zenodowebhook#refresh_token'
+  
+  get 'zenodomaterialredirect' => 'zenodomaterials#zenodoredirect'
+    
   # error pages
   %w( 404 422 500 503 ).each do |code|
     get code, :to => "application#handle_error", :status_code => code
@@ -176,6 +205,9 @@ Rails.application.routes.draw do
       resources :eventunscrapeds, only: [:show, :index,  :destroy], concerns: :activities do
       end    
   end
+ 
+  get 'users/:id/zenodoedit' => 'users#zenodoedit' , as: 'zenodochoiceedit'  
+  patch 'users/:id/zenodoupdate' => 'users#zenodoupdate' , as: 'zenodochoiceupdate'
   
 =begin
   authenticate :user do

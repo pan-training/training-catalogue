@@ -1,0 +1,36 @@
+annotationcollection:
+  title: Annotation collection
+book:
+  title: Book
+section:
+  title: Book section
+conferencepaper:
+  title: Conference paper
+datamanagementplan:
+  title: Data management plan
+article:
+  title: Journal article
+patent:
+  title: Patent
+preprint:
+  title: Preprint
+deliverable:
+  title: Project deliverable  
+milestone:
+  title: Project milestone
+proposal:
+  title: Proposal
+report:
+  title: Report  
+softwaredocumentation:
+  title: Software documentation
+taxonomictreatment:
+  title: Taxonomic treatment
+technicalnote:
+  title: Technical note  
+thesis:
+  title: Thesis  
+workingpaper:
+  title: Working paper
+other:
+  title: Other

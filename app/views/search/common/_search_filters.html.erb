@@ -11,14 +11,45 @@ Globals
     <p>
       <b><%= (category == 'name' && params[:controller] == 'nodes') ? 'Node'.pluralize(value.kind_of?(Array) ? value.length : 1) : category.humanize %></b>:
       <% if value.is_a?(Array)%>
-          <% value.each_with_index do |val, j| %>
-              <span class="active-filters">
-                <%= remove_filter_link(category, val, {:class =>"label label-default filter-button"})%>
-                <% if j < value.size - 1 %>
-                  or
-                <% end %>
-              </span>
+          <%#refactor condition code below at a later date%>          
+          <% if category=="scientific_topics" %>                            
+              <% value.each_with_index do |val, j| %>
+                  <% if j<=9 %>
+                      <span class="active-filters">
+                        <%= remove_filter_link(category, val, {:class =>"label label-default filter-button"})%>
+                        <% if j < value.size - 1 %>
+                          or
+                        <% end %>
+                      </span>
+                  <% else %>
+                      <span  class="hidfilter hidden active-filters">
+                        <%= remove_filter_link(category, val, {:class =>"label label-default filter-button"})%>
+                        <% if j < value.size - 1 %>
+                          or
+                        <% end %>
+                      </span>
+                  <% end %>              
+              <% end %>
+              <% if value.length()>10 %>
+                      <span class="active-filters">
+                        <button id="show_more" class='label label-default filter-button'>...show more</button>
+                      </span>
+              <% end %>                           
+              
+          <% else %> 
+
+              <% value.each_with_index do |val, j| %>
+                  <span class="active-filters">
+                    <%= remove_filter_link(category, val, {:class =>"label label-default filter-button"})%>
+                    <% if j < value.size - 1 %>
+                      or
+                    <% end %>
+                  </span>
+              <% end %>
+                            
           <% end %>
+           
+
       <% else %>
           <span class="active-filters"><%= remove_filter_link(category, value, {:class =>"label label-default filter-button"})%></span>
       <% end %>
@@ -35,3 +66,27 @@ Globals
       <span class="active-filters"><%= remove_filter_link('q', params[:q], { class: "label label-default filter-button" })%></span>
     </p>
 <% end %>
+
+
+
+<script type="text/javascript">
+
+hidden = 1;
+console.log("hidden",hidden);
+
+$('#show_more').click(function () {        
+    if(hidden==1){
+        hidden = 0;
+        $(".hidfilter").removeClass("hidden");
+        $("#show_more").html("...show less");
+        }
+    else if(hidden==0){
+        hidden = 1;
+        $(".hidfilter").addClass("hidden");
+        $("#show_more").html("...show more");
+        }        
+});
+
+</script>
+
+

@@ -23,15 +23,15 @@ class LikesController < ApplicationController
 
   def destroy
     @like = current_user.likes.where(like_params).first
-        if @like.destroy
-          respond_to do |format|
-            format.json { render json: {}, status: :ok }
-          end
-        else
-          respond_to do |format|
-            format.json { render json: {}, status: :unprocessable_entity }
-          end
-        end
+    if @like.destroy
+      respond_to do |format|
+        format.json { render json: {}, status: :ok }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: {}, status: :unprocessable_entity }
+      end
+    end
   end
   
   private

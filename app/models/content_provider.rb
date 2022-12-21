@@ -8,6 +8,9 @@ class ContentProvider < ApplicationRecord
   include CurationQueue
 
   has_many :materials, :dependent => :destroy
+
+  has_many :zenodomaterials, :dependent => :destroy  
+  
   has_many :events, :dependent => :destroy
 
   belongs_to :user
@@ -54,9 +57,17 @@ class ContentProvider < ApplicationRecord
       string :content_provider_type
       integer :count do
         if self.events.count > self.materials.count
-          self.events.count
+          if self.events.count > self.zenodomaterials.count
+            self.events.count
+          else
+            self.zenodomaterials.count
+          end
         else
-          self.materials.count
+          if self.materials.count > self.zenodomaterials.count
+            self.materials.count
+          else
+            self.zenodomaterials.count
+          end
         end
       end
       integer :user_id # Used for shadowbans

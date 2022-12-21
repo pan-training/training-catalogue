@@ -90,9 +90,9 @@
                         <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
                   <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
                   <p class="btn bg-warning text-warning text-wrap">
-                    You can register the material at our catalogue and use our Zenodo background-uploader:</br>
-                    <%= link_to create_path, class: 'btn btn-primary' do %>
-                      <i class="fa fa-plus-square"></i> Register and upload material
+                    You can upload and register the material to Zenodo and register it in our catalogue in one step:</br>
+                    <%= link_to zenodomaterialredirect_path(current_user), class: 'btn btn-primary' do %>
+                      <i class="fa fa-plus-square"></i> Register/upload material to Zenodo
                     <% end %></br>
                   </p>
                 </div>

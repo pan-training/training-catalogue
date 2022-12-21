@@ -84,8 +84,10 @@ class Material < ApplicationRecord
   has_many :events, through: :event_materials
 
   has_many :likes,  as: :resource, dependent: :destroy
+
   has_many :stars,  as: :resource, dependent: :destroy
   
+
   #has_ontology_terms(:scientific_topics, branch: OBO_EDAM.topics)
   #has_ontology_terms(:operations, branch: OBO_EDAM.operations)
   has_ontology_terms(:scientific_topics, branch: OBO_BLOB.topics)
@@ -135,4 +137,5 @@ class Material < ApplicationRecord
 
     material
   end
+  
 end

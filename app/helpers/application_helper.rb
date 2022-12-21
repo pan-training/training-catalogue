@@ -287,6 +287,15 @@ module ApplicationHelper
     end
   end
 
+  def date_picker(form, field)
+    content_tag(:div, class: 'input-group date', data: { datepicker: true }) do
+      content_tag(:span, class: 'input-group-addon', title: 'Click to display calendar') do
+        content_tag(:i, '', class: 'glyphicon glyphicon-calendar')
+      end +
+          form.text_field(field, class: 'form-control')
+    end
+  end
+
   # Format an AR collection, or array, into an array of pairs that the common/dropdown partial expects
   def format_for_dropdown(collection)
     collection.map { |o| [o.title, o.id] }
@@ -403,6 +412,7 @@ module ApplicationHelper
     link_to '', '#', class: 'btn btn-default',
             data: { role: 'star-button', starred: !star.nil?, resource: { id: resource.id, type: resource.class.name } }
   end
+
 
   def like_button(resource)
     like = current_user.likes.where(resource_id: resource.id, resource_type: resource.class.name).first

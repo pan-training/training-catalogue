@@ -2,7 +2,7 @@ class SearchController < ApplicationController
 
   before_action :set_breadcrumbs
   #here if we put Unscraped for example, it will be searchable everywhere whereas if we don't, only on the unscraped page.
-  SEARCH_MODELS = %w(Material User Event Package ContentProvider Workflow).freeze
+  SEARCH_MODELS = %w(Material Zenodomaterial User Event Package ContentProvider Workflow).freeze
   # GET /searches
   # GET /searches.json
   def index

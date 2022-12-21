@@ -1,0 +1,39 @@
+<div class="list-card">
+  <%= link_to(zenodomaterial.title, zenodomaterial, class: 'list-card-heading') %>
+  <div class="dont-break-out">
+    <p class>
+      <%= scrape_status_icon(zenodomaterial) if current_user and current_user.is_admin? %>
+      <%= missing_icon(zenodomaterial) if current_user and current_user.is_admin? %>
+      <%= suggestion_icon(zenodomaterial) if current_user and current_user.is_admin? -%>
+      <%= truncate(zenodomaterial.short_description, length: 300, separator: ' ') %>
+    </p>
+    <div class="row" style="margin: 0px;">
+      <% if controller_name != 'content_providers' %>
+          <div class="col-md-9" style="padding: 0px;">
+            <%= display_attribute(zenodomaterial, :scientific_topics){|values| values.map{|x| x.preferred_label}.join(', ')} %>          
+            <%= display_attribute(zenodomaterial, :keywords){|values| values.join(', ')} %>
+            <%= display_attribute(zenodomaterial, :resource_type){|values| values.join(', ')} %>
+
+            <% if policy(zenodomaterial).update? && zenodomaterial.edit_suggestion %>
+                <%= render partial: 'common/approve_term_suggestions', locals: { suggestion: zenodomaterial.edit_suggestion } %>
+            <% end %>
+          </div>
+          <div class="col-md-3">
+            <% if zenodomaterial.content_provider %>
+              <%= link_to zenodomaterial.content_provider, :class=>"pull-right" do %>
+                  <%= image_tag(zenodomaterial.content_provider.image.url, :class => "small-content-provider-logo") %>
+              <% end %>
+            <% end %>
+          </div>
+      <% else %>
+          <div class="col-md-12" style="padding: 0px;">
+            <%= display_attribute(zenodomaterial, :scientific_topics){|values| values.map{|x| x.preferred_label}.join(', ')} %>          
+            <%= display_attribute(zenodomaterial, :keywords){|values| values.join(', ')} %>
+            <%= display_attribute(zenodomaterial, :resource_type){|values| values.join(', ')} %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <%= render :partial => 'zenodomaterials/partials/zenodomaterial_schemaorg', :locals => {:zenodomaterial => zenodomaterial} %>
+</div>
+

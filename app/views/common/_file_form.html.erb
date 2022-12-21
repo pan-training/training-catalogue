@@ -1,0 +1,20 @@
+<% index ||= 'replace-me-file' %> <%# This is so we can render a blank version of this sub-form in the page, %>
+                             <%# which can be dynamically cloned using JavaScript to add more ExternalResources to the main material form %>
+<% field_name_prefix = "#{form_name}[files_attributes][#{index}]" %> <%# This format is dictated by "accepts_nested_attributes_for" %>
+
+<div class="form-inline file-form" data-index="<%= index -%>">
+  <%= hidden_field_tag("#{field_name_prefix}[idd]", file[:idd]) %>
+
+  <div class="form-group">
+    <%= text_field_tag "#{field_name_prefix}[filename]", file[:filename], :class => 'form-control file-filename', :placeholder => 'file name', :title => 'file name', :readonly => true %>
+  </div>
+
+  <%= hidden_field_tag("#{field_name_prefix}[id]", file[:id]) %>
+  
+  <label class="delete-file-btn">
+    <%= link_to '&times;'.html_safe, deletezenodofile_path(@zenodomaterial, file_id: file[:id]), method: :post, remote: true, :class => 'delete_zenodo_file' %>     
+  </label>
+
+ 
+
+</div>

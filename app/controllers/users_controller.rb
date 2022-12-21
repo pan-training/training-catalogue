@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  prepend_before_action :set_user, only: [:show, :edit, :update, :destroy, :change_token]
+  prepend_before_action :set_user, only: [:show, :edit, :update, :zenodoedit, :zenodoupdate, :destroy, :change_token]
   prepend_before_action :init_user, only: [:new, :create]
   before_action :set_breadcrumbs
 
@@ -107,6 +107,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def zenodoedit
+    authorize @user
+  end
+  
+  #to continue/to do work here
+  def zenodoupdate
+    authorize @user
+    respond_to do |format|
+      if @user.update(user_zenodo_param)
+        @user.create_activity :update, owner: current_user
+        ztchoice = params[:user][:profile_attributes][:zenodotokenchoice]
+        puts "ztchoice", ztchoice
+        if ztchoice=='1'
+            ztchoice = true
+        else
+            ztchoice = false
+        end        
+        @user.profile.zenodotokenchoice = ztchoice
+        @user.save         
+        format.html { redirect_to @user, notice: 'Profile zenodo choice was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+        format.js { head :ok, location: @user }
+      else
+        format.html { render :zenodoedit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.js { head :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def set_user
@@ -122,6 +152,11 @@ class UsersController < ApplicationController
     allowed_parameters = [:email, :username, :password, { profile_attributes: [:firstname, :surname, :email, :website, :orcid] }]
     allowed_parameters << :role_id if policy(@user).change_role?
     params.require(:user).permit(allowed_parameters)
+  end
+
+  def user_zenodo_param
+    allowed_parameter = [:zenodotokenchoice]
+    params.require(:user).permit(allowed_parameter)
   end
 
 end

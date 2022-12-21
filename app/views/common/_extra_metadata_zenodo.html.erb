@@ -1,0 +1,13 @@
+<%= display_attribute(resource, :scientific_topics) { |values| values.map{|x| x.preferred_label}.join(', ')} %>
+
+<%= display_attribute(resource, :keywords) { |values| values.join(', ')} %>
+
+<%= display_attribute(resource, :resource_type) { |values| values.join(', ')} %>
+
+
+<%= display_attribute(resource, :zenodolicense) { |value|  zenodolicense_name_for_abbreviation(value)} %>
+<%= display_attribute(resource, :zenodolanguage) { |value|  zenodolanguage_name_for_abbreviation(value)} %>
+<%= display_attribute(resource, :doi) %>
+<%= display_attribute(resource, :remote_created_date) %>
+<%= display_attribute(resource, :remote_updated_date) %>
+

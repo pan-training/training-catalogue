@@ -1,0 +1,306 @@
+<%= simple_form_for @zenodomaterial, :html => {:id => 'zenodomaterial_form'} do |f| %>
+
+    <%= render partial: 'common/error_summary', locals: { resource: @zenodomaterial } %>
+
+    <%# Necessary to allow removal of all field locks %>
+    <%= hidden_field_tag 'zenodomaterial[locked_fields][]', '' %>
+    
+    <%= f.input :title, as: :string, field_lock: true , :label_html => { :class => 'zenodo_field' }%>
+    
+    <%= f.input :short_description, as: :markdown_area, input_html: { rows: '5' }, field_lock: true, :label_html => { :class => 'zenodo_field' } %>
+
+    <%= f.input :doi, field_lock: true , :label_html => { :class => 'zenodo_field' }, hint: "Either add an existing doi or Zenodo will generate one for you." %>
+    
+    <%= f.input :content_provider_id, collection: ContentProvider.all, label_method: :title, value_method: :id,
+                include_blank: true, field_lock: true %>
+
+
+    <%= f.autocompleter :scientific_topics, url: blob_topics_path, template: 'autocompleter/term',
+                        id_field: :uri, label_field: :preferred_label %>
+    
+    <%# idk how to access the css of the label through multi_input so here's a workaround for now%>                            
+    <div class="zenodo_field_two">                        
+    <%= f.multi_input :keywords %>
+    </div>  
+    
+    <%= f.multi_input :resource_type %>
+
+    <%= f.input :publicationdate, as: :date_picker, field_lock: true , :label_html => { :class => 'zenodo_field' }, :required => true, :label=> "Publication date" %>  
+    <%# this does not work, why? f.input :publicationdate, as: :date_picker, value: (Date.today if @zenodomaterial.new_record?), field_lock: true %>        
+
+    <%= f.input :zenodolicense, collection: zenodolicense_options_for_select, selected: @zenodomaterial.zenodolicense.blank? ? "CC-BY-4.0" : @zenodomaterial.zenodolicense, field_lock: true , :label_html => { :class => 'zenodo_field' }, :required => true, prompt: '',:label=> "Zenodo license" %>
+   
+    <%# english not selected as the default. Why? Needs to be fixed. %>  
+    <%= f.input :zenodolanguage, collection: zenodolanguage_options_for_select, selected: @zenodomaterial.zenodolanguage.blank? ? "eng" : @zenodomaterial.zenodolanguage, field_lock: true, :label_html => { :class => 'zenodo_field' },:label=> "Zenodo language"  %> 
+
+    <%= f.input :zenodotype, collection: zenodotype_options_for_select, selected: @zenodomaterial.zenodotype.blank? ? "other" : @zenodomaterial.zenodotype, field_lock: true , :label_html => { :class => 'zenodo_field' },:label=> "Zenodo type"%>    
+
+<%# prompt is there to make the first empty box disappear, this appears because required = true is set. Because i put a default, it should never be blank, i wonder if prompt will bring unwanted behaviour though, see https://github.com/heartcombo/simple_form/issues/1427 %>   
+    <div id="publication_hide_unhide" class="hidden" >
+    <%= f.input :publicationtype, collection: publicationtype_options_for_select, selected: @zenodomaterial.publicationtype.blank? ? "other" : @zenodomaterial.publicationtype, field_lock: true, :label_html => { :class => 'zenodo_field' }, :required => true, prompt: '',:label=> "Publication type"  %>    
+    </div>
+
+    <div id="image_hide_unhide" class="hidden">
+    <%= f.input :imagetype, collection: imagetype_options_for_select, selected: @zenodomaterial.imagetype.blank? ? "other" : @zenodomaterial.imagetype, field_lock: true, :label_html => { :class => 'zenodo_field' }, :required => true, prompt: '',:label=> "Image type" %>    
+    </div>
+
+
+    <div class="form-group" id="bauthors">
+      <%= f.label :authors, :class => 'zenodo_field', :required => true %>
+      <%= f.field_lock :authors %>
+
+      <div id="bauthors-list">
+        <% @zenodomaterial.bauthors.each_with_index do |bauthor, index| %>
+            <%= render partial: 'common/bauthor_form',
+                       locals: { form_name: 'zenodomaterial', index: index, bauthor: bauthor } %>
+        <% end %>
+      </div>
+
+
+      <a href="#" id="add-bauthor-btn" class="btn btn-info">
+        <i class="fa fa-plus"></i> Add author
+      </a>
+    </div>
+
+    <div class="form-group" id="bcontributors">
+      <%= f.label :contributors, :class => 'zenodo_field'%>
+      <%= f.field_lock :contributors %>
+
+      <div id="bcontributors-list">
+        <% @zenodomaterial.bcontributors.each_with_index do |bcontributor, index| %>
+            <%= render partial: 'common/bcontributor_form',
+                       locals: { form_name: 'zenodomaterial', index: index, bcontributor: bcontributor } %>
+        <% end %>
+      </div>
+
+
+      <a href="#" id="add-bcontributor-btn" class="btn btn-info">
+        <i class="fa fa-plus"></i> Add contributor
+      </a>
+    </div>
+
+
+    <div>
+        <%# idk how to make the required work here, so I use this workaround %>                                
+        <label for="zenodomaterial_fileeeee" class="form-label zenodo_field"><abbr title="required">*</abbr> Upload file</label>
+        <%= f.file_field :fileeeee,  :multiple => true %>
+    </div>
+
+
+
+
+
+    <%= f.autocompleter :events %>
+
+
+    <div class="form-group">    
+      <%= f.submit (f.object.new_record? ? "Register" : "Update") + " training zenodo material", :class => 'btn btn-primary' %>
+      <%= link_to 'Back', :back, :class => "btn btn-info" %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  zenodomaterials_path, :class => 'btn btn-default' %>
+    </div>
+<% end %>
+
+
+<div id="bauthor-template" style="display: none">
+  <%= render partial: 'common/bauthor_form',
+             locals: { form_name: 'zenodomaterial', bauthor: Bauthor.new } %>
+</div>
+
+<div id="bcontributor-template" style="display: none">
+  <%= render partial: 'common/bcontributor_form',
+             locals: { form_name: 'zenodomaterial', bcontributor: Bcontributor.new } %>
+</div>
+
+<script type="text/javascript">
+function removeSuggestion(suggestion) {
+    s = suggestion.replace(/[^a-zA-Z]/g, '');
+    if (confirm("Are you sure you'd like to remove '" + suggestion + "'?")) {
+        $("#add-topic-" + s).fadeOut(300, function(){
+            $(this).remove();
+        });
+        $("#hidden-suggestion-" + s).remove();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+</script>
+<script type="text/javascript">
+document.addEventListener("turbolinks:load", function() {
+    console.log("load");
+    const str1 = '#zenodomaterial_bauthors_attributes_';
+    const str2 = '_orcid';
+    var str3 = '';
+    var str4 = '';
+    var compteur = 0;
+    $('.bauthor-form').toArray().forEach(function(field){
+        //console.log(field);
+        //console.log(field["attributes"]["data-index"]["nodeValue"]);
+        if (field["attributes"]["data-index"]["nodeValue"]=="replace-me-bauthor") {
+            console.log("nothing to do");
+        } else {
+            // index here starts from 0 instead of 1. This is for the edit page where all authors are loaded at once so we need to loop 
+            // through them to cleave them individually
+            str3 = str1.concat('', compteur);
+            str4 = str3.concat('', str2);
+            
+            //console.log(str4, compteur);    
+            new Cleave(str4, {
+                delimiter: '-',
+                blocks: [4, 4, 4, 4]
+            });  
+
+            compteur = compteur + 1;
+
+        }
+    });
+    
+    
+    
+    
+    
+    console.log("load contributor");
+    const str5 = '#zenodomaterial_bcontributors_attributes_';
+    const str6 = '_orcid';
+    var str7 = '';
+    var str8 = '';
+    var compteur = 0;
+    $('.bcontributor-form').toArray().forEach(function(field){
+        //console.log(field);
+        //console.log(field["attributes"]["data-index"]["nodeValue"]);
+        if (field["attributes"]["data-index"]["nodeValue"]=="replace-me-bcontributor") {
+            console.log("nothing to do");
+        } else {
+            // index here starts from 0 instead of 1. This is for the edit page where all authors are loaded at once so we need to loop 
+            // through them to cleave them individually
+            str7 = str5.concat('', compteur);
+            str8 = str7.concat('', str6);
+            
+            //console.log(str8, compteur);    
+            new Cleave(str8, {
+                delimiter: '-',
+                blocks: [4, 4, 4, 4]
+            });  
+
+            compteur = compteur + 1;
+
+        }
+    });    
+        
+    //from https://stackoverflow.com/questions/51072890/open-a-text-box-when-other-is-selected-in-dropdown-list-in-rails
+    var select_val_on_load = $("#zenodomaterial_zenodotype").val();        
+    if (select_val_on_load === 'publication') {
+      // if the 'publication' option is chosen
+      // we remove the 'hidden' class
+      console.log("test 1");
+      $("#image_hide_unhide").addClass("hidden");
+      $("#publication_hide_unhide").removeClass("hidden");          
+    } 
+    else if (select_val_on_load === 'image') {
+      // if the 'image' option is chosen
+      // we remove the 'hidden' class
+      console.log("test 3");
+      $("#publication_hide_unhide").addClass("hidden");
+      $("#image_hide_unhide").removeClass("hidden");
+    } else {
+      // if any other option is chosen
+      // we put back the 'hidden' class
+      console.log("test 2");
+      $("#publication_hide_unhide").addClass("hidden");
+      $("#image_hide_unhide").addClass("hidden");
+    } 
+    
+      $("#zenodomaterial_zenodotype").on("change", function() {
+        var select_val = $(this).val(); // this gets the value of the dropdown menu
+        console.log(select_val); // this just displays the selected value in the browser console (if you have the browser console open)
+        if (select_val === 'publication') {
+          // if the 'publication' option is chosen
+          // we remove the 'hidden' class
+          console.log("test 1");
+          $("#image_hide_unhide").addClass("hidden");
+          $("#publication_hide_unhide").removeClass("hidden");          
+         } 
+        else if (select_val === 'image') {
+          // if the 'image' option is chosen
+          // we remove the 'hidden' class
+          console.log("test 3");
+          $("#publication_hide_unhide").addClass("hidden");
+          $("#image_hide_unhide").removeClass("hidden");
+        } else {
+          // if any other option is chosen
+          // we put back the 'hidden' class
+          console.log("test 2");
+          $("#publication_hide_unhide").addClass("hidden");
+          $("#image_hide_unhide").addClass("hidden");
+        }
+      });   
+    
+     //write logic here
+     //at first we have nothing selected, everything is hidden
+     //then, if we select either image, or publication, a select thingy needs to appear
+     //if image-> image thingy appears
+       //if we select publication
+         //make image thingy disapear and publication thingy appear
+       //if we select anything other than publication
+         //make image thingy disappear
+     //if publication-> publication thingy appears
+       //if we select image
+         //make publication thingy disapear and image thingy appear       
+       //if we select anything other than image
+         //make publication thingy disappear       
+
+      
+    
+});
+
+
+
+$(document).on('logged', function(e){
+    // e.target is the element added
+    //console.log("event received");
+    //console.log(e.orcidindex)
+    const str1 = '#zenodomaterial_bauthors_attributes_';
+    const str2 = '_orcid';
+    //console.log(str1.concat('', e.orcidindex));
+    const str3 = str1.concat('', e.orcidindex);
+    //console.log(str3.concat('', str2));    
+    const str4 = str3.concat('', str2);
+    //console.log(str4);
+
+    new Cleave(str4, {
+        delimiter: '-',
+        blocks: [4, 4, 4, 4]
+    });
+});
+
+
+
+
+
+
+$(document).on('logged_contributor', function(e){
+    // e.target is the element added
+    //console.log("event received");
+    //console.log(e.orcidindex)
+    const str1 = '#zenodomaterial_bcontributors_attributes_';
+    const str2 = '_orcid';
+    //console.log(str1.concat('', e.orcidindex));
+    const str3 = str1.concat('', e.orcidindex);
+    //console.log(str3.concat('', str2));    
+    const str4 = str3.concat('', str2);
+    //console.log(str4);
+
+    new Cleave(str4, {
+        delimiter: '-',
+        blocks: [4, 4, 4, 4]
+    });
+});
+
+</script>
+
+
+

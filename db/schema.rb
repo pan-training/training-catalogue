@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_131220) do
+ActiveRecord::Schema.define(version: 2022_11_17_160335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", id: :serial, force: :cascade do |t|
-    t.string "trackable_type"
+  create_table "activities", force: :cascade do |t|
     t.integer "trackable_id"
-    t.string "owner_type"
+    t.string "trackable_type"
     t.integer "owner_id"
+    t.string "owner_type"
     t.string "key"
     t.text "parameters"
-    t.string "recipient_type"
     t.integer "recipient_id"
+    t.string "recipient_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["key"], name: "index_activities_on_key"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
-  create_table "bans", id: :serial, force: :cascade do |t|
+  create_table "bans", force: :cascade do |t|
     t.integer "user_id"
     t.integer "banner_id"
     t.boolean "shadow"
@@ -98,10 +98,18 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["material_id", "bauthor_id"], name: "index_bauthors_materials_on_material_id_and_bauthor_id"
   end
 
+  create_table "bauthors_zenodomaterials", id: false, force: :cascade do |t|
+    t.bigint "bauthor_id", null: false
+    t.bigint "zenodomaterial_id", null: false
+    t.index ["bauthor_id", "zenodomaterial_id"], name: "index_bauth_zmaterials_on_bauth_id_and_zmaterial_id"
+    t.index ["zenodomaterial_id", "bauthor_id"], name: "index_zmaterials_bauth_on_zmaterial_id_and_bauth_id"
+  end
+
   create_table "bcontributors", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
     t.string "orcid"
+    t.string "contribtype"
   end
 
   create_table "bcontributors_materials", id: false, force: :cascade do |t|
@@ -109,6 +117,13 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.bigint "material_id", null: false
     t.index ["bcontributor_id", "material_id"], name: "bcontrib_material_join"
     t.index ["material_id", "bcontributor_id"], name: "material_bcontrib_join"
+  end
+
+  create_table "bcontributors_zenodomaterials", id: false, force: :cascade do |t|
+    t.bigint "bcontributor_id", null: false
+    t.bigint "zenodomaterial_id", null: false
+    t.index ["bcontributor_id", "zenodomaterial_id"], name: "index_bcontrib_zmaterials_on_bcontrib_id_and_zmaterial_id"
+    t.index ["zenodomaterial_id", "bcontributor_id"], name: "index_zmaterials_bcontrib_on_zmaterial_id_and_bcontrib_id"
   end
 
   create_table "blazer_audits", force: :cascade do |t|
@@ -176,15 +191,15 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["creator_id"], name: "index_blazer_uploads_on_creator_id"
   end
 
-  create_table "collaborations", id: :serial, force: :cascade do |t|
+  create_table "collaborations", force: :cascade do |t|
     t.integer "user_id"
-    t.string "resource_type"
     t.integer "resource_id"
+    t.string "resource_type"
     t.index ["resource_type", "resource_id"], name: "index_collaborations_on_resource_type_and_resource_id"
     t.index ["user_id"], name: "index_collaborations_on_user_id"
   end
 
-  create_table "content_providers", id: :serial, force: :cascade do |t|
+  create_table "content_providers", force: :cascade do |t|
     t.text "title"
     t.text "url"
     t.text "image_url"
@@ -205,7 +220,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_content_providers_on_user_id"
   end
 
-  create_table "edit_suggestions", id: :serial, force: :cascade do |t|
+  create_table "edit_suggestions", force: :cascade do |t|
     t.text "name"
     t.text "text"
     t.datetime "created_at", null: false
@@ -216,14 +231,21 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["suggestible_id", "suggestible_type"], name: "index_edit_suggestions_on_suggestible_id_and_suggestible_type"
   end
 
-  create_table "event_materials", id: :serial, force: :cascade do |t|
+  create_table "event_materials", force: :cascade do |t|
     t.integer "event_id"
     t.integer "material_id"
     t.index ["event_id"], name: "index_event_materials_on_event_id"
     t.index ["material_id"], name: "index_event_materials_on_material_id"
   end
 
-  create_table "events", id: :serial, force: :cascade do |t|
+  create_table "event_zenodomaterials", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "zenodomaterial_id"
+    t.index ["event_id"], name: "index_event_zenodomaterials_on_event_id"
+    t.index ["zenodomaterial_id"], name: "index_event_zenodomaterials_on_zenodomaterial_id"
+  end
+
+  create_table "events", force: :cascade do |t|
     t.string "external_id"
     t.string "title"
     t.string "subtitle"
@@ -285,7 +307,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_eventunscrapeds_on_user_id"
   end
 
-  create_table "external_resources", id: :serial, force: :cascade do |t|
+  create_table "external_resources", force: :cascade do |t|
     t.integer "source_id"
     t.text "url"
     t.string "title"
@@ -295,14 +317,14 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["source_id", "source_type"], name: "index_external_resources_on_source_id_and_source_type"
   end
 
-  create_table "field_locks", id: :serial, force: :cascade do |t|
-    t.string "resource_type"
+  create_table "field_locks", force: :cascade do |t|
     t.integer "resource_id"
+    t.string "resource_type"
     t.string "field"
     t.index ["resource_type", "resource_id"], name: "index_field_locks_on_resource_type_and_resource_id"
   end
 
-  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
@@ -324,18 +346,18 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "link_monitors", id: :serial, force: :cascade do |t|
+  create_table "link_monitors", force: :cascade do |t|
     t.string "url"
     t.integer "code"
     t.datetime "failed_at"
     t.datetime "last_failed_at"
     t.integer "fail_count"
-    t.string "lcheck_type"
     t.integer "lcheck_id"
+    t.string "lcheck_type"
     t.index ["lcheck_type", "lcheck_id"], name: "index_link_monitors_on_lcheck_type_and_lcheck_id"
   end
 
-  create_table "materials", id: :serial, force: :cascade do |t|
+  create_table "materials", force: :cascade do |t|
     t.text "title"
     t.string "url"
     t.string "short_description"
@@ -346,7 +368,6 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.datetime "updated_at", null: false
     t.text "long_description"
     t.string "target_audience", default: [], array: true
-    t.string "keywords", default: [], array: true
     t.string "licence", default: "notspecified"
     t.string "difficulty_level", default: "notspecified"
     t.integer "content_provider_id"
@@ -354,7 +375,9 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.integer "user_id"
     t.date "last_scraped"
     t.boolean "scraper_record", default: false
+    t.text "keyword"
     t.string "resource_type", default: [], array: true
+    t.string "keywords", default: [], array: true
     t.string "language", default: "English"
     t.string "deliverable"
     t.index ["content_provider_id"], name: "index_materials_on_content_provider_id"
@@ -362,15 +385,15 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_materials_on_user_id"
   end
 
-  create_table "node_links", id: :serial, force: :cascade do |t|
+  create_table "node_links", force: :cascade do |t|
     t.integer "node_id"
-    t.string "resource_type"
     t.integer "resource_id"
+    t.string "resource_type"
     t.index ["node_id"], name: "index_node_links_on_node_id"
     t.index ["resource_type", "resource_id"], name: "index_node_links_on_resource_type_and_resource_id"
   end
 
-  create_table "nodes", id: :serial, force: :cascade do |t|
+  create_table "nodes", force: :cascade do |t|
     t.string "name"
     t.string "member_status"
     t.string "country_code"
@@ -387,9 +410,9 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_nodes_on_user_id"
   end
 
-  create_table "ontology_term_links", id: :serial, force: :cascade do |t|
-    t.string "resource_type"
+  create_table "ontology_term_links", force: :cascade do |t|
     t.integer "resource_id"
+    t.string "resource_type"
     t.string "term_uri"
     t.string "field"
     t.index ["field"], name: "index_ontology_term_links_on_field"
@@ -417,7 +440,16 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["package_id"], name: "index_package_materials_on_package_id"
   end
 
-  create_table "packages", id: :serial, force: :cascade do |t|
+  create_table "package_zenodomaterials", id: false, force: :cascade do |t|
+    t.integer "zenodomaterial_id"
+    t.integer "package_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["package_id"], name: "index_package_zenodomaterials_on_package_id"
+    t.index ["zenodomaterial_id"], name: "index_package_zenodomaterials_on_zenodomaterial_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.text "image_url"
@@ -435,7 +467,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_packages_on_user_id"
   end
 
-  create_table "profiles", id: :serial, force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.text "firstname"
     t.text "surname"
     t.text "image_url"
@@ -446,17 +478,18 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.integer "user_id"
     t.string "slug"
     t.string "orcid"
+    t.boolean "zenodotokenchoice"
     t.index ["slug"], name: "index_profiles_on_slug", unique: true
   end
 
-  create_table "roles", id: :serial, force: :cascade do |t|
+  create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
   end
 
-  create_table "sessions", id: :serial, force: :cascade do |t|
+  create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
     t.datetime "created_at"
@@ -465,7 +498,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "staff_members", id: :serial, force: :cascade do |t|
+  create_table "staff_members", force: :cascade do |t|
     t.string "name"
     t.string "role"
     t.string "email"
@@ -480,17 +513,17 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["node_id"], name: "index_staff_members_on_node_id"
   end
 
-  create_table "stars", id: :serial, force: :cascade do |t|
+  create_table "stars", force: :cascade do |t|
     t.integer "user_id"
-    t.string "resource_type"
     t.integer "resource_id"
+    t.string "resource_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_type", "resource_id"], name: "index_stars_on_resource_type_and_resource_id"
     t.index ["user_id"], name: "index_stars_on_user_id"
   end
 
-  create_table "subscriptions", id: :serial, force: :cascade do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "last_sent_at"
     t.text "query"
@@ -515,7 +548,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_unscrapeds_on_user_id"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
@@ -553,11 +586,11 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "widget_logs", id: :serial, force: :cascade do |t|
+  create_table "widget_logs", force: :cascade do |t|
     t.string "widget_name"
     t.string "action"
-    t.string "resource_type"
     t.integer "resource_id"
+    t.string "resource_type"
     t.text "data"
     t.json "params"
     t.datetime "created_at", null: false
@@ -565,7 +598,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["resource_type", "resource_id"], name: "index_widget_logs_on_resource_type_and_resource_id"
   end
 
-  create_table "workflows", id: :serial, force: :cascade do |t|
+  create_table "workflows", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.integer "user_id"
@@ -588,6 +621,38 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
     t.index ["user_id"], name: "index_workflows_on_user_id"
   end
 
+  create_table "zenodomaterials", force: :cascade do |t|
+    t.text "title"
+    t.string "url"
+    t.string "short_description"
+    t.string "doi"
+    t.date "remote_updated_date"
+    t.date "remote_created_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "zenodolicense", default: "CC-BY-4.0"
+    t.integer "content_provider_id"
+    t.string "slug"
+    t.integer "user_id"
+    t.date "last_scraped"
+    t.boolean "scraper_record", default: false
+    t.text "keyword"
+    t.string "resource_type", default: [], array: true
+    t.string "keywords", default: [], array: true
+    t.string "zenodolanguage", default: "English"
+    t.string "zenodotype"
+    t.string "publicationtype"
+    t.string "imagetype"
+    t.date "publicationdate"
+    t.integer "zenodoid"
+    t.integer "zenodolatestid"
+    t.string "bucketurl"
+    t.boolean "zenododoibool"
+    t.index ["content_provider_id"], name: "index_zenodomaterials_on_content_provider_id"
+    t.index ["slug"], name: "index_zenodomaterials_on_slug", unique: true
+    t.index ["user_id"], name: "index_zenodomaterials_on_user_id"
+  end
+
   add_foreign_key "bans", "users"
   add_foreign_key "bans", "users", column: "banner_id"
   add_foreign_key "collaborations", "users"
@@ -595,6 +660,8 @@ ActiveRecord::Schema.define(version: 2022_07_18_131220) do
   add_foreign_key "content_providers", "users"
   add_foreign_key "event_materials", "events"
   add_foreign_key "event_materials", "materials"
+  add_foreign_key "event_zenodomaterials", "events"
+  add_foreign_key "event_zenodomaterials", "zenodomaterials"
   add_foreign_key "events", "users"
   add_foreign_key "eventunscrapeds", "users"
   add_foreign_key "likes", "users"

@@ -143,10 +143,10 @@ class EventsController < ApplicationController
     packages = packages.collect{|package| Package.find_by_id(package)}
     packages_to_remove = @event.packages - packages
     packages.each do |package|
-      package.update_resources_by_id(nil, (package.events + [@event.id]).uniq)
+      package.update_resources_by_id(nil, nil, (package.events + [@event.id]).uniq)
     end
     packages_to_remove.each do |package|
-      package.update_resources_by_id(nil, (package.events.collect{|x| x.id} - [@event.id]).uniq)
+      package.update_resources_by_id(nil, nil, (package.events.collect{|x| x.id} - [@event.id]).uniq)
     end
     flash[:notice] = "Event has been included in #{pluralize(packages.count, 'package')}"
     redirect_to @event
@@ -205,7 +205,7 @@ class EventsController < ApplicationController
                                   :content_provider_id, {:package_ids => []}, {:node_ids => []}, {:node_names => []},
                                   {:target_audience => []}, {:eligibility => []},
                                   {:host_institutions => []}, :capacity, :contact,
-                                  external_resources_attributes: [:id, :url, :title, :_destroy], material_ids: [],
+                                  external_resources_attributes: [:id, :url, :title, :_destroy], material_ids: [], zenodomaterial_ids: [],
                                   locked_fields: [])
   end
 

@@ -3,6 +3,12 @@ module MaterialsHelper
   "The #{TeSS::Config.generic_name} harvests materials automatically from our E-learning platform, including descriptions and other relevant meta-data made available by providers. Materials can also be registered manually.\n\n"\
   "If your website contains training materials that you wish to include in our #{TeSS::Config.generic_name}, please contact our team (<a href='#{TeSS::Config.contact_email}'>#{TeSS::Config.contact_email}</a>) for further details.".freeze
 
+  ZENODO_MATERIALS_INFO = "In the context the #{TeSS::Config.generic_name}, a Zenodo training material is a link to a single online training material sourced by a content provider (such as a text on a Web page, presentation, video, etc.) along with description and other meta information (e.g. ontological categorization, keywords, etc.).\n\n"\
+  "These Zenodo materials are created and uploaded to Zenodo from the #{TeSS::Config.generic_name} by the user.\n\n"\
+  "The fields in <span class='zenodo_field'>blue</span> are the fields Zenodo gets data from. They comprise only a small subset of the totality of fields Zenodo offers. The aim here is to 
+  offer a fast and easy way to store and upload some material through our catalogue. If one wants to harness the full power of Zenodo (richer metadata, 50 GB per data set limit ...)  then one should use Zenodo directly.\n\n"\
+  "If your website contains training materials that you wish to include in our #{TeSS::Config.generic_name}, please contact our team (<a href='#{TeSS::Config.contact_email}'>#{TeSS::Config.contact_email}</a>) for further details.".freeze
+
   ELEARNING_MATERIALS_INFO = "e-Learning materials are curated materials focused on e-Learning.\n\n"\
   "If your website contains e-Learning materials that you wish to include in our #{TeSS::Config.generic_name}, please contact our team (<a href='#{TeSS::Config.contact_email}'>#{TeSS::Config.contact_email}</a>) for further details.".freeze
 

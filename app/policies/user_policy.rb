@@ -37,4 +37,12 @@ class UserPolicy < ApplicationPolicy
     manage?
   end
 
+  def zenodoupdate?
+    manage?
+  end
+
+  def zenodoedit?
+    zenodoupdate?
+  end
+
 end
