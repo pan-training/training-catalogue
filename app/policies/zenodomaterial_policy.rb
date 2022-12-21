@@ -24,14 +24,6 @@ class ZenodomaterialPolicy < ScrapedResourcePolicy
     newversionupdate?
   end
 
-  def zenodoupdate?
-    managezenodomaterial?
-  end
-
-  def zenodoedit?
-    zenodoupdate?
-  end
-
   #og manage
   def destroy?
     manage?

@@ -19,13 +19,12 @@ class MaterialsController < ApplicationController
     @combined = (Zenodomaterial.all + Material.all).sort_by {|record| record.created_at}
     @combined_and_reversed = @combined.reverse
     @results_and_paginated = @combined_and_reversed.paginate(page: params[:page], per_page: 30)
-
+    
     respond_to do |format|
       format.json { render json: @results_and_paginated }
       format.json_api { render json: @results_and_paginated }
       format.html
     end
-    
   end
 
   # GET /materials/1
