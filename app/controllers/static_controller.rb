@@ -4,6 +4,8 @@ class StaticController < ApplicationController
 
   def privacy; end
 
+  def create; end
+
   def home
     @hide_search_box = true
     @resources = []

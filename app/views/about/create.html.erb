@@ -1,0 +1,108 @@
+<div class="wrapper">
+
+  <div id="sidebar" class="popout-sidebar">
+    <%= render :partial => 'about_nav', locals: {show: 'requesting'} %>
+  </div>
+
+  <div id="content" class="">
+    <div class="about-block">
+      <%= render :partial => 'links', :locals => {'show': 'requesting'} %>
+      <div class="col-md-12">
+        <div id='register' class="h3">How to register or create training material on PaN-traininig.eu</div>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+            <p class="lead text-center bg-info btn text-info center-block">Is the material (website, article, report, project deliverable, video, git repository, e-learning course, ...) available online?</p>
+              </div>
+            </div>
+            <div class="row">
+            
+            <div class="col-xs-6 text-center">
+              <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+              <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
+              <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+              <p class="bg-info text-info btn">Is the material or the collection of material available as a single resource without dependencies?</p>
+              <div class="row">
+                <div class="col-xs-6 text-center">
+                  <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
+                </div>
+                <div class="col-xs-6 text-center">
+                  <p class="btn">
+                  <span class="glyphicon glyphicon-arrow-down"></span></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
+                      <p class="btn">
+                      <span class="glyphicon glyphicon-arrow-down"></span></p>
+                      <p class="bg-success text-success btn text-wrap">
+                        The resource can be registered as a material in our catalogue:</br>
+                        <%= link_to new_material_path, class: 'btn btn-primary' do %>
+                          <i class="fa fa-plus-square"></i> Register material
+                        <% end %></br> 
+                        or when it is just an event: </br>
+                        <%= link_to new_event_path, class: 'btn btn-primary' do %>
+                          <i class="fa fa-plus-square"></i> Register event
+                        <% end %></br> 
+                      </p>
+                </div>
+                <div class="col-xs-6 text-center">
+                        <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
+                  <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+                  <p class="btn bg-warning text-warning text-wrap">
+                    The resources can be described in a workflow to show dependencies between the materials:</br>
+                    <%= link_to new_workflow_path, class: 'btn btn-primary' do %>
+                      <i class="fa fa-plus-square"></i> Register workflow
+                    <% end %></br>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-6 text-center">
+              <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+              <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
+              <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+              <p class="bg-info text-info btn">Is it necessary to create the material completely from scratch?</p>
+              <div class="row">
+                <div class="col-xs-6 text-center">
+                  <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
+                </div>
+                <div class="col-xs-6 text-center">
+                  <p class="btn">
+                  <span class="glyphicon glyphicon-arrow-down"></span></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
+                      <p class="btn">
+                      <span class="glyphicon glyphicon-arrow-down"></span></p>
+                  <p class="bg-success text-success btn text-wrap">
+                    You can create a new E-learning course in our moodle (provides Jupyter support):</br>
+                    <%= link_to requesting_resources_path, class: 'btn btn-primary' do %>
+                      <i class="fa fa-external-link"></i> Create E-learning course on pan-learning
+                    <% end %></br>
+                  </p>
+                </div>
+                <div class="col-xs-6 text-center">
+                        <p class="center-block"><span class="btn btn-warning btn-lg">No</span></p>
+                  <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
+                  <p class="btn bg-warning text-warning text-wrap">
+                    You can register the material at our catalogue and use our Zenodo background-uploader:</br>
+                    <%= link_to create_path, class: 'btn btn-primary' do %>
+                      <i class="fa fa-plus-square"></i> Register and upload material
+                    <% end %></br>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -9,6 +9,17 @@ authors:
 - family-names: "Schwabe"
   given-names: "Julia"
 title: "Training-catalogue for the Photon and Neutron Data Services"
+date-released: "2022-08-22"
+keywords:
+  - "PaN-training"
+  - "training"
+  - "photon science"
+  - "neutron science"
+  - "e-learning"
+  - "TeSS"
+license: BSD-3-Clause-Clear
+message: "If you use this software, please cite it using these metadata."
 version: 1.0.0
 doi: 10.5281/zenodo.7015078
 url: "https://github.com/pan-training/training-catalogue"
+     

@@ -15,7 +15,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-10 latest_resource_description">
+    <div class="col-md-9 latest_resource_description">
       <% if resource.respond_to? 'short_description' %>
         <%= truncate(resource.short_description, length: 300, separator: ' ') %>
       <% else %>

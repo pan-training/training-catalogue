@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   concern :activities do
     resources :activities, only: [:index]
   end
-
+  
   get 'edam/terms' => 'edam#terms'
   get 'edam/topics' => 'edam#topics'
   get 'edam/operations' => 'edam#operations'
@@ -19,11 +19,15 @@ Rails.application.routes.draw do
   #get 'static/home'
   get 'about' => 'about#tess', as: 'about'
   get 'about/registering' => 'about#registering', as: 'registering_resources'
+  get 'about/requesting' => 'about#requesting', as: 'requesting_resources'
   get 'about/developers' => 'about#developers', as: 'developers'
   get 'about/us' => 'about#us', as: 'us'
+  get 'about/create' => 'about#create', as: 'create'
 
 
   get 'privacy' => 'static#privacy', as: 'privacy'
+
+
 
   post 'materials/check_exists' => 'materials#check_exists'
   post 'zenodomaterials/check_exists' => 'zenodomaterials#check_exists'  
