@@ -176,7 +176,7 @@ GEM
       nokogiri (>= 1.4.3)
     errbase (0.2.1)
     erubi (1.10.0)
-    execjs (2.7.0)
+    execjs (2.8.1)
     fakeredis (0.6.0)
       redis (~> 3.2)
     ffi (1.9.25)
@@ -605,7 +605,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
-    uglifier (3.0.4)
+    uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
