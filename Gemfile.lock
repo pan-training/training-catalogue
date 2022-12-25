@@ -177,7 +177,7 @@ GEM
     errbase (0.2.1)
     erubi (1.10.0)
     execjs (2.8.1)
-    fakeredis (0.8.0)
+    fakeredis (0.7.0)
       redis (>= 3.2, < 5.0)
     ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
@@ -488,7 +488,7 @@ GEM
     recaptcha (4.9.0)
       json
     redcarpet (3.5.1)
-    redis (3.3.3)
+    redis (3.3.5)
     ref (2.0.0)
     remotipart (1.4.2)
     responders (3.0.1)
