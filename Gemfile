@@ -35,7 +35,7 @@ gem 'omniauth_openid_connect'
 # Activity logging
 gem 'public_activity', '~> 1.6.1'
 
-gem 'simple_token_authentication', '~> 1.0'
+gem 'simple_token_authentication', '~> 1.17'
 
 gem 'bootstrap-sass', '>= 3.4.1'
 
