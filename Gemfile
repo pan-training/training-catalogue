@@ -78,7 +78,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'auto_strip_attributes', '~> 2.0'
 
 # Gem for validating URLs
-gem 'validate_url', '~> 1.0.2'
+gem 'validate_url', '~> 1.0.15'
 
 gem 'simple_form'
 
