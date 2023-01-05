@@ -184,7 +184,7 @@ GEM
       railties (>= 3.2, < 6.0)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
-    friendly_id (5.2.4)
+    friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     geocoder (1.6.3)
     globalid (1.0.0)
@@ -658,7 +658,7 @@ DEPENDENCIES
   faker!
   fakeredis
   font-awesome-sass (~> 4.7.0)
-  friendly_id (~> 5.2.4)
+  friendly_id (~> 5.5.0)
   geocoder
   gravtastic (~> 3.2.6)
   haml (~> 5.0.4)
