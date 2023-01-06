@@ -2,15 +2,14 @@
   <h1>Privacy Policy</h1>
 
   <p>
-  Through the following Privacy Policy we provide you with information on what personal data we collect when you visit our website rodare.hzdr.de and/or use our online services and how we utilize your data.
+  Through the following Privacy Policy we provide you with information on what personal data we collect when you visit our website <a href='https://pan-training.eu'>pan-training.eu</a> and/or use our online services and how we utilize your data.
   </p>
 
   <p>
-    When users access our website, data such as the computer's IP address, internet browser used, date, time of day and duration spent on the page is logged for a period of seven days. In principal, this data is only analyzed when technical problems or attacks on our webserver arise. We do not use analysis tools.
-  </p>
+    When users access our website, data such as the computer's IP address, internet browser used, date, time of day and duration spent on the page is logged for a period of seven days. In principal, this data is only analyzed when technical problems or attacks on our webserver arise. We do not use this data in analysis tools. 
 
   <p>
-    We in no way save or gather additional personal data through this website (such as names, addresses, telephone numbers or email addresses) unless you provide us with such information (for example, if you get in contact with us, utilize registration forms for events and workshops or fill in online applications) as well as in the context outlined as follows. Personal data you willingly provide (also in regard to required fields as part of your request) is treated confidentially, serving only to process your request and will not be passed on to third parties without your consent and/or your being informed in regard to that particular form. The website is hosted on a HZDR internal server.
+    We in no way save or gather additional personal data through this website (such as names, addresses, telephone numbers or email addresses) unless you provide us with such information (for example, if you get in contact with us, utilize the registration form to create own content as well as in the context outlined as follows. Personal data you willingly provide (also in regard to required fields as part of your request) is treated confidentially, serving only to process your request and will not be passed on to third parties without your consent and/or your being informed in regard to that particular form. The website is hosted on a HZDR internal server.
   </p>
 
   <p>
@@ -59,15 +58,23 @@
 
   <h4>Server Logs</h4>
   <p>
-    When you browse our <%= TeSS::Config.generic_name%>, the server automatically records logs of which pages you access, when you accessed them, and your IP address.
+    When you browse our <%= TeSS::Config.generic_name%>, the server automatically records logs of which pages you access, when you accessed them, and your IP address for a period of seven days. 
     These logs are used to fix errors and are not shared with any third parties.
     Sensitive information (such as passwords) is automatically stripped out.
+    After seven days the server original logs are removed and we use only  anonymized data for analytics as mentioned below.
   </p>
 
   <h4>Analytics</h4>
   <p>
-    The <%= TeSS::Config.generic_name%> uses GDPR-compliant analytics to track how users are discovering our <%= TeSS::Config.generic_name%> and interacting with the service.
-    The information gathered includes which pages are visited, which search terms lead you to our <%= TeSS::Config.generic_name%> and information about your web browser. We use IP masking, anonymity sets, and no more cookies as shown <a href="https://github.com/ankane/ahoy/issues/358">here</a>.
+    The <%= TeSS::Config.generic_name%> uses <a href='https://en.wikipedia.org/wiki/General_Data_Protection_Regulation'>GDPR-compliant analytics</a> to track how users are discovering our <%= TeSS::Config.generic_name%> and interacting with the service.
+    The information gathered includes which pages are visited, which search terms lead you to our <%= TeSS::Config.generic_name%> and information about your web browser.</br>We use IP masking, anonymity sets, and no more cookies as shown <a href="https://github.com/ankane/ahoy/issues/358">here</a>.
+
+    The data stored for a longer period is anonymised and the IP addresses are anonymized with the same approach <a href='https://support.google.com/analytics/answer/2763052'>Google Analytics uses for IP anonymization</a>. This means:
+    <ul dir="auto">
+      <li>For IPv4, the last octet is set to 0 (<code>8.8.4.4</code> becomes <code>8.8.4.0</code>)</li>
+      <li>For IPv6, the last 80 bits are set to zeros (<code>2001:4860:4860:0:0:0:0:8844</code> becomes <code>2001:4860:4860::</code>)</li>
+    </ul>
+  </p>
   </p>
 
   <h3>Information Retention</h3>

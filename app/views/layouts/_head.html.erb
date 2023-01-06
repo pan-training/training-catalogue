@@ -5,20 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="II67qSh5x50OY4YHjbbCC2o8QGxiiw0WFz-mOP_miNg" />
   <title><%= site_title %></title>
-  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.0.1/css/ol.css" />
-  <link href="https://cdn.jsdelivr.net/npm/ol-geocoder@latest/dist/ol-geocoder.min.css" rel="stylesheet">  
+  <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" /> -->
+  <!--  <link href="https://cdn.jsdelivr.net/npm/ol-geocoder@latest/dist/ol-geocoder.min.css" rel="stylesheet"> added the file locally -->
   
+  <%= stylesheet_link_tag 'ol', :media => "all" %>
+
   <!-- moved from home.html.erb, head tag in home.html.erb was not closed -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>  
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
+  <%= stylesheet_link_tag 'font-awsome_5.15.4_all.min.css' %>
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+
+  <!--<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>  -->
   
   <%= stylesheet_link_tag 'application', integrity: true, media: 'all', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag('favicon.png', :type => 'image/png') %>
   <%= javascript_include_tag 'application', integrity: true, 'data-turbolinks-track' => true %>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ol-geocoder@4.1.2/dist/ol-geocoder.js"></script>  
-  <script type="text/javascript" src="https://unpkg.com/ol-popup@4.0.0/dist/ol-popup.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script> added the file locally -->
+
+  <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ol-geocoder@4.1.2/dist/ol-geocoder.js"></script>  
+  <script type="text/javascript" src="https://unpkg.com/ol-popup@4.0.0/dist/ol-popup.js"></script> -->
+  
+  <%= javascript_include_tag 'ol-popup' %>
+  <%= javascript_include_tag 'ol-geocoder' %> 
   
   <%# signup_js.html_safe -%>
   <%= csrf_meta_tags %>

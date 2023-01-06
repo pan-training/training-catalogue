@@ -15,7 +15,7 @@
                 <div class="zenodobutton hidden">
                    <div>
                     <p>Link your Zenodo account to your Pan-training account by clicking the <b>Zenodo logo</b> below if you haven't already: </p><br>
-                    <%= link_to image_tag("zenodo-black-200"), Rails.application.config_for(:tess)["zenodo"][:url]+"oauth/authorize?scope=deposit:write+deposit:actions&state=CHANGEME&redirect_uri="+Rails.application.config_for(:tess)["zenodo"][:redirect_uri]+"&response_type=code&client_id="+Rails.application.config_for(:tess)["zenodo"][:client_id], :id => 'zenodo_choice_button' %>
+                    <%= link_to image_tag("zenodo-black-200.png"), Rails.application.config_for(:tess)["zenodo"][:url]+"oauth/authorize?scope=deposit:write+deposit:actions&state=CHANGEME&redirect_uri="+Rails.application.config_for(:tess)["zenodo"][:redirect_uri]+"&response_type=code&client_id="+Rails.application.config_for(:tess)["zenodo"][:client_id], :id => 'zenodo_choice_button' %>
                     </div>                    
                     <div>
                 <p>Or, if the above is already done, refresh the connection to your Zenodo account by clicking the <b>refresh button</b> below. This should be done every hour. </p><br>

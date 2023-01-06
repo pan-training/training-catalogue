@@ -39,16 +39,14 @@ body {
   min-height: 100%;
 }
 
-.newversion{
-  margin-bottom: 10px;
-}
-
-.disabledclone {
-  cursor: not-allowed;
-  opacity: 0.65;
-  box-shadow: none;
-}
-
+ /* latin */
+ @font-face {
+   font-family: 'Muli';
+   font-style: normal;
+   font-weight: 400;
+   src: url('<%= asset_path("Muli.woff") %>') format('woff');
+   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+ }
 
 .footer {
   padding: 0;
@@ -350,7 +348,7 @@ ul.unstyled {
   //padding-right: 15px;
   position: relative;
   display: block;
-  color: #333;
+  color: rgb(157, 157, 157);
   //font-size: 14px;
   //line-height: 20px;
   //margin: -7px -25px;
@@ -415,7 +413,7 @@ ul.unstyled {
 }
 
 .small-content-provider-logo {
-  max-width: 64px;
+  max-width: 120px;
   border-radius: 4px;
   padding-left: 10px;
 }
@@ -480,8 +478,12 @@ ul.unstyled {
 
 h3 {
   width: 70%;
-  margin-left: auto;
+  margin-left: 0px;
   margin-right: auto;
+}
+
+.latest-content {
+  margin-left: 30px !important;
 }
 
 .content_action {
@@ -841,6 +843,11 @@ div.legal-block {
   margin: auto;
 }
 
+div.create-block {
+  max-width: 1024px;
+  margin: auto;
+}
+
 input.loading {
   background: image-url('ajax-loader.gif') no-repeat right center;
 }
@@ -1041,7 +1048,7 @@ input[type=checkbox].field-lock+label:before,
 
 /* all links */
 .about-page-menu .nav>li>a {
-  color: #616161;
+  color: #747272;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: 400;
@@ -1109,6 +1116,16 @@ input[type=checkbox].field-lock+label:before,
   }
 }
 
+.list-header {
+  width: 70%;
+  margin-bottom: 0.7%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: block;
+  padding: 0.7% 1%;
+}
+
 .questionnaire {
   background-color: #fbff0233;
 }
@@ -1131,7 +1148,7 @@ input[type=checkbox].field-lock+label:before,
   --purple: #1f214b;
   --teal: #113e69;
   --plum: #8e2651;
-  --pink: #bb284d;
+  --pink: #bb284d; //PaN Trainign colour
   --pink-light: #ef2b5c;
   --orange: #f08222;
   --gray-lightest: #f2f2f2;
@@ -1333,6 +1350,7 @@ it {
 
 .browse-icon a:hover {
   color: #EF2B4C;
+  border-color: #EF2B4C;
 }
 
 @media (max-width: 500px) {
@@ -1450,6 +1468,25 @@ it {
   -webkit-text-fill-color: transparent;
 }
 
+.new-content-frontpage{
+  text-align: center;
+}
+
+.btn-front-content {
+  color: #262626;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-front-content:hover {
+  color: #fff;
+  background-color: #EF2B4C;
+  border-color: #EF2B4C;
+}
+
+
+
+
 .divtwo h2 {
   margin: 15px 0px;
 }
@@ -1477,11 +1514,6 @@ it {
 
 .basic_stats {
   color: #EF2B4C;
-}
-
-
-.hidden {
-  display: none;
 }
 
 /* Outline Social Share Buttons */
@@ -1537,10 +1569,14 @@ it {
   background-color: #ff4500;
 }
 
-.zenodo_field{
-color:#036ffc;
+.column_create {
+  float: center;
+  width: 50%;
 }
 
-.zenodo_field_two label{
-color:#036ffc;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
