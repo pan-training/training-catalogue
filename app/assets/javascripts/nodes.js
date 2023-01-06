@@ -1,4 +1,4 @@
-const Nodes = {
+var Nodes = {
     addStaff: function () {
         var objectIndex = new Date().getTime(); //Unique index
         var staffFields = $(this).data('template').replace(/replace-me/g, objectIndex);
