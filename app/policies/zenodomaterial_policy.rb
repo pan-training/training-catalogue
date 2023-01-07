@@ -23,10 +23,9 @@ class ZenodomaterialPolicy < ScrapedResourcePolicy
   def newversionedit?
     newversionupdate?
   end
-
-  #og manage
+  
   def destroy?
-    manage?
+    managezenodomaterial?
   end
 
   def newversionzenodo?
@@ -49,8 +48,8 @@ class ZenodomaterialPolicy < ScrapedResourcePolicy
   # special manage for zenodo materials
   # if using users zen account, only the owner of the zenodo material can interact
   # if using pan zen account, the owner of the zen mat and the admin can interact
-  def managezenodomaterial?
-    (@user &&  @user.is_owner?(@record) && !@user.profile.zenodotokenchoice.nil? && @user.profile.zenodotokenchoice && @session[:zenodo_access_token]) || (@user &&  @user.is_owner?(@record) && !@user.profile.zenodotokenchoice.nil? && !@user.profile.zenodotokenchoice) || (@user &&  @user.is_admin? && !@user.profile.zenodotokenchoice.nil? && !@user.profile.zenodotokenchoice)  
+  def managezenodomaterial?      
+    (@user &&  @user.is_owner?(@record) && !@user.profile.zenodotokenchoice.nil? && @user.profile.zenodotokenchoice && @session[:zenodo_access_token] && @record.panorpersonalzenact) || (@user &&  @user.is_owner?(@record) && !@user.profile.zenodotokenchoice.nil? && !@user.profile.zenodotokenchoice && !@record.panorpersonalzenact) || (@user &&  @user.is_admin? && !@user.profile.zenodotokenchoice.nil? && !@user.profile.zenodotokenchoice && !@record.panorpersonalzenact)  
   end
 
 end

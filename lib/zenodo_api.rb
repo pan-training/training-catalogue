@@ -376,7 +376,6 @@ module ZenodoApi
     end
 
     def list_files(deposition_id)
-
         uri = URI.parse(@root_url)
         http = Net::HTTP.new(uri.host, uri.port)
         #http.set_debug_output($stdout) # Logger.new("foo.log") works too
@@ -389,7 +388,7 @@ module ZenodoApi
         response_body = JSON.parse(response.body)
                       
         id_filename_list = []
-           
+
         response_body.each do |fff|   
             #puts "in list files loop"
             #puts fff["filename"]

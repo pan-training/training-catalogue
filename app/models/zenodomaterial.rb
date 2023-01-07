@@ -82,6 +82,8 @@ class Zenodomaterial < ApplicationRecord
 
   validates :bauthors, presence: true
   
+  validates_inclusion_of :panorpersonalzenact, in: [true, false]
+  
   #conditional validation, check to see if the following works
   #validates_presence_of :, :if => lambda { |o| o.type != 1 }
   validates_presence_of :publicationtype, :if => lambda { |o| o.zenodotype == "publication" }  

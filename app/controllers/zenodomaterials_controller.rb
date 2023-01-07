@@ -73,7 +73,10 @@ class ZenodomaterialsController < ApplicationController
     @zenodomaterial.user = current_user
 
     @zenodomaterial.vfile = true
-
+    
+    #which account created the zenodo material, PaN's or the user's.
+    @zenodomaterial.panorpersonalzenact = current_user.profile.zenodotokenchoice
+    
     respond_to do |format|
       if @zenodomaterial.save
         @zenodomaterial.create_activity :create, owner: current_user
@@ -217,7 +220,8 @@ class ZenodomaterialsController < ApplicationController
   #call to zenodo list files
   #this assumes that the new version has exactly the same files as the older version at first
   def listfiles
-      authorize Zenodomaterial
+      #authorize Zenodomaterial
+      authorize @zenodomaterial
       puts "listing the files"
       my_deposition_id = @zenodomaterial.zenodolatestid      
       service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
@@ -230,7 +234,8 @@ class ZenodomaterialsController < ApplicationController
   
   #call to zenodo delete file
   def deletezenodofile
-      authorize Zenodomaterial
+      #authorize Zenodomaterial
+      authorize @zenodomaterial
       puts "deleting the file"
       puts params[:file_id]
       file_id = params[:file_id]
@@ -242,7 +247,8 @@ class ZenodomaterialsController < ApplicationController
   #call to zenodo, create new version
   #im expecting that if one presses this a second time, either an error or the same exact response comes back, will have to deal with that
   def newversionzenodo
-      authorize Zenodomaterial
+      #authorize Zenodomaterial
+      authorize @zenodomaterial
       puts "new version zenodo, after button press"
 
       service = ZenodoApi::MyZenodoApi.new(@@root_url, get_zenodo_token)
