@@ -5,7 +5,7 @@
 First off, thanks for taking the time to contribute! ❤️
 
 [PaN-Training](https://pan-training.eu/) is a fork of the TeSS trainig portal. TeSS itself was originally developed to serve as the training portal for [ELIXIR](https://www.elixir-europe.org/), it endeavours to be a generic training platform that can be easily customized and re-used in other communities. Here we recommend new users to use primarily [Tess](https://github.com/ElixirTeSS/TeSS). 
-Nevertheless, we welcome and encourage new contributors to get involved and help to shape and improve PaN-Training. This document discusses and explains different ways you can contribute to PaN-Trainig.
+Nevertheless, we welcome and encourage new contributors to get involved and help to shape and improve PaN-Training. This document discusses and explains different ways you can contribute to PaN-Training.
 
 All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
