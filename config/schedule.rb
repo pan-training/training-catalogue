@@ -35,6 +35,10 @@ every 1.day, at: "7am" do
   rake "tess:check_event_urls"
 end
 
+every 1.day do
+  rake "tess:check_user_confirmations"
+end
+
 every 1.day, at: "8am" do
   #bundle exec rake sunspot:solr:reindex
   rake "sunspot:solr:reindex"
