@@ -13,8 +13,20 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.where.not(id: User.get_default_user.id).paginate(page: params[:page], per_page: 50)
-
+    #hide shadowbanned users for non admins
+    if current_user && current_user.is_admin?
+        @users = User.where.not(id: User.get_default_user.id).paginate(page: params[:page], per_page: 50)
+    else
+        shadowbanned_ids = []
+        shadowbanned_ids << User.get_default_user.id
+        User.all.each do |userr|
+            if userr.shadowbanned?
+                shadowbanned_ids << userr.id
+            end
+        end       
+        @users = User.where.not(id: shadowbanned_ids).paginate(page: params[:page], per_page: 50)
+    end
+    
     respond_to do |format|
       format.html
       format.json
