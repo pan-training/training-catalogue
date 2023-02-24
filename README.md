@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7015079.svg)](https://doi.org/10.5281/zenodo.7015079)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7015078.svg)](https://doi.org/10.5281/zenodo.7015078)
 
 # PaN Training Catalogue (based on the TeSS Trainning Catalogue from ELIXIR)
 
