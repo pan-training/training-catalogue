@@ -455,6 +455,8 @@ module ApplicationHelper
             total_material_count+=1
         end
     end
+    zenodomats = Zenodomaterial.count
+    total_material_count += zenodomats    
     [total_material_count, moodle_material_count]
   end
 
