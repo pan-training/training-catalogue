@@ -13,8 +13,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    #hide shadowbanned users for non admins
-    if current_user && current_user.is_admin?
+
         #hide shadowbanned users for non admins
     if current_user && current_user.is_admin?
         @users = User.where.not(id: User.get_default_user.id).paginate(page: params[:page], per_page: 50)
