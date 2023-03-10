@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "Kndel"
+- family-names: "Knodel"
   given-names: "Oliver"
   orcid: "https://orcid.org/0000-0001-8174-7795"
 - family-names: "Padovani"
