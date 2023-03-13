@@ -37,3 +37,16 @@ en:
       profile:
         firstname: 'First name'
         surname: 'Last name'
+  cookies:
+    notice: PaN Training makes use of some necessary cookies to provide its core functionality.
+    google_analytics: Additionally, we make use of Google Analytics to discover how people are using PaN-Training in order to help us improve the service. To opt out of this, choose the "Allow necessary cookies" option.
+    necessary_cookies_btn: Only allow necessary cookies
+    all_cookies_btn: Allow all cookies
+    no_consent: No cookie consent provided
+    options:
+      tracking: Cookies required for Google Analytics, to help PaN-Training improve its service.
+      necessary: Cookies necessary for PaN-Training to function, for example to provide user-authentication and forgery protection.
+    buttons:
+      revoke: Revoke cookie consent
+      all: Allow all cookies
+      necessary: Allow necessary cookies
