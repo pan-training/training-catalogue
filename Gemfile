@@ -75,7 +75,7 @@ gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Gem for creating before_validation callbacks for stripping whitespace
-gem 'auto_strip_attributes', '~> 2.0'
+gem 'auto_strip_attributes', '~> 2.6'
 
 # Gem for validating URLs
 gem 'validate_url', '~> 1.0.15'
