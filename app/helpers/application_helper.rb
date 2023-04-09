@@ -460,4 +460,8 @@ module ApplicationHelper
     [total_material_count, moodle_material_count]
   end
 
+  def cookie_consent
+    CookieConsent.new(cookies)
+  end
+
 end
