@@ -30,7 +30,10 @@ gem 'haml', '~> 5.0.4' # Rails admin needs this, but doesn't fix the version to 
 
 # Authentication
 gem 'devise'
-gem 'omniauth_openid_connect'
+gem 'omniauth', '~> 1.9.1'
+gem 'omniauth_openid_connect', '0.3.3'
+gem 'openid_connect', '~> 1.1'
+gem 'json-jwt', '~>1.11.0'
 
 # Activity logging
 gem 'public_activity', '~> 1.6.1'
