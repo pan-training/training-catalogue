@@ -115,8 +115,8 @@ GEM
     arel (9.0.0)
     ast (2.4.0)
     attr_required (1.0.1)
-    auto_strip_attributes (2.1.0)
-      activerecord (>= 3.0)
+    auto_strip_attributes (2.6.0)
+      activerecord (>= 4.0)
     autoprefixer-rails (9.4.9)
       execjs
     bcp47 (0.3.3)
@@ -645,7 +645,7 @@ DEPENDENCIES
   active_model_serializers
   activerecord-session_store
   ahoy_matey
-  auto_strip_attributes (~> 2.0)
+  auto_strip_attributes (~> 2.6)
   blazer
   bootsnap (>= 1.4.6)
   bootstrap-datepicker-rails (~> 1.6.4.1)
