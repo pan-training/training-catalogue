@@ -1,6 +1,6 @@
 class ApplicationPolicy
 
-  attr_reader :user, :record, :session
+  attr_reader :user, :record
   attr_accessor :request
 
   # def initialize(user, record)
@@ -16,7 +16,6 @@ class ApplicationPolicy
     @user = context.user
     @request = context.request
     @record = record
-    @session = context.session
   end
 
   def index?
