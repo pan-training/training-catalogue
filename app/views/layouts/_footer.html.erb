@@ -12,6 +12,11 @@
         <%= link_to 'Privacy', privacy_path, target: '_blank', class: "expands-footer-link" %> |
         <%= link_to 'Cookie preferences', cookies_consent_path, target: '_blank', class: "expands-footer-link" %><br/>
         <%= link_to 'Funding & acknowledgements', us_path(anchor: 'funding'), target: '_blank', class: "expands-footer-link" %><br/>
+        <div class="footer-item">
+          <a href="https://github.com/pan-training/training-catalogue" target="_blank", class="expands-footer-link">
+            <%= t('footer.version') %> <code><%= app_version_text -%></code>
+          </a>
+        </div>
       </div>
       <div class="col-sm-9 col-xs-4">
         <div class="col-sm-9">
