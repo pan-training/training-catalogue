@@ -284,5 +284,29 @@ Devise.setup do |config|
             jwks_uri: '/OIDC/jwk',
         }
     }
-  end  
+    # config.omniauth :openid_connect, {
+    #         name: :umbrella_aai,
+    #         scope: [:openid, :email, :profile],
+    #         response_type: 'code',
+    #         issuer: 'https://login.helmholtz.de/oauth2',
+    #         discovery: false,
+    #         send_nonce: true,
+    #         client_signing_alg: :RSA,
+    #         client_jwk_signing_key: '{"keys":[{"kty":"RSA","e":"AQAB","use":"sig","n":"1BJVQXvinfgt-0toUgr7E0UnZdaWGOOnJB6GgOw5NFyBBslpo8QRjd7O5VmlkR9IdH-yYa_0uRcyEIefT03AMqQUE3Nb-AYYywWCKiAQ3kGRAb7K6r1eJP6E52u0m4hFdnsA1CHPu71Mjee1x6kjco_ujSxIdMO79mxr8gU-uN5X69pbMOS8Foh2o9-9LxEVJk49CjQJSBjSTrtPVACWbbgsvAkq8744RBn0_hL_YcQhkKKaDn7QRU9fVQLZ_0C3yl493DS0kX8cYAm3aDpPNS3C1_17oNcjxTd-XolnH8YduRaPJlZN0mAzxLjY8ohWpTPYlOL6tdrvGdFdwufvAQ"}]}',
+    #         client_options: {
+    #             identifier: Rails.application.secrets.helmholtz_aai[:client_id],
+    #             secret: Rails.application.secrets.helmholtz_aai[:secret],
+    #             redirect_uri: "#{TeSS::Config.base_url.chomp('/')}/users/auth/umbrella_aai/callback",
+    #             scheme: 'https',
+    #             host: 'login.helmholtz.de',
+    #             port: 443,
+    #             authorization_endpoint: '/oauth2-as/oauth2-authz',
+    #             token_endpoint: '/oauth2/token',
+    #             userinfo_endpoint: '/oauth2/userinfo',
+    #             jwks_uri: '/oauth2/jwk',
+    #         }
+    #     }
+  end 
 end
+
+

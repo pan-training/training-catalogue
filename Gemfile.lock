@@ -669,13 +669,16 @@ DEPENDENCIES
   jquery-rails
   jquery-simplecolorpicker-rails
   jquery-turbolinks
+  json-jwt (~> 1.11.0)
   language_list (~> 1.1)
   linkeddata
   listen
   lunchy
   mimemagic!
   minitest (= 5.10.3)
-  omniauth_openid_connect
+  omniauth (~> 1.9.1)
+  omniauth_openid_connect (= 0.3.3)
+  openid_connect (~> 1.1)
   paperclip (~> 5.2.1)
   passenger (>= 5.0.25)
   pg

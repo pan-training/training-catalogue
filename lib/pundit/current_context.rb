@@ -1,11 +1,10 @@
 module Pundit
   class CurrentContext
-    attr_reader :user, :request, :session
+    attr_reader :user, :request
 
-    def initialize(user, request, session)
+    def initialize(user, request)
       @user = user
       @request = request
-      @session = session
     end
   end
 end
